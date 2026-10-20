@@ -7,11 +7,13 @@ Todo lo de esta tabla se re-verifica en la spec de cada fuente antes de implemen
 |-------|-------|------------|-------------------|--------|
 | Juleriaque | juleriaque.com.ar | VTEX | `/api/catalog_system/pub/products/search?_from=0&_to=49` | Viable. Devuelve `Price`, `ListPrice` y stock |
 | Grid (distribuye Nike, Jordan, NBA) | grid.com.ar | VTEX | Misma API VTEX | Viable. `robots.txt` pide `Crawl-delay: 0.5` |
-| Rouge | perfumeriasrouge.com | VTEX | Misma API VTEX | Viable. Confirmar que es el sitio de compra oficial (`rouge.com.ar` no existe) |
+| Rouge | perfumeriasrouge.com | VTEX | Misma API VTEX | Viable. Sitio confirmado por el usuario (`rouge.com.ar` no existe) |
 | New Era | newera.com.ar | Shopify | `/products.json?limit=250&page=N` | Viable. `compare_at_price` marca el precio de lista |
 | Parfumerie | parfumerie.com.ar | Magento | Sin API pública detectada | Requiere parsear HTML o sitemap. Evaluar después |
 | Moov | moov.com.ar | Propia (no VTEX ni Shopify) | Sin API pública detectada | Requiere parsear HTML. Evaluar después |
-| Nike (oficial) | nike.com.ar | Protegido | Responde 403 a cualquier pedido automatizado | **Descartado.** No se evade. Cubrir Nike vía Grid y Moov |
+| Dexter | dexter.com.ar | Propia (no VTEX ni Shopify) | Sin API pública detectada | Requiere parsear HTML. Evaluar después |
+| Nike (oficial) | nike.com.ar | Protegido | Responde 403 a cualquier pedido automatizado | **Descartado.** No se evade. Cubrir Nike vía Grid, Moov y Dexter |
+| Adidas (oficial) | adidas.com.ar | Protegido | Responde 403 a cualquier pedido automatizado | **Descartado.** Cubrir Adidas vía Grid, Moov y Dexter |
 
 ## Qué dice cada `robots.txt`
 
@@ -28,8 +30,25 @@ Todo lo de esta tabla se re-verifica en la spec de cada fuente antes de implemen
 - Shopify: `variants[].price` y `variants[].compare_at_price` (puede venir `null` si no hay oferta).
 - El orden por defecto no es por descuento: hay que recorrer el catálogo completo y calcular.
 
+## Dónde se habla de ofertas (Reddit, Telegram, X)
+
+Sondeo del 2026-10-20. Sirve para enterarse de patrones (horarios, errores de precio), no para alimentar
+al bot.
+
+- **Reddit:** devuelve 403 a lectura anónima, incluso en `search.json`. La web search tampoco indexa
+  hilos útiles. Opción legítima: la API oficial con una app propia (OAuth, gratuita para uso personal).
+  No se evade el bloqueo. Alternativa inmediata: que el usuario pase hilos concretos.
+- **Telegram:** los canales públicos son legibles en `t.me/s/<canal>` sin cuenta. Los canales
+  encontrados son de España (`@descuentos`, `@ofertaszone`, `@zapatillasysneakers`); no apareció ningún
+  canal argentino de perfumes o ropa. Falta que el usuario aporte canales que ya siga.
+- **X:** exige sesión o API paga. Se descarta como fuente automática.
+- **Hallazgo útil:** la API de Grid ya publica los "clusters" de promoción vigentes (`3x2`, `2da al 50`,
+  `Calzado days`, `15 off BF`...). Observar cuándo aparecen y desaparecen da los horarios de ofertas sin
+  depender de foros.
+
 ## Siguiente
 
-1. Spec de la primera fuente. Propuesta: **Juleriaque**, porque es perfumería, VTEX y con stock real.
-2. Elegir las páginas de referencia internacional por categoría (perfumes, calzado, gorras/ropa).
-3. Investigar franjas horarias de ofertas relámpago de estas marcas.
+1. Spec de la primera fuente: [`specs/001-fuente-juleriaque/spec.md`](../specs/001-fuente-juleriaque/spec.md).
+2. Elegir referencia internacional por categoría (opciones en [`referencias.md`](referencias.md)).
+3. Registrar durante unos días los clusters de promoción y los cambios de precio para inferir franjas
+   horarias.

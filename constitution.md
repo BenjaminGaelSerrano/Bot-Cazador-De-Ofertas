@@ -91,7 +91,7 @@ Cada fuente nueva es su propia spec chica. Cambios a este documento se versionan
 | # | Tema | Estado |
 |---|------|--------|
 | 1 | Marcas y retailers iniciales | Relevadas, ver `docs/fuentes.md`. Primera fuente propuesta: Juleriaque |
-| 2 | Páginas de referencia internacional por categoría | Investigar |
-| 3 | Franjas horarias de ofertas relámpago y frecuencia de corrida | Investigar |
+| 2 | Páginas de referencia internacional por categoría | Opciones en `docs/referencias.md`, falta elegir |
+| 3 | Franjas horarias de ofertas relámpago y frecuencia de corrida | Foros sin resultados útiles; se infieren registrando clusters de promo de las APIs |
 | 4 | Dónde se guarda el historial de precios | Decidir en el plan |
 | 5 | Canal alternativo si CallMeBot falla | Decidir en el plan |

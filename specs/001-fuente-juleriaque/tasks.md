@@ -39,12 +39,12 @@
 
 ## Fase 4: US2 — Avisar una ganga (P1)
 
-- [ ] T012 [P] [US2] Test y código de `src/nucleo/ganga.mjs`: regla con historial, regla sin historial
+- [x] T012 [P] [US2] Test y código de `src/nucleo/ganga.mjs`: regla con historial, regla sin historial
   ("sin historial"), stock obligatorio, campo opcional `referencia`
-- [ ] T013 [P] [US2] Test y código de `src/nucleo/alertas.mjs`: no repetir, volver a avisar solo con baja del
+- [x] T013 [P] [US2] Test y código de `src/nucleo/alertas.mjs`: no repetir, volver a avisar solo con baja del
   10 % adicional
-- [ ] T014 [US2] Conectar en `cli.mjs`: leer → registrar → evaluar → agrupar → enviar → persistir alertas
-- [ ] T015 [US2] Prueba de extremo a extremo con historial de fixture: producto con −35 % genera el mensaje
+- [x] T014 [US2] Conectar en `cli.mjs`: leer → registrar → evaluar → agrupar → enviar → persistir alertas
+- [x] T015 [US2] Prueba de extremo a extremo con historial de fixture: producto con −35 % genera el mensaje
   esperado; el mismo estado al correr dos veces genera un único aviso
 
 ## Fase 5: US3 — Fallar a la vista (P2)

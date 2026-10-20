@@ -12,6 +12,7 @@ export const config = {
   maxOfertasPorMensaje: 8,
   maxMensajesPorCorrida: 3,
   maxCaracteres: 1500,
+  pausaMensajesMs: 2000,     // espera entre dos WhatsApp seguidos
 
   fuentes: {
     juleriaque: {

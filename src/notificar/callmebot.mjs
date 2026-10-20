@@ -2,15 +2,17 @@ import { config } from '../config.mjs';
 
 /**
  * Agrupa ofertas (`{ texto }`) en mensajes de WhatsApp respetando los topes. Lo que no entra se
- * resume al final como "y N más".
+ * resume al final como "y N más". Devuelve `{ mensajes, porMensaje, incluidas }`: `porMensaje[i]` es
+ * cuántas ofertas lleva el mensaje i, para poder marcar como avisadas solo las que se enviaron.
  */
-export function armarMensajes(ofertas, {
+export function agrupar(ofertas, {
   titulo,
   maxPorMensaje = config.maxOfertasPorMensaje,
   maxMensajes = config.maxMensajesPorCorrida,
   maxCaracteres = config.maxCaracteres,
 } = {}) {
   const mensajes = [];
+  const porMensaje = [];
   let i = 0;
 
   while (i < ofertas.length && mensajes.length < maxMensajes) {
@@ -25,11 +27,14 @@ export function armarMensajes(ofertas, {
       enEste++;
     }
     mensajes.push(texto);
+    porMensaje.push(enEste);
   }
 
   if (i < ofertas.length) mensajes[mensajes.length - 1] += `\ny ${ofertas.length - i} más.`;
-  return mensajes;
+  return { mensajes, porMensaje, incluidas: i };
 }
+
+export const armarMensajes = (ofertas, opciones) => agrupar(ofertas, opciones).mensajes;
 
 /**
  * Manda un texto por CallMeBot al número propio. Con `dryRun` o sin credenciales solo lo imprime.

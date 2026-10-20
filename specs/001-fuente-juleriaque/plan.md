@@ -77,8 +77,10 @@ archivo crezca poco.
 }
 ```
 
-`obs` = `[fecha, precioActual, precioLista, hayStock]`. Se agrega una entrada solo si cambia el precio o la
-lista. El precio de un día cualquiera es el de la última entrada anterior o igual a esa fecha. Estimación
+`obs` = `[fecha, precioActual, precioLista]`. Se agrega una entrada solo si cambia el precio o la lista;
+el stock (`stock`: 1 o 0) y la última fecha vista (`visto`) se guardan en el producto, no en cada entrada.
+Si hay varias lecturas el mismo día, queda la de precio más bajo. El precio de un día cualquiera es el de
+la última entrada anterior o igual a esa fecha. Estimación
 inicial: unos 1 a 2 MB para 11.000 productos. Si crece más de 20 MB, se evalúa Firestore.
 
 ## Estructura del código
@@ -105,7 +107,9 @@ tests/
 
 ## Reglas de ganga (resumen operativo)
 
-- **Con historial (≥ 30 días):** `precioActual <= 0.70 × mínimo30d` y stock > 0.
+- **Con historial (≥ 30 días):** `precioActual <= 0.70 × mínimoPrevio` y stock > 0. El `mínimoPrevio` es
+  el menor precio de los 30 días **anteriores a hoy**; hoy no cuenta porque una baja de hoy se compararía
+  consigo misma y nunca dispararía el aviso.
 - **Sin historial:** `precioActual <= 0.70 × precioLista` (descuento del sitio) y stock > 0; el mensaje
   incluye "sin historial".
 - **Referencia internacional** (condición 2 de la constitución): fuera de esta spec; el módulo `ganga.mjs`

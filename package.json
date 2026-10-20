@@ -1,0 +1,14 @@
+{
+  "name": "cazador-ofertas",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Bot personal que detecta ofertas de perfumería y ropa y avisa por WhatsApp",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test \"tests/**/*.test.mjs\"",
+    "cazador": "node src/cli.mjs"
+  }
+}

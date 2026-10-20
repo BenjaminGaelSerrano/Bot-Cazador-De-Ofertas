@@ -5,20 +5,20 @@
 
 ## Fase 1: Base del proyecto
 
-- [ ] T001 Crear `package.json` (`"type": "module"`, scripts `test` y `cazador`, engines Node ≥ 22) y
+- [x] T001 Crear `package.json` (`"type": "module"`, scripts `test` y `cazador`, engines Node ≥ 22) y
   `src/config.mjs` con umbrales (30 %, 10 %, 30 días), categorías excluidas y topes de mensajes
-- [ ] T002 [P] Crear la rama `datos` vacía en el remoto con `datos/alertas.json` y `datos/fallas.json`
+- [ ] T002 [P] (pendiente: permiso denegado, ver nota) Crear la rama `datos` vacía en el remoto con `datos/alertas.json` y `datos/fallas.json`
   iniciales (`{}`)
-- [ ] T003 [P] Guardar fixtures en `tests/fixtures/`: una página de 50 productos de la API real, una
+- [x] T003 [P] Guardar fixtures en `tests/fixtures/`: una página de 50 productos de la API real, una
   respuesta 400, una 403 y un JSON vacío
 
 ## Fase 2: Núcleo común (bloquea a todas las historias)
 
-- [ ] T004 [P] Test y código de `src/nucleo/http.mjs`: User-Agent propio, pausa ≥ 1 s, corta ante 403 y 429,
+- [x] T004 [P] Test y código de `src/nucleo/http.mjs`: User-Agent propio, pausa ≥ 1 s, corta ante 403 y 429,
   reintento único ante 5xx
-- [ ] T005 [P] Test y código de `src/nucleo/historial.mjs`: cargar/guardar, registrar solo si cambió el
+- [x] T005 [P] Test y código de `src/nucleo/historial.mjs`: cargar/guardar, registrar solo si cambió el
   precio o la lista, calcular el mínimo de los últimos N días, contar días de historial
-- [ ] T006 [P] Test y código de `src/notificar/callmebot.mjs`: armar mensaje agrupado, recortar al tope,
+- [x] T006 [P] Test y código de `src/notificar/callmebot.mjs`: armar mensaje agrupado, recortar al tope,
   `--dry-run` imprime en vez de enviar. Referencia: `Fraganzia-WEB/tools/bot-proveedor.mjs`
 
 ## Fase 3: US1 — Leer el catálogo y registrar precios (P1)

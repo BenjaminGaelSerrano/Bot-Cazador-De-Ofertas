@@ -95,5 +95,5 @@ Cada fuente nueva es su propia spec chica. Cambios a este documento se versionan
 | 1 | Marcas y retailers iniciales | Relevadas, ver `docs/fuentes.md`. Primera fuente propuesta: Juleriaque |
 | 2 | Referencia internacional por categoría | Elegido PriceRunner UK (perfumes verificado); falta calzado y gorras, y leer sus términos de uso |
 | 3 | Franjas horarias de ofertas relámpago y frecuencia de corrida | Foros sin resultados útiles; se infieren registrando clusters de promo de las APIs |
-| 4 | Dónde se guarda el historial de precios | Decidir en el plan |
+| 4 | Dónde se guarda el historial de precios | Decidido: JSON en rama `datos` (plan 001) |
 | 5 | Canal alternativo si CallMeBot falla | Decidir en el plan |

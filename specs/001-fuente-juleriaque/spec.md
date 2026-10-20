@@ -81,8 +81,8 @@ produce un único aviso de falla y deja el historial intacto.
 - Producto con `ListPrice` menor que `Price` o precio 0: se descarta como dato inválido.
 - Producto que cambia de EAN o de nombre: se identifica por `productId`/SKU y el EAN se actualiza.
 - Precio que sube y baja varias veces en un día: se usa el mínimo del día para el historial.
-- El catálogo supera la ventana de paginación de la API (VTEX limita el rango por consulta): hay que
-  segmentar por categoría. [NEEDS CLARIFICATION: confirmar el tope real de `_from/_to` en este sitio]
+- El catálogo supera la ventana de paginación de la API: máximo 50 por pedido y `_from` ≤ 2500, con
+  11.167 productos en total. Se segmenta por marca (ver plan).
 - Corrida lenta: respetar pausa entre pedidos aunque alargue el tiempo total.
 
 ## Requirements *(mandatory)*

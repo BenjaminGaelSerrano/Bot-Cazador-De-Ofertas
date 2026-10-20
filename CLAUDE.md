@@ -34,6 +34,12 @@ Si algo contradice la constitución, se discute primero y se cambia la constituc
 - Referencia de implementación: `Fraganzia/Fraganzia-WEB/tools/bot-proveedor.mjs` (función de envío) y
   `.github/workflows/bot-proveedor.yml` (cron + dry-run).
 
+## Estructura prevista
+
+`src/fuentes/` (un adaptador por marca), `src/nucleo/` (http, historial, ganga, alertas, fallas),
+`src/notificar/` (CallMeBot), `tests/` con fixtures. Historial de precios en la rama `datos`, no en `main`.
+Detalle en [`specs/001-fuente-juleriaque/plan.md`](specs/001-fuente-juleriaque/plan.md).
+
 ## Estado actual
 
 Fase: definición. Marcas relevadas en [`docs/fuentes.md`](docs/fuentes.md) (Juleriaque, Grid, Rouge y

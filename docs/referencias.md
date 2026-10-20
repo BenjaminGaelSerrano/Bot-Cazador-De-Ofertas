@@ -3,6 +3,37 @@
 Fecha: 2026-10-20. La referencia es el precio retail internacional contra el que se compara una oferta
 argentina (constitución §4, condición 2). Sondeo con pedidos de lectura, sin evadir protecciones.
 
+## Comparadores de precios (el mejor camino para una referencia que no sea Argentina)
+
+Un comparador junta el precio de muchas tiendas de un mercado y evita depender de una sola tienda.
+Ranking de tráfico de Similarweb, septiembre 2026, categoría comparadores:
+[idealo.de](https://www.similarweb.com/top-websites/e-commerce-and-shopping/price-comparison/) (1.º),
+kakaku.com, akakce.com, ceneo.pl, mydealz.de, tweakers.net, trovaprezzi.it, heureka.cz, bizrate.com,
+cimri.com, ... idealo.fr (14.º), idealo.es (18.º), prisjakt.nu (20.º; es PriceSpy en sueco).
+
+| Comparador | Mercado | Acceso | Veredicto |
+|------------|---------|--------|-----------|
+| **PriceRunner UK** | Reino Unido, GBP | Páginas de categoría y de producto abiertas, con datos embebidos | **Elegido.** Ver detalle abajo |
+| PriceSpy | UK, NZ, Suecia, etc. | `robots.txt` permisivo, pero el HTML no trae precios (los carga con JavaScript desde una API interna no documentada) | Descartado por ahora. No se usa una API interna sin documentar |
+| idealo (.de, .es, .fr, .co.uk) | Alemania, España, Francia, UK | Devuelve una página anti-bot (403) | Descartado |
+| Geizhals | Austria, Alemania | 403 | Descartado |
+| Trovaprezzi | Italia | 403 en la home | Descartado |
+| Ceneo | Polonia | `robots.txt` con `Disallow: /` y `Crawl-Delay: 120` | Descartado |
+| kakaku, akakce, mydealz, tweakers, heureka, cimri | Japón, Turquía, Alemania, etc. | Sin sondear | Mercados poco útiles como precio de referencia para estas marcas |
+| Google Shopping | Global | No automatizable | Descartado |
+
+### PriceRunner UK: lo verificado el 2026-10-20
+
+- `/cl/55/Fragrances`: unos 116 productos con `lowestPrice` (GBP), precio por litro y cantidad de tiendas.
+- `/pl/55-<id>/...`: ficha con `schema.org/Product` y `AggregateOffer` (`lowPrice`, `highPrice`,
+  `offerCount`). Ejemplo: Dior Sauvage EdP 100 ml, £100,00 a £138,88 en 11 tiendas.
+- Su `robots.txt` bloquea `/*search=`, `/gotostore/`, `/track/`, `/checkout/` y filtros apilados. **Se usan
+  solo categorías y fichas de producto, no la búsqueda.**
+- Entrega el precio mínimo actual, no historial ni precio de lista. El historial lo arma el bot.
+- Los términos de uso no se leyeron todavía: **leerlos antes de implementar**.
+- El precio incluye IVA del Reino Unido (20 %), parecido al argentino (21 %), lo que facilita comparar.
+- Siguiente paso: confirmar qué categorías equivalen a calzado deportivo y gorras en PriceRunner.
+
 ## Perfumes
 
 | Opción | Acceso | Datos | Notas |

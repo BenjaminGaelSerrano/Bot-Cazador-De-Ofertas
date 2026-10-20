@@ -58,8 +58,10 @@ Detalles de la referencia internacional:
   `PENDIENTE`: elegir las páginas concretas.
 - La conversión usa un tipo de cambio configurable (en Fraganzia se usa dolarapi.com). `PENDIENTE`:
   decidir si se suman impuestos o costos de importación a la referencia.
-- Mientras el historial tenga menos de 30 días, la condición 1 no se puede evaluar: el bot **solo
-  junta datos y no avisa**, salvo que se configure lo contrario.
+- Mientras el historial tenga menos de 30 días, la condición 1 no se puede evaluar: el bot usa el
+  descuento declarado por el sitio (mínimo 30 %) y marca el aviso como **"sin historial"**.
+- Si un producto no tiene referencia internacional, se evalúa solo la condición 1 y el aviso lo indica.
+- Referencia elegida: **PriceRunner UK** (comparador, GBP). Ver `docs/referencias.md`.
 
 ## 5. Notificaciones
 
@@ -91,7 +93,7 @@ Cada fuente nueva es su propia spec chica. Cambios a este documento se versionan
 | # | Tema | Estado |
 |---|------|--------|
 | 1 | Marcas y retailers iniciales | Relevadas, ver `docs/fuentes.md`. Primera fuente propuesta: Juleriaque |
-| 2 | Páginas de referencia internacional por categoría | Opciones en `docs/referencias.md`, falta elegir |
+| 2 | Referencia internacional por categoría | Elegido PriceRunner UK (perfumes verificado); falta calzado y gorras, y leer sus términos de uso |
 | 3 | Franjas horarias de ofertas relámpago y frecuencia de corrida | Foros sin resultados útiles; se infieren registrando clusters de promo de las APIs |
 | 4 | Dónde se guarda el historial de precios | Decidir en el plan |
 | 5 | Canal alternativo si CallMeBot falla | Decidir en el plan |

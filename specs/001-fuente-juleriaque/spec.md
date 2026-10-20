@@ -52,8 +52,8 @@ llega a WhatsApp.
    avisar.
 3. **Given** varias ofertas nuevas en la misma corrida, **When** se envían, **Then** van agrupadas en un
    solo mensaje, hasta el máximo de mensajes configurado.
-4. **Given** menos de 30 días de historial, **When** corre el bot, **Then** solo registra datos y no
-   avisa (salvo que se active el modo "usar descuento del sitio", ver FR-009).
+4. **Given** menos de 30 días de historial y un descuento declarado por el sitio de al menos 30 %,
+   **When** corre el bot, **Then** avisa con el mensaje marcado "sin historial" (ver FR-009).
 
 ---
 
@@ -99,13 +99,13 @@ produce un único aviso de falla y deja el historial intacto.
 - **FR-005**: El sistema MUST evaluar la ganga con la regla de la constitución §4 (condición 1 siempre;
   condición 2 cuando exista referencia internacional).
 - **FR-006**: El sistema MUST notificar cada oferta una sola vez y volver a avisar solo si el precio
-  baja de forma material. [NEEDS CLARIFICATION: umbral de "baja material" (propuesta: 10 % adicional)]
+  baja al menos un 10 % adicional respecto del precio ya avisado.
 - **FR-007**: El sistema MUST agrupar ofertas en un mensaje y respetar un máximo de mensajes por
   corrida y por día, configurable.
 - **FR-008**: El sistema MUST soportar `--dry-run`: hace todo menos enviar mensajes y escribir estado.
-- **FR-009**: Mientras haya menos de 30 días de historial, el sistema MUST no avisar. Opcionalmente, un
-  modo configurable usa el descuento declarado por el sitio (`ListPrice` contra `Price`).
-  [NEEDS CLARIFICATION: ¿querés ese modo desde el día 1 para empezar a recibir avisos?]
+- **FR-009**: Mientras haya menos de 30 días de historial, el sistema MUST usar el descuento declarado
+  por el sitio (`ListPrice` contra `Price`, mínimo 30 %) para avisar, y MUST marcar el mensaje como
+  "sin historial". Cuando el historial alcance los 30 días, pasa a la regla de la constitución §4.
 - **FR-010**: El sistema MUST ignorar productos sin stock a la hora de avisar.
 - **FR-011**: Ante errores del sitio MUST aplicar la historia 3 y preservar el historial.
 - **FR-012**: Las credenciales MUST salir de variables de entorno (`CALLMEBOT_PHONE`,

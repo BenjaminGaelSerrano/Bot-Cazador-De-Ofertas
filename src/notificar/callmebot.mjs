@@ -1,5 +1,14 @@
 import { config } from '../config.mjs';
 
+/** Falla al enviar el WhatsApp (distinta de una falla al leer el sitio). */
+export class ErrorNotificacion extends Error {
+  constructor(mensaje) {
+    super(mensaje);
+    this.name = 'ErrorNotificacion';
+    this.tipo = 'notificacion';
+  }
+}
+
 /**
  * Agrupa ofertas (`{ texto }`) en mensajes de WhatsApp respetando los topes. Lo que no entra se
  * resume al final como "y N más". Devuelve `{ mensajes, porMensaje, incluidas }`: `porMensaje[i]` es
@@ -57,7 +66,13 @@ export async function enviar(texto, {
   }
 
   const url = `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(phone)}&text=${encodeURIComponent(texto)}&apikey=${encodeURIComponent(apikey)}`;
-  const res = await fetchFn(url);
-  if (!res.ok) throw new Error(`CallMeBot respondió ${res.status}`);
+  let res;
+  try {
+    res = await fetchFn(url);
+  } catch {
+    // No se propaga el error original: su mensaje o causa podrían traer la URL con la clave.
+    throw new ErrorNotificacion('CallMeBot no respondió');
+  }
+  if (!res.ok) throw new ErrorNotificacion(`CallMeBot respondió ${res.status}`);
   return { enviado: true };
 }

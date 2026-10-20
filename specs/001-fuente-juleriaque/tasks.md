@@ -49,19 +49,20 @@
 
 ## Fase 5: US3 — Fallar a la vista (P2)
 
-- [ ] T016 [P] [US3] Test y código de `src/nucleo/fallas.mjs`: un solo aviso por falla, nuevo aviso solo tras
+- [x] T016 [P] [US3] Test y código de `src/nucleo/fallas.mjs`: un solo aviso por falla, nuevo aviso solo tras
   una recuperación
-- [ ] T017 [US3] Pruebas con fixtures 403, 500 y JSON vacío: un aviso, historial intacto
-- [ ] T018 [US3] Integrar en `cli.mjs`: ante falla, no escribir historial parcial
+- [x] T017 [US3] Pruebas con fixtures 403, 500 y JSON vacío: un aviso, historial intacto
+- [x] T018 [US3] Integrar en `cli.mjs`: ante falla, no escribir historial parcial
 
 ## Fase 6: Automatización
 
-- [ ] T019 Workflow `.github/workflows/cazador.yml`: `cron` en minuto no redondo, 2 corridas por día,
+- [x] T019 Workflow `.github/workflows/cazador.yml`: `cron` en minuto no redondo, 2 corridas por día,
+  (el horario `cron` queda comentado hasta verificar T021)
   `workflow_dispatch` con `dry_run` (por defecto verdadero), checkout de la rama `datos`, tests antes de
   correr, commit de datos al final
-- [ ] T020 Cargar los secrets `CALLMEBOT_PHONE` y `CALLMEBOT_APIKEY` (tarea manual del usuario)
+- [x] T020 Cargar los secrets `CALLMEBOT_PHONE` y `CALLMEBOT_APIKEY` (tarea manual del usuario)
 - [ ] T021 Primera corrida manual con `dry_run`, luego una real; verificar el WhatsApp recibido
-- [ ] T022 Registrar en el README cómo ejecutar, probar y leer los datos
+- [x] T022 Registrar en el README cómo ejecutar, probar y leer los datos
 
 ## Dependencias
 

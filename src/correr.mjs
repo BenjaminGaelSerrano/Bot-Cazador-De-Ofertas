@@ -1,5 +1,6 @@
 import { config } from './config.mjs';
 import { cargarAlertas, debeAvisar, guardarAlertas, limpiar, marcarAvisada } from './nucleo/alertas.mjs';
+import { avisarFalla, marcarRecuperada } from './nucleo/fallas.mjs';
 import { evaluar } from './nucleo/ganga.mjs';
 import { cargar as cargarHistorial, guardar as guardarHistorial, registrar } from './nucleo/historial.mjs';
 import { agrupar, enviar } from './notificar/callmebot.mjs';
@@ -88,4 +89,21 @@ export async function correrFuente({
   if (errorEnvio) throw errorEnvio;
 
   return { informe, cambios, ofertas: ofertas.length, gangas: gangas.length, pendientes: pendientes.length, mensajes: mensajes.length, avisadas };
+}
+
+/**
+ * Igual que `correrFuente`, pero si falla avisa una sola vez por WhatsApp (sin tocar el historial, que
+ * `correrFuente` solo escribe después de leer bien) y vuelve a lanzar el error para que la corrida
+ * quede en rojo. Si anda bien, borra cualquier falla previa.
+ */
+export async function correrConAvisoDeFalla(opciones) {
+  const { nombre, fecha, dryRun, directorioDatos, enviarFn, log } = opciones;
+  try {
+    const resultado = await correrFuente(opciones);
+    await marcarRecuperada({ nombre, directorioDatos, dryRun });
+    return resultado;
+  } catch (error) {
+    await avisarFalla({ nombre, error, fecha, directorioDatos, dryRun, enviarFn, log });
+    throw error;
+  }
 }

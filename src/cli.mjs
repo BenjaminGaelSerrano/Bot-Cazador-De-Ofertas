@@ -1,6 +1,6 @@
 import { parseArgs } from 'node:util';
 import { config } from './config.mjs';
-import { correrFuente } from './correr.mjs';
+import { correrConAvisoDeFalla } from './correr.mjs';
 import { leerCatalogo } from './fuentes/juleriaque.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
 import { ErrorFuente, crearCliente } from './nucleo/http.mjs';
@@ -33,7 +33,7 @@ const inicio = Date.now();
 console.log(`Fuente: ${args.fuente} · ${fecha}${dryRun ? ' · DRY-RUN (no se escribe ni se envía nada)' : ''}`);
 
 try {
-  const r = await correrFuente({
+  const r = await correrConAvisoDeFalla({
     nombre: args.fuente,
     titulo: fuente.titulo,
     leer: fuente.leer,

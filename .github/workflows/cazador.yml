@@ -1,0 +1,69 @@
+name: Cazador de ofertas
+
+on:
+  # HORARIO DESACTIVADO hasta verificar la primera corrida real (tarea T021). Para activarlo, descomentar:
+  # schedule:
+  #   - cron: '17 12 * * *'  # 09:17 en Argentina. Minuto no redondo: a la hora en punto GitHub demora más los programados
+  #   - cron: '41 22 * * *'  # 19:41 en Argentina
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Solo simular (no escribe datos ni manda WhatsApp)'
+        type: boolean
+        default: true
+
+# Una sola corrida a la vez: dos escribiendo la rama de datos se pisarían.
+concurrency:
+  group: cazador
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  cazar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      REMOTO: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Pruebas
+        run: npm test
+
+      # El historial, las alertas y las fallas viven en la rama `datos`, no en `main`.
+      # Si todavía no existe (primera corrida), se arranca una vacía.
+      - name: Preparar la rama de datos
+        run: |
+          if git ls-remote --exit-code --heads "$REMOTO" datos > /dev/null 2>&1; then
+            git clone --depth 1 --branch datos "$REMOTO" datos
+          else
+            git init -q -b datos datos
+            git -C datos remote add origin "$REMOTO"
+          fi
+
+      - name: Cazar ofertas
+        run: node src/cli.mjs --fuente juleriaque --datos datos ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}
+        env:
+          CALLMEBOT_PHONE: ${{ secrets.CALLMEBOT_PHONE }}
+          CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
+
+      # always(): si el bot falló, igual hay que guardar fallas.json para no repetir el aviso en cada corrida.
+      - name: Guardar datos
+        if: always()
+        run: |
+          cd datos
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "Sin cambios en los datos."
+          else
+            git commit -q -m "datos: corrida del $(date -u +%F' '%H:%M) UTC"
+            git push origin HEAD:datos
+          fi

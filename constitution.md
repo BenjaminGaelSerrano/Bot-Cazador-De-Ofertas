@@ -90,7 +90,7 @@ Cada fuente nueva es su propia spec chica. Cambios a este documento se versionan
 
 | # | Tema | Estado |
 |---|------|--------|
-| 1 | Marcas y retailers iniciales (3 a 5) | Investigar |
+| 1 | Marcas y retailers iniciales | Relevadas, ver `docs/fuentes.md`. Primera fuente propuesta: Juleriaque |
 | 2 | Páginas de referencia internacional por categoría | Investigar |
 | 3 | Franjas horarias de ofertas relámpago y frecuencia de corrida | Investigar |
 | 4 | Dónde se guarda el historial de precios | Decidir en el plan |

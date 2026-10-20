@@ -36,5 +36,6 @@ Si algo contradice la constitución, se discute primero y se cambia la constituc
 
 ## Estado actual
 
-Fase: definición. Pendiente investigar marcas iniciales, referencias internacionales por categoría y
-franjas horarias de ofertas (ver constitución §8).
+Fase: definición. Marcas relevadas en [`docs/fuentes.md`](docs/fuentes.md) (Juleriaque, Grid, Rouge y
+New Era tienen catálogo JSON; Parfumerie y Moov requieren HTML; Nike oficial está descartado).
+Pendiente: referencias internacionales por categoría y franjas horarias de ofertas (constitución §8).

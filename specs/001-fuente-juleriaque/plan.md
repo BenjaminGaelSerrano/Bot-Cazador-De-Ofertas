@@ -24,9 +24,16 @@ fuente para que Grid, Rouge y New Era las reutilicen.
 - El catálogo tiene **11.167 productos**. La API entrega **máximo 50 por pedido** (`_to` ≤ 50 o devuelve
   400) y **no acepta `_from` mayor a 2500**. Un recorrido plano solo llega a ~2.550 productos.
 - Solo Fragancias suma 5.529 productos: segmentar por categoría tampoco alcanza.
-- **Solución: segmentar por marca** con `fq=B:<brandId>` (lista de marcas en
-  `/api/catalog_system/pub/brand/list`). Una marca que supere 2.550 productos se subdivide por categoría
-  (`fq=B:<id>&fq=C:<id>`). Total estimado: unos 224 pedidos de 50 más uno por marca.
+- **Solución: segmentar por categoría** con `fq=C:<id>`, recorriendo el árbol
+  (`/api/catalog_system/pub/category/tree/5`). Una categoría que cabe en 2.550 se lee completa; una que no
+  se subdivide en sus hijas. Total estimado: unos 230 a 260 pedidos. La primera página de cada categoría
+  trae también el total (header `resources`), así que contar no cuesta un pedido extra.
+- **Descartado: segmentar por marca.** `/api/catalog_system/pub/brand/list` respondió 429 (Too Many
+  Requests) y siguió bloqueado minutos después, mientras el resto de la API respondía bien.
+- **Descartado: segmentar por rango de precio.** El filtro `fq=P:[a TO b]` es rechazado por el sitio con
+  "Scripts are not allowed". No se busca otra codificación para esquivar ese filtro.
+- **Cada producto tiene varios SKU** (tamaños o variantes) con precio, EAN y nombre propios. La unidad del
+  bot es el **SKU** (`itemId`), no el producto.
 - Categorías que no son producto de venta y se excluyen por configuración: Testers, Exhibidores,
   Packaging, In Store Merchandising, Servicios, Gift Cards.
 - Cada ítem trae `ean`, el tamaño dentro del nombre del SKU (`"... 30 ml"`), `Price`, `ListPrice` y
@@ -35,12 +42,12 @@ fuente para que Grid, Rouge y New Era las reutilicen.
 ## Presupuesto de minutos de Actions
 
 El plan gratuito de GitHub da 2.000 minutos mensuales a repos privados (verificar en
-*Settings → Billing*). Una corrida de Juleriaque tarda unos 4 a 6 minutos por las pausas de 1 s.
+*Settings → Billing*). Una corrida de Juleriaque tarda **7,7 minutos** (medido el 2026-10-20: 283 pedidos con pausa de 1 s).
 
 | Frecuencia | Minutos/mes (solo Juleriaque) | ¿Alcanza para 4 fuentes? |
 |------------|-------------------------------|--------------------------|
-| Cada 6 horas (4 por día) | ~600 | Justo, ~2.400 → **no** |
-| Cada 12 horas (2 por día) | ~300 | Sí, ~1.200 |
+| Cada 6 horas (4 por día) | ~920 | **No** alcanza para 4 fuentes |
+| Cada 12 horas (2 por día) | ~470 | Sí, si las otras fuentes son más chicas que Juleriaque |
 | Cada hora | ~3.600 | No |
 
 **Decisión inicial: 2 corridas por día** (misma lógica que el bot de Fraganzia). Si más adelante se

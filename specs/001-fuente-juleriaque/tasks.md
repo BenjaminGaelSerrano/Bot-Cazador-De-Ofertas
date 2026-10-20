@@ -23,15 +23,16 @@
 
 ## Fase 3: US1 — Leer el catálogo y registrar precios (P1)
 
-- [ ] T007 [US1] Test de `src/fuentes/juleriaque.mjs` con fixtures: normalizar a
+- [x] T007 [US1] Test de `src/fuentes/juleriaque.mjs` con fixtures: normalizar a
   `{ id, ean, marca, nombre, ml, categoria, precioActual, precioLista, moneda, url, stock }`; descartar
   precio 0 o `ListPrice < Price`; extraer los ml del nombre del SKU
-- [ ] T008 [US1] Implementar la lectura: listar marcas, paginar de 50 en 50 por marca, subdividir por
+- [x] T008 [US1] Implementar la lectura: listar marcas, paginar de 50 en 50 por marca, subdividir por
   categoría si una marca supera 2.550, deduplicar por `productId`
-- [ ] T009 [US1] Prueba de que una marca grande se subdivide y de que ningún pedido usa `_from` > 2500
-- [ ] T010 [US1] `src/cli.mjs`: `--fuente juleriaque --dry-run` imprime la cantidad de productos leídos y un
+- [x] T009 [US1] Prueba de que una marca grande se subdivide y de que ningún pedido usa `_from` > 2500
+- [x] T010 [US1] `src/cli.mjs`: `--fuente juleriaque --dry-run` imprime la cantidad de productos leídos y un
   resumen, sin escribir ni enviar
-- [ ] T011 [US1] Prueba manual con `--dry-run` contra el sitio real; medir duración total (objetivo < 15 min,
+- [x] T011 [US1] Prueba manual con `--dry-run` contra el sitio real; medir duración total (objetivo < 15 min,
+  Resultado 2026-10-20: 283 pedidos, 7,7 min, 11.166 de 11.167 productos, 18.532 SKU, sin 429.
   esperado 4 a 6)
 
 **Punto de control:** US1 sola ya junta datos útiles.

@@ -48,5 +48,46 @@ export const config = {
       ],
       toleranciaCobertura: 0.01, // se avisa si una subdivisión deja fuera más del 1 % de sus productos
     },
+
+    // Grid (Nike, Jordan, NBA). 2.140 productos el 2026-10-20: caben en una consulta, se lee sin filtro.
+    // Los SKU son talles con el mismo precio, así que se avisa por producto.
+    grid: {
+      base: 'https://www.grid.com.ar',
+      maxPorPedido: 50,
+      maxOffset: 2500,
+      agrupar: 'producto',
+      categoriasExcluidas: [],
+      categorias: [{ name: 'Catálogo completo', ruta: null }],
+      toleranciaCobertura: 0.01,
+    },
+
+    // Rouge (perfumería). 4.836 productos el 2026-10-20. Cada SKU es un tamaño con su propio precio.
+    // Árbol relevado desde los datos de los productos; 10 productos (0,2 %) quedan fuera de las raíces
+    // conocidas. La categoría `giftcards` (9 productos) no se lee.
+    rouge: {
+      base: 'https://www.perfumeriasrouge.com',
+      maxPorPedido: 50,
+      maxOffset: 2500,
+      agrupar: 'sku',
+      categoriasExcluidas: ['giftcards'],
+      categorias: [
+        { name: 'Perfumes y fragancias', ruta: '/100/' },
+        { name: 'Maquillaje', ruta: '/105/' },
+        { name: 'Tratamientos', ruta: '/132/' },
+        { name: 'Capilares', ruta: '/169/' },
+      ],
+      toleranciaCobertura: 0.01,
+    },
+
+    // New Era (gorras). Shopify: 924 productos el 2026-10-20 en 4 páginas de 250.
+    newera: {
+      base: 'https://www.newera.com.ar',
+      porPagina: 250,
+      maxPaginas: 40,
+      categoriasExcluidas: ['Gift Card', 'Tarjeta de regalo'],
+    },
   },
+
+  // Tope de WhatsApp por corrida entre todas las fuentes juntas.
+  maxMensajesTotalPorCorrida: 5,
 };

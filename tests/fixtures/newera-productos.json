@@ -1,0 +1,1253 @@
+{
+ "products": [
+  {
+   "id": 7933909860528,
+   "title": "Gorra New Era 59FIFTY San Francisco Giants - MLB Seasonal",
+   "handle": "gorra-new-era-59fifty-san-francisco-giants-seasonal-aoe-negra",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44717481263280,
+     "title": "7 1/8",
+     "price": "149999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44717481296048,
+     "title": "7 1/4",
+     "price": "149999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44717481328816,
+     "title": "7 3/8",
+     "price": "149999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44717481361584,
+     "title": "7 1/2",
+     "price": "149999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44717481394352,
+     "title": "7 5/8",
+     "price": "149999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44717481427120,
+     "title": "7 3/4",
+     "price": "149999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7933915037872,
+   "title": "Gorra New Era 9FIFTY Las Vegas Raiders - NFL -  OSFM",
+   "handle": "gorra-new-era-9fifty-las-vegas-raiders-negro-gris",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44717496303792,
+     "title": "Default Title",
+     "price": "89999.00",
+     "compare_at_price": null,
+     "available": false
+    }
+   ]
+  },
+  {
+   "id": 7933915201712,
+   "title": "Gorra New Era 9FIFTY Las Vegas Raiders - NFL - OSFM",
+   "handle": "gorra-new-era-9fifty-las-vegas-raiders-verde-oliva",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44717496598704,
+     "title": "Default Title",
+     "price": "89999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7952881909936,
+   "title": "Gorra New Era 9FORTY - NE Brended Denim -  OSFM",
+   "handle": "gorra-new-era-9forty-ne-denim-azul-jean",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44768068698288,
+     "title": "Default Title",
+     "price": "89999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7952881713328,
+   "title": "Gorra New Era 9FORTY Los Angeles Dodgers - MLB - Denim - OSFM",
+   "handle": "gorra-new-era-9forty-los-angeles-dodgers-denim-negro",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44768068305072,
+     "title": "Default Title",
+     "price": "89999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7952883351728,
+   "title": "Gorra New Era 19TWENTY New York Yankees - MLB - OSFM",
+   "handle": "gorra-new-era-19twenty-new-york-yankees-azul-marino",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44768072171696,
+     "title": "Default Title",
+     "price": "119999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7965448503472,
+   "title": "Gorra New Era 9FORTY A-Frame - Camo Patch - OSFM",
+   "handle": "gorra-new-era-9forty-aframe-camo-patch-negro-verde",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44814339965104,
+     "title": "Default Title",
+     "price": "89999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7965448569008,
+   "title": "Gorra New Era 9FORTY A-Frame - Camo Patch - OSFM",
+   "handle": "gorra-new-era-9forty-aframe-camo-patch-beige-claro",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44814340030640,
+     "title": "Default Title",
+     "price": "89999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7965449650352,
+   "title": "Gorra New Era 9FORTY AF Trucker - NE Patch - OSFM",
+   "handle": "gorra-new-era-9forty-af-trucker-ne-patch-verde-oscuro",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44814343536816,
+     "title": "Default Title",
+     "price": "89999.00",
+     "compare_at_price": null,
+     "available": false
+    }
+   ]
+  },
+  {
+   "id": 7952882466992,
+   "title": "Llavero New Era Key Chain - OSFM",
+   "handle": "llavero-new-era-key-chain-negro-osfm",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Accesorio",
+   "variants": [
+    {
+     "id": 44768069746864,
+     "title": "Default Title",
+     "price": "59999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7952882041008,
+   "title": "Llavero New Era Los Angeles Dodgers - MLB - OSFM",
+   "handle": "llavero-new-era-los-angeles-dodgers-mlb-azul-oscuro-osfm",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Accesorio",
+   "variants": [
+    {
+     "id": 45560381210800,
+     "title": "Unico",
+     "price": "59999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7952882237616,
+   "title": "Llavero New Era New York Yankees - MLB",
+   "handle": "llavero-new-era-new-york-yankees-mlb-azul-marino",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Accesorio",
+   "variants": [
+    {
+     "id": 44843103158448,
+     "title": "Único",
+     "price": "59999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7965385883824,
+   "title": "Gorra New Era 39THIRTY Atlanta Braves - MLB - Team Classic - Azul Marino",
+   "handle": "gorra-new-era-39thirty-atlanta-braves-mlb-team-classic-azul-marino",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44814076051632,
+     "title": "S/M",
+     "price": "84999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814076084400,
+     "title": "M/L",
+     "price": "84999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814076117168,
+     "title": "L/XL",
+     "price": "84999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7965385556144,
+   "title": "Gorra New Era 9FORTY Los Angeles Dodgers - MLB - The League - Azul",
+   "handle": "gorra-new-era-9forty-los-angeles-dodgers-mlb-the-league-azul",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44814075363504,
+     "title": "Default Title",
+     "price": "69999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7965387260080,
+   "title": "Gorra New Era 59FIFTY Los Angeles Dodgers - MLB - Classics - Azul Marino",
+   "handle": "gorra-new-era-59fifty-los-angeles-dodgers-mlb-classics-azul-marino",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44814081589424,
+     "title": "6 7/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44814081622192,
+     "title": "7",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814081654960,
+     "title": "7 1/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814081687728,
+     "title": "7 1/4",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814081720496,
+     "title": "7 3/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814081753264,
+     "title": "7 1/2",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814081786032,
+     "title": "7 5/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814081818800,
+     "title": "7 3/4",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814081851568,
+     "title": "7 7/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814081884336,
+     "title": "8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": false
+    }
+   ]
+  },
+  {
+   "id": 7965386473648,
+   "title": "Gorra New Era 59FIFTY Los Angeles Dodgers - MLB - Classics",
+   "handle": "gorra-new-era-59fifty-los-angeles-dodgers-mlb-classics-roja",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44814080835760,
+     "title": "6 7/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814080508080,
+     "title": "7",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814079819952,
+     "title": "7 1/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814079852720,
+     "title": "7 1/4",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814079885488,
+     "title": "7 3/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814079918256,
+     "title": "7 1/2",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814079951024,
+     "title": "7 5/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814079983792,
+     "title": "7 3/4",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814080016560,
+     "title": "7 7/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7910557909168,
+   "title": "Gorra New Era 59FIFTY Chicago Bulls NBA B&W",
+   "handle": "gorra-new-era-59fifty-chicago-bulls-nba-bw",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44662300508336,
+     "title": "7",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44662300541104,
+     "title": "7 1/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44662300573872,
+     "title": "7 1/4",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44662300606640,
+     "title": "7 3/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44662300639408,
+     "title": "7 1/2",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44662300672176,
+     "title": "7 5/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44662300704944,
+     "title": "7 3/4",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44662300737712,
+     "title": "7 7/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44662300770480,
+     "title": "8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7965394141360,
+   "title": "Gorra New Era 59FIFTY Miami Heat - NBA - OTC",
+   "handle": "gorra-new-era-59fifty-miami-heat-nba-otc",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44814103052464,
+     "title": "7",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814103150768,
+     "title": "7 1/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814103118000,
+     "title": "7 1/4",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814103216304,
+     "title": "7 3/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814103085232,
+     "title": "7 1/2",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814103249072,
+     "title": "7 5/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814103183536,
+     "title": "7 3/4",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814103281840,
+     "title": "7 7/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814103314608,
+     "title": "8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7965456498864,
+   "title": "Gorra New Era 59FIFTY New York Yankees - MLB - Floral Pack",
+   "handle": "gorra-new-era-59fifty-new-york-yankees-mlb-floral-pack",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44814380171440,
+     "title": "7",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44814380204208,
+     "title": "7 1/8",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44814380236976,
+     "title": "7 1/4",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814380269744,
+     "title": "7 3/8",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814380302512,
+     "title": "7 1/2",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814380335280,
+     "title": "7 5/8",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44814380368048,
+     "title": "7 3/4",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44814380400816,
+     "title": "7 7/8",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": false
+    }
+   ]
+  },
+  {
+   "id": 7965456269488,
+   "title": "Gorra New Era 59FIFTY Oakland Athletics - MLB - Floral Pack",
+   "handle": "gorra-new-era-59fifty-oakland-athletics-mlb-floral-pack",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44814379352240,
+     "title": "7",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44814379385008,
+     "title": "7 1/8",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44814379417776,
+     "title": "7 1/4",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44814379450544,
+     "title": "7 3/8",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44814379483312,
+     "title": "7 1/2",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44814379516080,
+     "title": "7 5/8",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44814379548848,
+     "title": "7 3/4",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44814379581616,
+     "title": "7 7/8",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": false
+    }
+   ]
+  },
+  {
+   "id": 7965454794928,
+   "title": "Gorra New Era 59FIFTY Los Angeles Dodgers - MLB - Pinstripe",
+   "handle": "gorra-new-era-59fifty-los-angeles-dodgers-mlb-pinstripe-naranja",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44814375354544,
+     "title": "7",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814375387312,
+     "title": "7 1/8",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814375420080,
+     "title": "7 1/4",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814375452848,
+     "title": "7 3/8",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814375485616,
+     "title": "7 1/2",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814375518384,
+     "title": "7 5/8",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814375551152,
+     "title": "7 3/4",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44814375583920,
+     "title": "7 7/8",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": false
+    }
+   ]
+  },
+  {
+   "id": 7952027320496,
+   "title": "Riñonera New Era New York Yankees - MLB",
+   "handle": "rinonera-new-era-new-york-yankees-mlb-pana-negra",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Accesorio",
+   "variants": [
+    {
+     "id": 44765555065008,
+     "title": "Default Title",
+     "price": "89999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7952026960048,
+   "title": "Riñonera New Era New York Yankees - MLB - Pana",
+   "handle": "rinonera-new-era-new-york-yankees-mlb-pana-verde",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Accesorio",
+   "variants": [
+    {
+     "id": 44765554376880,
+     "title": "Default Title",
+     "price": "89999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7952024076464,
+   "title": "Riñonera New Era New York Yankees - MLB - Corderoy",
+   "handle": "rinonera-new-era-new-york-yankees-mlb-corduroy-negra",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Accesorio",
+   "variants": [
+    {
+     "id": 44765548150960,
+     "title": "Default Title",
+     "price": "89999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7952023748784,
+   "title": "Riñonera XL New Era New York Yankees - MLB",
+   "handle": "rinonera-new-era-new-york-yankees-mlb-negra",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Accesorio",
+   "variants": [
+    {
+     "id": 44765547397296,
+     "title": "Default Title",
+     "price": "89999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7910309953712,
+   "title": "Gorra New Era 9FIFTY Chicago Bulls NBA Fear of God",
+   "handle": "gorra-new-era-9fifty-chicago-bulls-nba-fear-of-god-essentials",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44661455749296,
+     "title": "Default Title",
+     "price": "149999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7952026665136,
+   "title": "Estuche New Era Camo Cap Carrier 2PK – Camuflado",
+   "handle": "estuche-new-era-camo-cap-carrier-2pk-camuflado-negro",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Accesorio",
+   "variants": [
+    {
+     "id": 44765553819824,
+     "title": "Default Title",
+     "price": "84999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7952028238000,
+   "title": "Estuche New Era Velour Cap Carrier 2P",
+   "handle": "estuche-new-era-velour-cap-carrier-2pk-negro",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Accesorio",
+   "variants": [
+    {
+     "id": 44847059501232,
+     "title": "Único",
+     "price": "84999.00",
+     "compare_at_price": null,
+     "available": false
+    }
+   ]
+  },
+  {
+   "id": 7952017129648,
+   "title": "Gorra New Era 9FORTY New York Yankees MLB Piping",
+   "handle": "gorra-9forty-new-york-yankees-piping-bicolor",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44765531799728,
+     "title": "Default Title",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7952017293488,
+   "title": "Gorra New Era 9FORTY Los Angeles Dodgers MLB Piping",
+   "handle": "gorra-9forty-los-angeles-dodgers-piping-bicolor",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44765532127408,
+     "title": "Default Title",
+     "price": "114999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7951970402480,
+   "title": "Gorra New Era 39THIRTY Boston Celtics - NBA - Verde",
+   "handle": "gorra-new-era-39thirty-boston-celtics-verde",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44765417865392,
+     "title": "S/M",
+     "price": "84999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7952016539824,
+   "title": "Gorra New Era 59FIFTY Los Angeles Dodgers MLB Piping",
+   "handle": "gorra-new-era-59fifty-dodgers-piping-amarillo-blanco",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44765530325168,
+     "title": "7",
+     "price": "139999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44765530357936,
+     "title": "7 1/8",
+     "price": "139999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44765530390704,
+     "title": "7 1/4",
+     "price": "139999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44765530423472,
+     "title": "7 3/8",
+     "price": "139999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44765530456240,
+     "title": "7 1/2",
+     "price": "139999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44765530489008,
+     "title": "7 5/8",
+     "price": "139999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44765530521776,
+     "title": "7 3/4",
+     "price": "139999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44765530554544,
+     "title": "7 7/8",
+     "price": "139999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44765530587312,
+     "title": "8",
+     "price": "139999.00",
+     "compare_at_price": null,
+     "available": false
+    }
+   ]
+  },
+  {
+   "id": 7940807196848,
+   "title": "Gorras New Era 9FORTY Las Vegas Raiders NFL",
+   "handle": "gorra-new-era-9forty-mujer-raiders-estrellas-negra",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44744143667376,
+     "title": "Default Title",
+     "price": "69999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7940788420784,
+   "title": "Gorras New Era 59FIFTY Las Vegas Raiders NFL",
+   "handle": "gorra-new-era-59fifty-las-vegas-raiders-khaki-negro-y-beige",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44744080720048,
+     "title": "7",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44744080752816,
+     "title": "7 1/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44744080785584,
+     "title": "7 1/4",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44744080818352,
+     "title": "7 3/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44744080851120,
+     "title": "7 1/2",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44744080883888,
+     "title": "7 5/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44744080916656,
+     "title": "7 3/4",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44744080949424,
+     "title": "7 7/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44744080982192,
+     "title": "8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7940779835568,
+   "title": "Gorras New Era 59FIFTY Chicago Bulls NBA Negra",
+   "handle": "gorra-new-era-59fifty-chicago-bulls-negra-original",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44744049885360,
+     "title": "7",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44744049918128,
+     "title": "7 1/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44744049950896,
+     "title": "7 1/4",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44744049983664,
+     "title": "7 3/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44744050016432,
+     "title": "7 1/2",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44744050049200,
+     "title": "7 5/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44744050081968,
+     "title": "7 3/4",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44744050114736,
+     "title": "7 7/8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": false
+    },
+    {
+     "id": 44744050147504,
+     "title": "8",
+     "price": "99999.00",
+     "compare_at_price": null,
+     "available": false
+    }
+   ]
+  },
+  {
+   "id": 7954943606960,
+   "title": "Gorra New Era 39THIRTY Boston Red Sox MLB - Seasonal Collection",
+   "handle": "gorra-new-era-39thirty-boston-red-sox-azul-mesh-seasonal-mlb-flex",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44777430548656,
+     "title": "S/M",
+     "price": "84999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44777430581424,
+     "title": "M/L",
+     "price": "84999.00",
+     "compare_at_price": null,
+     "available": false
+    }
+   ]
+  },
+  {
+   "id": 7954942034096,
+   "title": "Gorra New Era 39THIRTY Los Angeles Dodgers MLB Seasonal Collection",
+   "handle": "gorra-new-era-39thirty-dodgers-azul-mesh-seasonal-mlb-flex",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Gorra",
+   "variants": [
+    {
+     "id": 44777426911408,
+     "title": "S/M",
+     "price": "84999.00",
+     "compare_at_price": null,
+     "available": true
+    },
+    {
+     "id": 44777426944176,
+     "title": "M/L",
+     "price": "84999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7954891604144,
+   "title": "Bandana New Era 59FIFTY DAY",
+   "handle": "bandana-new-era-59fifty-day-beige-osfm",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Accesorio",
+   "variants": [
+    {
+     "id": 44777285124272,
+     "title": "Default Title",
+     "price": "44999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7954893242544,
+   "title": "Bandana New Era Paisley",
+   "handle": "bandana-new-era-paisley-negra-osfm",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Accesorio",
+   "variants": [
+    {
+     "id": 44777286828208,
+     "title": "Default Title",
+     "price": "44999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "id": 7954893635760,
+   "title": "Bandana New Era Paisley",
+   "handle": "bandana-new-era-paisley-verde-oscuro-osfm",
+   "vendor": "New Era Cap Argentina",
+   "product_type": "Accesorio",
+   "variants": [
+    {
+     "id": 44777287286960,
+     "title": "Default Title",
+     "price": "44999.00",
+     "compare_at_price": null,
+     "available": true
+    }
+   ]
+  }
+ ]
+}

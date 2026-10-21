@@ -26,6 +26,7 @@ export async function correrFuente({
   directorioDatos = 'datos',
   enviarFn = enviar,
   pausaMensajesMs = config.pausaMensajesMs,
+  maxMensajes = config.maxMensajesPorCorrida,
   dormir = dormirReal,
   log = console.log,
 }) {
@@ -62,7 +63,7 @@ export async function correrFuente({
   // 4. Avisar, anotando cada mensaje recién cuando salió.
   const { mensajes, porMensaje } = agrupar(
     pendientes.map((g) => ({ texto: formatearOferta(g.oferta, g.evaluacion) })),
-    { titulo },
+    { titulo, maxMensajes },
   );
   let avisadas = 0;
   let errorEnvio = null;

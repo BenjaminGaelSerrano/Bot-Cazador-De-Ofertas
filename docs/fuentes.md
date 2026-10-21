@@ -5,10 +5,10 @@ Todo lo de esta tabla se re-verifica en la spec de cada fuente antes de implemen
 
 | Marca | Sitio | Plataforma | Cómo leer precios | Estado |
 |-------|-------|------------|-------------------|--------|
-| Juleriaque | juleriaque.com.ar | VTEX | `/api/catalog_system/pub/products/search?_from=0&_to=49` | Viable. Devuelve `Price`, `ListPrice` y stock |
-| Grid (distribuye Nike, Jordan, NBA) | grid.com.ar | VTEX | Misma API VTEX | Viable. `robots.txt` pide `Crawl-delay: 0.5` |
-| Rouge | perfumeriasrouge.com | VTEX | Misma API VTEX | Viable. Sitio confirmado por el usuario (`rouge.com.ar` no existe) |
-| New Era | newera.com.ar | Shopify | `/products.json?limit=250&page=N` | Viable. `compare_at_price` marca el precio de lista |
+| Juleriaque | juleriaque.com.ar | VTEX | `/api/catalog_system/pub/products/search?_from=0&_to=49` | **Implementada** (spec 001). Devuelve `Price`, `ListPrice` y stock |
+| Grid (distribuye Nike, Jordan, NBA) | grid.com.ar | VTEX | Misma API VTEX | **Implementada** (spec 002). 2.139 productos, aviso por producto. `robots.txt` pide `Crawl-delay: 0.5` |
+| Rouge | perfumeriasrouge.com | VTEX | Misma API VTEX | **Implementada** (spec 002). 4.808 de 4.836 productos, aviso por SKU (tamaño) |
+| New Era | newera.com.ar | Shopify | `/products.json?limit=250&page=N` | **Implementada** (spec 002). 924 productos; hoy ninguno trae descuento declarado |
 | Parfumerie | parfumerie.com.ar | Magento | Sin API pública detectada | Requiere parsear HTML o sitemap. Evaluar después |
 | Moov | moov.com.ar | Propia (no VTEX ni Shopify) | Sin API pública detectada | Requiere parsear HTML. Evaluar después |
 | Dexter | dexter.com.ar | Propia (no VTEX ni Shopify) | Sin API pública detectada | Requiere parsear HTML. Evaluar después |

@@ -6,7 +6,7 @@ link directo. **Nunca compra**: la decisión es siempre de la persona. Reglas de
 
 ## Cómo funciona
 
-1. Lee el catálogo de la tienda (hoy: Juleriaque) y guarda el precio de cada producto.
+1. Lee el catálogo de cuatro tiendas (Juleriaque, Grid, Rouge y New Era) y guarda el precio de cada producto.
 2. Un producto es ganga si está al menos 30 % por debajo de su precio mínimo de los últimos 30 días.
    Mientras no haya 30 días de historial usa el descuento que declara el sitio y lo marca "sin historial".
 3. Avisa por WhatsApp (CallMeBot), una sola vez por oferta; vuelve a avisar solo si baja otro 10 %.
@@ -16,12 +16,13 @@ link directo. **Nunca compra**: la decisión es siempre de la persona. Reglas de
 
 ```bash
 npm test                                          # pruebas (no tocan la red)
-node src/cli.mjs --fuente juleriaque --dry-run    # lee el sitio real, no escribe ni envía nada
-node src/cli.mjs --fuente juleriaque              # corrida real: guarda datos y manda WhatsApp
+node src/cli.mjs --dry-run                        # lee todas las tiendas, no escribe ni envía nada
+node src/cli.mjs --fuente grid,rouge --dry-run    # solo algunas (juleriaque, grid, rouge, newera)
+node src/cli.mjs                                  # corrida real: guarda datos y manda WhatsApp
 ```
 
 Para correr en local, copiar `.env.example` a `.env` y completar `CALLMEBOT_PHONE` y `CALLMEBOT_APIKEY`.
-Una lectura completa de Juleriaque son unos 283 pedidos y tarda unos 8 minutos (pausa de 1 s entre pedidos).
+Una lectura completa de las cuatro tiendas son unos 430 pedidos y tarda unos 11 minutos (pausa de 1 s entre pedidos).
 
 ## Automatización (GitHub Actions)
 

@@ -22,7 +22,7 @@ permissions:
 jobs:
   cazar:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 40
     env:
       REMOTO: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
     steps:
@@ -47,7 +47,7 @@ jobs:
           fi
 
       - name: Cazar ofertas
-        run: node src/cli.mjs --fuente juleriaque --datos datos ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}
+        run: node src/cli.mjs --fuente todas --datos datos ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}
         env:
           CALLMEBOT_PHONE: ${{ secrets.CALLMEBOT_PHONE }}
           CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}

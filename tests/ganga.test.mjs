@@ -117,3 +117,9 @@ test('formato: no repite la marca si el nombre ya la trae', () => {
   const o = oferta({ nombre: 'Dior Sauvage EDP 100 ml' });
   assert.ok(formatearOferta(o, { tipo: 'sin-historial', descuento: 0.3, base: 1, referencia: null }).startsWith('Dior Sauvage'));
 });
+
+test('formato: tampoco la repite si el nombre la menciona en el medio', () => {
+  const o = oferta({ marca: 'Nike Sportswear', nombre: 'ZAPATILLAS NIKE SPORTSWEAR KILLSHOT 2 HOMBRE' });
+  const linea = formatearOferta(o, { tipo: 'sin-historial', descuento: 0.3, base: 1, referencia: null });
+  assert.ok(linea.startsWith('ZAPATILLAS NIKE SPORTSWEAR KILLSHOT 2 HOMBRE:'));
+});

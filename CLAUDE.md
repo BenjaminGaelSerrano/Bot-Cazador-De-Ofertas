@@ -42,6 +42,6 @@ Detalle en [`specs/001-fuente-juleriaque/plan.md`](specs/001-fuente-juleriaque/p
 
 ## Estado actual
 
-Spec 001 (Juleriaque) implementada y corriendo en GitHub Actions (2 corridas por día, avisos por
-WhatsApp, datos en la rama `datos`). Marcas relevadas en [`docs/fuentes.md`](docs/fuentes.md).
-Pendiente: referencia internacional (PriceRunner UK) y las fuentes Grid, Rouge y New Era (constitución §8).
+Specs 001 (Juleriaque) y 002 (Grid, Rouge, New Era) implementadas. Avisos por WhatsApp, datos en la rama `datos`,
+tope total de 5 mensajes por corrida repartido entre las fuentes. Marcas relevadas en [`docs/fuentes.md`](docs/fuentes.md).
+Pendiente: referencia internacional (PriceRunner UK) y fuentes con HTML (Parfumerie, Moov, Dexter).

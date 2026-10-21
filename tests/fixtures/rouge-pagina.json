@@ -1,0 +1,2322 @@
+[
+ {
+  "productId": "19570",
+  "productName": "Dieciocho Glossy EDP",
+  "brand": "Cher",
+  "brandId": 126,
+  "link": "https://www.perfumeriasrouge.com/dieciocho-glossy-edp-cd4158/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "29985",
+    "name": "Promo 150ml",
+    "ean": "7798422007303",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 54033,
+       "ListPrice": 77190,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "25549",
+    "name": "100 ml",
+    "ean": "7798422003510",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 53990,
+       "ListPrice": 53990,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "25550",
+    "name": "50 ml",
+    "ean": "7798422003527",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 38990,
+       "ListPrice": 38990,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "19540",
+  "productName": "Eau d'Ombré Leather EDT",
+  "brand": "Tom Ford",
+  "brandId": 202,
+  "link": "https://www.perfumeriasrouge.com/eau-d-ombre-leather-edt-etef7010000/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes unisex/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/103/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "25514",
+    "name": "100 ml",
+    "ean": "ETEF7010000",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 314180,
+       "ListPrice": 314180,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "19404",
+  "productName": "Zadig EDP",
+  "brand": "Zadig & Voltaire",
+  "brandId": 2000065,
+  "link": "https://www.perfumeriasrouge.com/zadig-edp-x31900318101/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "25321",
+    "name": "90 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 330000,
+       "ListPrice": 330000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "25322",
+    "name": "30 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 166000,
+       "ListPrice": 166000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "19400",
+  "productName": "This is Her! Undressed EDP",
+  "brand": "Zadig & Voltaire",
+  "brandId": 2000065,
+  "link": "https://www.perfumeriasrouge.com/this-is-her-undressed-edp-x31900218101/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "25317",
+    "name": "100 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 298000,
+       "ListPrice": 298000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "19396",
+  "productName": "Addict Lip Glow",
+  "brand": "Dior",
+  "brandId": 132,
+  "link": "https://www.perfumeriasrouge.com/addict-lip-glow-fc045700001c/p",
+  "categories": [
+   "/Maquillaje/Maquillajes de labios/Bálsamos labiales/",
+   "/Maquillaje/Maquillajes de labios/",
+   "/Maquillaje/"
+  ],
+  "categoriesIds": [
+   "/105/109/112/",
+   "/105/109/",
+   "/105/"
+  ],
+  "items": [
+   {
+    "itemId": "25300",
+    "name": "001 Pink",
+    "ean": "3348901729208",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "25659",
+    "name": "004 Coral",
+    "ean": "3348901729215",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "25660",
+    "name": "006 Berry",
+    "ean": "3348901744126",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "25661",
+    "name": "007 Raspberry",
+    "ean": "3348901729222",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "25662",
+    "name": "012 Rosewood",
+    "ean": "3348901729239",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "25301",
+    "name": "015 Cherry",
+    "ean": "3348901729246",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "25302",
+    "name": "020 Mahogany",
+    "ean": "3348901729253",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "25303",
+    "name": "031 Strawberry",
+    "ean": "3348901737425",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "25304",
+    "name": "038 Rose Nude",
+    "ean": "3348901744119",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "21279",
+    "name": "061 Poppy Coral",
+    "ean": "3348901711562",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "26733",
+    "name": "000 Universal Clear",
+    "ean": "3348901737432",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "19273",
+  "productName": "Myslf Le Parfum",
+  "brand": "Yves Saint Laurent",
+  "brandId": 211,
+  "link": "https://www.perfumeriasrouge.com/myslf-le-parfum-lle717900/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de hombre/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/102/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "25127",
+    "name": "100 ml",
+    "ean": "3614274114645",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 479000,
+       "ListPrice": 479000,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "25128",
+    "name": "60 ml",
+    "ean": "3614274114652",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 299000,
+       "ListPrice": 299000,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "18158",
+  "productName": "L'Eau d'Issey EDT 100 ml + Body Lotion + Travel Size Set",
+  "brand": "Issey Miyake",
+  "brandId": 148,
+  "link": "https://www.perfumeriasrouge.com/leau-dissey-edt-100-ml-body-lotion-travel-size-set-x31800564101/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "23882",
+    "name": "100 ml",
+    "ean": "3423222106515",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 254000,
+       "ListPrice": 254000,
+       "AvailableQuantity": 99999
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "18143",
+  "productName": "Reflection EDP",
+  "brand": "Hamidi",
+  "brandId": 2000060,
+  "link": "https://www.perfumeriasrouge.com/reflection-edp-x6294015178333/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de hombre/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/102/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "23867",
+    "name": "100 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 38995,
+       "ListPrice": 77990,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "18128",
+  "productName": "Desire EDP",
+  "brand": "Hamidi",
+  "brandId": 2000060,
+  "link": "https://www.perfumeriasrouge.com/desire-edp-x6294015178340c/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de hombre/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/102/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "23852",
+    "name": "100 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 38995,
+       "ListPrice": 77990,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "18123",
+  "productName": "Admire EDP",
+  "brand": "Hamidi",
+  "brandId": 2000060,
+  "link": "https://www.perfumeriasrouge.com/admire-edp-x6294015178227/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "23847",
+    "name": "100 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 38995,
+       "ListPrice": 77990,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "17810",
+  "productName": "Miss Pupa Gloss",
+  "brand": "Pupa",
+  "brandId": 184,
+  "link": "https://www.perfumeriasrouge.com/miss-pupa-gloss-x020032a400c/p",
+  "categories": [
+   "/Maquillaje/Maquillajes de labios/Brillos labiales/",
+   "/Maquillaje/Maquillajes de labios/",
+   "/Maquillaje/"
+  ],
+  "categoriesIds": [
+   "/105/109/110/",
+   "/105/109/",
+   "/105/"
+  ],
+  "items": [
+   {
+    "itemId": "23325",
+    "name": "400 Ballerina",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 41800,
+       "ListPrice": 41800,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "23326",
+    "name": "401 Lovely Pink",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 41800,
+       "ListPrice": 41800,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "23327",
+    "name": "402 Blossom Pink",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 41800,
+       "ListPrice": 41800,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "23328",
+    "name": "403 Nude Obsession",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 41800,
+       "ListPrice": 41800,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "23329",
+    "name": "404 Warm Nude",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 41800,
+       "ListPrice": 41800,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "23330",
+    "name": "405 Blush Nude",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 41800,
+       "ListPrice": 41800,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "17728",
+  "productName": "Eye Dare You!",
+  "brand": "Dolce&Gabbana",
+  "brandId": 134,
+  "link": "https://www.perfumeriasrouge.com/eye-dare-you-xp2sf1000/p",
+  "categories": [
+   "/Maquillaje/Maquillaje de ojos/Sombras de ojos/",
+   "/Maquillaje/Maquillaje de ojos/",
+   "/Maquillaje/"
+  ],
+  "categoriesIds": [
+   "/105/124/125/",
+   "/105/124/",
+   "/105/"
+  ],
+  "items": [
+   {
+    "itemId": "23123",
+    "name": "Golden",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 197000,
+       "ListPrice": 197000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "16318",
+  "productName": "Alien Hypersense EDP",
+  "brand": "Mugler",
+  "brandId": 172,
+  "link": "https://www.perfumeriasrouge.com/alien-hypersense-edp-xle597400c/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "21426",
+    "name": "60 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 317000,
+       "ListPrice": 317000,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "21425",
+    "name": "90 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 383000,
+       "ListPrice": 383000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "16295",
+  "productName": "Gaultier Divine Le Parfum",
+  "brand": "Jean Paul Gaultier",
+  "brandId": 152,
+  "link": "https://www.perfumeriasrouge.com/divine-le-parfum-edp-p65199770c/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "21401",
+    "name": "30 ml",
+    "ean": "8435415091145",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 209720,
+       "ListPrice": 262150,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "21399",
+    "name": "100 ml",
+    "ean": "8435415091169",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 411950,
+       "ListPrice": 411950,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "21400",
+    "name": "50 ml",
+    "ean": "8435415091152",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 337050,
+       "ListPrice": 337050,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "15661",
+  "productName": "L'eau D'issey Solar Violet EDT Intense",
+  "brand": "Issey Miyake",
+  "brandId": 148,
+  "link": "https://www.perfumeriasrouge.com/leau-dissey-solar-violet-edt-intense-x31800531101c/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "20586",
+    "name": "50 ml",
+    "ean": "3423222105860",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 115500,
+       "ListPrice": 231000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "20585",
+    "name": "100 ml",
+    "ean": "3423222105884",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 147500,
+       "ListPrice": 295000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "15428",
+  "productName": "Q by Dolce&Gabbana EDP Intense",
+  "brand": "Dolce&Gabbana",
+  "brandId": 134,
+  "link": "https://www.perfumeriasrouge.com/q-by-dolce-gabbana-edp-intense-xp1kq1c00c/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "20311",
+    "name": "100 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 335000,
+       "ListPrice": 335000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "20312",
+    "name": "50 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 270000,
+       "ListPrice": 270000,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "15406",
+  "productName": "Miss Dior Parfum",
+  "brand": "Dior",
+  "brandId": 132,
+  "link": "https://www.perfumeriasrouge.com/miss-dior-parfum-fc099700897c/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "20285",
+    "name": "80 ml",
+    "ean": "3348901708920",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 368700,
+       "ListPrice": 368700,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "20286",
+    "name": "50 ml",
+    "ean": "3348901708937",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 316800,
+       "ListPrice": 316800,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "20287",
+    "name": "35 ml",
+    "ean": "3348901708944",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 228300,
+       "ListPrice": 228300,
+       "AvailableQuantity": 1
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "15380",
+  "productName": "Forever Glow Maximizer",
+  "brand": "Dior",
+  "brandId": 132,
+  "link": "https://www.perfumeriasrouge.com/forever-glow-maximizer-fc043600011c/p",
+  "categories": [
+   "/Maquillaje/Maquillaje de rostro/Iluminadores/",
+   "/Maquillaje/Maquillaje de rostro/",
+   "/Maquillaje/"
+  ],
+  "categoriesIds": [
+   "/105/115/120/",
+   "/105/115/",
+   "/105/"
+  ],
+  "items": [
+   {
+    "itemId": "20250",
+    "name": "011 Pink",
+    "ean": "3348901713573",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 103000,
+       "ListPrice": 103000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "20251",
+    "name": "012 Pearly",
+    "ean": "3348901713580",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 103000,
+       "ListPrice": 103000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "20252",
+    "name": "013 Gold",
+    "ean": "3348901713597",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 103000,
+       "ListPrice": 103000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "20253",
+    "name": "014 Rosy",
+    "ean": "3348901723909",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 103000,
+       "ListPrice": 103000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "20254",
+    "name": "015 Peach",
+    "ean": "3348901723916",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 103000,
+       "ListPrice": 103000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "20255",
+    "name": "016 Bronze",
+    "ean": "3348901723923",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 103000,
+       "ListPrice": 103000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "14817",
+  "productName": "Myslf EDP",
+  "brand": "Yves Saint Laurent",
+  "brandId": 211,
+  "link": "https://www.perfumeriasrouge.com/myslf-edp-lle028000/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de hombre/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/102/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "30118",
+    "name": "Promo 60ml",
+    "ean": "3614273852821P",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 185500,
+       "ListPrice": 309167,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "19600",
+    "name": "100 ml",
+    "ean": "3614273852814",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 439000,
+       "ListPrice": 439000,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "29822",
+    "name": "150 ml",
+    "ean": "3614274289527",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 405000,
+       "ListPrice": 405000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "20265",
+    "name": "60 ml",
+    "ean": "3614273852821",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 265000,
+       "ListPrice": 265000,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "14400",
+  "productName": "J'adore L'Or Essence de Parfum",
+  "brand": "Dior",
+  "brandId": 132,
+  "link": "https://www.perfumeriasrouge.com/j-adore-lor-essence-de-parfum-fc099700474/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "27464",
+    "name": "Promo 50ml",
+    "ean": "3348901664653P",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 146750,
+       "ListPrice": 293500,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "19071",
+    "name": "50 ml",
+    "ean": "3348901664653",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 391600,
+       "ListPrice": 391600,
+       "AvailableQuantity": 1
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "14369",
+  "productName": "A Drop d'Issey EDP Essentielle",
+  "brand": "Issey Miyake",
+  "brandId": 148,
+  "link": "https://www.perfumeriasrouge.com/a-drop-d-issey-essentielle-edp-x31800402101c/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "19039",
+    "name": "90 ml",
+    "ean": "3423222091019",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 143000,
+       "ListPrice": 286000,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "19040",
+    "name": "50 ml",
+    "ean": "3423222090937",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 115000,
+       "ListPrice": 230000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "12859",
+  "productName": "K EDP",
+  "brand": "Dolce&Gabbana",
+  "brandId": 134,
+  "link": "https://www.perfumeriasrouge.com/k-edp-xi40510410000/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de hombre/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/102/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "17200",
+    "name": "200 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 414000,
+       "ListPrice": 414000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "12834",
+  "productName": "Devotion EDP",
+  "brand": "Dolce&Gabbana",
+  "brandId": 134,
+  "link": "https://www.perfumeriasrouge.com/devotion-edp-xi40200310000c/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "19199",
+    "name": "30 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 209000,
+       "ListPrice": 209000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "17173",
+    "name": "100 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 350000,
+       "ListPrice": 350000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "17174",
+    "name": "50 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 284000,
+       "ListPrice": 284000,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "8192",
+  "productName": "Blue Jeans EDT 75 ml",
+  "brand": "Versace",
+  "brandId": 207,
+  "link": "https://www.perfumeriasrouge.com/blue-jeans-edt-ed-limitada-xv26075p/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de hombre/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/102/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "16718",
+    "name": "75 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 79990,
+       "ListPrice": 159980,
+       "AvailableQuantity": 99999
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "8162",
+  "productName": "Good Girl Blush EDP",
+  "brand": "Carolina Herrera",
+  "brandId": 100,
+  "link": "https://www.perfumeriasrouge.com/good-girl-blush-edp-p65187278c/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "29271",
+    "name": "Promo 150ml",
+    "ean": "8411061097922P",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 508200,
+       "ListPrice": 847000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "16680",
+    "name": "80 ml",
+    "ean": "8411061056752",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 406500,
+       "ListPrice": 406500,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "16679",
+    "name": "50 ml",
+    "ean": "8411061056769",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 330650,
+       "ListPrice": 330650,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "16678",
+    "name": "30 ml",
+    "ean": "8411061056776",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 261900,
+       "ListPrice": 261900,
+       "AvailableQuantity": 1
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "7472",
+  "productName": "Super Smoother Blurring Skin Tint",
+  "brand": "Iconic London",
+  "brandId": 2000010,
+  "link": "https://www.perfumeriasrouge.com/super-smoother-blurring-skin-tint-xfd21020c/p",
+  "categories": [
+   "/Maquillaje/Maquillaje de rostro/Bases de maquillaje/",
+   "/Maquillaje/Maquillaje de rostro/",
+   "/Maquillaje/"
+  ],
+  "categoriesIds": [
+   "/105/115/117/",
+   "/105/115/",
+   "/105/"
+  ],
+  "items": [
+   {
+    "itemId": "12733",
+    "name": "Golden Medium",
+    "ean": "5060945310225",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 57490,
+       "ListPrice": 57490,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12734",
+    "name": "Neutral Fair",
+    "ean": "5060945310010",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 60490,
+       "ListPrice": 60490,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12735",
+    "name": "Neutral Medium",
+    "ean": "5060945310195",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 60490,
+       "ListPrice": 60490,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12736",
+    "name": "Neutral Tan",
+    "ean": "5060945310287",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 60490,
+       "ListPrice": 60490,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12737",
+    "name": "Neutral Light",
+    "ean": "5060945310072",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 60490,
+       "ListPrice": 60490,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12738",
+    "name": "Warm Fair",
+    "ean": "5060945310041",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 60490,
+       "ListPrice": 60490,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12739",
+    "name": "Warm Light",
+    "ean": "5060945310133",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 60490,
+       "ListPrice": 60490,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12740",
+    "name": "Warm Medium",
+    "ean": "5060945310164",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 60490,
+       "ListPrice": 60490,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12741",
+    "name": "Warm Tan",
+    "ean": "5060945310317",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 57490,
+       "ListPrice": 57490,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "7195",
+  "productName": "Addict Lip Maximizer",
+  "brand": "Dior",
+  "brandId": 132,
+  "link": "https://www.perfumeriasrouge.com/dior-addict-lip-maximizer-fc031900001c/p",
+  "categories": [
+   "/Maquillaje/Maquillajes de labios/Brillos labiales/",
+   "/Maquillaje/Maquillajes de labios/",
+   "/Maquillaje/"
+  ],
+  "categoriesIds": [
+   "/105/109/110/",
+   "/105/109/",
+   "/105/"
+  ],
+  "items": [
+   {
+    "itemId": "12402",
+    "name": "001 Pink",
+    "ean": "3348901635998",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12403",
+    "name": "002 Opal",
+    "ean": "3348901636001",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12404",
+    "name": "007 Raspberry",
+    "ean": "3348901636056",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12405",
+    "name": "013 Beige",
+    "ean": "3348901636117",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12406",
+    "name": "026 Intense Mauve",
+    "ean": "3348901636247",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12407",
+    "name": "027 Intense Fig",
+    "ean": "3348901636254",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12408",
+    "name": "028 Dior 8 Intense",
+    "ean": "3348901636261",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12409",
+    "name": "030 Shimmer Rose",
+    "ean": "3348901647434",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12410",
+    "name": "035 Burgundy",
+    "ean": "3348901636469",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12411",
+    "name": "038 Rose Nude",
+    "ean": "3348901650236",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "12412",
+    "name": "045 Shimmer Hazelnut",
+    "ean": "3348901654609",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "21276",
+    "name": "061 Poppy Coral",
+    "ean": "3348901711623",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "21277",
+    "name": "062 Bronzed Glow",
+    "ean": "3348901711715",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "21278",
+    "name": "063 Pink Lilac",
+    "ean": "3348901711647",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "27553",
+    "name": "110 Frosted Opal",
+    "ean": "3348901786287",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "27555",
+    "name": "111 Pearly Peach",
+    "ean": "3348901786270",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "27556",
+    "name": "112 Sunlit Amber",
+    "ean": "3348901786263",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 92700,
+       "ListPrice": 92700,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "6795",
+  "productName": "Clean Reserve Skin Blend EDP",
+  "brand": "Clean Beauty Collective",
+  "brandId": 2000030,
+  "link": "https://www.perfumeriasrouge.com/clean-reserve-skin-blend-edp-x80330820001/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes unisex/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/103/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "11665",
+    "name": "100 ml",
+    "ean": "3614273040273, 874034007492",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 71050,
+       "ListPrice": 203000,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "6783",
+  "productName": "Clean Reserve Radiant Nectar EDP 50 ml Set",
+  "brand": "Clean Beauty Collective",
+  "brandId": 2000030,
+  "link": "https://www.perfumeriasrouge.com/clean-reserve-radiant-nectar-edp-50-ml-set-x89170020320/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes unisex/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/103/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "11679",
+    "name": "Set",
+    "ean": "8011607276509, 874034013387",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 44065,
+       "ListPrice": 125900,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "6650",
+  "productName": "Almost Lipstick",
+  "brand": "Clinique",
+  "brandId": 127,
+  "link": "https://www.perfumeriasrouge.com/black-honey-almost-lipstick-e6359060000/p",
+  "categories": [
+   "/Maquillaje/Maquillajes de labios/Bálsamos labiales/",
+   "/Maquillaje/Maquillajes de labios/",
+   "/Maquillaje/"
+  ],
+  "categoriesIds": [
+   "/105/109/112/",
+   "/105/109/",
+   "/105/"
+  ],
+  "items": [
+   {
+    "itemId": "11868",
+    "name": "Black Honey",
+    "ean": "20714004507",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 69690,
+       "ListPrice": 69690,
+       "AvailableQuantity": 99999
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "27566",
+    "name": "Pink Honey",
+    "ean": "20715000000",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 69690,
+       "ListPrice": 69690,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "6118",
+  "productName": "A Drop d'Issey EDP Fraîche",
+  "brand": "Issey Miyake",
+  "brandId": 148,
+  "link": "https://www.perfumeriasrouge.com/drop-d-issey-eau-de-parfum-fraiche-x31800299101/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "10906",
+    "name": "90 ml",
+    "ean": "3423222048204",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 143000,
+       "ListPrice": 286000,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "10905",
+    "name": "50 ml",
+    "ean": "3423222048174",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 120000,
+       "ListPrice": 240000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "10904",
+    "name": "30 ml",
+    "ean": "3423222048167",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 84500,
+       "ListPrice": 169000,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "6034",
+  "productName": "Costa Azzurra Parfum",
+  "brand": "Tom Ford",
+  "brandId": 202,
+  "link": "https://www.perfumeriasrouge.com/costa-azzurra-parfum-10804/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes unisex/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/103/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "30390",
+    "name": "Promo 100ml",
+    "ean": "888066136785P",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 367458,
+       "ListPrice": 524940,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "10804",
+    "name": "100 ml",
+    "ean": "888066136785",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 524940,
+       "ListPrice": 524940,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "5773",
+  "productName": "Prep-Set-Glow",
+  "brand": "Iconic London",
+  "brandId": 2000010,
+  "link": "https://www.perfumeriasrouge.com/prep-set-glow-xpsggc-1/p",
+  "categories": [
+   "/Maquillaje/Maquillaje de rostro/Iluminadores/",
+   "/Maquillaje/Maquillaje de rostro/",
+   "/Maquillaje/"
+  ],
+  "categoriesIds": [
+   "/105/115/120/",
+   "/105/115/",
+   "/105/"
+  ],
+  "items": [
+   {
+    "itemId": "10453",
+    "name": "Set",
+    "ean": "5060490920702",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 54490,
+       "ListPrice": 54490,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "10454",
+    "name": "Set",
+    "ean": "5060490920566",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 54490,
+       "ListPrice": 54490,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "5702",
+  "productName": "Eau & Magnolia EDT",
+  "brand": "Issey Miyake",
+  "brandId": 148,
+  "link": "https://www.perfumeriasrouge.com/eau-magnolia-edt-x31800285101/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "10307",
+    "name": "100 ml",
+    "ean": "3423222048020",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 147500,
+       "ListPrice": 295000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "10306",
+    "name": "50 ml",
+    "ean": "3423222048013",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 115500,
+       "ListPrice": 231000,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "5677",
+  "productName": "Destination Mykonos Body Splash",
+  "brand": "Guess",
+  "brandId": 2000009,
+  "link": "https://www.perfumeriasrouge.com/destination-mykonos-body-splash-x32713/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "10257",
+    "name": "250 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 18176,
+       "ListPrice": 25600,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "5122",
+  "productName": "Le Beau Le Parfum",
+  "brand": "Jean Paul Gaultier",
+  "brandId": 152,
+  "link": "https://www.perfumeriasrouge.com/le-beau-le-parfum-p65180320c/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de hombre/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/102/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "9140",
+    "name": "125 ml",
+    "ean": "8435415062190",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 371000,
+       "ListPrice": 371000,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "9141",
+    "name": "75 ml",
+    "ean": "8435415062213",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 314300,
+       "ListPrice": 314300,
+       "AvailableQuantity": 0
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "4969",
+  "productName": "Gorgeous! EDP",
+  "brand": "Michael Kors",
+  "brandId": 167,
+  "link": "https://www.perfumeriasrouge.com/gorgeous-edp-30ml/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "29458",
+    "name": "Promo 100ml",
+    "ean": "22548419953",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 98700,
+       "ListPrice": 210000,
+       "AvailableQuantity": 99999
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "9103",
+    "name": "30 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 121900,
+       "ListPrice": 121900,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "9102",
+    "name": "50 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 167000,
+       "ListPrice": 167000,
+       "AvailableQuantity": 100
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "4956",
+  "productName": "Alien Goddess EDP",
+  "brand": "Mugler",
+  "brandId": 172,
+  "link": "https://www.perfumeriasrouge.com/alien-goddess-edp-30-ml-xld056100c-1/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "8943",
+    "name": "30 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 226000,
+       "ListPrice": 226000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "8945",
+    "name": "90 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 375000,
+       "ListPrice": 375000,
+       "AvailableQuantity": 10
+      }
+     }
+    ]
+   },
+   {
+    "itemId": "8944",
+    "name": "60 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 311000,
+       "ListPrice": 311000,
+       "AvailableQuantity": 99999
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "4428",
+  "productName": "Red Jeans EDT Ed. Limitada",
+  "brand": "Versace",
+  "brandId": 207,
+  "link": "https://www.perfumeriasrouge.com/red-jeans-edt-75ml--1/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de mujer/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/101/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "7365",
+    "name": "Promo 75ml",
+    "ean": "8018365270756",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 79990,
+       "ListPrice": 159980,
+       "AvailableQuantity": 99999
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "4419",
+  "productName": "The Dreamer EDT",
+  "brand": "Versace",
+  "brandId": 207,
+  "link": "https://www.perfumeriasrouge.com/the-dreamer-edt-100ml--1/p",
+  "categories": [
+   "/Perfumes y fragancias/Perfumes de hombre/",
+   "/Perfumes y fragancias/"
+  ],
+  "categoriesIds": [
+   "/100/102/",
+   "/100/"
+  ],
+  "items": [
+   {
+    "itemId": "7323",
+    "name": "100 ml",
+    "ean": "",
+    "sellers": [
+     {
+      "commertialOffer": {
+       "Price": 118860,
+       "ListPrice": 283000,
+       "AvailableQuantity": 99999
+      }
+     }
+    ]
+   }
+  ]
+ }
+]

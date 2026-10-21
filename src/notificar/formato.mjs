@@ -9,7 +9,8 @@ export function formatearOferta(oferta, evaluacion, { dias = config.diasHistoria
   const contra = evaluacion.tipo === 'historial'
     ? `bajo el mínimo de ${dias} días ${pesos(evaluacion.base)}`
     : `sin historial, vs lista ${pesos(evaluacion.base)}`;
-  const nombre = oferta.nombre.toLowerCase().startsWith(oferta.marca.toLowerCase()) ? oferta.nombre : `${oferta.marca} ${oferta.nombre}`;
+  // No se antepone la marca si el nombre ya la menciona (ej. "ZAPATILLAS NIKE SPORTSWEAR ..." de Nike Sportswear).
+  const nombre = oferta.nombre.toLowerCase().includes(oferta.marca.toLowerCase()) ? oferta.nombre : `${oferta.marca} ${oferta.nombre}`;
   const referencia = evaluacion.referencia !== null && evaluacion.referencia !== undefined
     ? `, ref. internacional ${pesos(evaluacion.referencia)}`
     : '';

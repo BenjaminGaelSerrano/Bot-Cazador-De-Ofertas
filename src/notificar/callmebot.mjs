@@ -39,7 +39,7 @@ export function agrupar(ofertas, {
     porMensaje.push(enEste);
   }
 
-  if (i < ofertas.length) mensajes[mensajes.length - 1] += `\ny ${ofertas.length - i} más.`;
+  if (i < ofertas.length && mensajes.length > 0) mensajes[mensajes.length - 1] += `\ny ${ofertas.length - i} más.`;
   return { mensajes, porMensaje, incluidas: i };
 }
 

@@ -95,6 +95,10 @@ lo que no se avisó queda para la siguiente.
 - **FR-008**: El workflow MUST correr las cuatro fuentes en cada ejecución programada.
 - **FR-009**: Cada fuente MUST informar cobertura (productos leídos vs. total del sitio) y avisar si queda
   truncada o incompleta.
+- **FR-010**: En la primera corrida de una fuente (historial vacío) el sistema MUST avisar solo las 8 mejores
+  ofertas y marcar el resto como línea base (vistas, sin avisar). Decidido por el usuario el 2026-10-20 tras
+  ver que Grid y Rouge traían 548 y 352 ofertas con descuento declarado el primer día. Juleriaque, que ya
+  tiene historial, no se ve afectada.
 
 ### Key Entities
 
@@ -109,6 +113,8 @@ lo que no se avisó queda para la siguiente.
 - **SC-002**: Un producto con varios talles genera como máximo un aviso por cambio de precio.
 - **SC-003**: Una fuente con falla no impide que las otras tres se procesen en la misma corrida.
 - **SC-004**: El total de WhatsApp de una corrida nunca supera el tope total configurado.
+- **SC-006**: La primera corrida de una fuente nueva envía como máximo 8 ofertas y ninguna oferta vieja
+  aparece en las corridas siguientes mientras no cambie de precio.
 - **SC-005**: El consumo mensual de Actions con 2 corridas por día queda por debajo de 1.200 minutos.
 
 ## Assumptions

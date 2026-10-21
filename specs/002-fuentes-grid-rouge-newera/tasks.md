@@ -35,6 +35,8 @@
 
 - [x] T010 Workflow: `--fuente todas`, `timeout-minutes` ajustado
 - [x] T011 Actualizar README, `docs/fuentes.md`, CLAUDE.md y la constitución
+- [x] T011b Línea base de la primera corrida de cada fuente (FR-010): 8 mejores y el resto marcado como visto;
+  escritura en orden seguro (alertas antes que historial); pruebas de caída a mitad de la primera corrida
 - [ ] T012 El usuario corre el workflow en modo simulación y luego real
 
 ## Dependencias

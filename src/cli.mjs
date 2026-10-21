@@ -71,6 +71,7 @@ for (const r of resultados) {
   console.log(`Productos leídos: ${informe.productosLeidos} · ofertas válidas: ${r.resultado.ofertas} · pedidos: ${informe.pedidos}`);
   console.log(`Historial: ${cambios.nuevo} nuevos, ${cambios.cambio} con cambio de precio, ${cambios.igual} sin cambios${dryRun ? ' (no guardado)' : ' (guardado)'}`);
   console.log(`Gangas hoy: ${r.resultado.gangas} · por avisar: ${r.resultado.pendientes} · mensajes: ${r.resultado.mensajes} · ofertas avisadas: ${r.resultado.avisadas}`);
+  if (r.resultado.primeraCorrida) console.log(`Primera corrida de esta fuente: se avisan las mejores y ${r.resultado.silenciadas} ofertas quedan como línea base (sin avisar)${dryRun ? ' (simulado)' : ''}`);
   if (informe.catalogoTotal !== null) console.log(`Cobertura: ${informe.productosLeidos} de ${informe.catalogoTotal} productos del sitio`);
   const tolerancia = config.fuentes[r.nombre]?.toleranciaCobertura ?? 0.01;
   if (informe.sinCubrir > informe.catalogoTotal * tolerancia) console.warn('AVISO: hay productos en el sitio fuera de las categorías configuradas; revisar si aparecieron categorías nuevas.');

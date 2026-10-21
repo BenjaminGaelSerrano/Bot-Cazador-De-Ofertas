@@ -27,6 +27,7 @@ export async function correrFuente({
   enviarFn = enviar,
   pausaMensajesMs = config.pausaMensajesMs,
   maxMensajes = config.maxMensajesPorCorrida,
+  maxPrimeraCorrida = config.primeraCorridaMaxOfertas,
   dormir = dormirReal,
   log = console.log,
 }) {
@@ -36,11 +37,11 @@ export async function correrFuente({
 
   const { ofertas, informe } = await leer(cliente, { log });
 
-  // 1. Historial: se registra todo y se guarda antes de tocar WhatsApp.
+  // 1. Historial: se registra todo. Si estaba vacío, es la primera corrida de esta fuente.
   const historial = await cargarHistorial(rutaHistorial);
+  const primeraCorrida = Object.keys(historial.productos).length === 0;
   const cambios = { nuevo: 0, cambio: 0, igual: 0 };
   for (const oferta of ofertas) cambios[registrar(historial, oferta, fecha)]++;
-  if (!dryRun) await guardarHistorial(rutaHistorial, historial);
 
   // 2. Gangas de hoy.
   const gangas = [];
@@ -56,14 +57,32 @@ export async function correrFuente({
     sinStock: new Set(ofertas.filter((o) => !(o.stock > 0)).map(clave)),
     gangasAhora: new Set(gangas.map((g) => clave(g.oferta))),
   });
-  const pendientes = gangas
+  let pendientes = gangas
     .filter((g) => debeAvisar(estado, clave(g.oferta), g.oferta.precioActual))
     .sort((a, b) => b.evaluacion.descuento - a.evaluacion.descuento);
 
+  // Primera corrida de una fuente: casi todo el catálogo parece "nuevo". Se avisan solo las mejores y el
+  // resto queda como línea base (marcado como visto, sin avisar), para no inundar el WhatsApp de ofertas viejas.
+  let silenciadas = 0;
+  if (primeraCorrida && pendientes.length > maxPrimeraCorrida) {
+    for (const { oferta } of pendientes.slice(maxPrimeraCorrida)) marcarAvisada(estado, clave(oferta), oferta.precioActual, fecha);
+    silenciadas = pendientes.length - maxPrimeraCorrida;
+    pendientes = pendientes.slice(0, maxPrimeraCorrida);
+  }
+
+  // Orden de escritura pensado para no dejar el estado a medias: primero la línea base de alertas y recién
+  // después el historial. Si se cae entre ambos, la próxima corrida vuelve a ser "primera" y repite la línea
+  // base sin daño; al revés, repetiría de golpe todas las ofertas viejas. Todo esto, antes de tocar WhatsApp.
+  if (!dryRun) {
+    if (silenciadas > 0) await guardarAlertas(rutaAlertas, estado);
+    await guardarHistorial(rutaHistorial, historial);
+  }
+
   // 4. Avisar, anotando cada mensaje recién cuando salió.
+  const tituloEnvio = silenciadas > 0 ? `${titulo} · primera lectura, mejores de ${pendientes.length + silenciadas}` : titulo;
   const { mensajes, porMensaje } = agrupar(
     pendientes.map((g) => ({ texto: formatearOferta(g.oferta, g.evaluacion) })),
-    { titulo, maxMensajes },
+    { titulo: tituloEnvio, maxMensajes },
   );
   let avisadas = 0;
   let errorEnvio = null;
@@ -89,7 +108,7 @@ export async function correrFuente({
   if (!dryRun) await guardarAlertas(rutaAlertas, estado);
   if (errorEnvio) throw errorEnvio;
 
-  return { informe, cambios, ofertas: ofertas.length, gangas: gangas.length, pendientes: pendientes.length, mensajes: mensajes.length, avisadas };
+  return { informe, cambios, ofertas: ofertas.length, gangas: gangas.length, pendientes: pendientes.length, mensajes: mensajes.length, avisadas, primeraCorrida, silenciadas };
 }
 
 /**

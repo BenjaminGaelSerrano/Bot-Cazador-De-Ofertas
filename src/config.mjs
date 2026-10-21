@@ -90,4 +90,7 @@ export const config = {
 
   // Tope de WhatsApp por corrida entre todas las fuentes juntas.
   maxMensajesTotalPorCorrida: 5,
+
+  // Primera corrida de una fuente: se avisan solo las N mejores; el resto queda como línea base.
+  primeraCorridaMaxOfertas: 8,
 };

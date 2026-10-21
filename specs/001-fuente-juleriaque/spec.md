@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-20
 
-**Status**: Draft
+**Status**: Implementada (2026-10-20)
 
 **Input**: Primera fuente del bot cazador de ofertas: leer el catálogo online de Juleriaque
 (juleriaque.com.ar, VTEX), detectar ofertas y avisar por WhatsApp.

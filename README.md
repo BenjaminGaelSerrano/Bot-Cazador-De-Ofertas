@@ -25,9 +25,8 @@ Una lectura completa de Juleriaque son unos 283 pedidos y tarda unos 8 minutos (
 
 ## Automatización (GitHub Actions)
 
-El workflow [`cazador.yml`](.github/workflows/cazador.yml) está pensado para correr dos veces por día (09:17 y 19:41,
-hora de Argentina; el horario está comentado hasta verificar la primera corrida real) y se lanza a mano desde *Actions → Run workflow* (por defecto en modo
-simulación).
+El workflow [`cazador.yml`](.github/workflows/cazador.yml) corre dos veces por día (09:17 y 19:41, hora de
+Argentina) y también a mano desde *Actions → Run workflow* (por defecto en modo simulación).
 
 Requisitos, una sola vez: cargar en *Settings → Secrets and variables → Actions* los secrets
 `CALLMEBOT_PHONE` (con código de país, solo dígitos) y `CALLMEBOT_APIKEY`.

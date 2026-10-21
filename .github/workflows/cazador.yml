@@ -1,10 +1,9 @@
 name: Cazador de ofertas
 
 on:
-  # HORARIO DESACTIVADO hasta verificar la primera corrida real (tarea T021). Para activarlo, descomentar:
-  # schedule:
-  #   - cron: '17 12 * * *'  # 09:17 en Argentina. Minuto no redondo: a la hora en punto GitHub demora más los programados
-  #   - cron: '41 22 * * *'  # 19:41 en Argentina
+  schedule:
+    - cron: '17 12 * * *'  # 09:17 en Argentina. Minuto no redondo: a la hora en punto GitHub demora más los programados
+    - cron: '41 22 * * *'  # 19:41 en Argentina
   workflow_dispatch:
     inputs:
       dry_run:

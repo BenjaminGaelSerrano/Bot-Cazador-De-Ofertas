@@ -42,6 +42,6 @@ Detalle en [`specs/001-fuente-juleriaque/plan.md`](specs/001-fuente-juleriaque/p
 
 ## Estado actual
 
-Fase: definición. Marcas relevadas en [`docs/fuentes.md`](docs/fuentes.md) (Juleriaque, Grid, Rouge y
-New Era tienen catálogo JSON; Parfumerie y Moov requieren HTML; Nike oficial está descartado).
-Pendiente: referencias internacionales por categoría y franjas horarias de ofertas (constitución §8).
+Spec 001 (Juleriaque) implementada y corriendo en GitHub Actions (2 corridas por día, avisos por
+WhatsApp, datos en la rama `datos`). Marcas relevadas en [`docs/fuentes.md`](docs/fuentes.md).
+Pendiente: referencia internacional (PriceRunner UK) y las fuentes Grid, Rouge y New Era (constitución §8).

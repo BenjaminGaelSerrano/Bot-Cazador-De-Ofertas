@@ -57,11 +57,11 @@
 ## Fase 6: Automatización
 
 - [x] T019 Workflow `.github/workflows/cazador.yml`: `cron` en minuto no redondo, 2 corridas por día,
-  (el horario `cron` queda comentado hasta verificar T021)
+  (horario activado tras verificar T021)
   `workflow_dispatch` con `dry_run` (por defecto verdadero), checkout de la rama `datos`, tests antes de
   correr, commit de datos al final
 - [x] T020 Cargar los secrets `CALLMEBOT_PHONE` y `CALLMEBOT_APIKEY` (tarea manual del usuario)
-- [ ] T021 Primera corrida manual con `dry_run`, luego una real; verificar el WhatsApp recibido
+- [x] T021 Primera corrida manual con `dry_run`, luego una real; verificar el WhatsApp recibido
 - [x] T022 Registrar en el README cómo ejecutar, probar y leer los datos
 
 ## Dependencias

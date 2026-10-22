@@ -3774,5 +3774,65 @@
  "grid:50694": {
   "precio": 134999,
   "fecha": "2026-10-21"
+ },
+ "juleriaque:1268": {
+  "precio": 148350,
+  "fecha": "2026-10-22"
+ },
+ "juleriaque:25773": {
+  "precio": 171925,
+  "fecha": "2026-10-22"
+ },
+ "juleriaque:22661": {
+  "precio": 13495,
+  "fecha": "2026-10-22"
+ },
+ "juleriaque:22651": {
+  "precio": 18995,
+  "fecha": "2026-10-22"
+ },
+ "juleriaque:22653": {
+  "precio": 18995,
+  "fecha": "2026-10-22"
+ },
+ "juleriaque:22654": {
+  "precio": 18995,
+  "fecha": "2026-10-22"
+ },
+ "juleriaque:22655": {
+  "precio": 18995,
+  "fecha": "2026-10-22"
+ },
+ "juleriaque:22656": {
+  "precio": 18995,
+  "fecha": "2026-10-22"
+ },
+ "juleriaque:19540": {
+  "precio": 16995,
+  "fecha": "2026-10-22"
+ },
+ "grid:56133": {
+  "precio": 48999,
+  "fecha": "2026-10-22"
+ },
+ "grid:47876": {
+  "precio": 29999,
+  "fecha": "2026-10-22"
+ },
+ "grid:41455": {
+  "precio": 31999,
+  "fecha": "2026-10-22"
+ },
+ "grid:49504": {
+  "precio": 16999,
+  "fecha": "2026-10-22"
+ },
+ "grid:45715": {
+  "precio": 32999,
+  "fecha": "2026-10-22"
+ },
+ "grid:50686": {
+  "precio": 84999,
+  "fecha": "2026-10-22"
  }
 }

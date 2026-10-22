@@ -31,7 +31,7 @@
   2 regulares, 15 evitadas, 351 sin referencia; Grid 593 = todas sin referencia (sin EAN ni competidor). Emparejado: 1.926 de
   5.065 SKU de Juleriaque con stock tienen referencia en Rouge, 99,5 % de la misma marca (el resto son nombres distintos del
   mismo producto, ej. Donna Karan = DKNY).
-- [ ] T010 Documentación (README, constitución) y subida a `main`
+- [x] T010 Documentación (README, constitución) y subida a `main`
 - [ ] T011 El usuario corre el workflow y contrasta los primeros avisos
 
 ## Pendiente fuera de esta spec

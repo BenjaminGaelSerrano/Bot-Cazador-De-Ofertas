@@ -63,6 +63,19 @@ Detalles de la referencia internacional:
 - Si un producto no tiene referencia internacional, se evalúa solo la condición 1 y el aviso lo indica.
 - Referencia elegida: **PriceRunner UK** (comparador, GBP). Ver `docs/referencias.md`.
 
+### Reventa (spec 003)
+
+Además de ser ganga, cada oferta se juzga como negocio de reventa (se revende por Instagram, sin comisión):
+
+- **Precio de mercado**: el menor precio con stock de *otra* tienda para el mismo producto (EAN, o marca +
+  tamaño + nombre). Se calcula con datos ya guardados, sin pedidos extra a los sitios.
+- **Veredicto**: *buena* si el margen estimado (revendiendo un 5 % bajo el mercado) es de 40 % o más y la demanda no es
+  baja; *regular* de 20 % o más; *evitar* si otra tienda lo vende más barato o el margen no alcanza, y entonces
+  **no se avisa**; *sin referencia* si ninguna otra tienda lo vende.
+- **Nunca se inventa un dato**: sin otra tienda que lo respalde, el aviso dice "sin referencia".
+- La demanda es una **estimación** a partir de cuánto baja el stock de la tienda, no una medición del mercado de
+  reventa (no existe una fuente abierta de ventas reales). Los valores de stock de relleno (99999) se ignoran.
+
 ## 5. Notificaciones
 
 - Canal: WhatsApp vía **CallMeBot**, al número propio.

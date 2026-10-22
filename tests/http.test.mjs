@@ -103,10 +103,18 @@ test('un 400 es error de cliente y no se reintenta', async () => {
   assert.equal(pedidos.length, 1);
 });
 
-test('una respuesta que no es JSON es respuesta_invalida', async () => {
-  const mala = { status: 200, ok: true, headers: new Map(), json: async () => { throw new SyntaxError('x'); } };
-  const { cliente } = armar([mala]);
+const textoEnVezDeJson = () => ({ status: 200, ok: true, headers: new Map(), json: async () => { throw new SyntaxError('Server is too busy'); } });
+
+test('una respuesta que sigue sin ser JSON tras los reintentos es respuesta_invalida', async () => {
+  const { cliente, pedidos } = armar([textoEnVezDeJson(), textoEnVezDeJson(), textoEnVezDeJson()]);
   await assert.rejects(cliente.obtenerJson('https://x.test/a'), (e) => e.tipo === 'respuesta_invalida');
+  assert.equal(pedidos.length, 3);
+});
+
+test('un "Server is too busy" pasajero (texto en vez de JSON) se recupera al reintentar', async () => {
+  const { cliente } = armar([textoEnVezDeJson(), respuesta(200, '[5]')]);
+  const { datos } = await cliente.obtenerJson('https://x.test/a');
+  assert.deepEqual(datos, [5]);
 });
 
 test('un fallo de red que persiste es tipo red, tras reintentar', async () => {

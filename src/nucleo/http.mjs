@@ -12,7 +12,8 @@ export class ErrorFuente extends Error {
 }
 
 /** Errores pasajeros del sitio (5xx o corte de red que sigue tras los reintentos): la lectura puede quedar parcial en vez de caerse. */
-export const esRecuperable = (error) => error instanceof ErrorFuente && (error.tipo === 'servidor' || error.tipo === 'red');
+export const esRecuperable = (error) => error instanceof ErrorFuente
+  && (error.tipo === 'servidor' || error.tipo === 'red' || error.tipo === 'respuesta_invalida');
 
 const dormirReal = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -71,6 +72,11 @@ export function crearCliente({
     try {
       return { datos: await res.json(), headers: res.headers };
     } catch {
+      // Un sitio sobrecargado a veces contesta con texto ("Server is too busy") en vez de JSON: se reintenta.
+      if (intento < esperasReintento.length) {
+        await dormir(esperasReintento[intento]);
+        return pedir(url, intento + 1);
+      }
       throw new ErrorFuente('respuesta_invalida', `La respuesta no es JSON: ${url}`, { status: res.status, url });
     }
   }

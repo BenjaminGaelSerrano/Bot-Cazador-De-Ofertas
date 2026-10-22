@@ -77,6 +77,9 @@ export function crearCliente({
       throw new ErrorFuente('cliente', `Pedido rechazado (${res.status}): ${url}`, { status: res.status, url });
     }
 
+    // Páginas HTML (la grilla de Moov): se devuelve el texto tal cual.
+    if (opciones.formato === 'texto') return { datos: await res.text(), headers: res.headers };
+
     try {
       return { datos: await res.json(), headers: res.headers };
     } catch {
@@ -89,5 +92,8 @@ export function crearCliente({
     }
   }
 
-  return { obtenerJson: (url, opciones) => pedir(url, 0, opciones) };
+  return {
+    obtenerJson: (url, opciones) => pedir(url, 0, opciones),
+    obtenerTexto: (url) => pedir(url, 0, { formato: 'texto' }),
+  };
 }

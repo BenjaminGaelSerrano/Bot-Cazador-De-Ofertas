@@ -6,12 +6,13 @@ link directo. **Nunca compra**: la decisión es siempre de la persona. Reglas de
 
 ## Cómo funciona
 
-1. Lee el catálogo de cinco tiendas (Juleriaque, Grid, Rouge, Parfumerie y New Era) y guarda el precio de cada producto.
+1. Lee el catálogo de seis tiendas (Juleriaque, Grid, Rouge, Parfumerie, Moov y New Era) y guarda el precio de cada producto.
 2. Un producto es ganga si está al menos 30 % por debajo de su precio mínimo de los últimos 30 días.
    Mientras no haya 30 días de historial usa el descuento que declara el sitio ("vs lista" en el aviso).
-3. Para cada ganga mira cuánto vende el mismo producto otra tienda (cruce por código de barras) y calcula el margen
-   de reventa: **buena** (40 % o más), **regular** (20 % o más) o **evitar** (otra tienda lo vende más barato; no se
-   avisa). Sin otra tienda que lo venda, dice "sin referencia".
+3. Para cada ganga mira cuánto vende el mismo producto otra tienda (perfumería: por código de barras; zapatillas: por
+   marca y modelo, que se marca con `~` porque es menos seguro) y calcula el margen de reventa: **buena** (40 % o
+   más), **regular** (20 % o más) o **evitar** (otra tienda lo vende más barato; no se avisa). Sin otra tienda que
+   lo venda, dice "sin referencia" y cuánto stock queda.
 4. Avisa por WhatsApp (CallMeBot), una sola vez por oferta; vuelve a avisar solo si baja otro 10 %. Los mensajes no
    pasan de 700 de largo efectivo: CallMeBot corta en silencio a ~768.
 5. Si el sitio falla, avisa una vez; ante errores pasajeros reintenta y, si una página sigue fallando, la lectura queda

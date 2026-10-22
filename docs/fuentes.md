@@ -10,8 +10,11 @@ Todo lo de esta tabla se re-verifica en la spec de cada fuente antes de implemen
 | Rouge | perfumeriasrouge.com | VTEX | Misma API VTEX | **Implementada** (spec 002). 4.808 de 4.836 productos, aviso por SKU (tamaño) |
 | New Era | newera.com.ar | Shopify | `/products.json?limit=250&page=N` | **Implementada** (spec 002). 924 productos; hoy ninguno trae descuento declarado |
 | Parfumerie | parfumerie.com.ar | Magento 2 | `POST /graphql` (el que usa la propia tienda), con `gtin`, `mgs_brand`, precio de lista y final | **Implementada** (spec 004). 6.357 productos; atributos pesados una vez por SKU. Un GET al mismo endpoint redirige y pierde la consulta |
-| Moov | moov.com.ar | Salesforce Commerce Cloud (Demandware) | Sin API pública relevada todavía | Pendiente: verificar qué entrega y si trae código de barras. Misma plataforma que Dexter |
-| Dexter | dexter.com.ar | Salesforce Commerce Cloud (Demandware) | Sin API pública relevada todavía | Pendiente: igual que Moov; un solo lector serviría para las dos |
+| Moov | moov.com.ar | Salesforce Commerce Cloud (Demandware) | Grilla `Search-UpdateGrid?cgid=...&start=N&sz=48` (HTML): pid, nombre, precio y lista tachada. **Sin código de barras** | **Implementada** (spec 005), solo calzado: 1.371 productos únicos en 39 pedidos (<1 min). Se empareja con Grid por marca y modelo |
+| Dexter | dexter.com.ar | Salesforce Commerce Cloud (Demandware) | Comparte el catálogo `365-dabra` con Moov | No se lee aparte: repite lo que muestra Moov |
+| Stock Center, New Balance, Puma | stockcenter.com.ar, newbalance.com.ar, puma.com.ar | Salesforce Commerce Cloud | Mismo lector que Moov | Pendiente: sumar como fuentes y como referencia (New Balance y Puma son tiendas oficiales de marca) |
+| Sporting | sporting.com.ar | VTEX | API abierta, pero sin código de barras (el campo vale `null`) | No sirve para el cruce por código; quedaría por nombre |
+| Open Sports, Digital Sport | opensports.com.ar, digitalsport.com.ar | Magento / protegida | 403 a los pedidos automatizados | **Descartadas.** No se evade |
 | Nike (oficial) | nike.com.ar | Protegido | Responde 403 a cualquier pedido automatizado | **Descartado.** No se evade. Cubrir Nike vía Grid, Moov y Dexter |
 | Adidas (oficial) | adidas.com.ar | Protegido | Responde 403 a cualquier pedido automatizado | **Descartado.** Cubrir Adidas vía Grid, Moov y Dexter |
 

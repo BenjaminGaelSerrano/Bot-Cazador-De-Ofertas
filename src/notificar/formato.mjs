@@ -22,7 +22,9 @@ function lineaReventa(p, oferta) {
     return `Sin referencia de otra tienda${real ? ` · quedan ${oferta.stock}` : ''}`;
   }
   const demanda = p.demanda ? ` · demanda ${p.demanda}` : '';
-  return `Mercado ${pesos(p.precioMercado)} (${nombreFuente(p.fuente)}) · margen ${Math.round(p.margen * 100)}% · ${p.veredicto.toUpperCase()}${demanda}`;
+  // Un cruce por modelo (ropa y calzado) es menos seguro que uno por código de barras: se marca con "~".
+  const aprox = p.via === 'modelo' ? '~' : '';
+  return `Mercado ${aprox}${pesos(p.precioMercado)} (${nombreFuente(p.fuente)}) · margen ${Math.round(p.margen * 100)}% · ${p.veredicto.toUpperCase()}${demanda}`;
 }
 
 export function formatearOferta(oferta, evaluacion, { dias = config.diasHistorial, puntaje = null } = {}) {

@@ -2,6 +2,7 @@ import { parseArgs } from 'node:util';
 import { config } from './config.mjs';
 import { leerCatalogo as leerGrid } from './fuentes/grid.mjs';
 import { leerCatalogo as leerJuleriaque } from './fuentes/juleriaque.mjs';
+import { leerCatalogo as leerMoov } from './fuentes/moov.mjs';
 import { leerCatalogo as leerNewEra } from './fuentes/newera.mjs';
 import { leerCatalogo as leerParfumerie } from './fuentes/parfumerie.mjs';
 import { leerCatalogo as leerRouge } from './fuentes/rouge.mjs';
@@ -14,6 +15,7 @@ const FUENTES = {
   grid: { leer: leerGrid, titulo: 'Ofertas Grid' },
   rouge: { leer: leerRouge, titulo: 'Ofertas Rouge' },
   parfumerie: { leer: leerParfumerie, titulo: 'Ofertas Parfumerie' },
+  moov: { leer: leerMoov, titulo: 'Ofertas Moov' },
   newera: { leer: leerNewEra, titulo: 'Ofertas New Era' },
 };
 

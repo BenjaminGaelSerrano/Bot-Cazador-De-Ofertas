@@ -101,6 +101,20 @@ export const config = {
       loteAtributos: 25,
     },
 
+    // Moov (calzado). Salesforce Commerce Cloud: la grilla Search-UpdateGrid devuelve 48 productos por página. Es la
+    // competidora de Grid (Nike, Adidas, New Balance, Puma...). Dexter comparte su catálogo (365-dabra), así que no se
+    // lee aparte. Solo calzado en esta versión: hombre ~530 a 960 productos, mujer similar (relevado el 2026-10-22).
+    moov: {
+      base: 'https://www.moov.com.ar',
+      sitio: 'Sites-Moov-Site',
+      categorias: [
+        { cgid: 'hombre-calzado', genero: 'h' },
+        { cgid: 'mujer-calzado', genero: 'm' },
+      ],
+      porPagina: 48,
+      maxPaginas: 40,
+    },
+
     // New Era (gorras). Shopify: 924 productos el 2026-10-20 en 4 páginas de 250.
     newera: {
       base: 'https://www.newera.com.ar',

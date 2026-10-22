@@ -61,7 +61,7 @@ export function puntuar({ costo, mercado, demanda = null }, cfg = config.reventa
   else if (margen + EPS >= cfg.margenRegular) veredicto = 'regular';
   else veredicto = 'evitar';
 
-  return { veredicto, margen, precioReventa, precioMercado: mercado.precio, fuente: mercado.fuente, demanda };
+  return { veredicto, margen, precioReventa, precioMercado: mercado.precio, fuente: mercado.fuente, via: mercado.via ?? null, demanda };
 }
 
 const RANGO = { buena: 0, regular: 1, 'sin-referencia': 2 };

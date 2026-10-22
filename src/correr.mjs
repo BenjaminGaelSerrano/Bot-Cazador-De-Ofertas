@@ -124,7 +124,7 @@ export async function correrFuente({
         registroAvisos.push({
           fecha, fuente: nombre, id: oferta.id, nombre: oferta.nombre, url: oferta.url, precio: oferta.precioActual,
           descuento: Math.round(evaluacion.descuento * 100), tipo: evaluacion.tipo, veredicto: puntaje.veredicto,
-          precioMercado: puntaje.precioMercado ?? null, fuenteMercado: puntaje.fuente ?? null,
+          precioMercado: puntaje.precioMercado ?? null, fuenteMercado: puntaje.fuente ?? null, via: puntaje.via ?? null,
           margen: puntaje.margen === undefined ? null : Math.round(puntaje.margen * 100), demanda: puntaje.demanda ?? null,
         });
       }

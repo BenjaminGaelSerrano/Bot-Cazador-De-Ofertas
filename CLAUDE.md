@@ -42,9 +42,11 @@ Detalle en [`specs/001-fuente-juleriaque/plan.md`](specs/001-fuente-juleriaque/p
 
 ## Estado actual
 
-Specs 001 (Juleriaque), 002 (Grid, Rouge, New Era) y 004 (Parfumerie, Magento GraphQL) implementadas. Avisos por WhatsApp, datos en la rama `datos`,
+Specs 001 (Juleriaque), 002 (Grid, Rouge, New Era), 004 (Parfumerie, Magento GraphQL) y 005 (Moov, Salesforce, cruce por modelo) implementadas. Avisos por WhatsApp, datos en la rama `datos`,
 tope total de 5 mensajes por corrida repartido entre las fuentes. Marcas relevadas en [`docs/fuentes.md`](docs/fuentes.md).
 Spec 003 (reventa con datos propios) implementada: precio de mercado por cruce de tiendas, margen con comisión 0 %
 (Instagram) y margen buscado de 40 %, velocidad de venta por stock (empieza a juntar datos el 2026-10-22).
-Pendiente: Moov y Dexter (misma plataforma, Salesforce Commerce Cloud) para tener competidores de ropa y calzado,
+Pendiente: indumentaria de Moov y más competidoras de ropa (Stock Center, New Balance, Puma: misma plataforma),
 referencia internacional (PriceRunner UK), y Mercado Libre y StockX como proveedores opcionales de reventa.
+Ropa y calzado se cruzan por marca y modelo (`src/nucleo/modelo.mjs`), conservador: clave idéntica y género
+compatible (un género desconocido NO es comodín); el aviso lo marca con `~`.

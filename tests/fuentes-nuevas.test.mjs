@@ -327,3 +327,25 @@ test('Shopify: si falla ya la primera página, se informa el error', async () =>
   const cliente = { async obtenerJson() { throw servidor500(); } };
   await assert.rejects(lectorShopify.leerCatalogo(cliente), (e) => e.tipo === 'servidor');
 });
+
+// ---------- Grid agrega marca-modelo y género a sus ofertas (para cruzar con Moov) ----------
+
+test('Grid (modo producto): la oferta lleva clave de modelo y género', () => {
+  const p = producto(1, [item(1, 'M', 124999, 259999, 5)], { productName: "ZAPATILLAS NIKE SPORTSWEAR AIR FORCE 1 '07 HOMBRE", brand: 'Nike Sportswear' });
+  const [o] = lectorProducto.normalizarProducto(p);
+  assert.equal(o.modelo, 'nike|07 1 air force');
+  assert.equal(o.genero, 'h');
+});
+
+test('Grid: una marca o modelo desconocidos quedan sin clave pero la oferta se lee igual', () => {
+  const p = producto(2, [item(1, 'M', 100, 100, 5)], { productName: 'BUZO MARCA RARA', brand: 'Marca Rara' });
+  const [o] = lectorProducto.normalizarProducto(p);
+  assert.equal(o.modelo, null);
+  assert.equal(o.precioActual, 100);
+});
+
+test('Juleriaque y Rouge (modo SKU) no llevan clave de modelo', async () => {
+  const { normalizarProducto } = await import('../src/fuentes/juleriaque.mjs');
+  const p = { productId: '1', productName: 'SAUVAGE', brand: 'DIOR', link: '/s/p', categories: ['/Fragancias/'], items: [{ itemId: '10', name: 'Sauvage EDP 100 ml', ean: '3348901471534', sellers: [{ commertialOffer: { Price: 100, ListPrice: 100, AvailableQuantity: 1 } }] }] };
+  assert.equal(normalizarProducto(p)[0].modelo, undefined);
+});

@@ -154,3 +154,11 @@ test('formato: sin otra tienda dice "sin referencia" y nombra bien a New Era', (
   const p = { veredicto: 'regular', margen: 0.25, precioMercado: 100000, fuente: 'newera', demanda: null };
   assert.ok(formatearOferta(oferta(), ev, { puntaje: p }).includes('(New Era) · margen 25% · REGULAR\n'));
 });
+
+test('formato: el cruce por modelo se marca con "~" y el de código de barras no', () => {
+  const ev = { tipo: 'sin-historial', descuento: 0.5, base: 2, referencia: null };
+  const base = { veredicto: 'buena', margen: 0.9, precioMercado: 259999, fuente: 'moov', demanda: null };
+  assert.ok(formatearOferta(oferta(), ev, { puntaje: { ...base, via: 'modelo' } }).includes('Mercado ~$259.999 (Moov)'));
+  assert.ok(formatearOferta(oferta(), ev, { puntaje: { ...base, via: 'ean' } }).includes('Mercado $259.999 (Moov)'));
+  assert.ok(formatearOferta(oferta(), ev, { puntaje: { ...base, via: 'nombre' } }).includes('Mercado $259.999 (Moov)'));
+});

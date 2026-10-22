@@ -40,6 +40,8 @@ export function registrar(historial, producto, fecha) {
     // Marca de que los atributos pesados (EAN, marca) ya se pidieron, aunque el producto no tenga EAN: así no se
     // vuelven a pedir en cada corrida. Una vez puesta, no se borra.
     ...(producto.attrs ? { attrs: 1 } : {}),
+    // Clave de modelo y género (ropa y calzado): sirven para emparejar con otras tiendas sin código de barras.
+    ...(producto.modelo ? { km: producto.modelo, gen: producto.genero ?? null } : {}),
   };
 
   const cantidad = Number.isFinite(producto.stock) ? producto.stock : 0;

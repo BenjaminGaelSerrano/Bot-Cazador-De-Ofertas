@@ -162,3 +162,28 @@ test('el POST también corta ante 429 sin insistir', async () => {
   await assert.rejects(cliente.obtenerJson('https://x.test/graphql', { cuerpo: {} }), (e) => e.tipo === 'bloqueo');
   assert.equal(pedidos.length, 1);
 });
+
+// ---------- Texto (páginas HTML) ----------
+
+const html = (status, cuerpo) => ({ status, ok: status >= 200 && status < 300, headers: new Map(), text: async () => cuerpo, json: async () => { throw new SyntaxError('no es JSON'); } });
+
+test('obtenerTexto devuelve el HTML tal cual, sin intentar leerlo como JSON', async () => {
+  const { cliente, pedidos } = armar([html(200, '<div class="product">x</div>')]);
+  const { datos } = await cliente.obtenerTexto('https://x.test/grilla');
+  assert.equal(datos, '<div class="product">x</div>');
+  assert.equal(pedidos[0].init.method, undefined, 'es un GET');
+});
+
+test('obtenerTexto también reintenta ante 5xx y corta ante 429', async () => {
+  const a = armar([html(503, ''), html(200, 'ok')]);
+  assert.equal((await a.cliente.obtenerTexto('https://x.test/g')).datos, 'ok');
+  assert.equal(a.pedidos.length, 2);
+  const b = armar([html(429, ''), html(200, 'ok')]);
+  await assert.rejects(b.cliente.obtenerTexto('https://x.test/g'), (e) => e.tipo === 'bloqueo');
+  assert.equal(b.pedidos.length, 1);
+});
+
+test('obtenerTexto acepta una página vacía (es una respuesta válida: no hay más productos)', async () => {
+  const { cliente } = armar([html(200, '')]);
+  assert.equal((await cliente.obtenerTexto('https://x.test/g')).datos, '');
+});

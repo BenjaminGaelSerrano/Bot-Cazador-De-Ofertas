@@ -1,4 +1,5 @@
 import { ErrorFuente, esRecuperable } from '../nucleo/http.mjs';
+import { claveModelo } from '../nucleo/modelo.mjs';
 
 /** Tamaño en ml dentro del nombre del SKU ("Glycolic Acid 240 ml"); null si no lo trae. */
 export function extraerMl(nombre) {
@@ -58,12 +59,16 @@ export function crearLector(cfg) {
       // El precio es el del SKU más barato con stock; si ninguno tiene stock, el más barato de todos.
       const conStock = validos.filter((v) => v.stock > 0);
       const elegido = (conStock.length ? conStock : validos).reduce((a, b) => (b.precioActual < a.precioActual ? b : a));
+      // Ropa y calzado: sin código de barras en común con otras tiendas, el cruce es por marca y modelo.
+      const m = claveModelo(p.brand, p.productName);
       return [{
         ...comunes,
         id: String(p.productId),
         ean: null,
         nombre: p.productName,
         ml: extraerMl(p.productName),
+        modelo: m.clave,
+        genero: m.genero,
         precioActual: elegido.precioActual,
         precioLista: elegido.precioLista,
         stock: validos.reduce((suma, v) => suma + v.stock, 0),

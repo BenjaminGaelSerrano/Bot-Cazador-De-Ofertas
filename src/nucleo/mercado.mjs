@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { config } from '../config.mjs';
 import { diasEntre } from './fechas.mjs';
+import { compatibles } from './modelo.mjs';
 
 // Mercado local: a cuánto vende OTRA tienda el mismo producto. Usa los historiales que el bot ya guardó
 // (último precio visto de cada tienda), sin hacer pedidos nuevos a los sitios.
@@ -29,12 +30,18 @@ export function claveNombre(p) {
   return nombre.length >= 3 ? `${marca}|${p.ml}|${nombre}` : null;
 }
 
-/** Claves por las que se puede encontrar un producto en el índice: EAN y, si no, nombre. */
+/**
+ * Claves por las que se puede encontrar un producto en el índice, de la más a la menos segura: EAN, nombre (marca +
+ * tamaño + nombre, perfumería) y modelo (marca + palabras del nombre, ropa y calzado; se compara además el género).
+ * Las ofertas traen el modelo en `modelo`/`genero`; los productos guardados en el historial, en `km`/`gen`.
+ */
 function claves(p) {
   const resultado = [];
   if (eanValido(p.ean)) resultado.push({ clave: `ean:${p.ean}`, via: 'ean' });
   const nombre = claveNombre(p);
   if (nombre) resultado.push({ clave: `nom:${nombre}`, via: 'nombre' });
+  const modelo = p.km ?? p.modelo;
+  if (modelo) resultado.push({ clave: `mod:${modelo}`, via: 'modelo' });
   return resultado;
 }
 
@@ -56,7 +63,7 @@ export function construirIndice(historiales, hoy, { vigenciaDias = config.revent
       for (const { clave, via } of claves(p)) {
         if (via === 'ean' && repetidos.get(p.ean) > maxRepetidos) continue;
         if (!indice.has(clave)) indice.set(clave, []);
-        indice.get(clave).push({ fuente, precio, url: p.url });
+        indice.get(clave).push({ fuente, precio, url: p.url, genero: p.gen ?? null });
       }
     }
   }
@@ -71,16 +78,18 @@ export function construirIndice(historiales, hoy, { vigenciaDias = config.revent
  */
 export function precioMercado(indice, oferta, fuenteActual, { precioAjenoMinimo = config.reventa.precioAjenoMinimo } = {}) {
   let mejor = null;
-  for (const via of ['ean', 'nombre']) {
+  const generoOferta = oferta.genero ?? oferta.gen ?? null;
+  for (const via of ['ean', 'nombre', 'modelo']) {
     for (const { clave, via: v } of claves(oferta)) {
       if (v !== via) continue;
       for (const c of indice.get(clave) ?? []) {
         if (c.fuente === fuenteActual) continue;
+        if (via === 'modelo' && !compatibles(c.genero, generoOferta)) continue; // zapatilla de mujer vs. de hombre: no
         if (c.precio < oferta.precioActual * precioAjenoMinimo) continue;
         if (!mejor || c.precio < mejor.precio) mejor = { precio: c.precio, fuente: c.fuente, url: c.url, via };
       }
     }
-    if (mejor) return mejor; // si hubo coincidencia por EAN no se mira el nombre
+    if (mejor) return mejor; // si hubo coincidencia por un nivel más seguro, no se miran los siguientes
   }
   return null;
 }

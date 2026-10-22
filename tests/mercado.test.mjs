@@ -143,3 +143,72 @@ test('cargarOtros: un historial roto falla en vez de ignorarse', async () => {
   await writeFile(join(dir, 'rouge', 'historial.json'), '{ roto');
   await assert.rejects(cargarOtros(dir, 'juleriaque', ['rouge']), SyntaxError);
 });
+
+// ---------- Cruce por modelo (ropa y calzado, sin código de barras) ----------
+
+const zapatilla = (extra = {}) => ({
+  id: 'm1', ean: null, marca: 'Adidas', nombre: 'Zapatillas adidas Superstar II', ml: null, categoria: 'Calzado',
+  precioActual: 219999, precioLista: 219999, stock: 99999, url: 'https://moov.test/p', modelo: 'adidas|ii superstar', genero: 'h', ...extra,
+});
+
+test('modelo: una oferta empareja con la misma clave de otra tienda y el resultado dice que fue por modelo', () => {
+  const moov = tienda([zapatilla()]);
+  const indice = construirIndice({ moov }, HOY);
+  const m = precioMercado(indice, zapatilla({ id: 'g1', precioActual: 120000 }), 'grid');
+  assert.deepEqual([m.precio, m.fuente, m.via], [219999, 'moov', 'modelo']);
+});
+
+test('modelo: una clave distinta (otro modelo) no empareja', () => {
+  const moov = tienda([zapatilla()]);
+  const indice = construirIndice({ moov }, HOY);
+  assert.equal(precioMercado(indice, zapatilla({ modelo: 'adidas|cuero ii superstar', precioActual: 120000 }), 'grid'), null);
+});
+
+test('modelo: respeta el género (hombre no empareja con mujer; unisex sí; desconocido no es comodín)', () => {
+  const indiceDe = (genero) => construirIndice({ moov: tienda([zapatilla({ genero })]) }, HOY);
+  const oferta = zapatilla({ id: 'g1', precioActual: 120000, genero: 'h' });
+  assert.equal(precioMercado(indiceDe('m'), oferta, 'grid'), null);
+  assert.equal(precioMercado(indiceDe('h'), oferta, 'grid').via, 'modelo');
+  assert.equal(precioMercado(indiceDe('u'), oferta, 'grid').via, 'modelo');
+  assert.equal(precioMercado(indiceDe('m'), { ...oferta, genero: 'u' }, 'grid').via, 'modelo');
+  // Caso real (2026-10-22): "SAMBA OG" de Grid sin género comparado con la versión de mujer de Moov, más barata.
+  assert.equal(precioMercado(indiceDe('m'), { ...oferta, genero: null }, 'grid'), null, 'oferta sin género vs. tienda con género');
+  assert.equal(precioMercado(indiceDe(null), oferta, 'grid'), null, 'tienda sin género vs. oferta con género');
+  assert.equal(precioMercado(indiceDe(null), { ...oferta, genero: null }, 'grid').via, 'modelo', 'ambos desconocidos');
+});
+
+test('modelo: si hay varias en la otra tienda (colores), el precio de mercado es el menor', () => {
+  const moov = tienda([zapatilla({ id: 'c1', precioActual: 259999 }), zapatilla({ id: 'c2', precioActual: 199999 })]);
+  const indice = construirIndice({ moov }, HOY);
+  assert.equal(precioMercado(indice, zapatilla({ id: 'g1', precioActual: 120000 }), 'grid').precio, 199999);
+});
+
+test('modelo: el código de barras gana siempre sobre el modelo', () => {
+  const ean = '7791234567890';
+  const rouge = tienda([zapatilla({ id: 'r1', ean, precioActual: 300000, modelo: null })]);
+  const moov = tienda([zapatilla({ id: 'm1', precioActual: 200000 })]);
+  const indice = construirIndice({ rouge, moov }, HOY);
+  const m = precioMercado(indice, zapatilla({ id: 'g1', ean, precioActual: 120000 }), 'grid');
+  assert.deepEqual([m.precio, m.fuente, m.via], [300000, 'rouge', 'ean']);
+});
+
+test('modelo: nunca se compara con la propia tienda ni se usan sin stock o viejos', () => {
+  const propia = construirIndice({ grid: tienda([zapatilla({ id: 'g0' })]) }, HOY);
+  assert.equal(precioMercado(propia, zapatilla({ id: 'g1', precioActual: 120000 }), 'grid'), null);
+  const sinStock = construirIndice({ moov: tienda([zapatilla({ stock: 0 })]) }, HOY);
+  assert.equal(precioMercado(sinStock, zapatilla({ id: 'g1', precioActual: 120000 }), 'grid'), null);
+  const viejo = construirIndice({ moov: tienda([zapatilla()], '2026-10-10') }, HOY);
+  assert.equal(precioMercado(viejo, zapatilla({ id: 'g1', precioActual: 120000 }), 'grid'), null);
+});
+
+test('modelo: se descarta un precio ajeno absurdamente bajo', () => {
+  const moov = tienda([zapatilla({ precioActual: 20000 })]);
+  assert.equal(precioMercado(construirIndice({ moov }, HOY), zapatilla({ id: 'g1', precioActual: 120000 }), 'grid'), null);
+});
+
+test('el historial guarda la clave de modelo y el género', () => {
+  const h = tienda([zapatilla()]);
+  assert.deepEqual([h.productos.m1.km, h.productos.m1.gen], ['adidas|ii superstar', 'h']);
+  const sin = tienda([zapatilla({ id: 'x', modelo: null, genero: null })]);
+  assert.equal('km' in sin.productos.x, false, 'sin modelo no se guarda el campo');
+});

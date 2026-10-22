@@ -67,8 +67,10 @@ Detalles de la referencia internacional:
 
 Además de ser ganga, cada oferta se juzga como negocio de reventa (se revende por Instagram, sin comisión):
 
-- **Precio de mercado**: el menor precio con stock de *otra* tienda para el mismo producto (EAN, o marca +
-  tamaño + nombre). Se calcula con datos ya guardados, sin pedidos extra a los sitios.
+- **Precio de mercado**: el menor precio con stock de *otra* tienda para el mismo producto. Se busca por código de
+  barras; si no hay, por marca + tamaño + nombre (perfumería); y para ropa y calzado por marca y modelo, que exige
+  clave idéntica y género compatible, y se marca con `~` en el aviso por ser menos seguro. Se calcula con datos ya
+  guardados, sin pedidos extra a los sitios.
 - **Veredicto**: *buena* si el margen estimado (revendiendo un 5 % bajo el mercado) es de 40 % o más y la demanda no es
   baja; *regular* de 20 % o más; *evitar* si otra tienda lo vende más barato o el margen no alcanza, y entonces
   **no se avisa**; *sin referencia* si ninguna otra tienda lo vende.

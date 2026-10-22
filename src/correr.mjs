@@ -33,6 +33,9 @@ export async function correrFuente({
   maxMensajes = config.maxMensajesPorCorrida,
   maxPrimeraCorrida = config.primeraCorridaMaxOfertas,
   limitesMensaje = {}, // para pruebas: pisa los topes de largo de cada mensaje
+  // Estado de envío compartido por todas las tiendas de una corrida: cuántos mensajes salieron y si CallMeBot ya
+  // rechazó uno (el límite). Una vez bloqueado, nadie más intenta enviar en esa corrida.
+  estadoEnvio = { enviados: 0, bloqueado: false },
   dormir = dormirReal,
   log = console.log,
 }) {
@@ -104,19 +107,33 @@ export async function correrFuente({
     { titulo: tituloEnvio, tituloContinuacion: `${titulo} (cont.)`, maxMensajes, ...limitesMensaje },
   );
   let avisadas = 0;
+  let enviadosAqui = 0;
+  let limiteEnvio = null;
   let errorEnvio = null;
   let desde = 0;
   const registroAvisos = [];
   for (const [i, texto] of mensajes.entries()) {
-    if (i > 0 && pausaMensajesMs > 0 && !dryRun) await dormir(pausaMensajesMs);
+    // Si CallMeBot ya rechazó un mensaje en esta corrida, lo que falta queda en cola para la siguiente.
+    if (estadoEnvio.bloqueado) break;
+    if ((i > 0 || estadoEnvio.enviados > 0) && pausaMensajesMs > 0 && !dryRun) await dormir(pausaMensajesMs);
     let resultado;
     try {
       resultado = await enviarFn(texto, { dryRun, log });
     } catch (error) {
-      errorEnvio = error;
+      if (estadoEnvio.enviados > 0 && !dryRun) {
+        // Ya salieron mensajes y este fue rechazado: es el límite de envío, no una caída. No es una falla de la corrida:
+        // se corta acá, lo no enviado no se marca como avisado y se reintenta en la próxima.
+        estadoEnvio.bloqueado = true;
+        limiteEnvio = error.message;
+        log(`Límite de envío alcanzado tras ${estadoEnvio.enviados} mensajes (${error.message}). Lo que falta sale en la próxima corrida.`);
+      } else {
+        errorEnvio = error; // ni siquiera el primero salió: CallMeBot no responde, eso sí es una falla
+      }
       break;
     }
     if (resultado.enviado) {
+      estadoEnvio.enviados++;
+      enviadosAqui++;
       for (const { oferta, evaluacion, puntaje } of pendientes.slice(desde, desde + porMensaje[i])) {
         marcarAvisada(estado, clave(oferta), oferta.precioActual, fecha);
         avisadas++;
@@ -141,6 +158,8 @@ export async function correrFuente({
   const cuenta = (v) => gangas.filter((g) => g.puntaje.veredicto === v).length;
   return {
     informe, cambios, ofertas: ofertas.length, gangas: gangas.length, pendientes: pendientes.length, mensajes: mensajes.length, avisadas, primeraCorrida, silenciadas,
+    // Mensajes realmente usados del tope de la corrida (en simulación, los que se habrían mandado) y si se llegó al límite.
+    mensajesUsados: dryRun ? mensajes.length : enviadosAqui, limiteEnvio,
     reventa: { buenas: cuenta('buena'), regulares: cuenta('regular'), sinReferencia: cuenta('sin-referencia'), evitadas },
   };
 }

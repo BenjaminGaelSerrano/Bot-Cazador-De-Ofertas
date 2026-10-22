@@ -94,6 +94,12 @@ Además de ser ganga, cada oferta se juzga como negocio de reventa (se revende p
 - Consecuencias de diseño: mensajes cortos, agrupar varias ofertas en un solo mensaje, máximo de
   mensajes por corrida y por día configurable, y un canal alternativo previsto (Telegram o TextMeBot)
   por si CallMeBot falla.
+- **Cantidad de mensajes: lo más posible hasta el límite** (decisión del usuario, 2026-10-22). CallMeBot no publica su
+  límite, así que se descubre en la práctica: se manda en orden de importancia (buenas primero), con pausa de 3 s, y
+  se frena en el primer mensaje rechazado después de que otros salieron. Eso **no es una falla**: lo no enviado no se
+  marca como avisado y sale en la corrida siguiente. Si ni el primer mensaje sale, sí es una falla y se informa. Riesgo
+  conocido: si CallMeBot descarta mensajes en silencio (responde bien pero no entrega), el bot no puede detectarlo; por
+  eso, si llegan menos mensajes de los que el log dice haber enviado, hay que bajar el tope en `src/config.mjs`.
 - Formato del mensaje: marca, producto, precio actual, descuento vs. historial, referencia
   internacional y link directo.
 

@@ -124,29 +124,72 @@ test('topes: lo que no entra queda sin marcar y se avisa en la corrida siguiente
   const e = await entorno();
   const muchas = Array.from({ length: 30 }, (_, i) => oferta(i + 1, { precioActual: 50000 - i * 100 }));
   e.poner(muchas);
-  await e.correr('2026-10-20', { maxPrimeraCorrida: Infinity }); // 3 mensajes x 8 = 24 ofertas
+  await e.correr('2026-10-20', { maxPrimeraCorrida: Infinity, maxMensajes: 3 }); // 3 mensajes x 8 = 24 ofertas
   assert.equal(e.enviados.length, 3);
   assert.ok(e.enviados[2].endsWith('y 6 más.'));
   assert.equal(Object.keys(await e.leerJson('alertas.json')).length, 24);
 
-  await e.correr('2026-10-21'); // las 6 restantes
+  await e.correr('2026-10-21', { maxMensajes: 3 }); // las 6 restantes
   assert.equal(e.enviados.length, 4);
   assert.match(e.enviados[3], /^Ofertas \(6\)/);
   assert.equal(Object.keys(await e.leerJson('alertas.json')).length, 30);
 });
 
-test('si falla un envío: el historial queda guardado y solo se marca lo que salió', async () => {
+test('si un envío es rechazado después de otros que salieron: es el límite, no una falla; se corta y se retoma', async () => {
   const e = await entorno();
   const muchas = Array.from({ length: 12 }, (_, i) => oferta(i + 1, { precioActual: 50000 - i * 100 }));
   e.poner(muchas);
   let n = 0;
-  const enviarFn = async () => {
+  const enviarFn = async (texto) => {
     if (++n === 2) throw new Error('CallMeBot respondió 503');
+    e.enviados.push(texto);
     return { enviado: true };
   };
-  await assert.rejects(e.correr('2026-10-20', { enviarFn, maxPrimeraCorrida: Infinity }), /503/);
-  assert.equal(Object.keys((await e.leerJson('juleriaque/historial.json')).productos).length, 12);
-  assert.equal(Object.keys(await e.leerJson('alertas.json')).length, 8, 'solo las del primer mensaje');
+  const logs = [];
+  const r = await e.correr('2026-10-20', { enviarFn, maxPrimeraCorrida: Infinity, maxMensajes: 8, log: (t) => logs.push(t) });
+  assert.match(r.limiteEnvio, /503/, 'la corrida termina bien e informa el límite');
+  assert.equal(r.mensajesUsados, 1);
+  assert.ok(logs.some((l) => /Límite de envío alcanzado tras 1 mensajes/.test(l)));
+  assert.equal(Object.keys((await e.leerJson('juleriaque/historial.json')).productos).length, 12, 'el historial se guardó');
+  assert.equal(Object.keys(await e.leerJson('alertas.json')).length, 8, 'solo las del primer mensaje, que sí salió');
+
+  // La corrida siguiente retoma lo que quedó en cola, y las 4 restantes salen ahora.
+  await e.correr('2026-10-21', { maxPrimeraCorrida: Infinity, maxMensajes: 8 });
+  assert.equal(Object.keys(await e.leerJson('alertas.json')).length, 12);
+});
+
+test('si ni siquiera el primer mensaje sale, eso sí es una falla y se informa', async () => {
+  const e = await entorno();
+  e.poner([oferta(1, { precioActual: 50000 })]);
+  const enviarFn = async () => { throw new Error('CallMeBot no respondió'); };
+  await assert.rejects(e.correr('2026-10-20', { enviarFn }), /no respondió/);
+  assert.deepEqual(Object.keys(await e.leerJson('alertas.json')), [], 'nada quedó marcado');
+});
+
+test('con el estado de envío ya bloqueado, no se intenta enviar y la oferta queda en cola', async () => {
+  const e = await entorno();
+  e.poner([oferta(1, { precioActual: 50000 })]);
+  let llamado = false;
+  const enviarFn = async () => { llamado = true; return { enviado: true }; };
+  const r = await e.correr('2026-10-20', { enviarFn, estadoEnvio: { enviados: 5, bloqueado: true } });
+  assert.equal(llamado, false);
+  assert.equal(r.mensajesUsados, 0);
+  assert.deepEqual(Object.keys(await e.leerJson('alertas.json')), [], 'sigue pendiente');
+  assert.equal(Object.keys((await e.leerJson('juleriaque/historial.json')).productos).length, 1, 'igual se guardan los precios');
+});
+
+test('hay pausa entre mensajes, también entre el último de una tienda y el primero de la siguiente', async () => {
+  const e = await entorno();
+  e.poner([oferta(1, { precioActual: 50000 })]);
+  const esperas = [];
+  const dormir = async (ms) => { esperas.push(ms); };
+  await e.correr('2026-10-20', { pausaMensajesMs: 3000, dormir, estadoEnvio: { enviados: 4, bloqueado: false } });
+  assert.deepEqual(esperas, [3000], 'ya habían salido mensajes de otra tienda: espera antes del primero');
+  const e2 = await entorno();
+  e2.poner([oferta(1, { precioActual: 50000 })]);
+  const esperas2 = [];
+  await e2.correr('2026-10-20', { pausaMensajesMs: 3000, dormir: async (ms) => { esperas2.push(ms); } });
+  assert.deepEqual(esperas2, [], 'si es el primer mensaje de la corrida no hace falta esperar');
 });
 
 test('si la fuente falla, no se toca el historial ni las alertas', async () => {

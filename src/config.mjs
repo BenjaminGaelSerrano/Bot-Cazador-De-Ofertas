@@ -14,7 +14,11 @@ export const config = {
   // CallMeBot corta en silencio los mensajes largos: el 2026-10-22 dos mensajes se cortaron en ~750 caracteres
   // crudos / ~990 codificados en la URL, y las ofertas cortadas se perdieron. Se deja ~12 % de margen.
   maxOfertasPorMensaje: 8,
-  maxMensajesPorCorrida: 3,
+  // Cuántos mensajes por corrida: lo más posible hasta que CallMeBot corte (pedido del usuario, 2026-10-22). El bot
+  // manda en orden de importancia (buenas primero) y frena en el primer rechazo, sin perder nada: lo que no salió queda
+  // en cola. CallMeBot no publica su límite, así que se descubre en la práctica; si llegan menos mensajes de los que
+  // el bot dice haber enviado, bajar estos números.
+  maxMensajesPorCorrida: 8,        // por tienda
   // El tope es sobre el largo EFECTIVO: caracteres + saltos de línea + bytes extra de los acentos. Medido el
   // 2026-10-22: lo que corta CallMeBot ronda los 760 a 768 contando así. La codificación de la URL no es el límite
   // (un mensaje de 768 caracteres con URL de 1.658 llegó bien), por eso esos topes quedan holgados.
@@ -22,7 +26,7 @@ export const config = {
   maxCaracteresDuro: 740,      // por encima de esto no se envía: mejor un error visible que un mensaje cortado
   maxCodificados: 1500,
   maxCodificadosDuro: 1700,
-  pausaMensajesMs: 2000,       // espera entre dos WhatsApp seguidos
+  pausaMensajesMs: 3000,       // espera entre dos WhatsApp seguidos (más holgada ahora que se mandan muchos)
   simboloMoneda: '$',
 
   fuentes: {
@@ -125,7 +129,7 @@ export const config = {
   },
 
   // Tope de WhatsApp por corrida entre todas las fuentes juntas.
-  maxMensajesTotalPorCorrida: 5,
+  maxMensajesTotalPorCorrida: 40, // entre todas las tiendas; el bot frena antes si CallMeBot rechaza uno
 
   // Primera corrida de una fuente: se avisan solo las N mejores; el resto queda como línea base.
   primeraCorridaMaxOfertas: 8,

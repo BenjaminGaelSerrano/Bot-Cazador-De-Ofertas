@@ -54,7 +54,7 @@ const fuentes = Object.fromEntries(Object.entries(FUENTES).map(([nombre, f]) => 
   },
 }]));
 
-const { resultados, fallaron, mensajesUsados } = await correrFuentes({
+const { resultados, fallaron, mensajesUsados, limiteEnvio } = await correrFuentes({
   nombres,
   fuentes,
   fecha,
@@ -85,5 +85,6 @@ for (const r of resultados) {
   if (informe.incompletos.length) console.warn('AVISO cobertura incompleta:', JSON.stringify(informe.incompletos));
 }
 
+if (limiteEnvio) console.warn(`AVISO: CallMeBot rechazó un mensaje tras ${mensajesUsados} enviados: ese es su límite por corrida. Lo que falta sale en la próxima. Si en el WhatsApp llegaron menos de ${mensajesUsados}, bajar maxMensajesTotalPorCorrida en src/config.mjs.`);
 console.log(`\nTotal: ${minutosDesde(inicio)} min · mensajes: ${mensajesUsados}/${config.maxMensajesTotalPorCorrida} · fallas: ${fallaron.length ? fallaron.join(', ') : 'ninguna'}`);
 if (fallaron.length) process.exitCode = 1;

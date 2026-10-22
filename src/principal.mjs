@@ -24,6 +24,8 @@ export async function correrFuentes({
 }) {
   const resultados = [];
   let restantes = maxMensajesTotal;
+  // Lo comparten todas las tiendas: si CallMeBot rechaza un mensaje (el límite), ninguna otra intenta enviar.
+  const estadoEnvio = { enviados: 0, bloqueado: false };
 
   for (const nombre of nombres) {
     const fuente = fuentes[nombre];
@@ -37,10 +39,11 @@ export async function correrFuentes({
         dryRun,
         directorioDatos,
         maxMensajes: Math.min(maxMensajesPorFuente, restantes),
+        estadoEnvio,
         log,
         ...extra,
       });
-      restantes -= resultado.mensajes;
+      restantes -= resultado.mensajesUsados ?? resultado.mensajes;
       resultados.push({ nombre, ok: true, resultado });
     } catch (error) {
       resultados.push({ nombre, ok: false, error });
@@ -51,5 +54,6 @@ export async function correrFuentes({
     resultados,
     fallaron: resultados.filter((r) => !r.ok).map((r) => r.nombre),
     mensajesUsados: maxMensajesTotal - restantes,
+    limiteEnvio: estadoEnvio.bloqueado,
   };
 }

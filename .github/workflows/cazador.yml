@@ -22,7 +22,7 @@ permissions:
 jobs:
   cazar:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 45
     env:
       REMOTO: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
     steps:

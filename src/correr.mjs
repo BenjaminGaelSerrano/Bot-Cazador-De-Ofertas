@@ -40,11 +40,13 @@ export async function correrFuente({
   const rutaAlertas = `${directorioDatos}/alertas.json`;
   const clave = (oferta) => `${nombre}:${oferta.id}`;
 
-  const { ofertas, informe } = await leer(cliente, { log });
-
-  // 1. Historial: se registra todo. Si estaba vacío, es la primera corrida de esta fuente.
+  // El historial se carga antes de leer: algunos lectores lo usan para no volver a pedir lo que ya saben (atributos).
   const historial = await cargarHistorial(rutaHistorial);
   const primeraCorrida = Object.keys(historial.productos).length === 0;
+
+  const { ofertas, informe } = await leer(cliente, { log, historial });
+
+  // 1. Historial: se registra todo. Si estaba vacío, es la primera corrida de esta fuente.
   const cambios = { nuevo: 0, cambio: 0, igual: 0 };
   for (const oferta of ofertas) cambios[registrar(historial, oferta, fecha)]++;
 
@@ -95,10 +97,11 @@ export async function correrFuente({
   }
 
   // 4. Avisar, anotando cada mensaje recién cuando salió.
-  const tituloEnvio = silenciadas > 0 ? `${titulo} · primera lectura, mejores de ${pendientes.length + silenciadas}` : titulo;
+  // En la primera corrida el título es corto a propósito: cada caracter del encabezado le resta lugar a una oferta.
+  const tituloEnvio = silenciadas > 0 ? `${titulo} · 1ª lectura, de ${pendientes.length + silenciadas}` : titulo;
   const { mensajes, porMensaje } = agrupar(
     pendientes.map((g) => ({ texto: formatearOferta(g.oferta, g.evaluacion, { puntaje: g.puntaje }) })),
-    { titulo: tituloEnvio, maxMensajes, ...limitesMensaje },
+    { titulo: tituloEnvio, tituloContinuacion: `${titulo} (cont.)`, maxMensajes, ...limitesMensaje },
   );
   let avisadas = 0;
   let errorEnvio = null;

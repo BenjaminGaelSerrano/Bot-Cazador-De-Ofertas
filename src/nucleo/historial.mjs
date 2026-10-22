@@ -37,6 +37,9 @@ export function registrar(historial, producto, fecha) {
     url: producto.url,
     stock: producto.stock > 0 ? 1 : 0,
     visto: fecha,
+    // Marca de que los atributos pesados (EAN, marca) ya se pidieron, aunque el producto no tenga EAN: así no se
+    // vuelven a pedir en cada corrida. Una vez puesta, no se borra.
+    ...(producto.attrs ? { attrs: 1 } : {}),
   };
 
   const cantidad = Number.isFinite(producto.stock) ? producto.stock : 0;

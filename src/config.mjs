@@ -15,9 +15,13 @@ export const config = {
   // crudos / ~990 codificados en la URL, y las ofertas cortadas se perdieron. Se deja ~12 % de margen.
   maxOfertasPorMensaje: 8,
   maxMensajesPorCorrida: 3,
-  maxCaracteres: 650,          // largo crudo por mensaje
-  maxCodificados: 880,         // largo con la codificación de URL (espacios y saltos valen 3)
-  maxCodificadosDuro: 950,     // por encima de esto no se envía: mejor un error visible que un mensaje cortado
+  // El tope es sobre el largo EFECTIVO: caracteres + saltos de línea + bytes extra de los acentos. Medido el
+  // 2026-10-22: lo que corta CallMeBot ronda los 760 a 768 contando así. La codificación de la URL no es el límite
+  // (un mensaje de 768 caracteres con URL de 1.658 llegó bien), por eso esos topes quedan holgados.
+  maxCaracteres: 700,
+  maxCaracteresDuro: 740,      // por encima de esto no se envía: mejor un error visible que un mensaje cortado
+  maxCodificados: 1500,
+  maxCodificadosDuro: 1700,
   pausaMensajesMs: 2000,       // espera entre dos WhatsApp seguidos
   simboloMoneda: '$',
 
@@ -84,6 +88,17 @@ export const config = {
         { name: 'Capilares', ruta: '/169/' },
       ],
       toleranciaCobertura: 0.01,
+    },
+
+    // Parfumerie (perfumería). Magento 2 por GraphQL (POST): 6.357 productos el 2026-10-22. La lista liviana se lee en
+    // cada corrida; el código de barras y la marca (atributos pesados) se piden una vez por producto y se guardan.
+    parfumerie: {
+      base: 'https://www.parfumerie.com.ar',
+      categoriaId: '2',            // categoría raíz: incluye todo el catálogo
+      porPagina: 100,
+      maxPaginas: 200,
+      maxProductosAtributos: 1500, // atributos a pedir por corrida; el enriquecimiento completo toma unas 5 corridas
+      loteAtributos: 25,
     },
 
     // New Era (gorras). Shopify: 924 productos el 2026-10-20 en 4 páginas de 250.

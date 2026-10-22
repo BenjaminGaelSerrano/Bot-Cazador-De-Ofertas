@@ -1,0 +1,214 @@
+{
+ "products": {
+  "items": [
+   {
+    "sku": "PR166704",
+    "custom_attributesV2": {
+     "items": [
+      {
+       "code": "mgs_brand",
+       "selected_options": [
+        {
+         "label": "BENETTON"
+        }
+       ]
+      },
+      {
+       "code": "tamanio_perfume",
+       "selected_options": [
+        {
+         "label": "80 ml"
+        }
+       ]
+      },
+      {
+       "code": "gtin",
+       "value": "8433982029905"
+      }
+     ]
+    }
+   },
+   {
+    "sku": "PR166702",
+    "custom_attributesV2": {
+     "items": [
+      {
+       "code": "mgs_brand",
+       "selected_options": [
+        {
+         "label": "BENETTON"
+        }
+       ]
+      },
+      {
+       "code": "tamanio_perfume",
+       "selected_options": [
+        {
+         "label": "80 ml"
+        }
+       ]
+      },
+      {
+       "code": "gtin",
+       "value": "8433982029899"
+      }
+     ]
+    }
+   },
+   {
+    "sku": "PR166707",
+    "custom_attributesV2": {
+     "items": [
+      {
+       "code": "mgs_brand",
+       "selected_options": [
+        {
+         "label": "JEAN PAUL GAULTIER"
+        }
+       ]
+      },
+      {
+       "code": "tamanio_perfume",
+       "selected_options": [
+        {
+         "label": "125 ml"
+        }
+       ]
+      },
+      {
+       "code": "gtin",
+       "value": "8435415114479"
+      }
+     ]
+    }
+   },
+   {
+    "sku": "PR166792",
+    "custom_attributesV2": {
+     "items": [
+      {
+       "code": "mgs_brand",
+       "selected_options": [
+        {
+         "label": "HUGO BOSS"
+        }
+       ]
+      },
+      {
+       "code": "tamanio_perfume",
+       "selected_options": [
+        {
+         "label": "100 ml"
+        }
+       ]
+      },
+      {
+       "code": "gtin",
+       "value": "3616307656702"
+      }
+     ]
+    }
+   },
+   {
+    "sku": "PR166790",
+    "custom_attributesV2": {
+     "items": [
+      {
+       "code": "mgs_brand",
+       "selected_options": [
+        {
+         "label": "HUGO BOSS"
+        }
+       ]
+      },
+      {
+       "code": "tamanio_perfume",
+       "selected_options": [
+        {
+         "label": "100 ml"
+        }
+       ]
+      },
+      {
+       "code": "gtin",
+       "value": "3616307208550"
+      }
+     ]
+    }
+   },
+   {
+    "sku": "PR15886",
+    "custom_attributesV2": {
+     "items": [
+      {
+       "code": "mgs_brand",
+       "selected_options": [
+        {
+         "label": "TOMMY HILFIGER"
+        }
+       ]
+      },
+      {
+       "code": "tamanio_perfume",
+       "selected_options": [
+        {
+         "label": "100ml"
+        }
+       ]
+      },
+      {
+       "code": "gtin",
+       "value": "7640496670160"
+      }
+     ]
+    }
+   },
+   {
+    "sku": "PR158706",
+    "custom_attributesV2": {
+     "items": [
+      {
+       "code": "mgs_brand",
+       "selected_options": [
+        {
+         "label": "DOLCE&GABBANA"
+        }
+       ]
+      },
+      {
+       "code": "tamanio_perfume",
+       "selected_options": [
+        {
+         "label": "100 ml"
+        }
+       ]
+      },
+      {
+       "code": "gtin",
+       "value": "8054754405095"
+      }
+     ]
+    }
+   },
+   {
+    "sku": "PS166784",
+    "custom_attributesV2": {
+     "items": [
+      {
+       "code": "mgs_brand",
+       "selected_options": [
+        {
+         "label": "CLARINS"
+        }
+       ]
+      },
+      {
+       "code": "gtin",
+       "value": "3666057334375"
+      }
+     ]
+    }
+   }
+  ]
+ }
+}

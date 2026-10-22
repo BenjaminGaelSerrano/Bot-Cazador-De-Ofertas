@@ -3,6 +3,7 @@ import { config } from './config.mjs';
 import { leerCatalogo as leerGrid } from './fuentes/grid.mjs';
 import { leerCatalogo as leerJuleriaque } from './fuentes/juleriaque.mjs';
 import { leerCatalogo as leerNewEra } from './fuentes/newera.mjs';
+import { leerCatalogo as leerParfumerie } from './fuentes/parfumerie.mjs';
 import { leerCatalogo as leerRouge } from './fuentes/rouge.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
 import { ErrorFuente, crearCliente } from './nucleo/http.mjs';
@@ -12,6 +13,7 @@ const FUENTES = {
   juleriaque: { leer: leerJuleriaque, titulo: 'Ofertas Juleriaque' },
   grid: { leer: leerGrid, titulo: 'Ofertas Grid' },
   rouge: { leer: leerRouge, titulo: 'Ofertas Rouge' },
+  parfumerie: { leer: leerParfumerie, titulo: 'Ofertas Parfumerie' },
   newera: { leer: leerNewEra, titulo: 'Ofertas New Era' },
 };
 
@@ -68,6 +70,7 @@ for (const r of resultados) {
     continue;
   }
   const { informe, cambios } = r.resultado;
+  if (informe.enriquecidos !== undefined) console.log(`Atributos: ${informe.enriquecidos} unidades enriquecidas en esta corrida, ${informe.sinAtributos} todavía sin código de barras ni marca`);
   console.log(`Productos leídos: ${informe.productosLeidos} · ofertas válidas: ${r.resultado.ofertas} · pedidos: ${informe.pedidos}`);
   console.log(`Historial: ${cambios.nuevo} nuevos, ${cambios.cambio} con cambio de precio, ${cambios.igual} sin cambios${dryRun ? ' (no guardado)' : ' (guardado)'}`);
   console.log(`Gangas hoy: ${r.resultado.gangas} · por avisar: ${r.resultado.pendientes} · mensajes: ${r.resultado.mensajes} · ofertas avisadas: ${r.resultado.avisadas}`);

@@ -40,17 +40,25 @@ export function crearCliente({
     ultimoPedido = ahora();
   }
 
-  async function pedir(url, intento) {
+  async function pedir(url, intento, opciones = {}) {
     await esperarTurno();
+
+    // Con `cuerpo` es un POST con JSON (lo que usan los GraphQL de las tiendas); sin `cuerpo`, un GET.
+    const conCuerpo = opciones.cuerpo !== undefined;
+    const init = {
+      headers: { 'User-Agent': userAgent, Accept: 'application/json', ...(conCuerpo ? { 'Content-Type': 'application/json' } : {}) },
+      signal: AbortSignal.timeout(timeoutMs),
+      ...(conCuerpo ? { method: 'POST', body: JSON.stringify(opciones.cuerpo) } : {}),
+    };
 
     let res;
     try {
-      res = await fetchFn(url, { headers: { 'User-Agent': userAgent, Accept: 'application/json' }, signal: AbortSignal.timeout(timeoutMs) });
+      res = await fetchFn(url, init);
     } catch (error) {
       // Un corte de red o un timeout suele ser pasajero: se reintenta con la misma espera creciente que un 5xx.
       if (intento < esperasReintento.length) {
         await dormir(esperasReintento[intento]);
-        return pedir(url, intento + 1);
+        return pedir(url, intento + 1, opciones);
       }
       throw new ErrorFuente('red', `Sin respuesta de ${url}: ${error.message}`, { url });
     }
@@ -61,7 +69,7 @@ export function crearCliente({
     if (res.status >= 500) {
       if (intento < esperasReintento.length) {
         await dormir(esperasReintento[intento]);
-        return pedir(url, intento + 1);
+        return pedir(url, intento + 1, opciones);
       }
       throw new ErrorFuente('servidor', `Error ${res.status} del sitio: ${url}`, { status: res.status, url });
     }
@@ -75,11 +83,11 @@ export function crearCliente({
       // Un sitio sobrecargado a veces contesta con texto ("Server is too busy") en vez de JSON: se reintenta.
       if (intento < esperasReintento.length) {
         await dormir(esperasReintento[intento]);
-        return pedir(url, intento + 1);
+        return pedir(url, intento + 1, opciones);
       }
       throw new ErrorFuente('respuesta_invalida', `La respuesta no es JSON: ${url}`, { status: res.status, url });
     }
   }
 
-  return { obtenerJson: (url) => pedir(url, 0) };
+  return { obtenerJson: (url, opciones) => pedir(url, 0, opciones) };
 }

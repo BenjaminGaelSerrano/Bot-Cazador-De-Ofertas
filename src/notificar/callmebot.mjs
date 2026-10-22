@@ -10,12 +10,22 @@ export class ErrorNotificacion extends Error {
 }
 
 /**
+ * Largo como lo cuenta CallMeBot al cortar: caracteres, más cada salto de línea (cuenta doble) y los bytes extra de
+ * los caracteres con acento o símbolos como "·".
+ */
+export function largoEfectivo(texto) {
+  const saltos = (texto.match(/\n/g) ?? []).length;
+  return texto.length + saltos + (Buffer.byteLength(texto) - texto.length);
+}
+
+/**
  * Agrupa ofertas (`{ texto }`) en mensajes de WhatsApp respetando los topes. Lo que no entra se
  * resume al final como "y N más". Devuelve `{ mensajes, porMensaje, incluidas }`: `porMensaje[i]` es
  * cuántas ofertas lleva el mensaje i, para poder marcar como avisadas solo las que se enviaron.
  */
 export function agrupar(ofertas, {
   titulo,
+  tituloContinuacion = `${titulo} (cont.)`,
   maxPorMensaje = config.maxOfertasPorMensaje,
   maxMensajes = config.maxMensajesPorCorrida,
   maxCaracteres = config.maxCaracteres,
@@ -26,7 +36,7 @@ export function agrupar(ofertas, {
   let i = 0;
 
   while (i < ofertas.length && mensajes.length < maxMensajes) {
-    let texto = mensajes.length === 0 ? `${titulo} (${ofertas.length})` : `${titulo} (cont.)`;
+    let texto = mensajes.length === 0 ? `${titulo} (${ofertas.length})` : tituloContinuacion;
     let enEste = 0;
 
     while (i < ofertas.length && enEste < maxPorMensaje) {
@@ -34,7 +44,7 @@ export function agrupar(ofertas, {
       const linea = `\n\n${i + 1}) ${ofertas[i].texto}`;
       const candidato = texto + linea;
       // Siempre entra al menos una oferta por mensaje; las demás solo si no pasan ninguno de los dos topes.
-      if (enEste > 0 && (candidato.length > maxCaracteres || encodeURIComponent(candidato).length > maxCodificados)) break;
+      if (enEste > 0 && (largoEfectivo(candidato) > maxCaracteres || encodeURIComponent(candidato).length > maxCodificados)) break;
       texto = candidato;
       i++;
       enEste++;
@@ -71,7 +81,7 @@ export async function enviar(texto, {
 
   // CallMeBot corta sin avisar los mensajes largos. Si el mensaje no entra, se falla acá y NO se envía: mandarlo
   // cortado haría que las ofertas del final se den por avisadas sin que nadie las haya visto.
-  if (encodeURIComponent(texto).length > config.maxCodificadosDuro) {
+  if (largoEfectivo(texto) > config.maxCaracteresDuro || encodeURIComponent(texto).length > config.maxCodificadosDuro) {
     throw new ErrorNotificacion(`El mensaje es demasiado largo para CallMeBot (${texto.length} caracteres)`);
   }
 

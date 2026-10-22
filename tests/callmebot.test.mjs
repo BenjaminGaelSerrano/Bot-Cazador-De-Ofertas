@@ -133,3 +133,44 @@ test('enviar: un mensaje que no entra falla y NO se manda (no sale cortado)', as
   );
   assert.equal(llamado, false);
 });
+
+// ---------- Largo efectivo: cómo cuenta CallMeBot al cortar ----------
+
+const { largoEfectivo } = await import('../src/notificar/callmebot.mjs');
+
+test('largoEfectivo: cuenta los saltos de línea doble y los bytes extra de acentos y símbolos', () => {
+  assert.equal(largoEfectivo('abc'), 3);
+  assert.equal(largoEfectivo('a\nb'), 4, 'el salto cuenta doble');
+  assert.equal(largoEfectivo('ñ'), 2, 'un carácter de 2 bytes cuenta 2');
+  assert.equal(largoEfectivo('a · b'), 6, '"·" ocupa 2 bytes');
+  assert.equal(largoEfectivo('línea\nmás'), 'línea\nmás'.length + 1 + 2);
+});
+
+test('el tope es sobre el largo efectivo: un mensaje lleno de saltos y acentos entra menos ofertas que uno plano', () => {
+  const plano = Array.from({ length: 8 }, (_, i) => ({ texto: `Producto ${i} sin acentos y sin saltos` }));
+  const raro = Array.from({ length: 8 }, (_, i) => ({ texto: `Perfúmería ñandú ${i}\nlínea dos\nlínea tres\nhttps://x.test/${i}` }));
+  const cuantas = (o) => agrupar(o, { titulo: 'T', maxMensajes: 1, maxCaracteres: 200 }).incluidas;
+  assert.ok(cuantas(raro) < cuantas(plano));
+  const { mensajes } = agrupar(raro, { titulo: 'T', maxMensajes: 8, maxCaracteres: 200 });
+  for (const m of mensajes) assert.ok(largoEfectivo(m) <= 200 || m.split('\n\n').length === 2, 'ningún mensaje con varias ofertas pasa el tope');
+});
+
+test('topes reales: ningún mensaje supera el largo efectivo que acepta CallMeBot', () => {
+  const { mensajes } = agrupar(catalogoRouge, { titulo: 'Ofertas Rouge · 1ª lectura, de 373', tituloContinuacion: 'Ofertas Rouge (cont.)', maxMensajes: 10 });
+  for (const m of mensajes) assert.ok(largoEfectivo(m) <= config.maxCaracteresDuro, `mensaje de largo efectivo ${largoEfectivo(m)}`);
+  assert.ok(mensajes.every((m) => largoEfectivo(m) <= config.maxCaracteres + 100));
+});
+
+test('el título de continuación se usa a partir del segundo mensaje', () => {
+  const { mensajes } = agrupar(catalogoRouge, { titulo: 'Ofertas Rouge · 1ª lectura, de 373', tituloContinuacion: 'Ofertas Rouge (cont.)', maxMensajes: 10 });
+  assert.ok(mensajes[0].startsWith('Ofertas Rouge · 1ª lectura, de 373 ('));
+  assert.ok(mensajes.slice(1).every((m) => m.startsWith('Ofertas Rouge (cont.)')));
+});
+
+test('enviar: un mensaje de largo efectivo mayor al duro no se manda aunque tenga pocos caracteres', async () => {
+  let llamado = false;
+  const texto = Array(130).fill('ñá\n').join(''); // 390 caracteres, pero cada pieza pesa 6 al contar acentos y salto
+  assert.ok(texto.length < config.maxCaracteresDuro && largoEfectivo(texto) > config.maxCaracteresDuro);
+  await assert.rejects(enviar(texto, { phone: '1', apikey: 'k', fetchFn: async () => { llamado = true; return { ok: true }; } }), (e) => e.tipo === 'notificacion');
+  assert.equal(llamado, false);
+});

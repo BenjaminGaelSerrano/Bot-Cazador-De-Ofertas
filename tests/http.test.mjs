@@ -128,3 +128,37 @@ test('un corte de red pasajero se recupera', async () => {
   const { datos } = await cliente.obtenerJson('https://x.test/a');
   assert.deepEqual(datos, [4]);
 });
+
+// ---------- POST con cuerpo JSON (GraphQL) ----------
+
+test('con cuerpo hace un POST con JSON y el mismo User-Agent', async () => {
+  const { cliente, pedidos } = armar([respuesta(200, '{"data":1}')]);
+  const { datos } = await cliente.obtenerJson('https://x.test/graphql', { cuerpo: { query: '{ a }' } });
+  assert.deepEqual(datos, { data: 1 });
+  const { init } = pedidos[0];
+  assert.equal(init.method, 'POST');
+  assert.equal(init.body, '{"query":"{ a }"}');
+  assert.equal(init.headers['Content-Type'], 'application/json');
+  assert.equal(init.headers['User-Agent'], 'test-agent');
+});
+
+test('sin cuerpo sigue siendo un GET', async () => {
+  const { cliente, pedidos } = armar([respuesta(200)]);
+  await cliente.obtenerJson('https://x.test/a');
+  assert.equal(pedidos[0].init.method, undefined);
+  assert.equal(pedidos[0].init.body, undefined);
+});
+
+test('el POST también reintenta ante un 5xx y reenvía el mismo cuerpo', async () => {
+  const { cliente, pedidos } = armar([respuesta(502), respuesta(200, '[1]')]);
+  await cliente.obtenerJson('https://x.test/graphql', { cuerpo: { query: '{ a }' } });
+  assert.equal(pedidos.length, 2);
+  assert.equal(pedidos[1].init.body, '{"query":"{ a }"}');
+  assert.equal(pedidos[1].init.method, 'POST');
+});
+
+test('el POST también corta ante 429 sin insistir', async () => {
+  const { cliente, pedidos } = armar([respuesta(429), respuesta(200)]);
+  await assert.rejects(cliente.obtenerJson('https://x.test/graphql', { cuerpo: {} }), (e) => e.tipo === 'bloqueo');
+  assert.equal(pedidos.length, 1);
+});

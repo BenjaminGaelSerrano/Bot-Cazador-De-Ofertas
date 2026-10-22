@@ -9,9 +9,9 @@ Todo lo de esta tabla se re-verifica en la spec de cada fuente antes de implemen
 | Grid (distribuye Nike, Jordan, NBA) | grid.com.ar | VTEX | Misma API VTEX | **Implementada** (spec 002). 2.139 productos, aviso por producto. `robots.txt` pide `Crawl-delay: 0.5` |
 | Rouge | perfumeriasrouge.com | VTEX | Misma API VTEX | **Implementada** (spec 002). 4.808 de 4.836 productos, aviso por SKU (tamaño) |
 | New Era | newera.com.ar | Shopify | `/products.json?limit=250&page=N` | **Implementada** (spec 002). 924 productos; hoy ninguno trae descuento declarado |
-| Parfumerie | parfumerie.com.ar | Magento | Sin API pública detectada | Requiere parsear HTML o sitemap. Evaluar después |
-| Moov | moov.com.ar | Propia (no VTEX ni Shopify) | Sin API pública detectada | Requiere parsear HTML. Evaluar después |
-| Dexter | dexter.com.ar | Propia (no VTEX ni Shopify) | Sin API pública detectada | Requiere parsear HTML. Evaluar después |
+| Parfumerie | parfumerie.com.ar | Magento 2 | `POST /graphql` (el que usa la propia tienda), con `gtin`, `mgs_brand`, precio de lista y final | **Implementada** (spec 004). 6.357 productos; atributos pesados una vez por SKU. Un GET al mismo endpoint redirige y pierde la consulta |
+| Moov | moov.com.ar | Salesforce Commerce Cloud (Demandware) | Sin API pública relevada todavía | Pendiente: verificar qué entrega y si trae código de barras. Misma plataforma que Dexter |
+| Dexter | dexter.com.ar | Salesforce Commerce Cloud (Demandware) | Sin API pública relevada todavía | Pendiente: igual que Moov; un solo lector serviría para las dos |
 | Nike (oficial) | nike.com.ar | Protegido | Responde 403 a cualquier pedido automatizado | **Descartado.** No se evade. Cubrir Nike vía Grid, Moov y Dexter |
 | Adidas (oficial) | adidas.com.ar | Protegido | Responde 403 a cualquier pedido automatizado | **Descartado.** Cubrir Adidas vía Grid, Moov y Dexter |
 

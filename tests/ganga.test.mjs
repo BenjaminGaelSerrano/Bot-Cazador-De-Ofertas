@@ -108,7 +108,7 @@ test('formato: pesos argentinos y línea de WhatsApp', () => {
   assert.equal(pesos(380005.22), '$380.005');
   const o = oferta({ precioActual: 65000 });
   const sinHist = formatearOferta(o, { tipo: 'sin-historial', descuento: 0.35, base: 100000, referencia: null });
-  assert.equal(sinHist, 'DIOR Sauvage EDP 100 ml\n$65.000 · -35% vs lista $100.000 (sin historial)\nhttps://x.test/p');
+  assert.equal(sinHist, 'DIOR Sauvage EDP 100 ml\n$65.000 · -35% vs lista $100.000\nhttps://x.test/p');
   const hist = formatearOferta(o, { tipo: 'historial', descuento: 0.4, base: 108000, referencia: 90000 });
   assert.match(hist, /-40% vs mín\. 30 días \$108\.000 · ref\. intl \$90\.000/);
 });

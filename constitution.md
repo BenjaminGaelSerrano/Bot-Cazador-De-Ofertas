@@ -82,11 +82,12 @@ Además de ser ganga, cada oferta se juzga como negocio de reventa (se revende p
 - Límites conocidos (página oficial, verificada el 2026-10-20): el plan gratuito es solo para uso
   personal y solo texto; no publica un tope diario ni de longitud; es un proyecto personal sin garantía
   de disponibilidad; el bot de activación a veces está lleno y hay que reintentar.
-- **Límite de largo medido (2026-10-22):** CallMeBot corta en silencio los mensajes a ~750 caracteres crudos
-  (~990 codificados en la URL). Dos mensajes de 8 ofertas llegaron cortados y las ofertas del final se
-  perdieron, porque el envío "salió bien" y se las dio por avisadas. Regla: **un mensaje nunca supera 650
-  caracteres crudos ni 880 codificados, y si no entra, no se envía** (falla a la vista). Los links van
-  enteros en su propia línea y nunca se recortan.
+- **Límite de largo medido (2026-10-22):** CallMeBot corta en silencio los mensajes a ~760-768 de *largo efectivo*:
+  los caracteres, más cada salto de línea (cuenta doble) y los bytes extra de acentos y símbolos como "·". La
+  codificación de la URL no es el límite (un mensaje de 768 caracteres con URL de 1.658 llegó bien). Dos mensajes de
+  8 ofertas llegaron cortados y las ofertas del final se perdieron, porque el envío "salió bien" y se las dio por
+  avisadas. Regla: **un mensaje nunca supera 700 de largo efectivo (con tope duro de 740), y si no entra, no se
+  envía** (falla a la vista). Los links van enteros en su propia línea y nunca se recortan.
 - Las líneas no empiezan con `N.` (WhatsApp las convierte en lista numerada); se usa `N)`.
 - Consecuencias de diseño: mensajes cortos, agrupar varias ofertas en un solo mensaje, máximo de
   mensajes por corrida y por día configurable, y un canal alternativo previsto (Telegram o TextMeBot)

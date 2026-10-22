@@ -1,0 +1,672 @@
+{
+ "total_count": 6357,
+ "page_info": {
+  "total_pages": 212
+ },
+ "items": [
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PR166704",
+   "name": "SISTERLAND SWEET DRAMA EDP 80ML + TOTEBAG DE REGALO",
+   "url_key": "sisterland-sweet-drama-edp-80ml-pr166704",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 58250
+     },
+     "final_price": {
+      "value": 58250
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PR166702",
+   "name": "SISTERLAND DELICIOUS CRUSH EDP 80ML + TOTEBAG DE REGALO",
+   "url_key": "sisterland-delicious-crush-edp-80ml-pr166702",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 58250
+     },
+     "final_price": {
+      "value": 58250
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PR166707",
+   "name": "LE MALE PRIDE EDT 125ML EDICION LIMITADA + ESPEJO DE REGALO",
+   "url_key": "le-male-pride-edt-125ml-edicion-limitada-pr166707",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 313800
+     },
+     "final_price": {
+      "value": 251040
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PR166792",
+   "name": "BOTTLED BEYOND FOR HIM EDT INTENSE 100ML RECARGABLE + BOLSO DE REGALO",
+   "url_key": "bottled-beyond-for-him-edt-intense-100ml-recargable-pr166792",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 299000
+     },
+     "final_price": {
+      "value": 299000
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PR166790",
+   "name": "BOTTLED BEYOND FOR HER EDP 100ML RECARGABLE + POUCH + MINITALLA DE REGALO ",
+   "url_key": "bottled-beyond-for-her-edp-100ml-pr166790",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 315000
+     },
+     "final_price": {
+      "value": 315000
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PR15886",
+   "name": "TOMMY MEN EDT 100ML + BOLSO DE REGALO",
+   "url_key": "tommy-men-edt-100ml-tarjetero-de-regalo-1",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 187000
+     },
+     "final_price": {
+      "value": 187000
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PR158706",
+   "name": "K BY DOLCE&GABBANA PARFUM 100ML + POUCH DE REGALO",
+   "url_key": "k-by-dolce-gabbana-parfum-100ml-pr158706",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 365000
+     },
+     "final_price": {
+      "value": 365000
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PS166784",
+   "name": "LIP COMFORT OIL CRYO 00",
+   "url_key": "lip-comfort-oil-cryo-00-ps166784",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 71500
+     },
+     "final_price": {
+      "value": 71500
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PR166705",
+   "name": "CLASSIQUE PRIDE EDT 100ML EDICION LIMITADA + ESPEJO DE REGALO ",
+   "url_key": "classique-pride-edt-100ml-edicion-limitada-pr166705",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 330350
+     },
+     "final_price": {
+      "value": 330350
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PS166782",
+   "name": "EXTRA-FIRMING ENERGY CREAM 50ML REFILL",
+   "url_key": "extra-firming-energy-cream-50ml-refill-ps166782",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 187000
+     },
+     "final_price": {
+      "value": 187000
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PS166783",
+   "name": "EXTRA-FIRMING ENERGY CREAM 50ML REFILLABLE",
+   "url_key": "extra-firming-energy-cream-50ml-refillable-ps166783",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 250100
+     },
+     "final_price": {
+      "value": 250100
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PS166756",
+   "name": "TOMMY GIRL EDT 100ML + BODY LOTION 100ML SET",
+   "url_key": "tommy-girl-edt-100ml-body-lotion-100ml-set-ps166756",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 106029
+     },
+     "final_price": {
+      "value": 106029
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PS166757",
+   "name": "DYLAN PURPLE EDP 100ML + SHOWER GEL + BODY LOTION + MINI TALLA SET",
+   "url_key": "dylan-purple-edp-100ml-shower-gel-body-lotion-mini-talla-set-ps166757",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 185976
+     },
+     "final_price": {
+      "value": 185976
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PS166790",
+   "name": "BOTTLED BEYOND FOR HER EDP 100ML RECARGABLE + CARTERA DE REGALO",
+   "url_key": "bottled-beyond-for-her-edp-100ml-ps166790",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 315000
+     },
+     "final_price": {
+      "value": 315000
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "RV166709",
+   "name": "VÉNUS DE NINA RICCI EDP FLORALE 30ML",
+   "url_key": "venus-de-nina-ricci-edp-florale-30ml-rv166709",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 143900
+     },
+     "final_price": {
+      "value": 143900
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "RV166710",
+   "name": "VÉNUS DE NINA RICCI EDP FLORALE 50ML",
+   "url_key": "venus-de-nina-ricci-edp-florale-50ml-rv166710",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 183500
+     },
+     "final_price": {
+      "value": 183500
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "RV166711",
+   "name": "VÉNUS DE NINA RICCI EDP FLORALE 80ML",
+   "url_key": "venus-de-nina-ricci-edp-florale-80ml-rv166711",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 227200
+     },
+     "final_price": {
+      "value": 227200
+     }
+    }
+   }
+  },
+  {
+   "__typename": "ConfigurableProduct",
+   "sku": "RP166711",
+   "name": "VÉNUS DE NINA RICCI EDP FLORALE",
+   "url_key": "venus-de-nina-ricci-edp-florale-rp166711",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 143900
+     },
+     "final_price": {
+      "value": 143900
+     }
+    }
+   },
+   "variants": [
+    {
+     "product": {
+      "sku": "RV166711",
+      "name": "VÉNUS DE NINA RICCI EDP FLORALE 80ML",
+      "stock_status": "IN_STOCK",
+      "only_x_left_in_stock": null,
+      "price_range": {
+       "minimum_price": {
+        "regular_price": {
+         "value": 227200
+        },
+        "final_price": {
+         "value": 227200
+        }
+       }
+      }
+     }
+    },
+    {
+     "product": {
+      "sku": "RV166710",
+      "name": "VÉNUS DE NINA RICCI EDP FLORALE 50ML",
+      "stock_status": "IN_STOCK",
+      "only_x_left_in_stock": null,
+      "price_range": {
+       "minimum_price": {
+        "regular_price": {
+         "value": 183500
+        },
+        "final_price": {
+         "value": 183500
+        }
+       }
+      }
+     }
+    },
+    {
+     "product": {
+      "sku": "RV166709",
+      "name": "VÉNUS DE NINA RICCI EDP FLORALE 30ML",
+      "stock_status": "IN_STOCK",
+      "only_x_left_in_stock": null,
+      "price_range": {
+       "minimum_price": {
+        "regular_price": {
+         "value": 143900
+        },
+        "final_price": {
+         "value": 143900
+        }
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "__typename": "ConfigurableProduct",
+   "sku": "RP166448",
+   "name": "MYSTERY BOX",
+   "url_key": "mystery-box-rp166448",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 49990
+     },
+     "final_price": {
+      "value": 49990
+     }
+    }
+   },
+   "variants": [
+    {
+     "product": {
+      "sku": "PS166448",
+      "name": "MYSTERY BOX 1",
+      "stock_status": "IN_STOCK",
+      "only_x_left_in_stock": null,
+      "price_range": {
+       "minimum_price": {
+        "regular_price": {
+         "value": 49990
+        },
+        "final_price": {
+         "value": 49990
+        }
+       }
+      }
+     }
+    },
+    {
+     "product": {
+      "sku": "PS166449",
+      "name": "MYSTERY BOX 2",
+      "stock_status": "IN_STOCK",
+      "only_x_left_in_stock": null,
+      "price_range": {
+       "minimum_price": {
+        "regular_price": {
+         "value": 49990
+        },
+        "final_price": {
+         "value": 49990
+        }
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PR119459",
+   "name": "WHITE TEA EDT 100ML + BOLSO DE REGALO",
+   "url_key": "white-tea-edt-100ml-1",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 189990
+     },
+     "final_price": {
+      "value": 189990
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PS166696",
+   "name": "ONE MILLION BLACK MEN EDP 100ML",
+   "url_key": "one-million-black-men-edp-100ml-ps166696",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 335800
+     },
+     "final_price": {
+      "value": 268640
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PS166698",
+   "name": "COLORS UNLIMITED FOR HER EDT 80ML",
+   "url_key": "colors-unlimited-for-her-edt-80ml-ps166698",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 48750
+     },
+     "final_price": {
+      "value": 39000
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PR159697",
+   "name": "JASMINE COAST WOMAN EDP 100ML + FRAGANCIA DE 50ML DE REGALO",
+   "url_key": "jasmine-coast-woman-edp-100ml-pr159697",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 57000
+     },
+     "final_price": {
+      "value": 57000
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PS166674",
+   "name": "ABEILLE ROYALE MIDNIGHT SECRET SERUM 15ML",
+   "url_key": "abeille-royale-midnight-secret-serum-15ml-ps166674",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 120000
+     },
+     "final_price": {
+      "value": 120000
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PS166672",
+   "name": "ABEILLE ROYALE NIGHT TAPING TREATMENT CREAM 50ML",
+   "url_key": "abeille-royale-night-taping-treatment-cream-50ml-ps166672",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 346000
+     },
+     "final_price": {
+      "value": 346000
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PR153518",
+   "name": "BRIGHT CRYSTAL PARFUM 90ML + POUCH DE REGALO",
+   "url_key": "bright-crystal-parfum-90ml-pr153518",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 390000
+     },
+     "final_price": {
+      "value": 390000
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PR98504",
+   "name": "YELLOW DIAMOND EDT 90ML + POUCH DE REGALO",
+   "url_key": "yellow-diamond-edt-90ml-1",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 297000
+     },
+     "final_price": {
+      "value": 297000
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PR149349",
+   "name": "DYLAN PURPLE POUR FEMME EDP 30ML + RIÑONERA DE REGALO",
+   "url_key": "dylan-purple-pour-femme-edp-30ml-pr149349",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 205000
+     },
+     "final_price": {
+      "value": 205000
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PR122110",
+   "name": "DYLAN BLUE POUR FEMME EDP 30ML + RIÑOÑERA DE REGALO",
+   "url_key": "dylan-blue-pour-femme-edp-30ml-1",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 205000
+     },
+     "final_price": {
+      "value": 205000
+     }
+    }
+   }
+  },
+  {
+   "__typename": "SimpleProduct",
+   "sku": "PS166700",
+   "name": "COLORS UNLIMITED FOR HIM EDT 100ML",
+   "url_key": "colors-unlimited-for-him-edt-100ml-ps166700",
+   "url_suffix": "",
+   "stock_status": "IN_STOCK",
+   "only_x_left_in_stock": null,
+   "price_range": {
+    "minimum_price": {
+     "regular_price": {
+      "value": 48750
+     },
+     "final_price": {
+      "value": 39000
+     }
+    }
+   }
+  }
+ ]
+}

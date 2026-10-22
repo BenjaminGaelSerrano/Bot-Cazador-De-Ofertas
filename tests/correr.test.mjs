@@ -35,14 +35,14 @@ async function entorno() {
   };
 }
 
-test('primera corrida: avisa las ofertas con el descuento del sitio y marca "sin historial"', async () => {
+test('primera corrida: avisa las ofertas con el descuento contra la lista del sitio', async () => {
   const e = await entorno();
   e.poner([oferta(1, { precioActual: 50000 }), oferta(2, { precioActual: 70000 }), oferta(3)]);
   const r = await e.correr('2026-10-20');
 
   assert.equal(r.gangas, 2);
   assert.equal(e.enviados.length, 1);
-  assert.match(e.enviados[0], /^Ofertas \(2\)\n\n1\) MARCA Producto 1 50 ml\n\$50\.000 · -50% vs lista \$100\.000 \(sin historial\)\nSin referencia de otra tienda\nhttps:\/\/x\.test\/1\n\n2\) /);
+  assert.match(e.enviados[0], /^Ofertas \(2\)\n\n1\) MARCA Producto 1 50 ml\n\$50\.000 · -50% vs lista \$100\.000\nSin referencia de otra tienda\nhttps:\/\/x\.test\/1\n\n2\) /);
   assert.ok(e.enviados[0].indexOf('Producto 1') < e.enviados[0].indexOf('Producto 2'), 'la de mayor descuento va primero');
   assert.deepEqual(Object.keys(await e.leerJson('alertas.json')).sort(), ['juleriaque:1', 'juleriaque:2']);
   assert.equal(Object.keys((await e.leerJson('juleriaque/historial.json')).productos).length, 3);
@@ -186,7 +186,7 @@ test("primera corrida: avisa solo las N mejores y deja el resto como línea base
   assert.equal(r.primeraCorrida, true);
   assert.equal(r.silenciadas, 4);
   assert.equal(e.enviados.length, 1);
-  assert.match(e.enviados[0], /^Ofertas · primera lectura, mejores de 12 \(8\)/);
+  assert.match(e.enviados[0], /^Ofertas · 1ª lectura, de 12 \(8\)/);
   assert.ok(e.enviados[0].includes("Producto 12 50 ml"), "la de mayor descuento va");
   assert.ok(!e.enviados[0].includes("Producto 1 50 ml"), "la de menor descuento queda en la línea base");
   assert.equal(Object.keys(await e.leerJson("alertas.json")).length, 12, "las 8 avisadas y las 4 de la línea base");

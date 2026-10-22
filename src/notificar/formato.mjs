@@ -24,13 +24,13 @@ export function formatearOferta(oferta, evaluacion, { dias = config.diasHistoria
   const pct = Math.round(evaluacion.descuento * 100);
   const contra = evaluacion.tipo === 'historial'
     ? `vs mín. ${dias} días ${pesos(evaluacion.base)}`
-    : `vs lista ${pesos(evaluacion.base)} (sin historial)`;
+    : `vs lista ${pesos(evaluacion.base)}`; // "vs lista" ya implica que todavía no hay historial
   // No se antepone la marca si el nombre ya la menciona (ej. "ZAPATILLAS NIKE SPORTSWEAR ..." de Nike Sportswear).
   const nombre = oferta.nombre.toLowerCase().includes(oferta.marca.toLowerCase()) ? oferta.nombre : `${oferta.marca} ${oferta.nombre}`;
   const referencia = evaluacion.referencia !== null && evaluacion.referencia !== undefined
     ? ` · ref. intl ${pesos(evaluacion.referencia)}`
     : '';
-  const lineas = [recortar(nombre, 60), `${pesos(oferta.precioActual)} · -${pct}% ${contra}${referencia}`];
+  const lineas = [recortar(nombre, 50), `${pesos(oferta.precioActual)} · -${pct}% ${contra}${referencia}`];
   const reventa = lineaReventa(puntaje);
   if (reventa) lineas.push(reventa);
   lineas.push(oferta.url); // el link va último, entero y en su propia línea

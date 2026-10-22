@@ -11,15 +11,15 @@ test('armarMensajes: sin ofertas no hay mensajes', () => {
 test('armarMensajes: pocas ofertas van en un solo mensaje numerado', () => {
   const [m, ...resto] = armarMensajes(ofertas(2), { titulo: 'Ofertas Juleriaque' });
   assert.equal(resto.length, 0);
-  assert.equal(m, 'Ofertas Juleriaque (2)\n1. Producto 1 https://x.test/1\n2. Producto 2 https://x.test/2');
+  assert.equal(m, 'Ofertas Juleriaque (2)\n\n1) Producto 1 https://x.test/1\n\n2) Producto 2 https://x.test/2');
 });
 
 test('armarMensajes: reparte por tope de ofertas y numera de corrido', () => {
   const ms = armarMensajes(ofertas(5), { titulo: 'O', maxPorMensaje: 2, maxMensajes: 3 });
   assert.equal(ms.length, 3);
-  assert.ok(ms[0].startsWith('O (5)\n1.'));
-  assert.ok(ms[1].startsWith('O (cont.)\n3.'));
-  assert.ok(ms[2].startsWith('O (cont.)\n5.'));
+  assert.ok(ms[0].startsWith('O (5)\n\n1)'));
+  assert.ok(ms[1].startsWith('O (cont.)\n\n3)'));
+  assert.ok(ms[2].startsWith('O (cont.)\n\n5)'));
 });
 
 test('armarMensajes: lo que no entra se resume como "y N más"', () => {
@@ -67,4 +67,69 @@ test('enviar: un error HTTP falla sin filtrar la clave', async () => {
     enviar('hola', { phone: '1', apikey: 'secreta', fetchFn: async () => ({ ok: false, status: 503 }) }),
     (e) => e.message === 'CallMeBot respondió 503' && !e.message.includes('secreta'),
   );
+});
+
+// ---------- Largo de los mensajes con los topes reales (regresión del 2026-10-22) ----------
+// CallMeBot cortó en silencio dos mensajes de 8 ofertas a ~750 caracteres (~990 codificados) y las ofertas
+// cortadas se dieron por avisadas. Estas pruebas usan ofertas reales de Rouge, con nombres y links largos.
+
+const { config } = await import('../src/config.mjs');
+const { formatearOferta } = await import('../src/notificar/formato.mjs');
+const { agrupar } = await import('../src/notificar/callmebot.mjs');
+
+const catalogoRouge = [
+  ['Clean Beauty Collective', 'Clean Reserve Elderflower Mist 50 ml', 18021, 51490, 'clean-reserve-elderflower-mist-x80563100000'],
+  ['Clean Beauty Collective', 'Clean Reserve Limpiador equilibrante buriti 146 ml', 18021, 51490, 'clean-reserve-limpiador-equilibrante-buriti-x80543100000'],
+  ['Versace', 'Woman EDP 100 ml', 99050, 283000, 'woman-edp-xv25046p'],
+  ['Clean Beauty Collective', 'Clean Reserve Skin Blend EDP 100 ml', 71050, 203000, 'clean-reserve-skin-blend-edp-x80330820001'],
+  ['Clean Beauty Collective', 'Clean Reserve Radiant Nectar EDP 50 ml Set Set', 44065, 125900, 'clean-reserve-radiant-nectar-edp-50-ml-set-x89170020320'],
+  ['Clean Beauty Collective', 'Clean Reserve Radiant Nectar EDP 100 ml', 71050, 203000, 'clean-reserve-radiant-nectar-edp-x80331420002'],
+  ['Clean Beauty Collective', 'Clean Reserve Citron Fig EDP 100 ml', 71050, 203000, 'clean-reserve-citron-fig-edp-x80331120000'],
+  ['Clean Beauty Collective', 'Clean Reserve Sel Santal EDP 100 ml', 71050, 203000, 'clean-reserve-sel-santal-edp-x80331020000'],
+  ['Clean Beauty Collective', 'Clean Reserve Sueded Oud EDP 100 ml', 71050, 203000, 'clean-reserve-sueded-oud-edp-x80330220000'],
+  ['Clean Beauty Collective', 'Clean Reserve Rain Blend EDP 100 ml', 71050, 203000, 'clean-reserve-rain-blend-edp-x80330920001'],
+  ['Dsquared2', 'Red Wood Pour Femme EDT 50 ml', 54600, 156000, 'red-wood-pour-femme-edt-x5c28c-1'],
+  ['Dsquared2', 'Wood Pour Homme EDT 30 ml', 44765, 127900, 'wood-pour-homme-edt-x5b07c-1'],
+].map(([marca, nombre, precioActual, precioLista, slug]) => ({
+  oferta: { marca, nombre, precioActual, precioLista, url: `https://www.perfumeriasrouge.com/${slug}/p` },
+  texto: formatearOferta(
+    { marca, nombre, precioActual, precioLista, url: `https://www.perfumeriasrouge.com/${slug}/p` },
+    { tipo: 'sin-historial', descuento: 1 - precioActual / precioLista, base: precioLista, referencia: null },
+  ),
+}));
+
+test('topes reales: ningún mensaje supera el largo que acepta CallMeBot', () => {
+  const { mensajes } = agrupar(catalogoRouge, { titulo: 'Ofertas Rouge · primera lectura, mejores de 373', maxMensajes: 10 });
+  assert.ok(mensajes.length > 1, 'se reparte en varios mensajes');
+  for (const m of mensajes) {
+    assert.ok(encodeURIComponent(m).length <= config.maxCodificadosDuro, `mensaje de ${encodeURIComponent(m).length} codificados`);
+    assert.ok(m.length <= config.maxCaracteres + 40, `mensaje de ${m.length} caracteres`);
+  }
+});
+
+test('topes reales: ninguna oferta queda partida y todas las enviadas llevan su link entero', () => {
+  const { mensajes, porMensaje, incluidas } = agrupar(catalogoRouge, { titulo: 'Ofertas Rouge', maxMensajes: 10 });
+  assert.equal(incluidas, catalogoRouge.length);
+  assert.equal(porMensaje.reduce((a, b) => a + b, 0), incluidas);
+  const todo = mensajes.join('\n');
+  for (const { texto } of catalogoRouge) {
+    assert.equal(mensajes.filter((m) => m.includes(texto)).length, 1, `la oferta entera está en un solo mensaje: ${texto.split('\n')[0]}`);
+  }
+  assert.ok(todo.includes('https://www.perfumeriasrouge.com/clean-reserve-limpiador-equilibrante-buriti-x80543100000/p'));
+});
+
+test('topes reales: lo que no entra se cuenta en "y N más", sin partir ofertas', () => {
+  const { mensajes, incluidas } = agrupar(catalogoRouge, { titulo: 'Ofertas Rouge', maxMensajes: 2 });
+  assert.ok(incluidas < catalogoRouge.length);
+  assert.ok(mensajes.at(-1).endsWith(`y ${catalogoRouge.length - incluidas} más.`));
+  for (const m of mensajes) assert.ok(encodeURIComponent(m).length <= config.maxCodificadosDuro);
+});
+
+test('enviar: un mensaje que no entra falla y NO se manda (no sale cortado)', async () => {
+  let llamado = false;
+  await assert.rejects(
+    enviar('x'.repeat(2000), { phone: '1', apikey: 'k', fetchFn: async () => { llamado = true; return { ok: true }; } }),
+    (e) => e.tipo === 'notificacion' && /demasiado largo/.test(e.message),
+  );
+  assert.equal(llamado, false);
 });

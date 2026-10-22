@@ -75,6 +75,7 @@ for (const r of resultados) {
   if (informe.catalogoTotal !== null) console.log(`Cobertura: ${informe.productosLeidos} de ${informe.catalogoTotal} productos del sitio`);
   const tolerancia = config.fuentes[r.nombre]?.toleranciaCobertura ?? 0.01;
   if (informe.sinCubrir > informe.catalogoTotal * tolerancia) console.warn('AVISO: hay productos en el sitio fuera de las categorías configuradas; revisar si aparecieron categorías nuevas.');
+  if (informe.parciales?.length) console.warn('AVISO lectura parcial (el sitio falló tras los reintentos):', JSON.stringify(informe.parciales));
   if (informe.truncados.length) console.warn('AVISO categorías truncadas:', JSON.stringify(informe.truncados));
   if (informe.incompletos.length) console.warn('AVISO cobertura incompleta:', JSON.stringify(informe.incompletos));
 }

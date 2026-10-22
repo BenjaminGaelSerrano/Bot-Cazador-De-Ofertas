@@ -247,3 +247,83 @@ test('configuración: coherente para las tres tiendas nuevas', () => {
   assert.ok(n.porPagina <= 250 && n.maxPaginas >= 4);
   assert.ok(config.maxMensajesTotalPorCorrida >= config.maxMensajesPorCorrida);
 });
+
+// ---------- Lecturas parciales: un 5xx que persiste no tira toda la lectura (falla real de Rouge, 2026-10-22) ----------
+
+const nodoRouge = (name, ruta) => ({ name, ruta, children: [] });
+const cfgRouge = { base: 'https://tienda.test', maxPorPedido: 50, maxOffset: 2500, agrupar: 'sku', categoriasExcluidas: [], categorias: [] };
+const crudoRouge = (id) => producto(id, [item(`s${id}`, 'U', 100, 100, 1)], { categories: ['/Perfumes/'] });
+const listaRouge = (desde, hasta) => Array.from({ length: hasta - desde + 1 }, (_, i) => crudoRouge(desde + i));
+
+/** API falsa por categoría; `fallar(ruta, desde)` devuelve un error para simular que el sitio responde 500. */
+function apiConFallas(catalogo, fallar) {
+  return {
+    async obtenerJson(urlTexto) {
+      const url = new URL(urlTexto);
+      const desde = Number(url.searchParams.get('_from'));
+      const fq = url.searchParams.get('fq');
+      if (!fq) return { datos: [], headers: new Map([['resources', `0-0/${Object.values(catalogo).flat().length}`]]) };
+      const ruta = fq.slice(2);
+      const error = fallar(ruta, desde);
+      if (error) throw error;
+      const lista = catalogo[ruta] ?? [];
+      return { datos: lista.slice(desde, desde + 50), headers: new Map([['resources', `${desde}-${desde + 49}/${lista.length}`]]) };
+    },
+  };
+}
+const servidor500 = () => new ErrorFuente('servidor', 'Error 500 del sitio', { status: 500 });
+
+test('VTEX: un 500 en la última página de una categoría deja la lectura parcial, no la tira', async () => {
+  const lector = crearLector({ ...cfgRouge, categorias: [nodoRouge('Perfumes', '/1/'), nodoRouge('Capilares', '/2/')] });
+  const cliente = apiConFallas({ '/1/': listaRouge(1, 120), '/2/': listaRouge(1000, 1199) }, (ruta, desde) => (ruta === '/2/' && desde === 150 ? servidor500() : null));
+  const { ofertas, informe } = await lector.leerCatalogo(cliente);
+  assert.equal(ofertas.length, 120 + 150, 'se conserva todo lo leído, incluida la categoría con falla hasta donde llegó');
+  assert.equal(informe.parciales.length, 1);
+  assert.deepEqual([informe.parciales[0].categoria, informe.parciales[0].desde], ['Capilares', 150]);
+});
+
+test('VTEX: si falla la primera página de una categoría se la saltea y se leen las demás', async () => {
+  const lector = crearLector({ ...cfgRouge, categorias: [nodoRouge('Perfumes', '/1/'), nodoRouge('Capilares', '/2/')] });
+  const cliente = apiConFallas({ '/1/': listaRouge(1, 60), '/2/': listaRouge(1000, 1010) }, (ruta) => (ruta === '/2/' ? servidor500() : null));
+  const { ofertas, informe } = await lector.leerCatalogo(cliente);
+  assert.equal(ofertas.length, 60);
+  assert.deepEqual(informe.parciales.map((p) => [p.categoria, p.desde]), [['Capilares', 0]]);
+});
+
+test('VTEX: un bloqueo (429) sigue cortando toda la lectura', async () => {
+  const lector = crearLector({ ...cfgRouge, categorias: [nodoRouge('Perfumes', '/1/'), nodoRouge('Capilares', '/2/')] });
+  const cliente = apiConFallas({ '/1/': listaRouge(1, 60), '/2/': listaRouge(1000, 1010) }, (ruta) => (ruta === '/2/' ? new ErrorFuente('bloqueo', 'x', { status: 429 }) : null));
+  await assert.rejects(lector.leerCatalogo(cliente), (e) => e.tipo === 'bloqueo');
+});
+
+test('VTEX: si no se pudo leer nada, se informa el error real y no una lectura "parcial" vacía', async () => {
+  const lector = crearLector({ ...cfgRouge, categorias: [nodoRouge('Perfumes', '/1/')] });
+  const cliente = apiConFallas({ '/1/': listaRouge(1, 60) }, () => servidor500());
+  await assert.rejects(lector.leerCatalogo(cliente), (e) => e.tipo === 'servidor');
+});
+
+test('VTEX: una lectura completa no tiene parciales', async () => {
+  const lector = crearLector({ ...cfgRouge, categorias: [nodoRouge('Perfumes', '/1/')] });
+  const { informe } = await lector.leerCatalogo(apiConFallas({ '/1/': listaRouge(1, 60) }, () => null));
+  assert.deepEqual(informe.parciales, []);
+});
+
+test('Shopify: un 5xx en una página intermedia deja lo leído y la lectura parcial', async () => {
+  let n = 0;
+  const cliente = {
+    async obtenerJson() {
+      n++;
+      if (n === 3) throw servidor500();
+      return { datos: { products: [g(n * 10 + 1), g(n * 10 + 2)] }, headers: new Map() };
+    },
+  };
+  const { ofertas, informe } = await lectorShopify.leerCatalogo(cliente);
+  assert.equal(ofertas.length, 4);
+  assert.deepEqual(informe.parciales.map((p) => p.desde), [3]);
+  assert.deepEqual(informe.truncados, []);
+});
+
+test('Shopify: si falla ya la primera página, se informa el error', async () => {
+  const cliente = { async obtenerJson() { throw servidor500(); } };
+  await assert.rejects(lectorShopify.leerCatalogo(cliente), (e) => e.tipo === 'servidor');
+});

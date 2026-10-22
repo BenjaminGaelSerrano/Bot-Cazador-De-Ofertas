@@ -18,6 +18,8 @@ async function entorno() {
   let catalogo = [];
   const base = {
     nombre: 'juleriaque', titulo: 'Ofertas', directorioDatos, pausaMensajesMs: 0, log: () => {},
+    // Estas pruebas miden la lógica de avisos, no el largo de los mensajes: sin tope de largo (hay pruebas aparte).
+    limitesMensaje: { maxCaracteres: 1e9, maxCodificados: 1e9 },
     leer: async () => ({ ofertas: catalogo, informe: { pedidos: 1, productosLeidos: catalogo.length } }),
     enviarFn: async (texto, { dryRun }) => {
       if (dryRun) return { enviado: false, motivo: 'dry-run' };
@@ -40,7 +42,7 @@ test('primera corrida: avisa las ofertas con el descuento del sitio y marca "sin
 
   assert.equal(r.gangas, 2);
   assert.equal(e.enviados.length, 1);
-  assert.match(e.enviados[0], /^Ofertas \(2\)\n1\. MARCA Producto 1 50 ml: \$50\.000 \(-50% sin historial/);
+  assert.match(e.enviados[0], /^Ofertas \(2\)\n\n1\) MARCA Producto 1 50 ml\n\$50\.000 · -50% vs lista \$100\.000 \(sin historial\)\nhttps:\/\/x\.test\/1\n\n2\) /);
   assert.ok(e.enviados[0].indexOf('Producto 1') < e.enviados[0].indexOf('Producto 2'), 'la de mayor descuento va primero');
   assert.deepEqual(Object.keys(await e.leerJson('alertas.json')).sort(), ['juleriaque:1', 'juleriaque:2']);
   assert.equal(Object.keys((await e.leerJson('juleriaque/historial.json')).productos).length, 3);
@@ -75,7 +77,7 @@ test('con 30+ días de historial usa el mínimo previo y lo dice en el mensaje',
 
   e.poner([oferta(1, { precioActual: 60000, precioLista: 100000 })]);
   await e.correr('2026-10-20');
-  assert.match(e.enviados[0], /-40% bajo el mínimo de 30 días \$100\.000/);
+  assert.match(e.enviados[0], /-40% vs mín\. 30 días \$100\.000/);
 });
 
 test('si el precio vuelve a subir, se olvida el aviso y una nueva baja se avisa de nuevo', async () => {

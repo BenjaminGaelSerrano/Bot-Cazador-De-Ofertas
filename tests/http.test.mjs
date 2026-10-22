@@ -70,17 +70,31 @@ for (const status of [403, 429]) {
   });
 }
 
-test('reintenta una vez ante 5xx y se recupera', async () => {
+test('reintenta ante 5xx y se recupera', async () => {
   const { cliente, pedidos } = armar([respuesta(500), respuesta(200, '[2]')]);
   const { datos } = await cliente.obtenerJson('https://x.test/a');
   assert.deepEqual(datos, [2]);
   assert.equal(pedidos.length, 2);
 });
 
-test('si el 5xx persiste, falla tras un solo reintento', async () => {
-  const { cliente, pedidos } = armar([respuesta(502), respuesta(503), respuesta(200)]);
-  await assert.rejects(cliente.obtenerJson('https://x.test/a'), (e) => e.tipo === 'servidor' && e.status === 503);
-  assert.equal(pedidos.length, 2);
+test('se recupera aunque el 5xx se repita (caso real: 500 puntual de Rouge)', async () => {
+  const { cliente, pedidos } = armar([respuesta(500), respuesta(500), respuesta(200, '[3]')]);
+  const { datos } = await cliente.obtenerJson('https://x.test/a');
+  assert.deepEqual(datos, [3]);
+  assert.equal(pedidos.length, 3);
+});
+
+test('si el 5xx persiste, falla tras los reintentos con espera creciente', async () => {
+  const { cliente, pedidos, esperas } = armar([respuesta(502), respuesta(503), respuesta(504), respuesta(200)]);
+  await assert.rejects(cliente.obtenerJson('https://x.test/a'), (e) => e.tipo === 'servidor' && e.status === 504);
+  assert.equal(pedidos.length, 3, 'un pedido y dos reintentos');
+  assert.ok(esperas.includes(3000) && esperas.includes(10000), 'esperó 3 s y luego 10 s');
+});
+
+test('cada pedido lleva un tope de tiempo', async () => {
+  const { cliente, pedidos } = armar([respuesta(200)]);
+  await cliente.obtenerJson('https://x.test/a');
+  assert.ok(pedidos[0].init.signal instanceof AbortSignal);
 });
 
 test('un 400 es error de cliente y no se reintenta', async () => {
@@ -95,7 +109,14 @@ test('una respuesta que no es JSON es respuesta_invalida', async () => {
   await assert.rejects(cliente.obtenerJson('https://x.test/a'), (e) => e.tipo === 'respuesta_invalida');
 });
 
-test('un fallo de red es tipo red', async () => {
-  const { cliente } = armar([new Error('ECONNRESET')]);
+test('un fallo de red que persiste es tipo red, tras reintentar', async () => {
+  const { cliente, pedidos } = armar([new Error('ECONNRESET'), new Error('ECONNRESET'), new Error('ECONNRESET')]);
   await assert.rejects(cliente.obtenerJson('https://x.test/a'), (e) => e.tipo === 'red');
+  assert.equal(pedidos.length, 3);
+});
+
+test('un corte de red pasajero se recupera', async () => {
+  const { cliente } = armar([new Error('ECONNRESET'), respuesta(200, '[4]')]);
+  const { datos } = await cliente.obtenerJson('https://x.test/a');
+  assert.deepEqual(datos, [4]);
 });

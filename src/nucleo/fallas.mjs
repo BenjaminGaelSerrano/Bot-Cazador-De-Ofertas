@@ -12,6 +12,7 @@ const ETIQUETAS = {
   cliente: 'el sitio rechazó el pedido (¿cambió la API?)',
   red: 'sin conexión con el sitio',
   respuesta_invalida: 'respuesta inesperada del sitio (¿cambió la API?)',
+  parcial: 'lectura parcial: faltaron páginas del sitio (se usó lo que se pudo leer)',
   notificacion: 'no se pudo enviar el WhatsApp',
   interno: 'error interno del bot',
 };

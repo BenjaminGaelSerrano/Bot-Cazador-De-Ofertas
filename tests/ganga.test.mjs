@@ -108,9 +108,9 @@ test('formato: pesos argentinos y línea de WhatsApp', () => {
   assert.equal(pesos(380005.22), '$380.005');
   const o = oferta({ precioActual: 65000 });
   const sinHist = formatearOferta(o, { tipo: 'sin-historial', descuento: 0.35, base: 100000, referencia: null });
-  assert.equal(sinHist, 'DIOR Sauvage EDP 100 ml: $65.000 (-35% sin historial, vs lista $100.000)\nhttps://x.test/p');
+  assert.equal(sinHist, 'DIOR Sauvage EDP 100 ml\n$65.000 · -35% vs lista $100.000 (sin historial)\nhttps://x.test/p');
   const hist = formatearOferta(o, { tipo: 'historial', descuento: 0.4, base: 108000, referencia: 90000 });
-  assert.match(hist, /-40% bajo el mínimo de 30 días \$108\.000, ref\. internacional \$90\.000/);
+  assert.match(hist, /-40% vs mín\. 30 días \$108\.000 · ref\. intl \$90\.000/);
 });
 
 test('formato: no repite la marca si el nombre ya la trae', () => {
@@ -121,5 +121,19 @@ test('formato: no repite la marca si el nombre ya la trae', () => {
 test('formato: tampoco la repite si el nombre la menciona en el medio', () => {
   const o = oferta({ marca: 'Nike Sportswear', nombre: 'ZAPATILLAS NIKE SPORTSWEAR KILLSHOT 2 HOMBRE' });
   const linea = formatearOferta(o, { tipo: 'sin-historial', descuento: 0.3, base: 1, referencia: null });
-  assert.ok(linea.startsWith('ZAPATILLAS NIKE SPORTSWEAR KILLSHOT 2 HOMBRE:'));
+  assert.ok(linea.startsWith('ZAPATILLAS NIKE SPORTSWEAR KILLSHOT 2 HOMBRE\n'));
+});
+
+test('formato: el nombre largo se recorta pero el link nunca', () => {
+  const url = 'https://www.perfumeriasrouge.com/clean-reserve-limpiador-equilibrante-buriti-x80543100000/p';
+  const o = oferta({ nombre: 'Clean Beauty Collective Clean Reserve Limpiador equilibrante buriti 146 ml', marca: 'Clean', url });
+  const [nombre, , linkLinea] = formatearOferta(o, { tipo: 'sin-historial', descuento: 0.65, base: 1, referencia: null }).split('\n');
+  assert.ok(nombre.length <= 60 && nombre.endsWith('...'));
+  assert.equal(linkLinea, url, 'el link va entero en su propia línea');
+});
+
+test('formato: ninguna línea empieza con "N." (WhatsApp la convertiría en lista numerada)', async () => {
+  const { agrupar } = await import('../src/notificar/callmebot.mjs');
+  const { mensajes } = agrupar([1, 2, 3].map((n) => ({ texto: `Nombre ${n}\n$1 · -50%\nhttps://x.test/${n}` })), { titulo: 'T' });
+  for (const linea of mensajes.join('\n').split('\n')) assert.ok(!/^\d+\.\s/.test(linea), `línea con formato de lista: ${linea}`);
 });

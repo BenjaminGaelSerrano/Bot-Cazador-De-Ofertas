@@ -2,6 +2,7 @@ import { config } from './config.mjs';
 import { cargarAlertas, debeAvisar, guardarAlertas, limpiar, marcarAvisada } from './nucleo/alertas.mjs';
 import { avisarFalla, marcarRecuperada } from './nucleo/fallas.mjs';
 import { evaluar } from './nucleo/ganga.mjs';
+import { ErrorFuente } from './nucleo/http.mjs';
 import { cargar as cargarHistorial, guardar as guardarHistorial, registrar } from './nucleo/historial.mjs';
 import { agrupar, enviar } from './notificar/callmebot.mjs';
 import { formatearOferta } from './notificar/formato.mjs';
@@ -28,6 +29,7 @@ export async function correrFuente({
   pausaMensajesMs = config.pausaMensajesMs,
   maxMensajes = config.maxMensajesPorCorrida,
   maxPrimeraCorrida = config.primeraCorridaMaxOfertas,
+  limitesMensaje = {}, // para pruebas: pisa los topes de largo de cada mensaje
   dormir = dormirReal,
   log = console.log,
 }) {
@@ -82,7 +84,7 @@ export async function correrFuente({
   const tituloEnvio = silenciadas > 0 ? `${titulo} · primera lectura, mejores de ${pendientes.length + silenciadas}` : titulo;
   const { mensajes, porMensaje } = agrupar(
     pendientes.map((g) => ({ texto: formatearOferta(g.oferta, g.evaluacion) })),
-    { titulo: tituloEnvio, maxMensajes },
+    { titulo: tituloEnvio, maxMensajes, ...limitesMensaje },
   );
   let avisadas = 0;
   let errorEnvio = null;
@@ -120,7 +122,14 @@ export async function correrConAvisoDeFalla(opciones) {
   const { nombre, fecha, dryRun, directorioDatos, enviarFn, log } = opciones;
   try {
     const resultado = await correrFuente(opciones);
-    await marcarRecuperada({ nombre, directorioDatos, dryRun });
+    const parciales = resultado.informe.parciales ?? [];
+    if (parciales.length > 0) {
+      // La corrida sirvió (precios y avisos hechos), pero faltaron páginas del sitio: se avisa una vez.
+      const detalle = parciales.map((p) => `${p.categoria} desde el producto ${p.desde}`).join('; ');
+      await avisarFalla({ nombre, error: new ErrorFuente('parcial', `No se pudo leer: ${detalle}`), fecha, directorioDatos, dryRun, enviarFn, log });
+    } else {
+      await marcarRecuperada({ nombre, directorioDatos, dryRun });
+    }
     return resultado;
   } catch (error) {
     await avisarFalla({ nombre, error, fecha, directorioDatos, dryRun, enviarFn, log });

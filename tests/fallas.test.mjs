@@ -141,3 +141,21 @@ test('enviar: un fallo de red lanza ErrorNotificacion sin filtrar la clave', asy
     (err) => err instanceof ErrorNotificacion && !err.message.includes('secreta'),
   );
 });
+
+test('correrConAvisoDeFalla: una lectura parcial se avisa una sola vez y la corrida sigue siendo válida', async () => {
+  const e = await entorno();
+  const ofertas = [{ id: '1', ean: null, marca: 'M', nombre: 'P', ml: null, categoria: 'F', precioActual: 100, precioLista: 100, stock: 1, url: 'https://x.test/1' }];
+  const informe = { pedidos: 1, productosLeidos: 1, parciales: [{ categoria: 'Capilares', desde: 150, motivo: 'Error 500' }] };
+  const opciones = { ...base(e), titulo: 'Ofertas', cliente: null, pausaMensajesMs: 0, leer: async () => ({ ofertas, informe }) };
+
+  const r = await correrConAvisoDeFalla(opciones);
+  assert.equal(r.ofertas, 1, 'la corrida se completó y guardó datos');
+  assert.equal(e.enviados.length, 1);
+  assert.match(e.enviados[0], /lectura parcial.*Capilares desde el producto 150/);
+
+  await correrConAvisoDeFalla({ ...opciones, fecha: '2026-10-21' });
+  assert.equal(e.enviados.length, 1, 'no se repite mientras siga parcial');
+
+  await correrConAvisoDeFalla({ ...opciones, fecha: '2026-10-22', leer: async () => ({ ofertas, informe: { pedidos: 1, productosLeidos: 1, parciales: [] } }) });
+  assert.deepEqual(await e.leerFallas(), {}, 'una lectura completa la borra');
+});

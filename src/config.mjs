@@ -2,6 +2,8 @@
 export const config = {
   userAgent: 'cazador-ofertas/0.1 (bot personal de lectura)',
   pausaMs: 1000,
+  esperasReintentoMs: [3000, 10000], // ante un 5xx o un corte de red: 2 reintentos, esperando 3 s y luego 10 s
+  timeoutPedidoMs: 30000,
 
   // Regla de ganga
   descuentoMinimo: 0.30,     // 30 % bajo el mínimo previo (o bajo el precio de lista si no hay historial)
@@ -9,10 +11,15 @@ export const config = {
   diasHistorial: 30,
 
   // Mensajes de WhatsApp (CallMeBot no publica un tope, así que se pone uno propio)
+  // CallMeBot corta en silencio los mensajes largos: el 2026-10-22 dos mensajes se cortaron en ~750 caracteres
+  // crudos / ~990 codificados en la URL, y las ofertas cortadas se perdieron. Se deja ~12 % de margen.
   maxOfertasPorMensaje: 8,
   maxMensajesPorCorrida: 3,
-  maxCaracteres: 1500,
-  pausaMensajesMs: 2000,     // espera entre dos WhatsApp seguidos
+  maxCaracteres: 650,          // largo crudo por mensaje
+  maxCodificados: 880,         // largo con la codificación de URL (espacios y saltos valen 3)
+  maxCodificadosDuro: 950,     // por encima de esto no se envía: mejor un error visible que un mensaje cortado
+  pausaMensajesMs: 2000,       // espera entre dos WhatsApp seguidos
+  simboloMoneda: '$',
 
   fuentes: {
     juleriaque: {

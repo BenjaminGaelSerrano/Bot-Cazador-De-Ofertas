@@ -19,6 +19,7 @@ export function agrupar(ofertas, {
   maxPorMensaje = config.maxOfertasPorMensaje,
   maxMensajes = config.maxMensajesPorCorrida,
   maxCaracteres = config.maxCaracteres,
+  maxCodificados = config.maxCodificados,
 } = {}) {
   const mensajes = [];
   const porMensaje = [];
@@ -29,9 +30,12 @@ export function agrupar(ofertas, {
     let enEste = 0;
 
     while (i < ofertas.length && enEste < maxPorMensaje) {
-      const linea = `\n${i + 1}. ${ofertas[i].texto}`;
-      if (enEste > 0 && texto.length + linea.length > maxCaracteres) break;
-      texto += linea;
+      // "N)" y no "N.": WhatsApp convierte las líneas que empiezan con "N." en una lista numerada.
+      const linea = `\n\n${i + 1}) ${ofertas[i].texto}`;
+      const candidato = texto + linea;
+      // Siempre entra al menos una oferta por mensaje; las demás solo si no pasan ninguno de los dos topes.
+      if (enEste > 0 && (candidato.length > maxCaracteres || encodeURIComponent(candidato).length > maxCodificados)) break;
+      texto = candidato;
       i++;
       enEste++;
     }
@@ -63,6 +67,12 @@ export async function enviar(texto, {
   if (!phone || !apikey) {
     log(`(sin WhatsApp) ${texto}`);
     return { enviado: false, motivo: 'sin-credenciales' };
+  }
+
+  // CallMeBot corta sin avisar los mensajes largos. Si el mensaje no entra, se falla acá y NO se envía: mandarlo
+  // cortado haría que las ofertas del final se den por avisadas sin que nadie las haya visto.
+  if (encodeURIComponent(texto).length > config.maxCodificadosDuro) {
+    throw new ErrorNotificacion(`El mensaje es demasiado largo para CallMeBot (${texto.length} caracteres)`);
   }
 
   const url = `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(phone)}&text=${encodeURIComponent(texto)}&apikey=${encodeURIComponent(apikey)}`;

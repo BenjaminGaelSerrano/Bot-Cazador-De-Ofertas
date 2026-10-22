@@ -1,4 +1,4 @@
-import { ErrorFuente } from '../nucleo/http.mjs';
+import { ErrorFuente, esRecuperable } from '../nucleo/http.mjs';
 
 /** Tamaño en ml dentro del nombre del SKU ("Glycolic Acid 240 ml"); null si no lo trae. */
 export function extraerMl(nombre) {
@@ -104,7 +104,8 @@ export function crearLector(cfg) {
     tolerancia = cfg.toleranciaCobertura ?? 0.01,
     log = () => {},
   } = {}) {
-    const informe = { pedidos: 0, productosLeidos: 0, catalogoTotal: null, sinCubrir: null, truncados: [], incompletos: [] };
+    const informe = { pedidos: 0, productosLeidos: 0, catalogoTotal: null, sinCubrir: null, truncados: [], incompletos: [], parciales: [] };
+    const erroresParciales = [];
     const pedir = async (url) => {
       informe.pedidos++;
       return cliente.obtenerJson(url);
@@ -122,9 +123,26 @@ export function crearLector(cfg) {
       }
     };
 
+    /**
+     * Un error pasajero del sitio (5xx o corte de red que sigue después de los reintentos) no tira toda la
+     * lectura: se anota como parcial, se deja de leer esa categoría y se sigue con las demás. Un bloqueo
+     * (403/429) sí corta todo, porque insistir sería maltratar al sitio.
+     */
+    const registrarParcial = (error, categoria, desde) => {
+      if (!esRecuperable(error)) throw error;
+      informe.parciales.push({ categoria, desde, motivo: error.message });
+      erroresParciales.push(error);
+    };
+
     async function leerPaginas(nodo, desde, limite, orden, vistos) {
       for (let i = desde; i < limite; i += cfg.maxPorPedido) {
-        const { datos } = await pedir(urlPagina(base, nodo.ruta, i, orden));
+        let datos;
+        try {
+          ({ datos } = await pedir(urlPagina(base, nodo.ruta, i, orden)));
+        } catch (error) {
+          registrarParcial(error, nodo.name, i);
+          return;
+        }
         if (datos.length === 0) break;
         absorber(datos, vistos);
       }
@@ -133,7 +151,13 @@ export function crearLector(cfg) {
     async function leerNodo(nodo) {
       const vistos = new Set();
       const url = urlPagina(base, nodo.ruta, 0);
-      const primera = await pedir(url);
+      let primera;
+      try {
+        primera = await pedir(url);
+      } catch (error) {
+        registrarParcial(error, nodo.name, 0);
+        return vistos;
+      }
       const total = totalDe(primera.headers, url);
       if (nodo.ruta === null) totalSinFiltro = total;
       absorber(primera.datos, vistos);
@@ -165,6 +189,8 @@ export function crearLector(cfg) {
       await leerNodo(raiz);
     }
 
+    // Si no se pudo leer nada, no hay lectura parcial que valga: se informa el error real del sitio.
+    if (ofertas.size === 0 && erroresParciales.length > 0) throw erroresParciales[0];
     if (ofertas.size === 0) throw new ErrorFuente('respuesta_invalida', 'El catálogo no devolvió ofertas válidas');
     informe.productosLeidos = todosLosProductos.size;
 

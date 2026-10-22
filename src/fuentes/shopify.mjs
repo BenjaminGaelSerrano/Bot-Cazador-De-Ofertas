@@ -1,4 +1,4 @@
-import { ErrorFuente } from '../nucleo/http.mjs';
+import { ErrorFuente, esRecuperable } from '../nucleo/http.mjs';
 
 /**
  * Crea el lector de una tienda Shopify a partir de su configuración (`base`, `porPagina`, `maxPaginas`,
@@ -41,15 +41,26 @@ export function crearLectorShopify(cfg) {
 
   /** Lee el catálogo completo. Devuelve `{ ofertas, informe }` con la misma forma que el lector VTEX. */
   async function leerCatalogo(cliente, { base = cfg.base, categoriasExcluidas = cfg.categoriasExcluidas, log = () => {} } = {}) {
-    const informe = { pedidos: 0, productosLeidos: 0, catalogoTotal: null, sinCubrir: null, truncados: [], incompletos: [] };
+    const informe = { pedidos: 0, productosLeidos: 0, catalogoTotal: null, sinCubrir: null, truncados: [], incompletos: [], parciales: [] };
     const ofertas = new Map(); // deduplica: si el catálogo cambia durante la lectura, un producto puede repetirse
     const productos = new Set();
 
     let terminado = false;
+    let errorParcial = null;
     for (let pagina = 1; pagina <= cfg.maxPaginas && !terminado; pagina++) {
       const url = `${base}/products.json?limit=${cfg.porPagina}&page=${pagina}`;
       informe.pedidos++;
-      const { datos } = await cliente.obtenerJson(url);
+      let datos;
+      try {
+        ({ datos } = await cliente.obtenerJson(url));
+      } catch (error) {
+        // Un error pasajero del sitio no tira lo ya leído: la lectura queda parcial. Un bloqueo sí corta todo.
+        if (!esRecuperable(error)) throw error;
+        informe.parciales.push({ categoria: 'catálogo', desde: pagina, motivo: error.message });
+        errorParcial = error;
+        terminado = true; // sin truncados: no se llegó al tope de páginas, se cortó por el error
+        break;
+      }
       if (!Array.isArray(datos?.products)) {
         throw new ErrorFuente('respuesta_invalida', `La respuesta no trae la lista de productos: ${url}`, { url });
       }
@@ -64,6 +75,7 @@ export function crearLectorShopify(cfg) {
     }
 
     if (!terminado) informe.truncados.push({ categoria: 'catálogo', total: null, leido: productos.size });
+    if (ofertas.size === 0 && errorParcial) throw errorParcial;
     if (ofertas.size === 0) throw new ErrorFuente('respuesta_invalida', 'El catálogo no devolvió ofertas válidas');
 
     informe.productosLeidos = productos.size;

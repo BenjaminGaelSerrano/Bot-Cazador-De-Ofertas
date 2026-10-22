@@ -100,4 +100,21 @@ export const config = {
 
   // Primera corrida de una fuente: se avisan solo las N mejores; el resto queda como línea base.
   primeraCorridaMaxOfertas: 8,
+
+  // Reventa (spec 003). Parámetros dados por el usuario el 2026-10-22: revende por Instagram (sin comisión),
+  // el envío no cuenta y busca un margen de 40 %. Regular y descuento competitivo son propuestas a ajustar.
+  reventa: {
+    comision: 0,
+    envio: 0,
+    margenBueno: 0.40,
+    margenRegular: 0.20,
+    descuentoCompetitivo: 0.05, // se revende un 5 % por debajo del menor precio de otra tienda
+    vigenciaDias: 3,            // un precio de otra tienda vale si se lo vio en los últimos 3 días
+    precioAjenoMinimo: 0.25,    // un precio ajeno menor a un cuarto del propio se descarta (otro formato del producto)
+    ventanaVelocidadDias: 7,
+    minDiasVelocidad: 2,
+    stockRelleno: 1000,         // cantidades de este valor o más son marcadores (ej. 99999), no stock real
+    demandaAltaPorDia: 1,
+    demandaMediaPorDia: 0.3,
+  },
 };

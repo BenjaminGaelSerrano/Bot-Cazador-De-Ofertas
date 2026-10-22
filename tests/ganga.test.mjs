@@ -137,3 +137,18 @@ test('formato: ninguna línea empieza con "N." (WhatsApp la convertiría en list
   const { mensajes } = agrupar([1, 2, 3].map((n) => ({ texto: `Nombre ${n}\n$1 · -50%\nhttps://x.test/${n}` })), { titulo: 'T' });
   for (const linea of mensajes.join('\n').split('\n')) assert.ok(!/^\d+\.\s/.test(linea), `línea con formato de lista: ${linea}`);
 });
+
+test('formato: la línea de reventa va antes del link y dice mercado, margen y veredicto', () => {
+  const puntaje = { veredicto: 'buena', margen: 0.9, precioMercado: 286000, fuente: 'rouge', demanda: 'alta' };
+  const [nombre, precio, mercado, link] = formatearOferta(oferta({ precioActual: 143000 }), { tipo: 'sin-historial', descuento: 0.5, base: 286000, referencia: null }, { puntaje }).split('\n');
+  assert.ok(nombre && precio);
+  assert.equal(mercado, 'Mercado $286.000 (Rouge) · margen 90% · BUENA · demanda alta');
+  assert.equal(link, 'https://x.test/p');
+});
+
+test('formato: sin otra tienda dice "sin referencia" y nombra bien a New Era', () => {
+  const ev = { tipo: 'sin-historial', descuento: 0.5, base: 2, referencia: null };
+  assert.ok(formatearOferta(oferta(), ev, { puntaje: { veredicto: 'sin-referencia' } }).includes('\nSin referencia de otra tienda\n'));
+  const p = { veredicto: 'regular', margen: 0.25, precioMercado: 100000, fuente: 'newera', demanda: null };
+  assert.ok(formatearOferta(oferta(), ev, { puntaje: p }).includes('(New Era) · margen 25% · REGULAR\n'));
+});

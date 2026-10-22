@@ -42,7 +42,7 @@ test('primera corrida: avisa las ofertas con el descuento del sitio y marca "sin
 
   assert.equal(r.gangas, 2);
   assert.equal(e.enviados.length, 1);
-  assert.match(e.enviados[0], /^Ofertas \(2\)\n\n1\) MARCA Producto 1 50 ml\n\$50\.000 · -50% vs lista \$100\.000 \(sin historial\)\nhttps:\/\/x\.test\/1\n\n2\) /);
+  assert.match(e.enviados[0], /^Ofertas \(2\)\n\n1\) MARCA Producto 1 50 ml\n\$50\.000 · -50% vs lista \$100\.000 \(sin historial\)\nSin referencia de otra tienda\nhttps:\/\/x\.test\/1\n\n2\) /);
   assert.ok(e.enviados[0].indexOf('Producto 1') < e.enviados[0].indexOf('Producto 2'), 'la de mayor descuento va primero');
   assert.deepEqual(Object.keys(await e.leerJson('alertas.json')).sort(), ['juleriaque:1', 'juleriaque:2']);
   assert.equal(Object.keys((await e.leerJson('juleriaque/historial.json')).productos).length, 3);
@@ -255,4 +255,96 @@ test("si falla el envío en la primera corrida, no se pierden las N mejores ni s
   assert.equal(r.primeraCorrida, false, "el historial ya se guardó");
   assert.equal(r.pendientes, 8, "las 8 mejores siguen pendientes");
   assert.match(e.enviados[0], /^Ofertas \(8\)/);
+});
+
+// ---------- Reventa: cruce con otras tiendas dentro de una corrida ----------
+
+const { mkdir: crearDir } = await import('node:fs/promises');
+
+/** Guarda en `datos/<tienda>/historial.json` lo que esa tienda tenía visto, para que las demás lo usen de referencia. */
+async function sembrarTienda(e, tienda, productos, fecha = '2026-10-21') {
+  const h = crearHistorial();
+  for (const p of productos) registrar(h, p, fecha);
+  await crearDir(join(e.directorioDatos, tienda), { recursive: true });
+  await guardar(join(e.directorioDatos, tienda, 'historial.json'), h);
+}
+const conEan = (id, extra = {}) => oferta(id, { ean: `77912345678${String(id).padStart(2, '0')}`, ...extra });
+
+test('reventa: una ganga que otra tienda vende al precio de lista sale buena, con el mercado y el margen', async () => {
+  const e = await entorno();
+  await sembrarTienda(e, 'rouge', [conEan(1, { precioActual: 100000 })]);
+  e.poner([conEan(1, { precioActual: 50000 })]);
+  const r = await e.correr('2026-10-22');
+  assert.equal(r.reventa.buenas, 1);
+  assert.match(e.enviados[0], /Mercado \$100\.000 \(Rouge\) · margen 90% · BUENA\nhttps:\/\/x\.test\/1/);
+});
+
+test('reventa: si otra tienda ya lo vende más barato, no se avisa ni se marca como avisada', async () => {
+  const e = await entorno();
+  await sembrarTienda(e, 'rouge', [conEan(1, { precioActual: 40000 })]);
+  e.poner([conEan(1, { precioActual: 50000 }), conEan(2, { precioActual: 50000 })]);
+  const r = await e.correr('2026-10-22');
+  assert.equal(r.reventa.evitadas, 1);
+  assert.equal(e.enviados.length, 1);
+  assert.ok(!e.enviados[0].includes('Producto 1 '), 'la evitada no sale');
+  assert.ok(e.enviados[0].includes('Producto 2 '), 'la que no tiene referencia sí');
+  assert.deepEqual(Object.keys(await e.leerJson('alertas.json')), ['juleriaque:2'], 'la evitada no queda marcada');
+});
+
+test('reventa: una evitada se reevalúa y se avisa cuando la otra tienda sube el precio', async () => {
+  const e = await entorno();
+  await sembrarTienda(e, 'rouge', [conEan(1, { precioActual: 40000 })]);
+  e.poner([conEan(1, { precioActual: 50000 })]);
+  await e.correr('2026-10-22');
+  assert.equal(e.enviados.length, 0);
+
+  await sembrarTienda(e, 'rouge', [conEan(1, { precioActual: 100000 })], '2026-10-22');
+  await e.correr('2026-10-22');
+  assert.equal(e.enviados.length, 1);
+});
+
+test('reventa: se ordena buenas, luego regulares, luego sin referencia', async () => {
+  const e = await entorno();
+  await sembrarTienda(e, 'rouge', [conEan(1, { precioActual: 70000 }), conEan(2, { precioActual: 200000 })]);
+  // 1: margen 33 % (regular); 2: margen 280 % (buena); 3: sin referencia aunque tiene el mayor descuento
+  e.poner([conEan(1, { precioActual: 50000, precioLista: 100000 }), conEan(2, { precioActual: 50000, precioLista: 100000 }), conEan(3, { precioActual: 10000, precioLista: 100000 })]);
+  await e.correr('2026-10-22');
+  const nombres = [...e.enviados[0].matchAll(/Producto (\d)/g)].map((m) => m[1]);
+  assert.deepEqual(nombres, ['2', '1', '3']);
+});
+
+test('reventa: cada aviso queda en avisos.jsonl con el puntaje que se le dio', async () => {
+  const e = await entorno();
+  await sembrarTienda(e, 'rouge', [conEan(1, { precioActual: 100000 })]);
+  e.poner([conEan(1, { precioActual: 50000 }), conEan(2, { precioActual: 60000 })]);
+  await e.correr('2026-10-22');
+  const { readFile: leer } = await import('node:fs/promises');
+  const lineas = (await leer(join(e.directorioDatos, 'avisos.jsonl'), 'utf8')).trim().split('\n').map((l) => JSON.parse(l));
+  assert.equal(lineas.length, 2);
+  const buena = lineas.find((l) => l.id === '1');
+  assert.deepEqual([buena.fuente, buena.veredicto, buena.precio, buena.precioMercado, buena.fuenteMercado, buena.margen], ['juleriaque', 'buena', 50000, 100000, 'rouge', 90]);
+  const sinRef = lineas.find((l) => l.id === '2');
+  assert.deepEqual([sinRef.veredicto, sinRef.precioMercado, sinRef.margen], ['sin-referencia', null, null]);
+});
+
+test('reventa: en dry-run no se escribe avisos.jsonl', async () => {
+  const e = await entorno();
+  e.poner([conEan(1, { precioActual: 50000 })]);
+  await e.correr('2026-10-22', { dryRun: true });
+  await assert.rejects(readFile(join(e.directorioDatos, 'avisos.jsonl')), { code: 'ENOENT' });
+});
+
+test('reventa: los avisos entran en el largo del mensaje aunque lleven la línea de mercado', async () => {
+  const e = await entorno();
+  await sembrarTienda(e, 'rouge', Array.from({ length: 6 }, (_, i) => conEan(i + 1, { precioActual: 100000 })));
+  e.poner(Array.from({ length: 6 }, (_, i) => conEan(i + 1, { precioActual: 50000 - i * 1000, nombre: `Producto con un nombre bastante largo número ${i + 1} edición especial 100 ml` })));
+  await e.correr('2026-10-22', { limitesMensaje: {}, maxMensajes: 6 });
+  for (const m of e.enviados) assert.ok(m.length <= 700, `mensaje de ${m.length} caracteres`);
+});
+
+test('reventa: el stock numérico queda registrado en el historial', async () => {
+  const e = await entorno();
+  e.poner([conEan(1, { precioActual: 50000, stock: 7 })]);
+  await e.correr('2026-10-22');
+  assert.deepEqual((await e.leerJson('juleriaque/historial.json')).productos['1'].stk, [['2026-10-22', 7]]);
 });

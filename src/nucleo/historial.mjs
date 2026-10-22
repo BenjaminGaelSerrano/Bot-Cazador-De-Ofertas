@@ -8,6 +8,21 @@ import { diasEntre, sumarDias } from './fechas.mjs';
 export const crearHistorial = () => ({ schema: 1, productos: {} });
 
 /**
+ * Guarda la cantidad de stock solo cuando cambia: `stk` = [[fecha, cantidad], ...]. Sirve para estimar cuán
+ * rápido se vende un producto (lo que baja es lo que se vendió). Productos guardados antes de que existiera
+ * este campo lo empiezan a llevar desde hoy. Una segunda lectura el mismo día reemplaza la primera.
+ */
+function anotarStock(registro, fecha, cantidad) {
+  if (!registro.stk) {
+    registro.stk = [[fecha, cantidad]];
+    return;
+  }
+  const ultima = registro.stk.at(-1);
+  if (ultima[0] === fecha) ultima[1] = cantidad;
+  else if (ultima[1] !== cantidad) registro.stk.push([fecha, cantidad]);
+}
+
+/**
  * Registra el precio de hoy. Devuelve 'nuevo' | 'cambio' | 'igual'.
  * Si ya había una observación de hoy se queda con el precio más bajo del día.
  */
@@ -24,13 +39,16 @@ export function registrar(historial, producto, fecha) {
     visto: fecha,
   };
 
+  const cantidad = Number.isFinite(producto.stock) ? producto.stock : 0;
+
   const existente = historial.productos[id];
   if (!existente) {
-    historial.productos[id] = { ...datos, obs: [[fecha, precioActual, precioLista]] };
+    historial.productos[id] = { ...datos, obs: [[fecha, precioActual, precioLista]], stk: [[fecha, cantidad]] };
     return 'nuevo';
   }
 
   Object.assign(existente, datos);
+  anotarStock(existente, fecha, cantidad);
   const ultima = existente.obs.at(-1);
 
   if (ultima[0] === fecha) {

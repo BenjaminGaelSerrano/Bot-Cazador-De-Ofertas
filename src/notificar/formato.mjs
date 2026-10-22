@@ -10,7 +10,17 @@ const recortar = (texto, max) => (texto.length <= max ? texto : `${texto.slice(0
  * El link va entero y en su propia línea (nunca se recorta: un link cortado no sirve). Se recorta el nombre,
  * que es lo que más varía de largo.
  */
-export function formatearOferta(oferta, evaluacion, { dias = config.diasHistorial } = {}) {
+const nombreFuente = (fuente) => ({ newera: 'New Era' })[fuente] ?? fuente.charAt(0).toUpperCase() + fuente.slice(1);
+
+/** Línea de reventa: a cuánto vende otra tienda el mismo producto, margen estimado y veredicto. */
+function lineaReventa(p) {
+  if (!p) return null;
+  if (p.veredicto === 'sin-referencia') return 'Sin referencia de otra tienda';
+  const demanda = p.demanda ? ` · demanda ${p.demanda}` : '';
+  return `Mercado ${pesos(p.precioMercado)} (${nombreFuente(p.fuente)}) · margen ${Math.round(p.margen * 100)}% · ${p.veredicto.toUpperCase()}${demanda}`;
+}
+
+export function formatearOferta(oferta, evaluacion, { dias = config.diasHistorial, puntaje = null } = {}) {
   const pct = Math.round(evaluacion.descuento * 100);
   const contra = evaluacion.tipo === 'historial'
     ? `vs mín. ${dias} días ${pesos(evaluacion.base)}`
@@ -20,5 +30,9 @@ export function formatearOferta(oferta, evaluacion, { dias = config.diasHistoria
   const referencia = evaluacion.referencia !== null && evaluacion.referencia !== undefined
     ? ` · ref. intl ${pesos(evaluacion.referencia)}`
     : '';
-  return `${recortar(nombre, 60)}\n${pesos(oferta.precioActual)} · -${pct}% ${contra}${referencia}\n${oferta.url}`;
+  const lineas = [recortar(nombre, 60), `${pesos(oferta.precioActual)} · -${pct}% ${contra}${referencia}`];
+  const reventa = lineaReventa(puntaje);
+  if (reventa) lineas.push(reventa);
+  lineas.push(oferta.url); // el link va último, entero y en su propia línea
+  return lineas.join('\n');
 }

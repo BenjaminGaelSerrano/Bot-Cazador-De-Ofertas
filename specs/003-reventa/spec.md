@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-22
 
-**Status**: Draft (a validar con el usuario)
+**Status**: Aprobada por el usuario el 2026-10-22 (parámetros definidos)
 
 **Input**: El usuario pidió saber, para cada oferta, si realmente es buen negocio para revender: compararla
 con un precio de referencia externo y con la cantidad de ventas. Se revende en Argentina. El usuario pidió
@@ -101,8 +101,9 @@ comparación. Se trata en su propia spec.
 - **Ingreso neto** = precio de reventa × (1 − comisión del canal) − costo de envío estimado.
 - **Margen** = (ingreso neto − costo de compra) / costo de compra.
 - **Índice de demanda** (0 a 1) a partir de la velocidad de agotamiento y la escasez; sin dato → no se usa.
-- **Veredicto**: *buena* si margen ≥ 30 % y (demanda ≥ 0,5 o sin dato de demanda con margen ≥ 40 %);
-  *regular* si margen ≥ 15 %; *evitar* si hay una tienda más barata o el margen es menor.
+- **Veredicto**: *buena* si margen ≥ 40 % y la demanda no es baja (o no hay dato de demanda); *regular* si
+  margen ≥ 20 % o si es buena pero con demanda baja; *evitar* si hay una tienda más barata o el margen es
+  menor. Las ofertas "evitar" **no se avisan** (no se marcan como avisadas: se reevalúan cada corrida).
 
 Todos los umbrales van a configuración. Son una heurística, no una predicción.
 
@@ -143,7 +144,8 @@ Todos los umbrales van a configuración. Son una heurística, no una predicción
 
 ## Assumptions
 
-- Se revende en Argentina; el canal y su comisión los define el usuario (no están verificados).
+- Se revende en Argentina **por Instagram**: comisión 0 %. Envío: no cuenta (el usuario lo dejó afuera). El
+  margen buscado es 40 % (decisión del usuario del 2026-10-22).
 - El precio de otra tienda es una buena aproximación del precio al que se puede revender, porque quien
   compra elige la opción más barata. Es una hipótesis: Mercado Libre mediría el precio real de reventa.
 - Hoy el cruce funciona entre Juleriaque y Rouge (perfumería y cosmética). Grid y New Era no traen EAN y no

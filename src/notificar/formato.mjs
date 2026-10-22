@@ -13,9 +13,14 @@ const recortar = (texto, max) => (texto.length <= max ? texto : `${texto.slice(0
 const nombreFuente = (fuente) => ({ newera: 'New Era' })[fuente] ?? fuente.charAt(0).toUpperCase() + fuente.slice(1);
 
 /** Línea de reventa: a cuánto vende otra tienda el mismo producto, margen estimado y veredicto. */
-function lineaReventa(p) {
+function lineaReventa(p, oferta) {
   if (!p) return null;
-  if (p.veredicto === 'sin-referencia') return 'Sin referencia de otra tienda';
+  if (p.veredicto === 'sin-referencia') {
+    // Sin otra tienda con la cual comparar, el único dato real que se puede dar es cuánto stock queda (si el sitio
+    // informa una cantidad real y no un marcador como 99999).
+    const real = oferta.stock > 0 && oferta.stock < config.reventa.stockRelleno;
+    return `Sin referencia de otra tienda${real ? ` · quedan ${oferta.stock}` : ''}`;
+  }
   const demanda = p.demanda ? ` · demanda ${p.demanda}` : '';
   return `Mercado ${pesos(p.precioMercado)} (${nombreFuente(p.fuente)}) · margen ${Math.round(p.margen * 100)}% · ${p.veredicto.toUpperCase()}${demanda}`;
 }
@@ -31,7 +36,7 @@ export function formatearOferta(oferta, evaluacion, { dias = config.diasHistoria
     ? ` · ref. intl ${pesos(evaluacion.referencia)}`
     : '';
   const lineas = [recortar(nombre, 50), `${pesos(oferta.precioActual)} · -${pct}% ${contra}${referencia}`];
-  const reventa = lineaReventa(puntaje);
+  const reventa = lineaReventa(puntaje, oferta);
   if (reventa) lineas.push(reventa);
   lineas.push(oferta.url); // el link va último, entero y en su propia línea
   return lineas.join('\n');

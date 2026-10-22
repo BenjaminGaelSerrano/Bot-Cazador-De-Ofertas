@@ -148,7 +148,9 @@ test('formato: la línea de reventa va antes del link y dice mercado, margen y v
 
 test('formato: sin otra tienda dice "sin referencia" y nombra bien a New Era', () => {
   const ev = { tipo: 'sin-historial', descuento: 0.5, base: 2, referencia: null };
-  assert.ok(formatearOferta(oferta(), ev, { puntaje: { veredicto: 'sin-referencia' } }).includes('\nSin referencia de otra tienda\n'));
+  assert.ok(formatearOferta(oferta(), ev, { puntaje: { veredicto: 'sin-referencia' } }).includes('\nSin referencia de otra tienda · quedan 3\n'));
+  const relleno = formatearOferta(oferta({ stock: 99999 }), ev, { puntaje: { veredicto: 'sin-referencia' } });
+  assert.ok(relleno.includes('\nSin referencia de otra tienda\n'), 'un stock de relleno (99999) no se muestra como cantidad');
   const p = { veredicto: 'regular', margen: 0.25, precioMercado: 100000, fuente: 'newera', demanda: null };
   assert.ok(formatearOferta(oferta(), ev, { puntaje: p }).includes('(New Era) · margen 25% · REGULAR\n'));
 });

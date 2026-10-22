@@ -42,7 +42,7 @@ test('primera corrida: avisa las ofertas con el descuento contra la lista del si
 
   assert.equal(r.gangas, 2);
   assert.equal(e.enviados.length, 1);
-  assert.match(e.enviados[0], /^Ofertas \(2\)\n\n1\) MARCA Producto 1 50 ml\n\$50\.000 · -50% vs lista \$100\.000\nSin referencia de otra tienda\nhttps:\/\/x\.test\/1\n\n2\) /);
+  assert.match(e.enviados[0], /^Ofertas \(2\)\n\n1\) MARCA Producto 1 50 ml\n\$50\.000 · -50% vs lista \$100\.000\nSin referencia de otra tienda · quedan 5\nhttps:\/\/x\.test\/1\n\n2\) /);
   assert.ok(e.enviados[0].indexOf('Producto 1') < e.enviados[0].indexOf('Producto 2'), 'la de mayor descuento va primero');
   assert.deepEqual(Object.keys(await e.leerJson('alertas.json')).sort(), ['juleriaque:1', 'juleriaque:2']);
   assert.equal(Object.keys((await e.leerJson('juleriaque/historial.json')).productos).length, 3);

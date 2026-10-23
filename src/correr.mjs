@@ -9,6 +9,7 @@ import { cargarOtros, construirIndice, precioMercado } from './nucleo/mercado.mj
 import { compararPorReventa, nivelDemanda, puntuar, velocidadVenta } from './nucleo/reventa.mjs';
 import { agrupar, enviar } from './notificar/callmebot.mjs';
 import { formatearOferta } from './notificar/formato.mjs';
+import { agruparTabla, itemTabla } from './notificar/tabla.mjs';
 
 const dormirReal = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -33,6 +34,9 @@ export async function correrFuente({
   maxMensajes = config.maxMensajesPorCorrida,
   maxPrimeraCorrida = config.primeraCorridaMaxOfertas,
   limitesMensaje = {}, // para pruebas: pisa los topes de largo de cada mensaje
+  formato = config.formatoMensaje, // 'tabla' | 'detalle'
+  veredictosAvisables = config.avisar.veredictos,
+  reiniciarAlertasAntesDe = config.reiniciarAlertasAntesDe,
   // Estado de envío compartido por todas las tiendas de una corrida: cuántos mensajes salieron y si CallMeBot ya
   // rechazó uno (el límite). Una vez bloqueado, nadie más intenta enviar en esa corrida.
   estadoEnvio = { enviados: 0, bloqueado: false },
@@ -73,13 +77,20 @@ export async function correrFuente({
 
   // 3. Quitar las ya avisadas y limpiar las que dejaron de ser ganga.
   const estado = await cargarAlertas(rutaAlertas);
+  // Reinicio único: las marcas de "ya avisado" anteriores a esta fecha se ignoran. Las primeras corridas silenciaron como
+  // línea base casi todo el catálogo, incluidas ofertas buenas que nunca llegaron al WhatsApp; con el aviso solo de lo
+  // que vale la pena, esas tienen que poder salir. Las nuevas marcas llevan fecha posterior y se respetan.
+  if (reiniciarAlertasAntesDe) {
+    for (const [clave, marca] of Object.entries(estado)) if (marca.fecha < reiniciarAlertasAntesDe) delete estado[clave];
+  }
   limpiar(estado, {
     vistos: new Set(ofertas.map(clave)),
     sinStock: new Set(ofertas.filter((o) => !(o.stock > 0)).map(clave)),
     gangasAhora: new Set(gangas.map((g) => clave(g.oferta))),
   });
   let pendientes = gangas
-    .filter((g) => g.puntaje.veredicto !== 'evitar' && debeAvisar(estado, clave(g.oferta), g.oferta.precioActual))
+    // Solo se avisa lo que vale la pena (por defecto, las "buena"). Lo demás no se marca: se reevalúa en cada corrida.
+    .filter((g) => veredictosAvisables.includes(g.puntaje.veredicto) && debeAvisar(estado, clave(g.oferta), g.oferta.precioActual))
     .sort(compararPorReventa);
 
   // Primera corrida de una fuente: casi todo el catálogo parece "nuevo". Se avisan solo las mejores y el
@@ -102,10 +113,15 @@ export async function correrFuente({
   // 4. Avisar, anotando cada mensaje recién cuando salió.
   // En la primera corrida el título es corto a propósito: cada caracter del encabezado le resta lugar a una oferta.
   const tituloEnvio = silenciadas > 0 ? `${titulo} · 1ª lectura, de ${pendientes.length + silenciadas}` : titulo;
-  const { mensajes, porMensaje } = agrupar(
-    pendientes.map((g) => ({ texto: formatearOferta(g.oferta, g.evaluacion, { puntaje: g.puntaje }) })),
-    { titulo: tituloEnvio, tituloContinuacion: `${titulo} (cont.)`, maxMensajes, ...limitesMensaje },
-  );
+  const { mensajes, porMensaje } = formato === 'tabla'
+    ? agruparTabla(
+      pendientes.map((g) => itemTabla(g.oferta, g.puntaje)),
+      { titulo: tituloEnvio, tituloContinuacion: `*${titulo}* (cont.)`, maxMensajes, ...limitesMensaje },
+    )
+    : agrupar(
+      pendientes.map((g) => ({ texto: formatearOferta(g.oferta, g.evaluacion, { puntaje: g.puntaje }) })),
+      { titulo: tituloEnvio, tituloContinuacion: `${titulo} (cont.)`, maxMensajes, ...limitesMensaje },
+    );
   let avisadas = 0;
   let enviadosAqui = 0;
   let limiteEnvio = null;

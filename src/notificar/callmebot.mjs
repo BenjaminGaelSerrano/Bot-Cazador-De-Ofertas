@@ -93,6 +93,8 @@ export async function enviar(texto, {
     // No se propaga el error original: su mensaje o causa podrían traer la URL con la clave.
     throw new ErrorNotificacion('CallMeBot no respondió');
   }
-  if (!res.ok) throw new ErrorNotificacion(`CallMeBot respondió ${res.status}`);
+  // Solo un 200 es "mensaje en cola". Otros 2xx (se vieron 201 y 210) NO significan que el mensaje salió: darlos por
+  // buenos marcaría ofertas como avisadas sin que lleguen. Se tratan como rechazo, así que el mensaje se reintenta.
+  if (res.status !== 200) throw new ErrorNotificacion(`CallMeBot respondió ${res.status}`);
   return { enviado: true };
 }

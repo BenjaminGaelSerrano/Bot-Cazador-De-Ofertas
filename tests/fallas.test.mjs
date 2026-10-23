@@ -18,7 +18,7 @@ async function entorno() {
   return { directorioDatos, enviados, enviarFn, leerFallas };
 }
 
-const base = (e, extra = {}) => ({ nombre: 'juleriaque', fecha: '2026-10-20', directorioDatos: e.directorioDatos, enviarFn: e.enviarFn, log: () => {}, ...extra });
+const base = (e, extra = {}) => ({ nombre: 'juleriaque', fecha: '2026-10-20', directorioDatos: e.directorioDatos, enviarFn: e.enviarFn, log: () => {}, formato: 'detalle', veredictosAvisables: ['buena', 'regular', 'sin-referencia'], reiniciarAlertasAntesDe: null, ...extra });
 
 test('tipoDe: usa el tipo del error y cae en "interno"', () => {
   assert.equal(tipoDe(bloqueo()), 'bloqueo');

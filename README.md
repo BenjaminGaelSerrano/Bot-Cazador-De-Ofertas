@@ -13,8 +13,9 @@ link directo. **Nunca compra**: la decisión es siempre de la persona. Reglas de
    marca y modelo, que se marca con `~` porque es menos seguro) y calcula el margen de reventa: **buena** (40 % o
    más), **regular** (20 % o más) o **evitar** (otra tienda lo vende más barato; no se avisa). Sin otra tienda que
    lo venda, dice "sin referencia" y cuánto stock queda.
-4. Avisa por WhatsApp (CallMeBot), una sola vez por oferta; vuelve a avisar solo si baja otro 10 %. Los mensajes no
-   pasan de 700 de largo efectivo: CallMeBot corta en silencio a ~768.
+4. Avisa por WhatsApp (CallMeBot) **solo lo que vale la pena** (veredicto *buena*), en una tabla de una fila por
+   oferta con los links numerados abajo; una sola vez por oferta, y vuelve a avisar solo si baja otro 10 %. Los
+   mensajes no pasan de 700 de largo efectivo: CallMeBot corta en silencio a ~768.
 5. Si el sitio falla, avisa una vez; ante errores pasajeros reintenta y, si una página sigue fallando, la lectura queda
    parcial en vez de caerse.
 

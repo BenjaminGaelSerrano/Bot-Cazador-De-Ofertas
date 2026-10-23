@@ -20,6 +20,11 @@ async function entorno() {
     nombre: 'juleriaque', titulo: 'Ofertas', directorioDatos, pausaMensajesMs: 0, log: () => {},
     // Estas pruebas miden la lógica de avisos, no el largo de los mensajes: sin tope de largo (hay pruebas aparte).
     limitesMensaje: { maxCaracteres: 1e9, maxCodificados: 1e9 },
+    // La lógica de avisos se prueba con el formato detallado y avisando todo lo que no sea "evitar" (el comportamiento
+    // anterior al formato de tabla); el formato de tabla y el filtro por defecto tienen sus propias pruebas.
+    formato: 'detalle',
+    veredictosAvisables: ['buena', 'regular', 'sin-referencia'],
+    reiniciarAlertasAntesDe: null, // el reinicio único de marcas viejas tiene sus propias pruebas
     leer: async () => ({ ofertas: catalogo, informe: { pedidos: 1, productosLeidos: catalogo.length } }),
     enviarFn: async (texto, { dryRun }) => {
       if (dryRun) return { enviado: false, motivo: 'dry-run' };

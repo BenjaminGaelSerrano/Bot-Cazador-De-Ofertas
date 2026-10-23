@@ -100,8 +100,17 @@ Además de ser ganga, cada oferta se juzga como negocio de reventa (se revende p
   marca como avisado y sale en la corrida siguiente. Si ni el primer mensaje sale, sí es una falla y se informa. Riesgo
   conocido: si CallMeBot descarta mensajes en silencio (responde bien pero no entrega), el bot no puede detectarlo; por
   eso, si llegan menos mensajes de los que el log dice haber enviado, hay que bajar el tope en `src/config.mjs`.
-- Formato del mensaje: marca, producto, precio actual, descuento vs. historial, referencia
-  internacional y link directo.
+- **Qué se avisa y cómo se ve** (decisión del usuario, 2026-10-23): el mensaje de varias líneas por oferta era ineficiente.
+  Ahora se avisa **solo lo que realmente vale la pena** (veredicto *buena*) y en **formato de tabla**: una fila por
+  oferta (nombre corto, costo, precio en otra tienda y ganancia, con `~` si el cruce fue por modelo) en un bloque de
+  letra de ancho fijo, y debajo los links enteros y numerados (afuera del bloque, para que sean clickeables). Entran
+  unas 4 a 5 ofertas por mensaje en vez de 2 a 3. Lo que no vale la pena (*regular*, *sin referencia*, *evitar*) no se avisa y
+  tampoco se marca como avisado: se reevalúa y sale si más adelante pasa a valer la pena. Se puede ampliar la lista en
+  `config.avisar.veredictos`, y el formato anterior sigue disponible con `formatoMensaje: 'detalle'`.
+- Las marcas de "ya avisado" anteriores al 2026-10-23 se ignoran una vez (`reiniciarAlertasAntesDe`): las primeras
+  corridas silenciaron como línea base muchas ofertas buenas que nunca llegaron al WhatsApp.
+- CallMeBot responde `200` cuando el mensaje queda en cola; otro código, aunque sea 2xx (se vieron 201 y 210), se
+  trata como rechazo y no se marca como avisado.
 
 ## 6. Fuera de alcance
 

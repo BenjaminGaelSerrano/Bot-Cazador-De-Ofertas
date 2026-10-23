@@ -29,6 +29,16 @@ export const config = {
   pausaMensajesMs: 3000,       // espera entre dos WhatsApp seguidos (más holgada ahora que se mandan muchos)
   simboloMoneda: '$',
 
+  // Qué se avisa y cómo se ve (pedido del usuario, 2026-10-23): solo lo que realmente vale la pena, en formato de tabla,
+  // porque el mensaje de varias líneas por oferta era ineficiente. Lo que no se avisa no se marca como avisado: se
+  // reevalúa en cada corrida y sale si más adelante pasa a valer la pena (ej. cuando otra tienda lo respalda).
+  formatoMensaje: 'tabla',            // 'tabla' | 'detalle' (el formato anterior, de varias líneas por oferta)
+  avisar: { veredictos: ['buena'] },  // se puede sumar 'regular' y 'sin-referencia'
+  tabla: { monoespaciado: true },     // false: filas separadas por barras y sin alinear (si WhatsApp no respeta el ancho fijo)
+  // Las marcas de "ya avisado" anteriores a esta fecha se ignoran (una sola vez): las primeras corridas silenciaron como
+  // línea base muchas ofertas buenas que nunca llegaron al WhatsApp. Poner null para no reiniciar.
+  reiniciarAlertasAntesDe: '2026-10-23',
+
   fuentes: {
     juleriaque: {
       base: 'https://www.juleriaque.com.ar',

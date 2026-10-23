@@ -51,3 +51,5 @@ Pendiente: indumentaria de Moov y más competidoras de ropa (Stock Center, New B
 referencia internacional (PriceRunner UK), y Mercado Libre y StockX como proveedores opcionales de reventa.
 Ropa y calzado se cruzan por marca y modelo (`src/nucleo/modelo.mjs`), conservador: clave idéntica y género
 compatible (un género desconocido NO es comodín); el aviso lo marca con `~`.
+Formato de aviso (pedido del usuario, 2026-10-23): **tabla** (`src/notificar/tabla.mjs`), solo ofertas con veredicto
+*buena*; lo demás no se avisa ni se marca. Un CallMeBot que responde distinto de 200 se trata como rechazo.

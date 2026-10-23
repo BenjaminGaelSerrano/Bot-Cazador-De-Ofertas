@@ -174,3 +174,19 @@ test('enviar: un mensaje de largo efectivo mayor al duro no se manda aunque teng
   await assert.rejects(enviar(texto, { phone: '1', apikey: 'k', fetchFn: async () => { llamado = true; return { ok: true }; } }), (e) => e.tipo === 'notificacion');
   assert.equal(llamado, false);
 });
+
+// ---------- Solo un 200 cuenta como enviado ----------
+
+for (const status of [201, 202, 204, 210]) {
+  test(`enviar: un ${status} (2xx que no es 200) no se da por enviado`, async () => {
+    await assert.rejects(
+      enviar('hola', { phone: '1', apikey: 'k', fetchFn: async () => ({ ok: true, status }) }),
+      (e) => e.tipo === 'notificacion' && e.message === `CallMeBot respondió ${status}`,
+    );
+  });
+}
+
+test('enviar: un 200 sí es éxito', async () => {
+  const r = await enviar('hola', { phone: '1', apikey: 'k', fetchFn: async () => ({ ok: true, status: 200 }) });
+  assert.equal(r.enviado, true);
+});

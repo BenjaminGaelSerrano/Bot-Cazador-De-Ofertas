@@ -1,1 +1,14 @@
-{}
+{
+ "juleriaque": {
+  "tipo": "parcial",
+  "desde": "2026-10-23",
+  "ultimaVez": "2026-10-23",
+  "avisado": true
+ },
+ "parfumerie": {
+  "tipo": "bloqueo",
+  "desde": "2026-10-23",
+  "ultimaVez": "2026-10-23",
+  "avisado": true
+ }
+}

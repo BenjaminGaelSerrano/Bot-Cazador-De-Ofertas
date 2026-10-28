@@ -232,16 +232,16 @@
   "fecha": "2026-10-23"
  },
  "moov:ADIE3699": {
-  "precio": 99999,
-  "fecha": "2026-10-23"
+  "precio": 49999,
+  "fecha": "2026-10-28"
  },
  "moov:ADJQ8903": {
   "precio": 109999,
   "fecha": "2026-10-23"
  },
  "moov:ADJH5602": {
-  "precio": 124999,
-  "fecha": "2026-10-23"
+  "precio": 64999,
+  "fecha": "2026-10-28"
  },
  "moov:ADJQ7263": {
   "precio": 124999,
@@ -364,16 +364,16 @@
   "fecha": "2026-10-23"
  },
  "moov:ADEG4957": {
-  "precio": 114999,
-  "fecha": "2026-10-23"
+  "precio": 54999,
+  "fecha": "2026-10-28"
  },
  "moov:ADEG4959": {
-  "precio": 114999,
-  "fecha": "2026-10-23"
+  "precio": 54999,
+  "fecha": "2026-10-28"
  },
  "moov:ADJI2705": {
-  "precio": 109999,
-  "fecha": "2026-10-23"
+  "precio": 54999,
+  "fecha": "2026-10-28"
  },
  "moov:ADH03474": {
   "precio": 89999,
@@ -388,24 +388,24 @@
   "fecha": "2026-10-23"
  },
  "moov:PU398846-34": {
-  "precio": 99999,
-  "fecha": "2026-10-23"
+  "precio": 49999,
+  "fecha": "2026-10-28"
  },
  "moov:NIDM0029-005": {
   "precio": 172999,
   "fecha": "2026-10-23"
  },
  "moov:ADJQ0253": {
-  "precio": 114999,
-  "fecha": "2026-10-23"
+  "precio": 54999,
+  "fecha": "2026-10-28"
  },
  "moov:NIFB2269-160": {
   "precio": 88999,
   "fecha": "2026-10-23"
  },
  "moov:ADJI3279": {
-  "precio": 94999,
-  "fecha": "2026-10-23"
+  "precio": 49999,
+  "fecha": "2026-10-28"
  },
  "moov:ADJI3277": {
   "precio": 94999,
@@ -460,20 +460,20 @@
   "fecha": "2026-10-27"
  },
  "moov:ADJI3195": {
-  "precio": 109999,
-  "fecha": "2026-10-27"
+  "precio": 54999,
+  "fecha": "2026-10-28"
  },
  "moov:ADJQ3014": {
   "precio": 109999,
   "fecha": "2026-10-27"
  },
  "moov:ADJS1004": {
-  "precio": 94999,
-  "fecha": "2026-10-27"
+  "precio": 49999,
+  "fecha": "2026-10-28"
  },
  "moov:ADJS0789": {
-  "precio": 94999,
-  "fecha": "2026-10-27"
+  "precio": 49999,
+  "fecha": "2026-10-28"
  },
  "juleriaque:23248": {
   "precio": 26643.5,
@@ -486,5 +486,121 @@
  "juleriaque:23252": {
   "precio": 26643.5,
   "fecha": "2026-10-27"
+ },
+ "juleriaque:21253": {
+  "precio": 35743.5,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADJH7946": {
+  "precio": 49999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADJH7286": {
+  "precio": 49999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU389267-19": {
+  "precio": 49999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU389267-29": {
+  "precio": 49999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU389267-30": {
+  "precio": 49999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU389267-28": {
+  "precio": 49999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADJR3797": {
+  "precio": 54999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU399936-05": {
+  "precio": 39999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU399936-02": {
+  "precio": 39999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU399936-21": {
+  "precio": 39999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU402366-09": {
+  "precio": 44999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADJR3607": {
+  "precio": 99999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADJI2494": {
+  "precio": 54999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADJH8642": {
+  "precio": 54999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADIH4823": {
+  "precio": 54999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU399936-01": {
+  "precio": 44999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU401359-02": {
+  "precio": 44999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU388258-03": {
+  "precio": 44999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADJH9767": {
+  "precio": 64999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADKJ6154": {
+  "precio": 124999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU388258-49": {
+  "precio": 49999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU388258-47": {
+  "precio": 49999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADJI2013": {
+  "precio": 54999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADIF6513": {
+  "precio": 54999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADJI2678": {
+  "precio": 54999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU393094-08": {
+  "precio": 49999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU399936-12": {
+  "precio": 54999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIDV3808-110": {
+  "precio": 149999,
+  "fecha": "2026-10-28"
  }
 }

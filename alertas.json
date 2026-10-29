@@ -195,10 +195,6 @@
   "precio": 134000,
   "fecha": "2026-10-23"
  },
- "rouge:11694": {
-  "precio": 140980,
-  "fecha": "2026-10-23"
- },
  "rouge:25532": {
   "precio": 154800,
   "fecha": "2026-10-23"
@@ -601,6 +597,106 @@
  },
  "moov:NIDV3808-110": {
   "precio": 149999,
+  "fecha": "2026-10-28"
+ },
+ "juleriaque:25896": {
+  "precio": 29893.5,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIDV3808-113": {
+  "precio": 149999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADJS5043": {
+  "precio": 74999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIHQ2091-106": {
+  "precio": 169999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIHJ9338-106": {
+  "precio": 169999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIFZ9854-200": {
+  "precio": 129999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIDC0774-138": {
+  "precio": 159999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIDC0774-130": {
+  "precio": 159999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIDC0774-182": {
+  "precio": 159999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIDZ2795-702": {
+  "precio": 59999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIFJ3794-105": {
+  "precio": 59999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIFJ4146-105": {
+  "precio": 74999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIHF1553-301": {
+  "precio": 209999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIFQ8714-001": {
+  "precio": 84999,
+  "fecha": "2026-10-28"
+ },
+ "moov:PU410189-06": {
+  "precio": 84999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIFQ8714-003": {
+  "precio": 84999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIFQ8714-002": {
+  "precio": 84999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADJP5568": {
+  "precio": 54999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIHV4301-030": {
+  "precio": 129999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADKI3563": {
+  "precio": 149999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIIH4105-113": {
+  "precio": 144999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADJQ5259": {
+  "precio": 94999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADJS0286": {
+  "precio": 44999,
+  "fecha": "2026-10-28"
+ },
+ "moov:ADID7056": {
+  "precio": 119999,
+  "fecha": "2026-10-28"
+ },
+ "moov:NIHQ1931-200": {
+  "precio": 144999,
   "fecha": "2026-10-28"
  }
 }

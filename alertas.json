@@ -718,5 +718,65 @@
  "moov:NIHF2016-100": {
   "precio": 89999,
   "fecha": "2026-10-29"
+ },
+ "juleriaque:845": {
+  "precio": 138500,
+  "fecha": "2026-10-29"
+ },
+ "juleriaque:27810": {
+  "precio": 30543.5,
+  "fecha": "2026-10-29"
+ },
+ "juleriaque:17314": {
+  "precio": 242400,
+  "fecha": "2026-10-29"
+ },
+ "juleriaque:28213": {
+  "precio": 207636,
+  "fecha": "2026-10-29"
+ },
+ "juleriaque:629": {
+  "precio": 201600,
+  "fecha": "2026-10-29"
+ },
+ "juleriaque:8493": {
+  "precio": 30093,
+  "fecha": "2026-10-29"
+ },
+ "juleriaque:25902": {
+  "precio": 37693.5,
+  "fecha": "2026-10-29"
+ },
+ "juleriaque:25901": {
+  "precio": 35743.5,
+  "fecha": "2026-10-29"
+ },
+ "juleriaque:25900": {
+  "precio": 35743.5,
+  "fecha": "2026-10-29"
+ },
+ "juleriaque:25899": {
+  "precio": 34443.5,
+  "fecha": "2026-10-29"
+ },
+ "juleriaque:22951": {
+  "precio": 25993.5,
+  "fecha": "2026-10-29"
+ },
+ "juleriaque:27811": {
+  "precio": 33143.5,
+  "fecha": "2026-10-29"
+ },
+ "juleriaque:18230": {
+  "precio": 29893.5,
+  "fecha": "2026-10-29"
+ },
+ "juleriaque:26107": {
+  "precio": 203400,
+  "fecha": "2026-10-29"
+ },
+ "rouge:32392": {
+  "precio": 130350,
+  "fecha": "2026-10-29"
  }
 }

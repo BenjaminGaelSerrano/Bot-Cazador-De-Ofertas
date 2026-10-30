@@ -27,10 +27,6 @@
   "precio": 106250,
   "fecha": "2026-10-23"
  },
- "juleriaque:457": {
-  "precio": 157300,
-  "fecha": "2026-10-23"
- },
  "juleriaque:10398": {
   "precio": 139755,
   "fecha": "2026-10-23"
@@ -719,24 +715,8 @@
   "precio": 89999,
   "fecha": "2026-10-29"
  },
- "juleriaque:845": {
-  "precio": 138500,
-  "fecha": "2026-10-29"
- },
  "juleriaque:27810": {
   "precio": 30543.5,
-  "fecha": "2026-10-29"
- },
- "juleriaque:17314": {
-  "precio": 242400,
-  "fecha": "2026-10-29"
- },
- "juleriaque:28213": {
-  "precio": 207636,
-  "fecha": "2026-10-29"
- },
- "juleriaque:629": {
-  "precio": 201600,
   "fecha": "2026-10-29"
  },
  "juleriaque:8493": {
@@ -771,12 +751,16 @@
   "precio": 29893.5,
   "fecha": "2026-10-29"
  },
- "juleriaque:26107": {
-  "precio": 203400,
-  "fecha": "2026-10-29"
- },
  "rouge:32392": {
   "precio": 130350,
   "fecha": "2026-10-29"
+ },
+ "moov:PU395205-69": {
+  "precio": 109999,
+  "fecha": "2026-10-30"
+ },
+ "moov:PU401355-02": {
+  "precio": 49999,
+  "fecha": "2026-10-30"
  }
 }

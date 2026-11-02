@@ -19,7 +19,7 @@ async function entorno() {
   const enviados = [];
   let catalogo = [];
   const base = {
-    nombre: 'grid', titulo: 'Ofertas Grid', directorioDatos, pausaMensajesMs: 0, log: () => {}, reiniciarAlertasAntesDe: null,
+    nombre: 'grid', titulo: 'Ofertas Grid', directorioDatos, pausaMensajesMs: 0, log: () => {}, reiniciarAlertasAntesDe: null, avisosPausados: false,
     leer: async () => ({ ofertas: catalogo, informe: { pedidos: 1, productosLeidos: catalogo.length } }),
     enviarFn: async (texto, { dryRun }) => {
       if (dryRun) return { enviado: false, motivo: 'dry-run' };
@@ -258,4 +258,15 @@ test('referencia internacional (por defecto): lo que no se pudo consultar se avi
   assert.equal(e.enviados.length, 1);
   assert.ok(e.enviados[0].includes(' 1*NIKE MODELO 1'), e.enviados[0]);
   assert.deepEqual(r.internacional, { caras: 0, pendientes: 1, conPrecio: 0, sinPrecio: 0 });
+});
+
+test('avisos pausados: no se manda ni se marca nada, pero el historial se guarda', async () => {
+  const e = await entorno();
+  await e.sembrar('moov', [oferta(1, { precioActual: 200000 })]);
+  e.poner([oferta(1, { precioActual: 100000, precioLista: 200000 })]);
+  const r = await e.correr('2026-10-22', { avisosPausados: true });
+  assert.equal(e.enviados.length, 0);
+  assert.equal(r.reventa.buenas, 1, 'se evalúa igual');
+  assert.deepEqual(Object.keys(await e.leerJson('alertas.json')), [], 'no se marca: sale al reanudar');
+  assert.ok((await e.leerJson('grid/historial.json')).productos['1']);
 });

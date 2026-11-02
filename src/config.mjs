@@ -33,7 +33,10 @@ export const config = {
   // porque el mensaje de varias líneas por oferta era ineficiente. Lo que no se avisa no se marca como avisado: se
   // reevalúa en cada corrida y sale si más adelante pasa a valer la pena (ej. cuando otra tienda lo respalda).
   formatoMensaje: 'tabla',            // 'tabla' | 'detalle' (el formato anterior, de varias líneas por oferta)
-  avisar: { veredictos: ['buena'] },  // se puede sumar 'regular' y 'sin-referencia'
+  // `pausados` (decisión del usuario, 2026-11-02): el precio de mercado entre tiendas argentinas está inflado 2 a 3 veces
+  // respecto de EE. UU., así que no se avisan ofertas hasta conectar eBay (spec 007). El bot sigue leyendo y guardando
+  // precios, y las fallas se siguen avisando. Lo no avisado no se marca: sale cuando se reanuden los avisos.
+  avisar: { veredictos: ['buena'], pausados: true },  // se puede sumar 'regular' y 'sin-referencia'
   tabla: { monoespaciado: true },     // false: filas separadas por barras y sin alinear (si WhatsApp no respeta el ancho fijo)
   // Las marcas de "ya avisado" anteriores a esta fecha se ignoran (una sola vez): las primeras corridas silenciaron como
   // línea base muchas ofertas buenas que nunca llegaron al WhatsApp. Poner null para no reiniciar.

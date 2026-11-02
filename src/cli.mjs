@@ -44,6 +44,7 @@ const fecha = hoyArgentina();
 const inicio = Date.now();
 const minutosDesde = (t) => ((Date.now() - t) / 60_000).toFixed(1);
 console.log(`Fuentes: ${nombres.join(', ')} · ${fecha}${dryRun ? ' · DRY-RUN (no se escribe ni se envía nada)' : ''}`);
+if (config.avisar.pausados) console.log('AVISOS PAUSADOS (config.avisar.pausados): se leen y guardan precios, no se mandan ofertas. Las fallas sí se avisan.');
 
 // El tiempo de cada fuente se mide acá, envolviendo la lectura.
 const tiempos = {};
@@ -76,7 +77,7 @@ const { resultados, fallaron, mensajesUsados, limiteEnvio } = await correrFuente
   dryRun,
   directorioDatos: args.datos,
   crearCliente: () => crearCliente({ pausaMs: args.pausa ? Number(args.pausa) : config.pausaMs }),
-  extra: { referencias },
+  extra: { referencias, avisosPausados: config.avisar.pausados ?? false },
 });
 
 if (referencias) {

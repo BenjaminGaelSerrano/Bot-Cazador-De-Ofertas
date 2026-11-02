@@ -12,7 +12,10 @@ import { LEYENDA_INTERNACIONAL, agruparTabla, itemTabla, miles } from './notific
 // lo que sigue siendo ganga. No toca `alertas.json`: esas ofertas ya estaban avisadas.
 // El caché de referencias sí se guarda, también con --dry-run: así el envío real no repite los pedidos a Perfumania.
 //
-//   node src/reenviar.mjs --datos <carpeta con la rama datos> [--fecha AAAA-MM-DD] [--dry-run] [--max-pedidos N]
+//   node src/reenviar.mjs --datos <carpeta con la rama datos> [--fecha AAAA-MM-DD] [--dry-run] [--max-pedidos N] [--forzar]
+//
+// Sin --forzar, si Perfumania bloquea y quedan perfumes sin consultar, no se manda nada (el reenvío quedaría a medias).
+// Con --forzar se manda igual y lo no consultado va con "*", como hace el bot (config.internacional.avisarSinConsultar).
 
 const TITULOS = {
   juleriaque: 'Juleriaque', grid: 'Grid', rouge: 'Rouge', parfumerie: 'Parfumerie', moov: 'Moov', newera: 'New Era',
@@ -25,6 +28,7 @@ const { values: args } = parseArgs({
     'dry-run': { type: 'boolean', default: false },
     'max-pedidos': { type: 'string' },
     pausa: { type: 'string' }, // ms entre pedidos a Perfumania
+    forzar: { type: 'boolean', default: false },
   },
 });
 try { process.loadEnvFile('.env'); } catch { /* sin .env */ }
@@ -74,14 +78,17 @@ for (const a of avisos) {
   const puntaje = { veredicto: a.veredicto, precioMercado: a.precioMercado, margen: a.margen === null ? undefined : a.margen / 100, via: a.via };
   const ref = await referencias.buscar(oferta);
   const linea = `${TITULOS[a.fuente] ?? a.fuente}: ${a.nombre} $${a.precio.toLocaleString('es-AR')}`;
-  if (ref.estado === 'pendiente') { pendientes.push(linea); continue; }
+  if (ref.estado === 'pendiente') {
+    pendientes.push(linea);
+    if (!args.forzar) continue;
+  }
   if (ref.estado === 'ok' && oferta.precioActual > ref.pesos) {
     caras.push(`${linea} > EE. UU. US$${ref.usd} = ${miles(ref.pesos)}${ref.via === 'nombre' ? ' (~)' : ''} ${ref.url}`);
     continue;
   }
   if (!porFuente.has(a.fuente)) porFuente.set(a.fuente, []);
   porFuente.get(a.fuente).push(itemTabla(oferta, puntaje, ref));
-  console.log(`${ref.estado === 'ok' ? `debajo de EE. UU. (US$${ref.usd} = ${miles(ref.pesos)}${ref.via === 'nombre' ? ', ~' : ''})` : 'sin precio EE. UU. (*)'}: ${linea}`);
+  console.log(`${ref.estado === 'pendiente' ? 'sin consultar (*)' : ref.estado === 'ok' ? `debajo de EE. UU. (US$${ref.usd} = ${miles(ref.pesos)}${ref.via === 'nombre' ? ', ~' : ''})` : 'sin precio EE. UU. (*)'}: ${linea}`);
 }
 await referencias.guardar();
 
@@ -90,7 +97,8 @@ for (const c of caras) console.log(`  ${c}`);
 if (pendientes.length) {
   console.log(`\nSin consultar (Perfumania ${referencias.bloqueo ? 'bloqueó' : 'cupo agotado'}): ${pendientes.length}. Volver a correr más tarde; el caché evita repetir lo ya consultado.`);
   for (const p of pendientes) console.log(`  ${p}`);
-  if (!dryRun) {
+  if (args.forzar) console.log('--forzar: se mandan igual, con "*".');
+  else if (!dryRun) {
     console.error('No se reenvía nada con ofertas sin consultar: el reenvío quedaría incompleto.');
     process.exit(1);
   }

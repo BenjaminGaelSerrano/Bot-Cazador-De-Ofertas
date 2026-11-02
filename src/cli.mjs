@@ -8,6 +8,7 @@ import { leerCatalogo as leerParfumerie } from './fuentes/parfumerie.mjs';
 import { leerCatalogo as leerRouge } from './fuentes/rouge.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
 import { crearEbay } from './nucleo/ebay.mjs';
+import { crearUpcitemdb } from './nucleo/upcitemdb.mjs';
 import { avisarFalla, marcarRecuperada } from './nucleo/fallas.mjs';
 import { crearReferencias, obtenerDolar } from './nucleo/internacional.mjs';
 import { ErrorFuente, crearCliente } from './nucleo/http.mjs';
@@ -60,7 +61,7 @@ const fuentes = Object.fromEntries(Object.entries(FUENTES).map(([nombre, f]) => 
 
 // Precio de mercado: eBay EE. UU. si hay credenciales (spec 007); si no, el cruce entre tiendas argentinas con el filtro
 // de Perfumania (spec 006). Un servicio para toda la corrida, con el caché en la rama de datos.
-const dolar = (config.ebay.activo || config.internacional.activa) ? await obtenerDolar(crearCliente()) : null;
+const dolar = (config.ebay.activo || config.upcitemdb.activo || config.internacional.activa) ? await obtenerDolar(crearCliente()) : null;
 if (dolar) console.log(`Dólar blue medio: $${dolar.toFixed(2)}`);
 let ebay = null;
 if (config.ebay.activo && process.env.EBAY_CLIENT_ID && process.env.EBAY_CLIENT_SECRET) {
@@ -72,8 +73,12 @@ if (config.ebay.activo && process.env.EBAY_CLIENT_ID && process.env.EBAY_CLIENT_
     rutaCache: `${args.datos}/referencias/ebay.json`,
   });
   console.log('Precio de mercado: eBay EE. UU.');
-} else if (config.ebay.activo) {
-  console.log('Sin EBAY_CLIENT_ID / EBAY_CLIENT_SECRET: precio de mercado por cruce entre tiendas argentinas.');
+} else if (config.upcitemdb.activo) {
+  // Provisorio hasta que eBay apruebe la cuenta: mismo contrato, solo productos con código de barras.
+  ebay = crearUpcitemdb({ dolar, hoy: fecha, rutaCache: `${args.datos}/referencias/upcitemdb.json` });
+  console.log('Precio de mercado: UPCitemdb (tiendas de EE. UU., provisorio hasta tener eBay). Sin código de barras = sin referencia.');
+} else {
+  console.log('Sin precio de mercado externo: cruce entre tiendas argentinas.');
 }
 let referencias = null;
 if (!ebay && config.internacional.activa) {
@@ -97,13 +102,13 @@ const { resultados, fallaron, mensajesUsados, limiteEnvio } = await correrFuente
 
 if (ebay) {
   if (!dryRun) await ebay.guardar();
-  console.log(`eBay: ${ebay.consultas} consultas${ebay.corte ? ` (cortado: ${ebay.corte.message})` : ''}`);
+  console.log(`${ebay.nombre}: ${ebay.consultas} consultas${ebay.corte ? ` (cortado: ${ebay.corte.message})` : ''}`);
   // Si eBay corta desde el principio (credenciales o acceso), ninguna oferta tiene precio de mercado y nada se avisaría:
   // eso se avisa una vez, como una fuente caída. Un corte a mitad de corrida (límite) no: lo pendiente sale en la próxima.
   if (ebay.corte && ebay.consultas <= 1) {
-    await avisarFalla({ nombre: 'ebay', error: ebay.corte, fecha, directorioDatos: args.datos, dryRun });
+    await avisarFalla({ nombre: ebay.nombre, error: ebay.corte, fecha, directorioDatos: args.datos, dryRun });
   } else if (ebay.consultas > 0) {
-    await marcarRecuperada({ nombre: 'ebay', directorioDatos: args.datos, dryRun });
+    await marcarRecuperada({ nombre: ebay.nombre, directorioDatos: args.datos, dryRun });
   }
 }
 
@@ -127,7 +132,7 @@ for (const r of resultados) {
   console.log(`Productos leídos: ${informe.productosLeidos} · ofertas válidas: ${r.resultado.ofertas} · pedidos: ${informe.pedidos}`);
   console.log(`Historial: ${cambios.nuevo} nuevos, ${cambios.cambio} con cambio de precio, ${cambios.igual} sin cambios${dryRun ? ' (no guardado)' : ' (guardado)'}`);
   const eb = r.resultado.ebay;
-  if (eb) console.log(`eBay: ${eb.conPrecio} gangas con precio de mercado, ${eb.sinPrecio} sin publicaciones o sin código, ${eb.pendientes} sin consultar todavía`);
+  if (eb) console.log(`Precio de mercado externo: ${eb.conPrecio} gangas con precio de mercado, ${eb.sinPrecio} sin publicaciones o sin código, ${eb.pendientes} sin consultar todavía`);
   const int = r.resultado.internacional;
   if (int) console.log(`EE. UU.: ${int.conPrecio} debajo del precio de Perfumania, ${int.sinPrecio} sin precio (*), ${int.caras} más caras que en EE. UU. (no se avisan), ${int.pendientes} sin consultar todavía (van con *)`);
   console.log(`Gangas hoy: ${r.resultado.gangas} · por avisar: ${r.resultado.pendientes} · mensajes: ${r.resultado.mensajes} · ofertas avisadas: ${r.resultado.avisadas}`);

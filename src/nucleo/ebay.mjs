@@ -191,6 +191,7 @@ export function crearEbay({
   }
 
   return {
+    nombre: 'ebay',
     precio,
     guardar,
     get consultas() { return consultas; },

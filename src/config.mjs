@@ -176,6 +176,19 @@ export const config = {
     tomarMasBaratas: 5,          // precio de mercado = mediana de las 5 publicaciones nuevas más baratas (con envío)
   },
 
+  // Provisorio hasta que eBay apruebe la cuenta: UPCitemdb (sin cuenta, 100 consultas por día, solo con código de
+  // barras). Se usa si no hay credenciales de eBay. Medido el 2026-11-02 con One Million EDT 100 ml: 49 ofertas, la
+  // mayoría de 2015 a 2023; en dólares y de los últimos 90 días, 4 (Target 60,99, UnbeatableSale 87,31, Kohl's y
+  // Bloomingdale's 126): la mediana de las 3 más baratas da 87,31.
+  upcitemdb: {
+    activo: true,
+    vigenciaDias: 7,            // el precio de un código de barras se reutiliza una semana
+    diasOferta: 120,            // solo ofertas actualizadas en los últimos 4 meses
+    tomarMasBaratas: 3,
+    maxConsultasPorCorrida: 45, // 2 corridas por día, dentro de las 100 gratuitas
+    pausaMs: 11000,             // ~5 por minuto
+  },
+
   // Referencia internacional (spec 006, decisión del usuario del 2026-11-02): filtro de ganga, dólares × blue medio,
   // sin ajuste por impuestos ni importación. Perfumania limita MUY fuerte: el 2026-11-02 respondió 429 después de 2 o 3
   // pedidos (aun con 8 s entre ellos) y el bloqueo duró ~25 minutos. Por eso: pocos pedidos por corrida, pausa larga,

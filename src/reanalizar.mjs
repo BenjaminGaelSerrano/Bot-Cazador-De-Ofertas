@@ -4,7 +4,9 @@ import { correrFuente } from './correr.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
 import { crearCliente } from './nucleo/http.mjs';
 import { cargar as cargarHistorial } from './nucleo/historial.mjs';
+import { crearEbay } from './nucleo/ebay.mjs';
 import { crearReferencias, obtenerDolar } from './nucleo/internacional.mjs';
+import { crearUpcitemdb } from './nucleo/upcitemdb.mjs';
 import { correrFuentes } from './principal.mjs';
 
 // Reanálisis forzado de TODAS las ofertas de la última lectura (spec 006): rearma cada oferta con lo que el bot guardó
@@ -61,10 +63,19 @@ for (const nombre of Object.keys(TITULOS)) {
   };
 }
 
+// Precio de mercado: el mismo orden que el bot (eBay si hay credenciales; si no, UPCitemdb; si no, tiendas + Perfumania).
+const dolar = await obtenerDolar(crearCliente());
+if (dolar) console.log(`Dólar blue medio: ${dolar.toFixed(2)}`);
+let mercado = null;
+if (config.ebay.activo && process.env.EBAY_CLIENT_ID && process.env.EBAY_CLIENT_SECRET) {
+  mercado = crearEbay({ clientId: process.env.EBAY_CLIENT_ID, clientSecret: process.env.EBAY_CLIENT_SECRET, dolar, hoy: fecha, rutaCache: `${args.datos}/referencias/ebay.json` });
+} else if (config.upcitemdb.activo) {
+  const cfgU = { ...config.upcitemdb, ...(args['max-pedidos'] ? { maxConsultasPorCorrida: Number(args['max-pedidos']) } : {}) };
+  mercado = crearUpcitemdb({ dolar, hoy: fecha, rutaCache: `${args.datos}/referencias/upcitemdb.json`, cfg: cfgU });
+}
+if (mercado) console.log(`Precio de mercado: ${mercado.nombre}`);
 let referencias = null;
-if (!args['sin-internacional']) {
-  const dolar = await obtenerDolar(crearCliente());
-  if (dolar) console.log(`Dólar blue medio: $${dolar.toFixed(2)}`);
+if (!mercado && !args['sin-internacional']) {
   const cfg = {
     ...config.internacional,
     perfumania: {
@@ -93,7 +104,7 @@ const { resultados, mensajesUsados } = await correrFuentes({
   crearCliente: () => null,
   corrida: correrFuente, // sin avisos de falla: no se lee ningún sitio
   maxMensajesPorFuente: 15, // forzado: que no quede nada afuera por el tope de 8 por tienda
-  extra: { referencias, reiniciarAlertasAntesDe: '9999-12-31' }, // ignora todas las marcas de "ya avisado"
+  extra: { referencias, ebay: mercado, reiniciarAlertasAntesDe: '9999-12-31' }, // ignora todas las marcas de "ya avisado"
 });
 
 for (const r of resultados) {
@@ -101,7 +112,12 @@ for (const r of resultados) {
   const x = r.resultado;
   const int = x.internacional;
   console.log(`${r.nombre}: ${x.ofertas} ofertas · ${x.gangas} gangas · buenas ${x.reventa.buenas} · avisadas ${x.avisadas} en ${x.mensajes} mensajes`
+    + (x.ebay ? ` · mercado EE. UU.: ${x.ebay.conPrecio} con precio, ${x.ebay.sinPrecio} sin, ${x.ebay.pendientes} sin consultar` : '')
     + (int ? ` · EE. UU.: ${int.conPrecio} debajo, ${int.caras} más caras (fuera), ${int.sinPrecio} sin precio, ${int.pendientes} sin consultar` : ''));
+}
+if (mercado) {
+  await mercado.guardar(); // también en simulación: así el envío real no repite las consultas
+  console.log(`${mercado.nombre}: ${mercado.consultas} consultas${mercado.corte ? ` (${mercado.corte.message})` : ''}`);
 }
 if (referencias) console.log(`Perfumania: ${referencias.pedidos} pedidos${referencias.bloqueo ? ' (bloqueó)' : ''}`);
 console.log(`Mensajes: ${mensajesUsados}`);

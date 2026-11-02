@@ -43,7 +43,8 @@ export async function correrFuente({
   estadoEnvio = { enviados: 0, bloqueado: false },
   // Referencia internacional (spec 006): servicio de `crearReferencias`, compartido por las tiendas. null = desactivada.
   referencias = null,
-  // Precio de mercado en eBay (spec 007): servicio de `crearEbay`. null = cruce entre tiendas argentinas (spec 003).
+  // Precio de mercado externo (spec 007): servicio de `crearEbay` o, mientras eBay no esté, de `crearUpcitemdb` (mismo
+  // contrato). null = cruce entre tiendas argentinas (spec 003).
   ebay = null,
   concurrenciaEbay = config.ebay.concurrencia,
   avisarSinConsultar = config.internacional.avisarSinConsultar,
@@ -79,13 +80,14 @@ export async function correrFuente({
   const indice = ebay ? null : construirIndice(await cargarOtros(directorioDatos, nombre), fecha);
   if (ebay) {
     const orden = [...gangas].sort((a, b) => b.evaluacion.descuento - a.evaluacion.descuento);
-    for (let i = 0; i < orden.length; i += concurrenciaEbay) {
-      await Promise.all(orden.slice(i, i + concurrenciaEbay).map(async (g) => { g.ebay = await ebay.precio(g.oferta, nombre); }));
+    const paralelo = ebay.concurrencia ?? concurrenciaEbay;
+    for (let i = 0; i < orden.length; i += paralelo) {
+      await Promise.all(orden.slice(i, i + paralelo).map(async (g) => { g.ebay = await ebay.precio(g.oferta, nombre); }));
     }
   }
   for (const g of gangas) {
     const mercado = ebay
-      ? (g.ebay?.estado === 'ok' ? { precio: g.ebay.precio, fuente: 'ebay', url: g.ebay.url, via: g.ebay.via === 'nombre' ? 'modelo' : g.ebay.via } : null)
+      ? (g.ebay?.estado === 'ok' ? { precio: g.ebay.precio, fuente: ebay.nombre ?? 'ebay', url: g.ebay.url, via: g.ebay.via === 'nombre' ? 'modelo' : g.ebay.via } : null)
       : precioMercado(indice, g.oferta, nombre);
     const demanda = nivelDemanda(velocidadVenta(historial.productos[g.oferta.id], fecha));
     g.puntaje = puntuar({ costo: g.oferta.precioActual, mercado, demanda });
@@ -153,7 +155,7 @@ export async function correrFuente({
   const { mensajes, porMensaje } = formato === 'tabla'
     ? agruparTabla(
       pendientes.map((g) => itemTabla(g.oferta, g.puntaje, g.ref)),
-      { titulo: tituloEnvio, tituloContinuacion: `*${titulo}* (cont.)`, maxMensajes, ...(ebay ? { leyenda: LEYENDA_EBAY } : referencias ? { leyenda: LEYENDA_INTERNACIONAL } : {}), ...limitesMensaje },
+      { titulo: tituloEnvio, tituloContinuacion: `*${titulo}* (cont.)`, maxMensajes, ...(ebay ? { leyenda: ebay.leyenda ?? LEYENDA_EBAY } : referencias ? { leyenda: LEYENDA_INTERNACIONAL } : {}), ...limitesMensaje },
     )
     : agrupar(
       pendientes.map((g) => ({ texto: formatearOferta(g.oferta, g.evaluacion, { puntaje: g.puntaje }) })),

@@ -6,6 +6,7 @@ import { anexarAvisos } from './nucleo/avisos.mjs';
 import { ErrorFuente } from './nucleo/http.mjs';
 import { cargar as cargarHistorial, guardar as guardarHistorial, registrar } from './nucleo/historial.mjs';
 import { cargarOtros, construirIndice, precioMercado } from './nucleo/mercado.mjs';
+import { ordenarParaConsultar } from './nucleo/prioridad.mjs';
 import { compararPorReventa, nivelDemanda, puntuar, velocidadVenta } from './nucleo/reventa.mjs';
 import { agrupar, enviar } from './notificar/callmebot.mjs';
 import { formatearOferta } from './notificar/formato.mjs';
@@ -80,10 +81,14 @@ export async function correrFuente({
   // se agota el cupo. Lo que no se pudo consultar queda "sin referencia": no se avisa y se reevalúa en la próxima.
   const indice = ebay ? null : construirIndice(await cargarOtros(directorioDatos, nombre), fecha);
   if (ebay) {
-    const orden = [...gangas].sort((a, b) => b.evaluacion.descuento - a.evaluacion.descuento);
+    // Orden: lo que ya está en caché, y después por baja real (contra su propio historial) e inflación de la marca.
+    const { orden } = await ordenarParaConsultar(gangas, {
+      historial, fecha, enCache: ebay.enCache ? (o) => ebay.enCache(o, nombre) : null,
+    });
+    const pendientesDeConsulta = orden.filter((g) => !g.ebay);
     const paralelo = ebay.concurrencia ?? concurrenciaEbay;
-    for (let i = 0; i < orden.length; i += paralelo) {
-      await Promise.all(orden.slice(i, i + paralelo).map(async (g) => { g.ebay = await ebay.precio(g.oferta, nombre); }));
+    for (let i = 0; i < pendientesDeConsulta.length; i += paralelo) {
+      await Promise.all(pendientesDeConsulta.slice(i, i + paralelo).map(async (g) => { g.ebay = await ebay.precio(g.oferta, nombre); }));
     }
   }
   for (const g of gangas) {

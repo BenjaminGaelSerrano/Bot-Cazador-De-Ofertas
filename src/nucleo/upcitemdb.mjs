@@ -151,6 +151,16 @@ export function crearUpcitemdb({
     }
   }
 
+  /** Resultado guardado y vigente, sin pedir nada (null si no hay). Sirve para ordenar sin gastar cupo. */
+  async function enCache(oferta, fuente) {
+    if (!dolar) return null;
+    const consulta = consultaPara(oferta, fuente);
+    if (!consulta) return null;
+    await cargar();
+    const guardado = cache[consulta.clave];
+    return guardado && diasEntre(guardado.visto, hoy) < cfg.vigenciaDias ? resultado(guardado, consulta.via) : null;
+  }
+
   async function guardar() {
     if (!modificado) return;
     await mkdir(dirname(rutaCache), { recursive: true });
@@ -164,6 +174,7 @@ export function crearUpcitemdb({
     leyenda: 'Costo · Merc. (tiendas EE.UU., en pesos) · Gana (margen)',
     concurrencia: 1, // el límite gratuito no admite pedidos en paralelo
     precio,
+    enCache,
     guardar,
     get consultas() { return consultas; },
     get corte() { return corte; },

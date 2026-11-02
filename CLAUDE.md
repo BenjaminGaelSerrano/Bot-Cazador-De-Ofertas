@@ -54,6 +54,7 @@ compatible (un género desconocido NO es comodín); el aviso lo marca con `~`.
 Spec 006 (referencia internacional, 2026-11-02): filtro de ganga contra **Perfumania** (EE. UU.), dólares × blue sin ajuste;
 PriceRunner descartado por sus términos, eBay pendiente de aprobación. Perfumania bloquea tras 2-3 pedidos (~25 min): pocos
 pedidos por corrida, caché en `datos/referencias/perfumania.json`, y lo no consultado sale con `*`. Reenvío de un día con
-`node src/reenviar.mjs --datos <dir> --fecha AAAA-MM-DD`.
+`node src/reenviar.mjs --datos <dir> --fecha AAAA-MM-DD`. Reanálisis forzado de todo lo leído un día (ignora "ya avisado", no pide nada a las tiendas):
+`node src/reanalizar.mjs --datos <dir> --fecha AAAA-MM-DD`.
 Formato de aviso (pedido del usuario, 2026-10-23): **tabla** (`src/notificar/tabla.mjs`), solo ofertas con veredicto
 *buena*; lo demás no se avisa ni se marca. Un CallMeBot que responde distinto de 200 se trata como rechazo.

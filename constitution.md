@@ -70,10 +70,15 @@ Detalles de la referencia internacional (spec 006, decisión del usuario del 202
 
 Además de ser ganga, cada oferta se juzga como negocio de reventa (se revende por Instagram, sin comisión):
 
-- **Precio de mercado**: el menor precio con stock de *otra* tienda para el mismo producto. Se busca por código de
-  barras; si no hay, por marca + tamaño + nombre (perfumería); y para ropa y calzado por marca y modelo, que exige
-  clave idéntica y género compatible, y se marca con `~` en el aviso por ser menos seguro. Se calcula con datos ya
-  guardados, sin pedidos extra a los sitios.
+- **Precio de mercado: eBay EE. UU.** (spec 007, decisión del usuario del 2026-11-02). El precio de otra tienda
+  argentina resultó inflado 2 a 3 veces respecto de EE. UU. (es su precio de lista), así que no sirve como mercado. Se
+  consulta la API oficial de eBay (Browse) solo por los productos en oferta: por código de barras; si no hay, por código
+  de modelo del fabricante; y para ropa y calzado sin códigos, por marca + modelo + género (aproximado, con `~`). El
+  precio es la mediana de las 5 publicaciones nuevas más baratas de vendedores de EE. UU., con envío, × dólar blue
+  medio, y hacen falta al menos 3 publicaciones. Esto cumple también la condición 2 (referencia internacional): si el
+  costo supera el precio de eBay, el veredicto es *evitar*.
+- Sin credenciales de eBay, el bot vuelve al cruce anterior: el menor precio con stock de *otra* tienda, por código de
+  barras, por marca + tamaño + nombre (perfumería) o por marca y modelo (ropa y calzado, con `~`).
 - **Veredicto**: *buena* si el margen estimado (revendiendo un 5 % bajo el mercado) es de 40 % o más y la demanda no es
   baja; *regular* de 20 % o más; *evitar* si otra tienda lo vende más barato o el margen no alcanza, y entonces
   **no se avisa**; *sin referencia* si ninguna otra tienda lo vende.

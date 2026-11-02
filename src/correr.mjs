@@ -9,7 +9,7 @@ import { cargarOtros, construirIndice, precioMercado } from './nucleo/mercado.mj
 import { compararPorReventa, nivelDemanda, puntuar, velocidadVenta } from './nucleo/reventa.mjs';
 import { agrupar, enviar } from './notificar/callmebot.mjs';
 import { formatearOferta } from './notificar/formato.mjs';
-import { LEYENDA_INTERNACIONAL, agruparTabla, itemTabla } from './notificar/tabla.mjs';
+import { LEYENDA_EBAY, LEYENDA_INTERNACIONAL, agruparTabla, itemTabla } from './notificar/tabla.mjs';
 
 const dormirReal = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -43,6 +43,9 @@ export async function correrFuente({
   estadoEnvio = { enviados: 0, bloqueado: false },
   // Referencia internacional (spec 006): servicio de `crearReferencias`, compartido por las tiendas. null = desactivada.
   referencias = null,
+  // Precio de mercado en eBay (spec 007): servicio de `crearEbay`. null = cruce entre tiendas argentinas (spec 003).
+  ebay = null,
+  concurrenciaEbay = config.ebay.concurrencia,
   avisarSinConsultar = config.internacional.avisarSinConsultar,
   dormir = dormirReal,
   log = console.log,
@@ -71,9 +74,19 @@ export async function correrFuente({
   // 2b. Reventa: a cuánto vende otra tienda el mismo producto (con los precios que el bot ya guardó, sin pedidos
   // nuevos) y qué tan rápido se mueve el stock. Una oferta que otra tienda ya vende más barato, o cuyo margen no
   // alcanza, no se avisa ("evitar"); tampoco se marca como avisada, así que se reevalúa en cada corrida.
-  const indice = construirIndice(await cargarOtros(directorioDatos, nombre), fecha);
+  // Con eBay, el precio de mercado es el de eBay EE. UU. (spec 007); las de mayor descuento se consultan primero, por si
+  // se agota el cupo. Lo que no se pudo consultar queda "sin referencia": no se avisa y se reevalúa en la próxima.
+  const indice = ebay ? null : construirIndice(await cargarOtros(directorioDatos, nombre), fecha);
+  if (ebay) {
+    const orden = [...gangas].sort((a, b) => b.evaluacion.descuento - a.evaluacion.descuento);
+    for (let i = 0; i < orden.length; i += concurrenciaEbay) {
+      await Promise.all(orden.slice(i, i + concurrenciaEbay).map(async (g) => { g.ebay = await ebay.precio(g.oferta, nombre); }));
+    }
+  }
   for (const g of gangas) {
-    const mercado = precioMercado(indice, g.oferta, nombre);
+    const mercado = ebay
+      ? (g.ebay?.estado === 'ok' ? { precio: g.ebay.precio, fuente: 'ebay', url: g.ebay.url, via: g.ebay.via === 'nombre' ? 'modelo' : g.ebay.via } : null)
+      : precioMercado(indice, g.oferta, nombre);
     const demanda = nivelDemanda(velocidadVenta(historial.productos[g.oferta.id], fecha));
     g.puntaje = puntuar({ costo: g.oferta.precioActual, mercado, demanda });
   }
@@ -140,7 +153,7 @@ export async function correrFuente({
   const { mensajes, porMensaje } = formato === 'tabla'
     ? agruparTabla(
       pendientes.map((g) => itemTabla(g.oferta, g.puntaje, g.ref)),
-      { titulo: tituloEnvio, tituloContinuacion: `*${titulo}* (cont.)`, maxMensajes, ...(referencias ? { leyenda: LEYENDA_INTERNACIONAL } : {}), ...limitesMensaje },
+      { titulo: tituloEnvio, tituloContinuacion: `*${titulo}* (cont.)`, maxMensajes, ...(ebay ? { leyenda: LEYENDA_EBAY } : referencias ? { leyenda: LEYENDA_INTERNACIONAL } : {}), ...limitesMensaje },
     )
     : agrupar(
       pendientes.map((g) => ({ texto: formatearOferta(g.oferta, g.evaluacion, { puntaje: g.puntaje }) })),
@@ -174,7 +187,8 @@ export async function correrFuente({
     if (resultado.enviado) {
       estadoEnvio.enviados++;
       enviadosAqui++;
-      for (const { oferta, evaluacion, puntaje, ref } of pendientes.slice(desde, desde + porMensaje[i])) {
+      for (const g of pendientes.slice(desde, desde + porMensaje[i])) {
+        const { oferta, evaluacion, puntaje, ref } = g;
         marcarAvisada(estado, clave(oferta), oferta.precioActual, fecha);
         avisadas++;
         // Se guarda el puntaje que se dio para poder contrastarlo después con lo que realmente se vendió.
@@ -184,6 +198,7 @@ export async function correrFuente({
           precioMercado: puntaje.precioMercado ?? null, fuenteMercado: puntaje.fuente ?? null, via: puntaje.via ?? null,
           margen: puntaje.margen === undefined ? null : Math.round(puntaje.margen * 100), demanda: puntaje.demanda ?? null,
           ...(ref ? { usd: ref.usd ?? null, pesosUsd: ref.pesos ?? null, viaUsd: ref.via ?? null } : {}),
+          ...(g.ebay?.estado === 'ok' ? { usd: g.ebay.usd, publicacionesEbay: g.ebay.n } : {}),
         });
       }
     }
@@ -203,6 +218,11 @@ export async function correrFuente({
     mensajesUsados: dryRun ? mensajes.length : enviadosAqui, limiteEnvio,
     reventa: { buenas: cuenta('buena'), regulares: cuenta('regular'), sinReferencia: cuenta('sin-referencia'), evitadas },
     internacional: referencias ? internacional : null,
+    ebay: ebay ? {
+      conPrecio: gangas.filter((g) => g.ebay?.estado === 'ok').length,
+      sinPrecio: gangas.filter((g) => g.ebay?.estado === 'sin').length,
+      pendientes: gangas.filter((g) => g.ebay?.estado === 'pendiente').length,
+    } : null,
   };
 }
 

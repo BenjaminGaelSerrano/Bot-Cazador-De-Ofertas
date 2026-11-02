@@ -164,6 +164,18 @@ export const config = {
     demandaMediaPorDia: 0.3,
   },
 
+  // Precio de mercado en eBay EE. UU. (spec 007, pedido del usuario del 2026-11-02): reemplaza al cruce entre tiendas
+  // argentinas y a Perfumania. Se activa solo si están EBAY_CLIENT_ID y EBAY_CLIENT_SECRET; si no, sigue el cruce local.
+  ebay: {
+    activo: true,
+    vigenciaDias: 3,             // un precio de eBay se reutiliza 3 días (después se vuelve a consultar)
+    maxConsultasPorCorrida: 1500, // eBay permite ~5.000 por día a la Browse API; el bot corre 2 veces por día
+    concurrencia: 4,             // consultas en paralelo
+    limite: 50,                  // publicaciones por consulta
+    minPublicaciones: 3,         // con menos, no hay precio de mercado confiable
+    tomarMasBaratas: 5,          // precio de mercado = mediana de las 5 publicaciones nuevas más baratas (con envío)
+  },
+
   // Referencia internacional (spec 006, decisión del usuario del 2026-11-02): filtro de ganga, dólares × blue medio,
   // sin ajuste por impuestos ni importación. Perfumania limita MUY fuerte: el 2026-11-02 respondió 429 después de 2 o 3
   // pedidos (aun con 8 s entre ellos) y el bloqueo duró ~25 minutos. Por eso: pocos pedidos por corrida, pausa larga,

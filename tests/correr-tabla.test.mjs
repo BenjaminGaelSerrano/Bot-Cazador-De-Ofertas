@@ -270,3 +270,29 @@ test('avisos pausados: no se manda ni se marca nada, pero el historial se guarda
   assert.deepEqual(Object.keys(await e.leerJson('alertas.json')), [], 'no se marca: sale al reanudar');
   assert.ok((await e.leerJson('grid/historial.json')).productos['1']);
 });
+
+// ---------- eBay como precio de mercado (spec 007) ----------
+
+test('eBay: el margen sale del precio de eBay, no de otra tienda; sin precio de eBay no se avisa', async () => {
+  const e = await entorno();
+  // Moov lo vende al doble, pero eso ya no cuenta: manda eBay.
+  await e.sembrar('moov', [1, 2, 3].map((id) => oferta(id, { precioActual: 200000 })));
+  e.poner([1, 2, 3].map((id) => oferta(id, { precioActual: 100000, precioLista: 200000 })));
+  const respuestas = {
+    1: { estado: 'ok', precio: 160000, usd: 103, n: 8, via: 'ean', url: 'https://www.ebay.com/itm/1' },   // +52 %: buena
+    2: { estado: 'ok', precio: 110000, usd: 71, n: 6, via: 'ean', url: 'https://www.ebay.com/itm/2' },    // +4,5 %: no
+    3: { estado: 'pendiente' },                                                                          // sin consultar
+  };
+  const ebay = { precio: async (o) => respuestas[o.id] };
+  const r = await e.correr('2026-10-22', { ebay, concurrenciaEbay: 2 });
+
+  assert.equal(e.enviados.length, 1);
+  const m = e.enviados[0];
+  assert.ok(m.includes('eBay EE.UU.'), m);
+  assert.ok(m.includes('NIKE MODELO 1') && m.includes('160k') && m.includes('+52%'), m);
+  assert.ok(!m.includes('MODELO 2') && !m.includes('MODELO 3'), m);
+  assert.deepEqual(r.ebay, { conPrecio: 2, sinPrecio: 0, pendientes: 1 });
+  const aviso = JSON.parse((await readFile(join(e.directorioDatos, 'avisos.jsonl'), 'utf8')).trim());
+  assert.equal(aviso.fuenteMercado, 'ebay');
+  assert.equal(aviso.usd, 103);
+});

@@ -69,6 +69,9 @@ export function itemTabla(oferta, puntaje, ref = null) {
 export const ENCABEZADO = { nombre: 'Producto', costo: 'Costo', mercado: 'Merc.', gana: 'Gana' };
 
 /** Leyenda cuando la referencia internacional está activa: `~` es siempre "cruce aproximado", en cualquier columna. */
+/** Leyenda con el precio de mercado de eBay (spec 007). */
+export const LEYENDA_EBAY = 'Costo · Merc. (eBay EE.UU., en pesos) · Gana (margen). ~ = aproximado';
+
 export const LEYENDA_INTERNACIONAL = 'Costo · Merc. (otra tienda) · Gana (margen). ~ aproximado · * sin precio EE.UU.';
 
 /**

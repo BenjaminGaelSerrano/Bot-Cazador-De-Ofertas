@@ -51,6 +51,8 @@ Pendiente: indumentaria de Moov y más competidoras de ropa (Stock Center, New B
 API de eBay como referencia internacional (spec 006, fase 2), y Mercado Libre y StockX como proveedores opcionales de reventa.
 Ropa y calzado se cruzan por marca y modelo (`src/nucleo/modelo.mjs`), conservador: clave idéntica y género
 compatible (un género desconocido NO es comodín); el aviso lo marca con `~`.
+Spec 007 (2026-11-02): **precio de mercado = eBay EE. UU.** (Browse API, `src/nucleo/ebay.mjs`), activo si están
+`EBAY_CLIENT_ID`/`EBAY_CLIENT_SECRET` (en `.env` y secrets); reemplaza al cruce entre tiendas (inflado 2-3×) y a Perfumania.
 Spec 006 (referencia internacional, 2026-11-02): filtro de ganga contra **Perfumania** (EE. UU.), dólares × blue sin ajuste;
 PriceRunner descartado por sus términos, eBay pendiente de aprobación. Perfumania bloquea tras 2-3 pedidos (~25 min): pocos
 pedidos por corrida, caché en `datos/referencias/perfumania.json`, y lo no consultado sale con `*`. Reenvío de un día con

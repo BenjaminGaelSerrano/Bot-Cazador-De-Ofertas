@@ -7,6 +7,7 @@ import { leerCatalogo as leerNewEra } from './fuentes/newera.mjs';
 import { leerCatalogo as leerParfumerie } from './fuentes/parfumerie.mjs';
 import { leerCatalogo as leerRouge } from './fuentes/rouge.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
+import { crearReferencias, obtenerDolar } from './nucleo/internacional.mjs';
 import { ErrorFuente, crearCliente } from './nucleo/http.mjs';
 import { correrFuentes } from './principal.mjs';
 
@@ -54,6 +55,20 @@ const fuentes = Object.fromEntries(Object.entries(FUENTES).map(([nombre, f]) => 
   },
 }]));
 
+// Referencia internacional (spec 006): un servicio para toda la corrida, con su propio cliente (Perfumania pide pausas
+// largas) y el caché en la rama de datos.
+let referencias = null;
+if (config.internacional.activa) {
+  const dolar = await obtenerDolar(crearCliente());
+  if (dolar) console.log(`Dólar blue medio: ${dolar.toFixed(2)}`);
+  referencias = crearReferencias({
+    cliente: crearCliente({ pausaMs: config.internacional.perfumania.pausaMs, esperasReintento: [] }),
+    dolar,
+    hoy: fecha,
+    rutaCache: `${args.datos}/referencias/perfumania.json`,
+  });
+}
+
 const { resultados, fallaron, mensajesUsados, limiteEnvio } = await correrFuentes({
   nombres,
   fuentes,
@@ -61,7 +76,15 @@ const { resultados, fallaron, mensajesUsados, limiteEnvio } = await correrFuente
   dryRun,
   directorioDatos: args.datos,
   crearCliente: () => crearCliente({ pausaMs: args.pausa ? Number(args.pausa) : config.pausaMs }),
+  extra: { referencias },
 });
+
+if (referencias) {
+  if (!dryRun) await referencias.guardar();
+  // Un bloqueo de Perfumania no se avisa como falla: es lo esperable (limita a unos pocos pedidos) y no silencia nada,
+  // porque lo que no se pudo consultar se avisa igual con "*" (config.internacional.avisarSinConsultar).
+  console.log(`Referencia internacional: ${referencias.pedidos} pedidos a Perfumania${referencias.bloqueo ? ' (bloqueó: lo que faltó se consulta en la próxima corrida)' : ''}`);
+}
 
 for (const r of resultados) {
   console.log(`\n=== ${r.nombre} (${tiempos[r.nombre] ?? '?'} min de lectura)`);
@@ -75,6 +98,8 @@ for (const r of resultados) {
   if (informe.enriquecidos !== undefined) console.log(`Atributos: ${informe.enriquecidos} unidades enriquecidas en esta corrida, ${informe.sinAtributos} todavía sin código de barras ni marca`);
   console.log(`Productos leídos: ${informe.productosLeidos} · ofertas válidas: ${r.resultado.ofertas} · pedidos: ${informe.pedidos}`);
   console.log(`Historial: ${cambios.nuevo} nuevos, ${cambios.cambio} con cambio de precio, ${cambios.igual} sin cambios${dryRun ? ' (no guardado)' : ' (guardado)'}`);
+  const int = r.resultado.internacional;
+  if (int) console.log(`EE. UU.: ${int.conPrecio} debajo del precio de Perfumania, ${int.sinPrecio} sin precio (*), ${int.caras} más caras que en EE. UU. (no se avisan), ${int.pendientes} sin consultar todavía (van con *)`);
   console.log(`Gangas hoy: ${r.resultado.gangas} · por avisar: ${r.resultado.pendientes} · mensajes: ${r.resultado.mensajes} · ofertas avisadas: ${r.resultado.avisadas}`);
   if (r.resultado.primeraCorrida) console.log(`Primera corrida de esta fuente: se avisan las mejores y ${r.resultado.silenciadas} ofertas quedan como línea base (sin avisar)${dryRun ? ' (simulado)' : ''}`);
   if (informe.catalogoTotal !== null) console.log(`Cobertura: ${informe.productosLeidos} de ${informe.catalogoTotal} productos del sitio`);

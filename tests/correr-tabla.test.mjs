@@ -210,3 +210,52 @@ test('configuración: el reinicio apunta a una fecha concreta', async () => {
   const { config } = await import('../src/config.mjs');
   assert.match(config.reiniciarAlertasAntesDe, /^\d{4}-\d{2}-\d{2}$/);
 });
+
+// ---------- Referencia internacional (spec 006) ----------
+
+test('referencia internacional (sin consultar = esperar): lo más caro que en EE. UU. y lo sin consultar no se avisan ni se marcan; sin precio va con *', async () => {
+  const e = await entorno();
+  // Cuatro ofertas buenas (Moov las vende al doble). La referencia simulada decide qué pasa con cada una.
+  await e.sembrar('moov', [1, 2, 3, 4].map((id) => oferta(id, { precioActual: 200000 })));
+  e.poner([1, 2, 3, 4].map((id) => oferta(id, { precioActual: 100000, precioLista: 200000 })));
+  const respuestas = {
+    1: { estado: 'ok', usd: 80, pesos: 120000, via: 'ean' },     // más barata que en EE. UU.: se avisa sin marca
+    2: { estado: 'ok', usd: 50, pesos: 80000, via: 'ean' },      // más cara que en EE. UU.: no se avisa
+    3: { estado: 'sin' },                                         // sin precio de EE. UU.: se avisa con *
+    4: { estado: 'pendiente' },                                   // sin consultar: espera a la próxima corrida
+  };
+  const consultadas = [];
+  const referencias = { buscar: async (o) => { consultadas.push(o.id); return respuestas[o.id]; } };
+  const r = await e.correr('2026-10-22', { referencias, avisarSinConsultar: false });
+
+  assert.deepEqual(consultadas.sort(), ['1', '2', '3', '4']);
+  assert.equal(e.enviados.length, 1);
+  const m = e.enviados[0];
+  assert.ok(m.includes('~ aproximado · * sin precio EE.UU.'), 'leyenda nueva');
+  assert.ok(m.includes(' 1 NIKE MODELO 1'), m);
+  assert.ok(m.includes(' 2*NIKE MODELO 3'), m);
+  assert.ok(!m.includes('MODELO 2') && !m.includes('MODELO 4'), m);
+  assert.deepEqual(r.internacional, { caras: 1, pendientes: 1, conPrecio: 1, sinPrecio: 1 });
+  assert.deepEqual(Object.keys(await e.leerJson('alertas.json')).sort(), ['grid:1', 'grid:3'], 'la cara y la pendiente se reevalúan');
+
+  const avisos = (await readFile(join(e.directorioDatos, 'avisos.jsonl'), 'utf8')).trim().split('\n').map((l) => JSON.parse(l));
+  assert.equal(avisos.find((a) => a.id === '1').usd, 80);
+});
+
+test('referencia internacional: solo se consulta lo que se va a avisar', async () => {
+  const e = await entorno();
+  e.poner([oferta(1, { precioActual: 70000, precioLista: 100000 })]); // sin otra tienda: "sin referencia", no se avisa
+  const consultadas = [];
+  await e.correr('2026-10-22', { referencias: { buscar: async (o) => { consultadas.push(o.id); return { estado: 'sin' }; } } });
+  assert.deepEqual(consultadas, []);
+});
+
+test('referencia internacional (por defecto): lo que no se pudo consultar se avisa igual, con *', async () => {
+  const e = await entorno();
+  await e.sembrar('moov', [oferta(1, { precioActual: 200000 })]);
+  e.poner([oferta(1, { precioActual: 100000, precioLista: 200000 })]);
+  const r = await e.correr('2026-10-22', { referencias: { buscar: async () => ({ estado: 'pendiente' }) } });
+  assert.equal(e.enviados.length, 1);
+  assert.ok(e.enviados[0].includes(' 1*NIKE MODELO 1'), e.enviados[0]);
+  assert.deepEqual(r.internacional, { caras: 0, pendientes: 1, conPrecio: 0, sinPrecio: 0 });
+});

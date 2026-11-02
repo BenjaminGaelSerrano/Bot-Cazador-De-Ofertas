@@ -160,4 +160,23 @@ export const config = {
     demandaAltaPorDia: 1,
     demandaMediaPorDia: 0.3,
   },
+
+  // Referencia internacional (spec 006, decisión del usuario del 2026-11-02): filtro de ganga, dólares × blue medio,
+  // sin ajuste por impuestos ni importación. Perfumania limita MUY fuerte: el 2026-11-02 respondió 429 después de 2 o 3
+  // pedidos (aun con 8 s entre ellos) y el bloqueo duró ~25 minutos. Por eso: pocos pedidos por corrida, pausa larga,
+  // caché de dos semanas, y lo que no se llegó a consultar se avisa igual con "*" (si no, los perfumes dejarían de
+  // avisarse). Con el tiempo el caché cubre los perfumes que más aparecen en oferta.
+  internacional: {
+    activa: true,
+    dolarUrl: 'https://dolarapi.com/v1/dolares/blue',
+    vigenciaDias: 14,          // lo encontrado (o no encontrado) en Perfumania se reutiliza dos semanas
+    avisarSinConsultar: true,  // true: lo que no se pudo consultar sale con "*"; false: espera a la próxima corrida
+    perfumania: {
+      base: 'https://perfumania.com',
+      pausaMs: 30000,
+      maxPedidosPorCorrida: 6,
+      resultadosBusqueda: 3, // fichas que se miran por oferta, de las sugeridas por la búsqueda
+      toleranciaMl: 0.04,    // 3.4 oz = 100,5 ml; 3 oz = 88,7 ml (frasco de 90 ml)
+    },
+  },
 };

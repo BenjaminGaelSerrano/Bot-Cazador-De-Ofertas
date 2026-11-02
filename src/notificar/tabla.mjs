@@ -42,11 +42,23 @@ export function nombreCorto(oferta, ancho = ANCHO_NOMBRE) {
   return `${nombre.slice(0, Math.max(1, ancho - sufijo.length)).trimEnd()}${sufijo}`.toUpperCase();
 }
 
-/** Datos de una fila a partir de una oferta y su puntaje de reventa. */
-export function itemTabla(oferta, puntaje) {
+/**
+ * Marca de la referencia internacional (spec 006), un carácter delante del nombre: '' si está debajo del precio de
+ * EE. UU. emparejado por código de barras, '~' si el emparejado fue por nombre (aproximado) y '*' si no hay precio de
+ * EE. UU. Sin `ref` (referencia desactivada) no se marca nada.
+ */
+export function marcaInternacional(ref) {
+  if (!ref) return '';
+  if (ref.estado === 'ok') return ref.via === 'nombre' ? '~' : '';
+  return '*';
+}
+
+/** Datos de una fila a partir de una oferta, su puntaje de reventa y (opcional) su referencia internacional. */
+export function itemTabla(oferta, puntaje, ref = null) {
   const conReferencia = puntaje?.precioMercado !== undefined && puntaje?.precioMercado !== null;
   return {
     nombre: nombreCorto(oferta),
+    marca: marcaInternacional(ref),
     costo: miles(oferta.precioActual),
     mercado: conReferencia ? `${puntaje.via === 'modelo' ? '~' : ''}${miles(puntaje.precioMercado)}` : '—',
     gana: conReferencia ? `${puntaje.margen >= 0 ? '+' : ''}${Math.round(puntaje.margen * 100)}%` : '—',
@@ -56,10 +68,17 @@ export function itemTabla(oferta, puntaje) {
 
 export const ENCABEZADO = { nombre: 'Producto', costo: 'Costo', mercado: 'Merc.', gana: 'Gana' };
 
-/** Una fila de ancho fijo: número, nombre, costo, mercado y ganancia. */
+/** Leyenda cuando la referencia internacional está activa: `~` es siempre "cruce aproximado", en cualquier columna. */
+export const LEYENDA_INTERNACIONAL = 'Costo · Merc. (otra tienda) · Gana (margen). ~ aproximado · * sin precio EE.UU.';
+
+/**
+ * Una fila de ancho fijo: número, nombre, costo, mercado y ganancia. La marca internacional ocupa el espacio entre
+ * el número y el nombre, así la fila no se alarga.
+ */
 export function fila(numero, item, { mono = true } = {}) {
-  if (!mono) return `${numero} | ${item.nombre} | ${item.costo} | ${item.mercado} | ${item.gana}`;
-  return `${rellenarIzquierda(String(numero), 2)} ${rellenarDerecha(item.nombre, ANCHO_NOMBRE)} ${rellenarIzquierda(item.costo, 5)} ${rellenarIzquierda(item.mercado, 6)} ${rellenarIzquierda(item.gana, 5)}`;
+  const marca = item.marca ?? '';
+  if (!mono) return `${numero} | ${marca}${item.nombre} | ${item.costo} | ${item.mercado} | ${item.gana}`;
+  return `${rellenarIzquierda(String(numero), 2)}${marca || ' '}${rellenarDerecha(item.nombre, ANCHO_NOMBRE)} ${rellenarIzquierda(item.costo, 5)} ${rellenarIzquierda(item.mercado, 6)} ${rellenarIzquierda(item.gana, 5)}`;
 }
 
 const filaEncabezado = (mono) => (mono

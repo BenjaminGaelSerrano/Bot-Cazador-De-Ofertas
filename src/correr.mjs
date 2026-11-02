@@ -9,7 +9,7 @@ import { cargarOtros, construirIndice, precioMercado } from './nucleo/mercado.mj
 import { compararPorReventa, nivelDemanda, puntuar, velocidadVenta } from './nucleo/reventa.mjs';
 import { agrupar, enviar } from './notificar/callmebot.mjs';
 import { formatearOferta } from './notificar/formato.mjs';
-import { agruparTabla, itemTabla } from './notificar/tabla.mjs';
+import { LEYENDA_INTERNACIONAL, agruparTabla, itemTabla } from './notificar/tabla.mjs';
 
 const dormirReal = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -40,6 +40,9 @@ export async function correrFuente({
   // Estado de envío compartido por todas las tiendas de una corrida: cuántos mensajes salieron y si CallMeBot ya
   // rechazó uno (el límite). Una vez bloqueado, nadie más intenta enviar en esa corrida.
   estadoEnvio = { enviados: 0, bloqueado: false },
+  // Referencia internacional (spec 006): servicio de `crearReferencias`, compartido por las tiendas. null = desactivada.
+  referencias = null,
+  avisarSinConsultar = config.internacional.avisarSinConsultar,
   dormir = dormirReal,
   log = console.log,
 }) {
@@ -110,13 +113,33 @@ export async function correrFuente({
     await guardarHistorial(rutaHistorial, historial);
   }
 
+  // 3b. Referencia internacional (constitución §4, condición 2): solo para lo que se va a avisar, así se pide lo menos
+  // posible. Más caro que en EE. UU. = no es ganga; no se marca como avisada, se reevalúa en cada corrida. Sin precio de
+  // EE. UU. se avisa con "*". Lo que no se pudo consultar (cupo o bloqueo) también sale con "*", salvo que
+  // `avisarSinConsultar` sea false: entonces espera a la próxima corrida.
+  const internacional = { caras: 0, pendientes: 0, conPrecio: 0, sinPrecio: 0 };
+  if (referencias) {
+    const quedan = [];
+    for (const g of pendientes) {
+      g.ref = await referencias.buscar(g.oferta);
+      if (g.ref.estado === 'pendiente') {
+        internacional.pendientes++;
+        if (!avisarSinConsultar) continue;
+      }
+      if (g.ref.estado === 'ok' && g.oferta.precioActual > g.ref.pesos) { internacional.caras++; continue; }
+      if (g.ref.estado !== 'pendiente') internacional[g.ref.estado === 'ok' ? 'conPrecio' : 'sinPrecio']++;
+      quedan.push(g);
+    }
+    pendientes = quedan;
+  }
+
   // 4. Avisar, anotando cada mensaje recién cuando salió.
   // En la primera corrida el título es corto a propósito: cada caracter del encabezado le resta lugar a una oferta.
   const tituloEnvio = silenciadas > 0 ? `${titulo} · 1ª lectura, de ${pendientes.length + silenciadas}` : titulo;
   const { mensajes, porMensaje } = formato === 'tabla'
     ? agruparTabla(
-      pendientes.map((g) => itemTabla(g.oferta, g.puntaje)),
-      { titulo: tituloEnvio, tituloContinuacion: `*${titulo}* (cont.)`, maxMensajes, ...limitesMensaje },
+      pendientes.map((g) => itemTabla(g.oferta, g.puntaje, g.ref)),
+      { titulo: tituloEnvio, tituloContinuacion: `*${titulo}* (cont.)`, maxMensajes, ...(referencias ? { leyenda: LEYENDA_INTERNACIONAL } : {}), ...limitesMensaje },
     )
     : agrupar(
       pendientes.map((g) => ({ texto: formatearOferta(g.oferta, g.evaluacion, { puntaje: g.puntaje }) })),
@@ -150,7 +173,7 @@ export async function correrFuente({
     if (resultado.enviado) {
       estadoEnvio.enviados++;
       enviadosAqui++;
-      for (const { oferta, evaluacion, puntaje } of pendientes.slice(desde, desde + porMensaje[i])) {
+      for (const { oferta, evaluacion, puntaje, ref } of pendientes.slice(desde, desde + porMensaje[i])) {
         marcarAvisada(estado, clave(oferta), oferta.precioActual, fecha);
         avisadas++;
         // Se guarda el puntaje que se dio para poder contrastarlo después con lo que realmente se vendió.
@@ -159,6 +182,7 @@ export async function correrFuente({
           descuento: Math.round(evaluacion.descuento * 100), tipo: evaluacion.tipo, veredicto: puntaje.veredicto,
           precioMercado: puntaje.precioMercado ?? null, fuenteMercado: puntaje.fuente ?? null, via: puntaje.via ?? null,
           margen: puntaje.margen === undefined ? null : Math.round(puntaje.margen * 100), demanda: puntaje.demanda ?? null,
+          ...(ref ? { usd: ref.usd ?? null, pesosUsd: ref.pesos ?? null, viaUsd: ref.via ?? null } : {}),
         });
       }
     }
@@ -177,6 +201,7 @@ export async function correrFuente({
     // Mensajes realmente usados del tope de la corrida (en simulación, los que se habrían mandado) y si se llegó al límite.
     mensajesUsados: dryRun ? mensajes.length : enviadosAqui, limiteEnvio,
     reventa: { buenas: cuenta('buena'), regulares: cuenta('regular'), sinReferencia: cuenta('sin-referencia'), evitadas },
+    internacional: referencias ? internacional : null,
   };
 }
 

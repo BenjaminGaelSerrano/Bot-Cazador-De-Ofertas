@@ -1,5 +1,8 @@
 # Opciones de referencia internacional por categoría
 
+> **Actualización 2026-11-02 (spec 006):** se usa Perfumania para perfumes; PriceRunner quedó descartado por sus
+> términos; la API de eBay (Browse, búsqueda por `gtin`) necesita aprobación de eBay para producción.
+
 Fecha: 2026-10-20. La referencia es el precio retail internacional contra el que se compara una oferta
 argentina (constitución §4, condición 2). Sondeo con pedidos de lectura, sin evadir protecciones.
 
@@ -13,7 +16,7 @@ cimri.com, ... idealo.fr (14.º), idealo.es (18.º), prisjakt.nu (20.º; es Pric
 
 | Comparador | Mercado | Acceso | Veredicto |
 |------------|---------|--------|-----------|
-| **PriceRunner UK** | Reino Unido, GBP | Páginas de categoría y de producto abiertas, con datos embebidos | **Elegido.** Ver detalle abajo |
+| PriceRunner UK | Reino Unido, GBP | Páginas abiertas, pero sus términos prohíben el scraping y el uso no privado (leído el 2026-11-02) | **Descartado** |
 | PriceSpy | UK, NZ, Suecia, etc. | `robots.txt` permisivo, pero el HTML no trae precios (los carga con JavaScript desde una API interna no documentada) | Descartado por ahora. No se usa una API interna sin documentar |
 | idealo (.de, .es, .fr, .co.uk) | Alemania, España, Francia, UK | Devuelve una página anti-bot (403) | Descartado |
 | Geizhals | Austria, Alemania | 403 | Descartado |
@@ -38,7 +41,7 @@ cimri.com, ... idealo.fr (14.º), idealo.es (18.º), prisjakt.nu (20.º; es Pric
 
 | Opción | Acceso | Datos | Notas |
 |--------|--------|-------|-------|
-| **Perfumania (EE. UU.)** | `/products.json` abierto (Shopify) | `price` y `compare_at_price` en USD | **Recomendada.** No expone código de barras: emparejar por marca + nombre + tamaño (oz → ml) |
+| **Perfumania (EE. UU.)** | Shopify: `/search/suggest.json` y `/products/<handle>.json` | `price` y **`barcode`** por variante, en USD | **Elegida (spec 006).** El listado `products.json` no trae el código, la ficha sí. Bloquea tras 2-3 pedidos (~25 min) |
 | Sephora EE. UU. | Home responde, sin API verificada | — | Hace falta parsear HTML; evaluar |
 | Jomashop | Home responde, sin API verificada | — | Evaluar |
 | FragranceNet, FragranceX | 403 al pedido automatizado | — | Descartadas |

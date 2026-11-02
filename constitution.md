@@ -53,15 +53,18 @@ Una oferta es ganga solo si cumple **las dos** condiciones:
 2. **Contra el mercado internacional:** el precio está por debajo de la referencia internacional de
    su categoría, convertido a pesos.
 
-Detalles de la referencia internacional:
-- Hay **una fuente de referencia por categoría** (perfumes, calzado, indumentaria, etc.).
-  `PENDIENTE`: elegir las páginas concretas.
-- La conversión usa un tipo de cambio configurable (en Fraganzia se usa dolarapi.com). `PENDIENTE`:
-  decidir si se suman impuestos o costos de importación a la referencia.
+Detalles de la referencia internacional (spec 006, decisión del usuario del 2026-11-02):
+- **Perfumes: Perfumania (EE. UU., USD)**, emparejado por código de barras y, si no hay, por marca + nombre +
+  concentración + ml (aproximado, marcado con `~`). **API de eBay** como fuente principal cuando eBay apruebe el
+  acceso. Calzado, ropa y gorras todavía no tienen referencia internacional.
+- **PriceRunner UK quedó descartado**: sus términos prohíben el scraping y el uso no privado.
+- La conversión es **dólares × dólar blue medio** (dolarapi.com), **sin ajuste** por impuestos ni importación.
+  Si no hay dólar, la condición 2 no se aplica en esa corrida.
 - Mientras el historial tenga menos de 30 días, la condición 1 no se puede evaluar: el bot usa el
   descuento declarado por el sitio (mínimo 30 %) y marca el aviso como **"sin historial"**.
-- Si un producto no tiene referencia internacional, se evalúa solo la condición 1 y el aviso lo indica.
-- Referencia elegida: **PriceRunner UK** (comparador, GBP). Ver `docs/referencias.md`.
+- Si un producto no tiene referencia internacional, se evalúa solo la condición 1 y la fila del aviso lleva `*`.
+- Las fuentes de referencia se consultan despacio y solo para lo que se va a avisar; ante un bloqueo (429) se deja
+  de consultar en esa corrida y lo que quedó sin consultar se avisa en la siguiente.
 
 ### Reventa (spec 003)
 
@@ -130,7 +133,7 @@ Cada fuente nueva es su propia spec chica. Cambios a este documento se versionan
 | # | Tema | Estado |
 |---|------|--------|
 | 1 | Marcas y retailers iniciales | Relevadas, ver `docs/fuentes.md`. Primera fuente propuesta: Juleriaque |
-| 2 | Referencia internacional por categoría | Elegido PriceRunner UK (perfumes verificado); falta calzado y gorras, y leer sus términos de uso |
+| 2 | Referencia internacional por categoría | Perfumes: Perfumania, y eBay cuando apruebe el acceso (spec 006). PriceRunner descartado por sus términos. Falta calzado y gorras |
 | 3 | Franjas horarias de ofertas relámpago y frecuencia de corrida | Foros sin resultados útiles; se infieren registrando clusters de promo de las APIs |
 | 4 | Dónde se guarda el historial de precios | Decidido: JSON en rama `datos` (plan 001) |
 | 5 | Canal alternativo si CallMeBot falla | Decidir en el plan |

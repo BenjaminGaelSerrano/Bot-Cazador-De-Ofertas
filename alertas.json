@@ -168,8 +168,8 @@
   "fecha": "2026-10-23"
  },
  "grid:49081": {
-  "precio": 134999,
-  "fecha": "2026-10-23"
+  "precio": 107999,
+  "fecha": "2026-11-01"
  },
  "grid:50129": {
   "precio": 147999,
@@ -296,12 +296,12 @@
   "fecha": "2026-10-28"
  },
  "juleriaque:23248": {
-  "precio": 26643.5,
-  "fecha": "2026-10-27"
+  "precio": 20495,
+  "fecha": "2026-11-01"
  },
  "juleriaque:23251": {
-  "precio": 26643.5,
-  "fecha": "2026-10-27"
+  "precio": 20495,
+  "fecha": "2026-11-01"
  },
  "juleriaque:23252": {
   "precio": 26643.5,
@@ -548,8 +548,8 @@
   "fecha": "2026-10-29"
  },
  "juleriaque:8493": {
-  "precio": 30093,
-  "fecha": "2026-10-29"
+  "precio": 21495,
+  "fecha": "2026-11-01"
  },
  "juleriaque:25902": {
   "precio": 37693.5,
@@ -576,8 +576,8 @@
   "fecha": "2026-10-29"
  },
  "juleriaque:18230": {
-  "precio": 29893.5,
-  "fecha": "2026-10-29"
+  "precio": 22995,
+  "fecha": "2026-11-01"
  },
  "rouge:32392": {
   "precio": 130350,
@@ -595,16 +595,12 @@
   "precio": 199999,
   "fecha": "2026-10-30"
  },
- "grid:52668": {
-  "precio": 199999,
-  "fecha": "2026-10-31"
- },
  "juleriaque:20096": {
-  "precio": 28593.5,
-  "fecha": "2026-10-31"
+  "precio": 21995,
+  "fecha": "2026-11-01"
  },
  "juleriaque:20097": {
-  "precio": 28593.5,
+  "precio": 21995,
   "fecha": "2026-11-01"
  },
  "moov:ADJH7238": {
@@ -761,6 +757,222 @@
  },
  "moov:ADGY0042": {
   "precio": 109999,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:25773": {
+  "precio": 147168,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:1547": {
+  "precio": 132132,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:10702": {
+  "precio": 180000,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:457": {
+  "precio": 157300,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:20127": {
+  "precio": 133350,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:28214": {
+  "precio": 207350,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:22815": {
+  "precio": 199500,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:17928": {
+  "precio": 203250,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:12565": {
+  "precio": 145500,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:19632": {
+  "precio": 106250,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:9539": {
+  "precio": 55950,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:592": {
+  "precio": 202000,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:15180": {
+  "precio": 73500,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:15181": {
+  "precio": 97000,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:629": {
+  "precio": 168000,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:14851": {
+  "precio": 153250,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:23056": {
+  "precio": 149800,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:555": {
+  "precio": 103400,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:18699": {
+  "precio": 151675,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:19058": {
+  "precio": 144575,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:17341": {
+  "precio": 137250,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:845": {
+  "precio": 138500,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:12941": {
+  "precio": 176675,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:17929": {
+  "precio": 163050,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:15178": {
+  "precio": 90000,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:1977": {
+  "precio": 184050,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:28213": {
+  "precio": 173030,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:6940": {
+  "precio": 24995,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:1285": {
+  "precio": 100980,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:17314": {
+  "precio": 222200,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:26107": {
+  "precio": 169500,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:15091": {
+  "precio": 95400,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:20693": {
+  "precio": 239400,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:20609": {
+  "precio": 212100,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:741": {
+  "precio": 263400,
+  "fecha": "2026-11-01"
+ },
+ "juleriaque:22844": {
+  "precio": 221400,
+  "fecha": "2026-11-01"
+ },
+ "grid:47680": {
+  "precio": 99999,
+  "fecha": "2026-11-01"
+ },
+ "grid:50810": {
+  "precio": 79999,
+  "fecha": "2026-11-01"
+ },
+ "grid:51105": {
+  "precio": 119999,
+  "fecha": "2026-11-01"
+ },
+ "grid:49538": {
+  "precio": 129999,
+  "fecha": "2026-11-01"
+ },
+ "grid:49535": {
+  "precio": 134999,
+  "fecha": "2026-11-01"
+ },
+ "grid:51149": {
+  "precio": 134999,
+  "fecha": "2026-11-01"
+ },
+ "grid:51749": {
+  "precio": 224999,
+  "fecha": "2026-11-01"
+ },
+ "grid:50122": {
+  "precio": 116999,
+  "fecha": "2026-11-01"
+ },
+ "grid:51674": {
+  "precio": 76999,
+  "fecha": "2026-11-01"
+ },
+ "grid:44981": {
+  "precio": 79999,
+  "fecha": "2026-11-01"
+ },
+ "grid:47397": {
+  "precio": 103999,
+  "fecha": "2026-11-01"
+ },
+ "grid:48878": {
+  "precio": 103999,
+  "fecha": "2026-11-01"
+ },
+ "grid:50240": {
+  "precio": 79999,
+  "fecha": "2026-11-01"
+ },
+ "grid:50806": {
+  "precio": 139999,
+  "fecha": "2026-11-01"
+ },
+ "grid:51148": {
+  "precio": 127999,
+  "fecha": "2026-11-01"
+ },
+ "grid:51101": {
+  "precio": 127999,
+  "fecha": "2026-11-01"
+ },
+ "grid:51108": {
+  "precio": 127999,
+  "fecha": "2026-11-01"
+ },
+ "grid:50169": {
+  "precio": 107999,
   "fecha": "2026-11-01"
  }
 }

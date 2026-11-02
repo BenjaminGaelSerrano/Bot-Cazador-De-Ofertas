@@ -36,7 +36,8 @@ export async function correrFuente({
   limitesMensaje = {}, // para pruebas: pisa los topes de largo de cada mensaje
   formato = config.formatoMensaje, // 'tabla' | 'detalle'
   veredictosAvisables = config.avisar.veredictos,
-  avisosPausados = false, // el CLI pasa config.avisar.pausados; los reenvíos y pruebas no se pausan
+  avisosPausados = false,
+  cfgReventa = config.reventa, // las pruebas de la mecánica usan los parámetros de la spec 003 // el CLI pasa config.avisar.pausados; los reenvíos y pruebas no se pausan
   reiniciarAlertasAntesDe = config.reiniciarAlertasAntesDe,
   // Estado de envío compartido por todas las tiendas de una corrida: cuántos mensajes salieron y si CallMeBot ya
   // rechazó uno (el límite). Una vez bloqueado, nadie más intenta enviar en esa corrida.
@@ -90,7 +91,7 @@ export async function correrFuente({
       ? (g.ebay?.estado === 'ok' ? { precio: g.ebay.precio, fuente: ebay.nombre ?? 'ebay', url: g.ebay.url, via: g.ebay.via === 'nombre' ? 'modelo' : g.ebay.via } : null)
       : precioMercado(indice, g.oferta, nombre);
     const demanda = nivelDemanda(velocidadVenta(historial.productos[g.oferta.id], fecha));
-    g.puntaje = puntuar({ costo: g.oferta.precioActual, mercado, demanda });
+    g.puntaje = puntuar({ costo: g.oferta.precioActual, mercado, demanda }, cfgReventa);
   }
   const evitadas = gangas.filter((g) => g.puntaje.veredicto === 'evitar').length;
 

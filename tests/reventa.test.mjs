@@ -109,9 +109,12 @@ test('nivelDemanda: alta, media, baja y sin dato', () => {
 
 const { puntuar, compararPorReventa } = await import('../src/nucleo/reventa.mjs');
 const mercado = (precio, fuente = 'rouge') => ({ precio, fuente });
+// Mecánica del cálculo con los parámetros de la spec 003 (40 % de margen revendiendo 5 % bajo el mercado, demanda baja =
+// regular). El criterio vigente del usuario (más barato que el mercado de EE. UU.) se prueba aparte, con la config real.
+const SPEC_003 = { comision: 0, envio: 0, margenBueno: 0.4, margenRegular: 0.2, descuentoCompetitivo: 0.05, exigirDemanda: true };
 
 test('puntuar: caso real del CK One (compra $143.000, otra tienda lo vende a $286.000) es buena', () => {
-  const p = puntuar({ costo: 143000, mercado: mercado(286000) });
+  const p = puntuar({ costo: 143000, mercado: mercado(286000) }, SPEC_003);
   assert.equal(p.veredicto, 'buena');
   assert.equal(Math.round(p.precioReventa), 271700, 'se revende un 5 % por debajo del mercado');
   assert.equal(Math.round(p.margen * 100), 90);
@@ -120,28 +123,35 @@ test('puntuar: caso real del CK One (compra $143.000, otra tienda lo vende a $28
 
 test('puntuar: 40 % de margen exacto es buena, justo debajo es regular', () => {
   // precioReventa = mercado × 0,95; margen = precioReventa / costo − 1
-  assert.equal(puntuar({ costo: 100000, mercado: mercado(147368.42105263157) }).veredicto, 'buena');
-  assert.equal(puntuar({ costo: 100000, mercado: mercado(146000) }).veredicto, 'regular');
+  assert.equal(puntuar({ costo: 100000, mercado: mercado(147368.42105263157) }, SPEC_003).veredicto, 'buena');
+  assert.equal(puntuar({ costo: 100000, mercado: mercado(146000) }, SPEC_003).veredicto, 'regular');
 });
 
 test('puntuar: 20 % de margen es regular, menos es evitar', () => {
-  assert.equal(puntuar({ costo: 100000, mercado: mercado(126315.78947368421) }).veredicto, 'regular');
-  assert.equal(puntuar({ costo: 100000, mercado: mercado(120000) }).veredicto, 'evitar');
+  assert.equal(puntuar({ costo: 100000, mercado: mercado(126315.78947368421) }, SPEC_003).veredicto, 'regular');
+  assert.equal(puntuar({ costo: 100000, mercado: mercado(120000) }, SPEC_003).veredicto, 'evitar');
 });
 
 test('puntuar: si otra tienda lo vende más barato de lo que lo pagarías, se evita', () => {
-  const p = puntuar({ costo: 145000, mercado: mercado(120000) });
+  const p = puntuar({ costo: 145000, mercado: mercado(120000) }, SPEC_003);
   assert.equal(p.veredicto, 'evitar');
 });
 
 test('puntuar: una demanda baja degrada una "buena" a "regular"; media, alta o sin dato no', () => {
   const base = { costo: 100000, mercado: mercado(200000) };
-  assert.equal(puntuar({ ...base, demanda: 'baja' }).veredicto, 'regular');
-  for (const demanda of ['media', 'alta', null]) assert.equal(puntuar({ ...base, demanda }).veredicto, 'buena', String(demanda));
+  assert.equal(puntuar({ ...base, demanda: 'baja' }, SPEC_003).veredicto, 'regular');
+  for (const demanda of ['media', 'alta', null]) assert.equal(puntuar({ ...base, demanda }, SPEC_003).veredicto, 'buena', String(demanda));
+});
+
+test('puntuar (config real, criterio del 2026-11-02): buena si cuesta menos que el mercado, por poco que sea, con cualquier demanda', () => {
+  assert.equal(puntuar({ costo: 100000, mercado: mercado(101000), demanda: 'baja' }).veredicto, 'buena');
+  assert.equal(Math.round(puntuar({ costo: 100000, mercado: mercado(101000) }).margen * 100), 1);
+  assert.equal(puntuar({ costo: 100000, mercado: mercado(99000) }).veredicto, 'evitar');
+  assert.notEqual(puntuar({ costo: 100000, mercado: mercado(100000) }).veredicto, 'buena', 'igual no es más barato: no se avisa');
 });
 
 test('puntuar: sin otra tienda que lo venda no se inventa nada', () => {
-  const p = puntuar({ costo: 100000, mercado: null });
+  const p = puntuar({ costo: 100000, mercado: null }, SPEC_003);
   assert.deepEqual(p, { veredicto: 'sin-referencia', demanda: null });
 });
 

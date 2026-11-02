@@ -12,11 +12,15 @@ const oferta = (id, extra = {}) => ({
 });
 
 /** Contexto de prueba: carpeta temporal, "sitio" que devuelve lo que se le indique y WhatsApp falso. */
+// Mecánica con los parámetros de la spec 003 (40 % de margen revendiendo 5 % bajo el mercado; demanda baja = regular).
+// El criterio vigente (más barato que el mercado de EE. UU.) se prueba en reventa.test.mjs con la config real.
+const SPEC_003 = { comision: 0, envio: 0, margenBueno: 0.4, margenRegular: 0.2, descuentoCompetitivo: 0.05, exigirDemanda: true };
 async function entorno() {
   const directorioDatos = await mkdtemp(join(tmpdir(), 'cazador-'));
   const enviados = [];
   let catalogo = [];
   const base = {
+    cfgReventa: SPEC_003,
     nombre: 'juleriaque', titulo: 'Ofertas', directorioDatos, pausaMensajesMs: 0, log: () => {},
     // Estas pruebas miden la lógica de avisos, no el largo de los mensajes: sin tope de largo (hay pruebas aparte).
     limitesMensaje: { maxCaracteres: 1e9, maxCodificados: 1e9 },

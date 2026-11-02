@@ -14,11 +14,15 @@ const oferta = (id, extra = {}) => ({
   categoria: 'Calzado', precioActual: 100000, precioLista: 100000, stock: 5, url: `https://x.test/producto-${id}/p`, ...extra,
 });
 
+// Mecánica con los parámetros de la spec 003 (40 % de margen revendiendo 5 % bajo el mercado; demanda baja = regular).
+// El criterio vigente (más barato que el mercado de EE. UU.) se prueba en reventa.test.mjs con la config real.
+const SPEC_003 = { comision: 0, envio: 0, margenBueno: 0.4, margenRegular: 0.2, descuentoCompetitivo: 0.05, exigirDemanda: true };
 async function entorno() {
   const directorioDatos = await mkdtemp(join(tmpdir(), 'cazador-'));
   const enviados = [];
   let catalogo = [];
   const base = {
+    cfgReventa: SPEC_003,
     nombre: 'grid', titulo: 'Ofertas Grid', directorioDatos, pausaMensajesMs: 0, log: () => {}, reiniciarAlertasAntesDe: null, avisosPausados: false,
     leer: async () => ({ ofertas: catalogo, informe: { pedidos: 1, productosLeidos: catalogo.length } }),
     enviarFn: async (texto, { dryRun }) => {

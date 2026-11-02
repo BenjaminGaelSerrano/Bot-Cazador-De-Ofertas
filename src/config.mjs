@@ -149,12 +149,16 @@ export const config = {
 
   // Reventa (spec 003). Parámetros dados por el usuario el 2026-10-22: revende por Instagram (sin comisión),
   // el envío no cuenta y busca un margen de 40 %. Regular y descuento competitivo son propuestas a ajustar.
+  // Criterio del usuario (2026-11-02): con el precio de mercado de EE. UU., vale la pena todo lo que esté MÁS BARATO que
+  // ese precio, sin importar cuánto ni la demanda (antes: 40 % de margen revendiendo 5 % bajo el mercado, y la demanda
+  // baja pasaba a "regular").
   reventa: {
     comision: 0,
     envio: 0,
-    margenBueno: 0.40,
-    margenRegular: 0.20,
-    descuentoCompetitivo: 0.05, // se revende un 5 % por debajo del menor precio de otra tienda
+    margenBueno: 0.0001,        // cualquier margen positivo: el costo es menor al precio de EE. UU.
+    margenRegular: 0,
+    descuentoCompetitivo: 0,    // el margen se mide contra el precio de mercado tal cual
+    exigirDemanda: false,       // true: con demanda baja, una "buena" pasa a "regular"
     vigenciaDias: 3,            // un precio de otra tienda vale si se lo vio en los últimos 3 días
     precioAjenoMinimo: 0.25,    // un precio ajeno menor a un cuarto del propio se descarta (otro formato del producto)
     ventanaVelocidadDias: 7,
@@ -186,6 +190,7 @@ export const config = {
     diasOferta: 120,            // solo ofertas actualizadas en los últimos 4 meses
     tomarMasBaratas: 3,
     maxConsultasPorCorrida: 45, // 2 corridas por día, dentro de las 100 gratuitas
+    maxConsultasPorFuente: 12,  // repartido entre las tiendas con ofertas (perfumerías y zapatillerías)
     pausaMs: 11000,             // ~5 por minuto
   },
 

@@ -55,3 +55,17 @@ test('servicio: el límite diario (429) corta la corrida y deja pendiente; el cu
   await c.precio(oferta);
   assert.deepEqual(await c.precio({ ...oferta, ean: '3605521172525' }), { estado: 'pendiente' });
 });
+
+test('ofertasDe: por código de modelo solo cuentan los ítems con ese código; se descartan los de chicos y las repetidas', async () => {
+  const { ofertasDe } = await import('../src/nucleo/upcitemdb.mjs');
+  const items = [
+    { title: "Nike Air Force 1 07 Mens Style : Cw2288-111", model: '5670735', offers: [{ merchant: "Bloomingdale's", price: 115 }] },
+    { title: "Nike Air Force 1 07 Mens Style : Cw2288-111", model: '5670737', offers: [{ merchant: "Bloomingdale's", price: 115 }] },
+    { title: 'Nike Air Force 1 Low GS White', model: 'DH2920-111', offers: [{ merchant: 'Kids Store', price: 90 }] },
+    { title: 'Nike Air Force 1 Shadow', model: 'CI0919-100', offers: [{ merchant: 'Otra', price: 130 }] },
+  ];
+  const porCodigo = ofertasDe(items, { via: 'codigo', params: { q: 'nike CW2288-111' } });
+  assert.deepEqual(porCodigo.map((o) => o.price), [115], 'el código coincide sin importar guiones ni mayúsculas, sin repetidas');
+  const porNombre = ofertasDe(items, { via: 'nombre', params: { q: 'nike air force 1 mens' } });
+  assert.deepEqual(porNombre.map((o) => o.price).sort(), [115, 130], 'el GS (de chicos) no cuenta');
+});

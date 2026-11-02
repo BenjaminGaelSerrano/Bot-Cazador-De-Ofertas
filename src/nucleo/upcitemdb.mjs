@@ -2,17 +2,18 @@ import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { config } from '../config.mjs';
 import { diasEntre } from './fechas.mjs';
-import { eanValido } from './mercado.mjs';
+import { consultaPara } from './ebay.mjs';
 
 // Precio de mercado provisorio mientras eBay aprueba la cuenta (spec 007, 2026-11-02): UPCitemdb, una base pública de
-// códigos de barras que junta precios de tiendas de EE. UU. (Target, Kohl's, Walmart, perfumerías online). Sin cuenta:
-// 100 consultas por día. Solo sirve para productos con código de barras (perfumería y cosmética); lo demás queda sin
-// referencia. Mismo contrato que `crearEbay`, así se reemplazan sin tocar nada más.
+// productos que junta precios de tiendas de EE. UU. (Target, Kohl's, Bloomingdale's, perfumerías y zapaterías online).
+// Sin cuenta: 100 consultas por día. Se busca igual que en eBay: por código de barras (`lookup`), por código de modelo
+// (Moov, `search`: exacto) o por marca + modelo + género (Grid, `search`: aproximado, con "~"). Mismo contrato que
+// `crearEbay`, así se reemplazan sin tocar nada más. El cupo se reparte por tienda (`maxConsultasPorFuente`).
 //
 // Trae muchas ofertas viejas (de 2015 en adelante) y algunas en otras monedas: se usan solo las de los últimos
 // `diasOferta` días, en dólares, y el precio es la mediana de las `tomar` más baratas.
 
-const API = 'https://api.upcitemdb.com/prod/trial/lookup';
+const API = 'https://api.upcitemdb.com/prod/trial';
 const DIA = 86_400;
 
 const mediana = (xs) => {
@@ -40,6 +41,33 @@ export function precioDeOfertas(offers, ahora, { diasOferta = config.upcitemdb.d
   };
 }
 
+/**
+ * Ofertas que cuentan para una búsqueda. Por código de barras, las del ítem encontrado. Por código de modelo, las de los
+ * ítems cuyo título o modelo contiene el código (la búsqueda trae también parecidos). Por nombre, las de todos los
+ * ítems. Se descartan las repetidas (misma tienda y precio) y las de ítems de chicos.
+ */
+export function ofertasDe(items, consulta) {
+  const sinGuion = (t) => String(t ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  let elegidos = items ?? [];
+  if (consulta.via === 'ean') elegidos = elegidos.slice(0, 1);
+  if (consulta.via === 'codigo') {
+    const codigo = sinGuion(consulta.params.q.split(' ').at(-1));
+    elegidos = elegidos.filter((it) => sinGuion(it.title).includes(codigo) || sinGuion(it.model).includes(codigo));
+  }
+  elegidos = elegidos.filter((it) => !/\b(kids?|toddler|infant|baby|youth|gs|ps|td|little kid|big kid|grade school|preschool)\b/i.test(it.title ?? ''));
+  const vistas = new Set();
+  const ofertas = [];
+  for (const it of elegidos) {
+    for (const o of it.offers ?? []) {
+      const clave = `${o.merchant}|${o.price}`;
+      if (vistas.has(clave)) continue;
+      vistas.add(clave);
+      ofertas.push(o);
+    }
+  }
+  return ofertas;
+}
+
 class SinCupo extends Error {}
 
 const dormirReal = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -58,6 +86,7 @@ export function crearUpcitemdb({
   let cargado = false;
   let modificado = false;
   let consultas = 0;
+  const porFuente = new Map();
   let corte = null;
   let ultimo = 0;
 
@@ -71,14 +100,16 @@ export function crearUpcitemdb({
     }
   }
 
-  async function consultar(ean) {
+  async function consultar(url, fuente) {
     if (corte) throw corte;
     if (consultas >= cfg.maxConsultasPorCorrida) throw new SinCupo();
+    if ((porFuente.get(fuente) ?? 0) >= (cfg.maxConsultasPorFuente ?? Infinity)) throw new SinCupo();
+    porFuente.set(fuente, (porFuente.get(fuente) ?? 0) + 1);
     const falta = ultimo + cfg.pausaMs - Date.now();
     if (falta > 0 && consultas > 0) await dormir(falta);
     ultimo = Date.now();
     consultas++;
-    const res = await fetchFn(`${API}?upc=${ean}`, {
+    const res = await fetchFn(url, {
       headers: { Accept: 'application/json', 'User-Agent': config.userAgent },
       signal: AbortSignal.timeout(config.timeoutPedidoMs),
     });
@@ -93,22 +124,27 @@ export function crearUpcitemdb({
     return datos.items ?? [];
   }
 
-  const resultado = (r) => (r.sin
+  const resultado = (r, via) => (r.sin
     ? { estado: 'sin' }
-    : { estado: 'ok', precio: Math.round(r.usd * dolar), usd: r.usd, n: r.n, via: 'ean', url: r.url });
+    : { estado: 'ok', precio: Math.round(r.usd * dolar), usd: r.usd, n: r.n, via, url: r.url });
 
-  async function precio(oferta) {
-    if (!dolar || !eanValido(oferta.ean)) return { estado: 'sin' };
+  async function precio(oferta, fuente) {
+    if (!dolar) return { estado: 'sin' };
+    const consulta = consultaPara(oferta, fuente);
+    if (!consulta) return { estado: 'sin' };
     await cargar();
-    const clave = `ean:${oferta.ean}`;
+    const { clave, via } = consulta;
     const guardado = cache[clave];
-    if (guardado && diasEntre(guardado.visto, hoy) < cfg.vigenciaDias) return resultado(guardado);
+    if (guardado && diasEntre(guardado.visto, hoy) < cfg.vigenciaDias) return resultado(guardado, via);
     try {
-      const items = await consultar(oferta.ean);
-      const r = items.length ? precioDeOfertas(items[0].offers, ahora()) : null;
+      const url = via === 'ean'
+        ? `${API}/lookup?upc=${encodeURIComponent(consulta.params.gtin)}`
+        : `${API}/search?s=${encodeURIComponent(consulta.params.q)}&match_mode=0&type=product`;
+      const items = await consultar(url, fuente);
+      const r = precioDeOfertas(ofertasDe(items, consulta), ahora());
       cache[clave] = r ? { ...r, visto: hoy } : { sin: 1, visto: hoy };
       modificado = true;
-      return resultado(cache[clave]);
+      return resultado(cache[clave], via);
     } catch (error) {
       if (!(error instanceof SinCupo) && error !== corte) log(`UPCitemdb: "${oferta.nombre}" quedó pendiente (${error.message})`);
       return { estado: 'pendiente' };

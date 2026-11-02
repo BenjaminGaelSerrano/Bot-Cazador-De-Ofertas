@@ -57,7 +57,7 @@ export function puntuar({ costo, mercado, demanda = null }, cfg = config.reventa
 
   let veredicto;
   if (mercado.precio < costo) veredicto = 'evitar'; // otra tienda ya lo vende más barato de lo que lo pagaríamos
-  else if (margen + EPS >= cfg.margenBueno) veredicto = demanda === 'baja' ? 'regular' : 'buena';
+  else if (margen + EPS >= cfg.margenBueno) veredicto = (cfg.exigirDemanda ?? true) && demanda === 'baja' ? 'regular' : 'buena';
   else if (margen + EPS >= cfg.margenRegular) veredicto = 'regular';
   else veredicto = 'evitar';
 

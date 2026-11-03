@@ -186,7 +186,7 @@ export const config = {
   ebay: {
     activo: true,
     vigenciaDias: 3,             // un precio de eBay se reutiliza 3 días (después se vuelve a consultar)
-    maxConsultasPorCorrida: 1500, // eBay permite ~5.000 por día a la Browse API; el bot corre 2 veces por día
+    maxConsultasPorCorrida: 2400, // eBay permite ~5.000 por día y el bot corre 2 veces: con 1.500 no llegaba a Grid
     concurrencia: 4,             // consultas en paralelo
     limite: 50,                  // publicaciones por consulta
     minPublicaciones: 5,         // con menos, un par de publicaciones caras mueven todo (Air Rift: 4, de US$59 a 130)

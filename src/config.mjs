@@ -152,7 +152,7 @@ export const config = {
   maxMensajesPorDia: 25,
 
   // Telegram (canal preferido si hay TELEGRAM_BOT_TOKEN): el chat del usuario no es secreto (sin el token no sirve).
-  telegram: { chatId: null },
+  telegram: { chatId: 7228408134 }, // cuenta del usuario (confirmado el 2026-11-02)
 
   // Primera corrida de una fuente: se avisan solo las N mejores; el resto queda como línea base.
   primeraCorridaMaxOfertas: 8,

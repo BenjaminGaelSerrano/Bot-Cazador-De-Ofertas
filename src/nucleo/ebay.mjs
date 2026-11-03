@@ -2,6 +2,7 @@ import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { config } from '../config.mjs';
 import { diasEntre } from './fechas.mjs';
+import { mlDe } from './internacional.mjs';
 import { eanValido } from './mercado.mjs';
 
 // Precio de mercado en eBay EE. UU. (spec 007, pedido del usuario del 2026-11-02): reemplaza al cruce entre tiendas
@@ -43,7 +44,7 @@ export function textoNombre(oferta) {
 
 /** Cómo buscar una oferta: `{ via, clave, params }` o null si no hay forma segura. */
 export function consultaPara(oferta, fuente) {
-  if (eanValido(oferta.ean)) return { via: 'ean', clave: `ean:${oferta.ean}`, params: { gtin: oferta.ean } };
+  if (eanValido(oferta.ean)) return { via: 'ean', clave: `ean:${oferta.ean}`, params: { gtin: oferta.ean }, ml: oferta.ml ?? null };
   const codigo = codigoModelo(oferta, fuente);
   if (codigo) return { via: 'codigo', clave: `cod:${codigo}`, params: { q: `${limpiar(oferta.marca)} ${codigo}` } };
   // Por nombre solo ropa y calzado (tienen clave de modelo). Un perfume sin código no se busca por nombre: en eBay hay
@@ -53,6 +54,38 @@ export function consultaPara(oferta, fuente) {
     if (q.split(' ').length >= 2) return { via: 'nombre', clave: `nom:${q}`, params: { q } };
   }
   return null;
+}
+
+const compacto = (t) => limpiar(t).replace(/[^a-z0-9]/g, '');
+
+// Palabras de la búsqueda por nombre que no tienen por qué aparecer en el título de eBay.
+const OPCIONALES = new Set(['mens', 'womens', 'men', 'women', 'nike', 'adidas', 'puma', 'reebok', 'fila', 'vans', 'converse', 'jordan', 'newbalance', 'new', 'balance', 'asics', 'under', 'armour']);
+
+/**
+ * Publicaciones que corresponden a la búsqueda. eBay devuelve también parecidos: buscando "puma 401332-04" (RX 737) el
+ * 2026-11-03 trajo 19 publicaciones de OTROS modelos de Puma, y ninguna con ese código. Por código de modelo, el título
+ * tiene que contener el código; por nombre, todas las palabras del modelo. Por código de barras eBay ya filtra.
+ */
+export function filtrarPorConsulta(items, consulta) {
+  if (!items?.length) return items ?? [];
+  if (consulta.via === 'ean') {
+    // Hay vendedores que publican otro tamaño con el mismo código (un 1.7 oz bajo el código del 3.4 oz, 2026-11-03):
+    // si el título dice un tamaño distinto (±5 %), no cuenta. Sin tamaño en el título, se acepta.
+    if (!consulta.ml) return items;
+    return items.filter((it) => {
+      const ml = mlDe(it.title);
+      return !ml || Math.abs(ml - consulta.ml) / consulta.ml <= 0.05;
+    });
+  }
+  if (consulta.via === 'codigo') {
+    const codigo = compacto(consulta.params.q.split(' ').at(-1));
+    return items.filter((it) => compacto(it.title).includes(codigo));
+  }
+  const palabras = limpiar(consulta.params.q).split(' ').filter((p) => p && !OPCIONALES.has(p));
+  return items.filter((it) => {
+    const titulo = ` ${limpiar(it.title).replace(/[^a-z0-9 ]/g, ' ')} `;
+    return palabras.every((p) => titulo.includes(` ${p} `) || compacto(it.title).includes(p));
+  });
 }
 
 const mediana = (xs) => {
@@ -171,7 +204,7 @@ export function crearEbay({
     const guardado = cache[consulta.clave];
     if (guardado && diasEntre(guardado.visto, hoy) < cfg.vigenciaDias) return resultado(guardado, consulta.via);
     try {
-      const r = precioDePublicaciones(await buscar(consulta.params));
+      const r = precioDePublicaciones(filtrarPorConsulta(await buscar(consulta.params), consulta));
       cache[consulta.clave] = r ? { ...r, visto: hoy } : { sin: 1, visto: hoy };
       modificado = true;
       return resultado(cache[consulta.clave], consulta.via);

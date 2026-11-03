@@ -189,7 +189,9 @@ export const config = {
     concurrencia: 4,             // consultas en paralelo
     limite: 50,                  // publicaciones por consulta
     minPublicaciones: 3,         // con menos, no hay precio de mercado confiable
-    tomarMasBaratas: 5,          // precio de mercado = mediana de las 5 publicaciones nuevas más baratas (con envío)
+    // Precio de mercado = mediana de TODAS las publicaciones válidas (con envío). Con las 5 más baratas quedaba en el piso:
+    // 2026-11-03, One Million EDT 100 ml US$51 (5 más baratas) contra US$79 (mediana); Air Force 1 '07 US$80 contra 100.
+    tomarMasBaratas: 1000,
   },
 
   // Provisorio hasta que eBay apruebe la cuenta: UPCitemdb (sin cuenta, 100 consultas por día, solo con código de

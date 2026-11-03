@@ -50,7 +50,7 @@ test('textoNombre: marca + modelo + género en inglés, sin relleno', () => {
 
 test('consultaPara: código de barras, después código de modelo, después nombre (solo ropa y calzado)', () => {
   assert.deepEqual(consultaPara({ ean: '3349666007921', nombre: 'One Million EDT 100 ml', marca: 'RABANNE' }, 'juleriaque'),
-    { via: 'ean', clave: 'ean:3349666007921', params: { gtin: '3349666007921' } });
+    { via: 'ean', clave: 'ean:3349666007921', params: { gtin: '3349666007921' }, ml: null });
   assert.equal(consultaPara({ id: 'NICW2288-111', marca: 'Nike', nombre: 'Air Force 1', km: 'nike|1 air force' }, 'moov').via, 'codigo');
   assert.equal(consultaPara({ id: '2329', marca: 'Adidas Originals', nombre: 'ZAPATILLAS ADIDAS ORIGINALS SAMBA OG', km: 'adidas|og samba', gen: 'h' }, 'grid').via, 'nombre');
   assert.equal(consultaPara({ id: '9', ean: null, marca: 'DIOR', nombre: 'Sauvage EDT 100 ml', ml: 100 }, 'rouge'), null, 'perfume sin código: no');
@@ -126,4 +126,30 @@ test('precio: un 429 de eBay corta la corrida; el cupo agotado deja pendiente', 
   const conCupo = crearEbay({ clientId: 'id', clientSecret: 's', dolar: 1555, hoy: '2026-11-02', rutaCache: 'x', fetchFn: otro.fetchFn, cfg: { ...cfg, maxConsultasPorCorrida: 1 }, log: () => {} });
   assert.equal((await conCupo.precio(oferta, 'juleriaque')).estado, 'ok');
   assert.deepEqual(await conCupo.precio({ ...oferta, ean: '3605521172525' }, 'juleriaque'), { estado: 'pendiente' });
+});
+
+test('filtrarPorConsulta: por código, solo títulos con el código (caso real Puma RX 737); por nombre, todas las palabras', async () => {
+  const { filtrarPorConsulta } = await import('../src/nucleo/ebay.mjs');
+  const puma = [
+    { title: 'Puma Softride ST Miller SD - 402667-05' },
+    { title: 'PUMA WILD RIDER ROLLIN\' 381517-04 EBONY WHITE' },
+    { title: 'Puma RX 737 Vintage 401332 04 Mens' },
+  ];
+  assert.deepEqual(filtrarPorConsulta(puma, { via: 'codigo', params: { q: 'puma 401332-04' } }).map((x) => x.title), ['Puma RX 737 Vintage 401332 04 Mens']);
+  const af1 = [{ title: "Nike Air Force 1 '07 Black White CT2302-002 Men's" }, { title: 'Nike Air Max 90 CT2302-002 typo' }, { title: 'Nike Dunk Low Panda' }];
+  assert.equal(filtrarPorConsulta(af1, { via: 'codigo', params: { q: 'nike CT2302-002' } }).length, 2);
+  const samba = [{ title: 'Adidas Samba OG Cloud White Mens' }, { title: 'Adidas Samba Classic' }, { title: 'Adidas Gazelle OG' }];
+  assert.deepEqual(filtrarPorConsulta(samba, { via: 'nombre', params: { q: 'adidas samba og mens' } }).map((x) => x.title), ['Adidas Samba OG Cloud White Mens']);
+  assert.equal(filtrarPorConsulta(puma, { via: 'ean', params: {} }).length, 3);
+});
+
+test('filtrarPorConsulta (código de barras): descarta los títulos con otro tamaño; acepta los que no dicen tamaño', async () => {
+  const { filtrarPorConsulta } = await import('../src/nucleo/ebay.mjs');
+  const items = [
+    { title: 'Paco Rabanne 1 Million Eau de Toilette Spray 100ml / 3.4 fl oz' },
+    { title: '1 One Million by Paco Rabanne for Men EDT 1.7 oz' },
+    { title: 'Paco Rabanne 1 Million EDT for men' },
+  ];
+  const r = filtrarPorConsulta(items, { via: 'ean', params: { gtin: '3349666007921' }, ml: 100 });
+  assert.deepEqual(r.map((x) => x.title), [items[0].title, items[2].title]);
 });

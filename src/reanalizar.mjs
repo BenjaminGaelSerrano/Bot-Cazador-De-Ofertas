@@ -2,7 +2,7 @@ import { parseArgs } from 'node:util';
 import { config } from './config.mjs';
 import { correrFuente } from './correr.mjs';
 import { cupoDeCorrida, enviadosHoy, sumarEnviados } from './nucleo/envios.mjs';
-import { nombreCanal } from './notificar/canal.mjs';
+import { limitarWhatsapp, nombreCanal, whatsappEnviados } from './notificar/canal.mjs';
 import { telegramActivo } from './notificar/telegram.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
 import { crearCliente } from './nucleo/http.mjs';
@@ -102,6 +102,8 @@ console.log(`Reanálisis del ${fecha}${dryRun ? ' · DRY-RUN (no se manda nada)'
 const rutaEnvios = `${args.datos}/envios.json`;
 const yaEnviadosHoy = await enviadosHoy(rutaEnvios, fecha);
 // El tope diario es por CallMeBot; Telegram no tiene ese límite oculto.
+// Con Telegram, WhatsApp manda solo copias, hasta lo que queda del tope diario.
+if (telegramActivo()) limitarWhatsapp(cupoDeCorrida(Infinity, config.maxMensajesPorDia, yaEnviadosHoy));
 const maxMensajesTotal = telegramActivo()
   ? config.maxMensajesTotalPorCorrida
   : cupoDeCorrida(config.maxMensajesTotalPorCorrida, config.maxMensajesPorDia, yaEnviadosHoy);
@@ -120,7 +122,9 @@ const { resultados, mensajesUsados } = await correrFuentes({
   extra: { referencias, ebay: mercado, ignorarAvisadas: true }, // ignora todas las marcas de "ya avisado"
 });
 
-if (!dryRun && mensajesUsados > 0) await sumarEnviados(rutaEnvios, fecha, mensajesUsados);
+// El tope diario cuenta solo lo que salió por WhatsApp (con Telegram, las copias).
+const porWhatsapp = telegramActivo() ? whatsappEnviados() : mensajesUsados;
+if (!dryRun && porWhatsapp > 0) await sumarEnviados(rutaEnvios, fecha, porWhatsapp);
 
 for (const r of resultados) {
   if (!r.ok) { console.error(`${r.nombre}: ${r.error.message}`); continue; }

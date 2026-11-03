@@ -10,6 +10,10 @@ on:
         description: 'Solo simular (no escribe datos ni manda WhatsApp)'
         type: boolean
         default: true
+      forzar:
+        description: 'Forzar: avisar todo lo que vale la pena aunque ya se haya avisado'
+        type: boolean
+        default: false
 
 # Una sola corrida a la vez: dos escribiendo la rama de datos se pisarían.
 concurrency:
@@ -47,7 +51,7 @@ jobs:
           fi
 
       - name: Cazar ofertas
-        run: node src/cli.mjs --fuente todas --datos datos ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}
+        run: node src/cli.mjs --fuente todas --datos datos ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }} ${{ (github.event_name == 'workflow_dispatch' && inputs.forzar) && '--forzar' || '' }}
         env:
           CALLMEBOT_PHONE: ${{ secrets.CALLMEBOT_PHONE }}
           CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}

@@ -265,24 +265,41 @@ test('fichas: las unidades vendidas de una publicación se reutilizan y se guard
   assert.equal(fichasLeidas, 4);
 });
 
-test('cupo del día: deja la parte de la corrida de la noche y usa todo lo que queda en la última', async () => {
+test('cupo del día: se reparte entre esta corrida y las que faltan antes de que se renueve', async () => {
+  const { corridasPendientes } = await import('../src/nucleo/ebay.mjs');
+  const horas = ['08:17', '12:17', '16:17', '20:17', '00:17'];
+  assert.equal(corridasPendientes(new Date('2026-11-04T08:20:00Z'), horas), 4);
+  assert.equal(corridasPendientes(new Date('2026-11-04T12:40:00Z'), horas), 3, 'aunque GitHub la demore');
+  assert.equal(corridasPendientes(new Date('2026-11-04T18:00:00Z'), horas), 2, 'manual a la tarde');
+  assert.equal(corridasPendientes(new Date('2026-11-05T00:17:00Z'), horas), 0, 'la última del día');
+  assert.equal(corridasPendientes(new Date('2026-11-05T06:00:00Z'), horas), 0);
+  assert.equal(corridasPendientes(new Date('2026-11-04T08:14:00Z'), horas), 4, 'la de las 08:17 es esta misma');
+
   const conRestante = (remaining) => async (url) => {
     if (url.includes('/oauth2/token')) return { status: 200, ok: true, json: async () => ({ access_token: 't' }) };
     return { status: 200, ok: true, json: async () => ({ rateLimits: [{ apiContext: 'buy', apiName: 'browse', resources: [{ name: 'buy.browse', rates: [{ limit: 5000, remaining }] }] }] }) };
   };
-  const crear = (remaining) => crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-03', rutaCache: 'x', fetchFn: conRestante(remaining), cfg: { ...cfg, maxConsultasPorCorrida: 2400, reservaHastaUtc: 22.5, margenCupo: 50 }, log: () => {} });
-  const max = (await import('../src/config.mjs')).config.ebay.maxConsultasPorCorrida;
-  // Mañana (12:17 UTC), cupo entero: la corrida usa su tope.
-  assert.equal(await crear(5000).ajustarCupo(new Date('2026-11-04T12:17:00Z')), Math.min(2400, 5000 - max - 50));
-  // Corrida manual a la tarde, después de la de la mañana: solo lo que sobra por encima de la reserva.
-  assert.equal(await crear(2600).ajustarCupo(new Date('2026-11-04T18:00:00Z')), Math.max(0, 2600 - max - 50));
-  // Noche (22:41 UTC): usa lo que queda.
-  assert.equal(await crear(2600).ajustarCupo(new Date('2026-11-04T22:41:00Z')), 2400);
-  assert.equal(await crear(300).ajustarCupo(new Date('2026-11-04T22:41:00Z')), 250);
-  // Sin dato de cupo: queda el tope fijo.
-  const sinDato = crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-03', rutaCache: 'x', cfg: { ...cfg, maxConsultasPorCorrida: 2400 }, log: () => {},
+  const c = { ...cfg, maxConsultasPorCorrida: 4950, corridasUtc: horas, cupoDiario: 5000, margenCupo: 50 };
+  const crear = (remaining) => crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-04', rutaCache: 'x', fetchFn: conRestante(remaining), cfg: c, log: () => {} });
+  assert.equal(await crear(5000).ajustarCupo(new Date('2026-11-04T08:20:00Z')), 990, '4950 entre 5');
+  assert.equal(await crear(4500).ajustarCupo(new Date('2026-11-04T12:20:00Z')), 1112, 'la anterior gastó poco: sobra más');
+  assert.equal(await crear(800).ajustarCupo(new Date('2026-11-05T00:20:00Z')), 750, 'la última usa todo');
+  assert.equal(await crear(0).ajustarCupo(new Date('2026-11-04T12:20:00Z')), 0);
+  // Sin dato de cupo: la parte de un día entero.
+  const sinDato = crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-04', rutaCache: 'x', cfg: c, log: () => {},
     fetchFn: async (url) => (url.includes('/oauth2/token') ? { status: 200, ok: true, json: async () => ({ access_token: 't' }) } : { status: 500, ok: false }) });
-  assert.equal(await sinDato.ajustarCupo(), 2400);
+  assert.equal(await sinDato.ajustarCupo(), 1000);
+});
+
+test('repartir: cada tienda tiene su parte de la corrida y lo que no usa pasa a las siguientes', async () => {
+  const s = ebayDeZapas([{ precio: 150, vendidas: 3 }, { precio: 120, vendidas: 2 }], { cfgExtra: { maxConsultasPorCorrida: 6 } });
+  s.ebay.repartir(2); // 3 para esta tienda
+  assert.equal((await s.ebay.precio(zapaA(80), 'moov')).estado, 'ok'); // búsqueda + 2 fichas = 3
+  assert.equal((await s.ebay.precio({ ...zapaA(80), id: 'NICT2302-009' }, 'moov')).estado, 'pendiente', 'se le acabó la parte');
+  s.ebay.repartir(1); // la siguiente: lo que queda (3)
+  assert.equal(s.ebay.consultas, 3);
+  assert.notEqual((await s.ebay.precio({ ...zapaA(80), id: 'NICT2302-009' }, 'moov')).estado, 'pendiente');
+  assert.equal(s.ebay.consultas, 4, 'con la parte nueva sí consultó');
 });
 
 // Fetch simulado para zapatillas: `pubs` = [{ precio, vendidas }] en el orden de eBay.
@@ -345,4 +362,11 @@ test('la misma búsqueda pedida a la vez por dos ofertas se consulta una sola ve
   assert.equal(b.usd, a.usd);
   assert.equal(s.busquedas, 1);
   assert.equal(s.leidas.length, 2);
+});
+
+test('los horarios del cupo de eBay coinciden con los cron del workflow', async () => {
+  const { config } = await import('../src/config.mjs');
+  const yml = await readFile(new URL('../.github/workflows/cazador.yml', import.meta.url), 'utf8');
+  const crons = [...yml.matchAll(/cron: '(\d+) (\d+) \* \* \*'/g)].map(([, m, h]) => `${h.padStart(2, '0')}:${m.padStart(2, '0')}`);
+  assert.deepEqual([...crons].sort(), [...config.ebay.corridasUtc].sort());
 });

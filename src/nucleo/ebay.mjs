@@ -173,6 +173,26 @@ export function precioPorVentas(fichas, { minVentas = config.ebay.ventas.minVent
 class SinCupo extends Error {}
 
 /**
+ * Cuántas corridas programadas (`corridasUtc`, "HH:MM" en UTC) faltan después de `ahora` y antes de que eBay renueve
+ * el cupo (08:00 UTC). Las que arrancan dentro de los próximos 5 minutos no cuentan: son esta misma.
+ */
+export function corridasPendientes(ahora, corridasUtc) {
+  const renueva = new Date(ahora);
+  renueva.setUTCHours(8, 0, 0, 0);
+  if (renueva <= ahora) renueva.setUTCDate(renueva.getUTCDate() + 1);
+  const desde = ahora.getTime() + 5 * 60_000;
+  let n = 0;
+  for (const hhmm of corridasUtc) {
+    const [h, m] = hhmm.split(':').map(Number);
+    const t = new Date(ahora);
+    t.setUTCHours(h, m, 0, 0);
+    if (t.getTime() <= desde) t.setUTCDate(t.getUTCDate() + 1);
+    if (t < renueva) n++;
+  }
+  return n;
+}
+
+/**
  * Servicio de precios de eBay para una corrida. `precio(oferta, fuente)` devuelve:
  *  - `{ estado: 'ok', precio, usd, n, via, url }` (`precio` en pesos, con el dólar blue medio),
  *  - `{ estado: 'sin' }` (no hay forma de buscarlo o eBay no tiene suficientes publicaciones),
@@ -195,6 +215,7 @@ export function crearEbay({
   let consultas = 0;
   let corte = null;
   let tope = cfg.maxConsultasPorCorrida;
+  let topeTramo = Infinity; // parte de la tienda que se está leyendo (ver `repartir`)
   // Unidades vendidas por publicación ({ itemId: [vendidas, visto] }): se reutilizan `vigenciaFichasDias` días, así al
   // renovar un modelo solo se leen las fichas de publicaciones nuevas (cada ficha es una consulta del cupo).
   const rutaFichas = rutaCache.replace(/\.json$/, '') + '-fichas.json';
@@ -218,11 +239,14 @@ export function crearEbay({
   }
 
   /**
-   * Ajusta el tope de la corrida a lo que eBay dice que queda hoy (el cupo diario se renueva a las 08:00 UTC). Si todavía
-   * falta una corrida programada antes de que se renueve (`reservaHastaUtc`), se le deja su parte: así una corrida manual
-   * no deja sin cupo a la de la noche. Si no se puede leer el cupo, queda el tope fijo.
+   * Ajusta el tope de la corrida a lo que eBay dice que queda hoy (el cupo diario se renueva a las 08:00 UTC): se reparte
+   * en partes iguales entre esta corrida y las programadas que faltan antes de que se renueve (`corridasUtc`). Lo que una
+   * corrida no usa queda para las siguientes, y la última del día usa todo lo que sobra. Si no se puede leer el cupo, se
+   * usa la parte de un día entero (`cupoDiario` ÷ corridas).
    */
   async function ajustarCupo(ahora = new Date()) {
+    const pendientes = corridasPendientes(ahora, cfg.corridasUtc ?? []);
+    tope = Math.min(cfg.maxConsultasPorCorrida, Math.floor((cfg.cupoDiario ?? 5000) / Math.max(1, (cfg.corridasUtc ?? []).length)));
     try {
       if (!token) await obtenerToken();
       const res = await fetchFn(`${API}/developer/analytics/v1_beta/rate_limit/?api_name=browse&api_context=buy`, {
@@ -234,11 +258,9 @@ export function crearEbay({
       const recurso = datos.rateLimits?.flatMap((l) => l.resources ?? []).find((r) => r.name === 'buy.browse');
       const restante = recurso?.rates?.[0]?.remaining;
       if (typeof restante !== 'number') throw new Error('sin dato de cupo');
-      const hora = ahora.getUTCHours() + ahora.getUTCMinutes() / 60;
-      const quedaOtra = hora >= 8 && hora < (cfg.reservaHastaUtc ?? 22.5);
-      const reserva = quedaOtra ? config.ebay.maxConsultasPorCorrida : 0; // lo que usa una corrida programada
-      tope = Math.max(0, Math.min(cfg.maxConsultasPorCorrida, restante - reserva - (cfg.margenCupo ?? 50)));
-      log(`eBay: quedan ${restante} consultas hoy${reserva ? ` (se reservan ${reserva} para la próxima corrida)` : ''}; esta corrida usa hasta ${tope}.`);
+      const disponible = Math.max(0, restante - (cfg.margenCupo ?? 50));
+      tope = Math.min(cfg.maxConsultasPorCorrida, Math.floor(disponible / (1 + pendientes)));
+      log(`eBay: quedan ${restante} consultas hoy y ${pendientes} corridas más antes de que se renueve; esta usa hasta ${tope}.`);
     } catch (error) {
       if (error.message.startsWith('eBay rechazó las credenciales')) throw error;
       log(`eBay: no se pudo leer el cupo del día (${error.message}); tope fijo de ${tope}.`);
@@ -262,7 +284,7 @@ export function crearEbay({
 
   async function buscar(params, reintento = false) {
     if (corte) throw corte;
-    if (consultas >= tope) throw new SinCupo();
+    if (consultas >= Math.min(tope, topeTramo)) throw new SinCupo();
     if (!token) await obtenerToken();
     consultas++;
     const qs = new URLSearchParams({
@@ -288,7 +310,7 @@ export function crearEbay({
   /** Ficha de una publicación: cuántas unidades vendió. Cuenta como una consulta del cupo. */
   async function vendidasDe(itemId, reintento = false) {
     if (corte) throw corte;
-    if (consultas >= tope) throw new SinCupo();
+    if (consultas >= Math.min(tope, topeTramo)) throw new SinCupo();
     if (!token) await obtenerToken();
     consultas++;
     const res = await fetchFn(`${API}/buy/browse/v1/item/${encodeURIComponent(itemId)}`, {
@@ -446,6 +468,13 @@ export function crearEbay({
     enCache,
     guardar,
     ajustarCupo,
+    /**
+     * Antes de cada tienda: le toca una parte igual de lo que queda de la corrida (`fuentesRestantes` = esta y las que
+     * siguen). Lo que no usa pasa a las siguientes. Así la última (Grid) no queda siempre sin cupo.
+     */
+    repartir(fuentesRestantes) {
+      topeTramo = consultas + Math.floor(Math.max(0, tope - consultas) / Math.max(1, fuentesRestantes));
+    },
     get tope() { return tope; },
     get consultas() { return consultas; },
     get corte() { return corte; },

@@ -27,8 +27,9 @@ export async function correrFuentes({
   // Lo comparten todas las tiendas: si CallMeBot rechaza un mensaje (el límite), ninguna otra intenta enviar.
   const estadoEnvio = { enviados: 0, bloqueado: false };
 
-  for (const nombre of nombres) {
+  for (const [i, nombre] of nombres.entries()) {
     const fuente = fuentes[nombre];
+    extra.ebay?.repartir?.(nombres.length - i); // cupo de eBay repartido entre las tiendas
     try {
       const resultado = await corrida({
         nombre,

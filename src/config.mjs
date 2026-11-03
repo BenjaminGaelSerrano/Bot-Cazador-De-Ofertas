@@ -189,7 +189,7 @@ export const config = {
   ebay: {
     activo: true,
     vigenciaDias: 3,             // un precio de eBay se reutiliza 3 días (después se vuelve a consultar)
-    maxConsultasPorCorrida: 2400, // eBay permite ~5.000 por día y el bot corre 2 veces: con 1.500 no llegaba a Grid
+    maxConsultasPorCorrida: 4950, // tope de seguridad; el reparto real lo hace `ajustarCupo` con el cupo que queda
     concurrencia: 4,             // consultas en paralelo
     limite: 50,                  // publicaciones por consulta
     minPublicaciones: 5,         // con menos, un par de publicaciones caras mueven todo (Air Rift: 4, de US$59 a 130)
@@ -204,8 +204,10 @@ export const config = {
     // `vigenciaFichasDias`: las unidades vendidas de cada publicación se reutilizan una semana (cuestan 1 consulta cada una).
     ventas: { activo: true, minVentas: 3, fichas: 8, cotaPercentil: 0.75, vigenciaFichasDias: 7 },
     // Cupo diario compartido (2026-11-03: unas corridas manuales gastaron las 5.000 del día y la de la noche quedó sin
-    // nada). Al arrancar se lee lo que queda; hasta las 22:30 UTC (la corrida de las 19:41 AR) se reserva su parte.
-    reservaHastaUtc: 22.5,
+    // nada). Al arrancar se lee lo que queda y se reparte en partes iguales entre esta corrida y las programadas que
+    // faltan antes de que se renueve (08:00 UTC). TIENE QUE COINCIDIR con los cron de .github/workflows/cazador.yml.
+    corridasUtc: ['08:17', '12:17', '16:17', '20:17', '00:17'],
+    cupoDiario: 5000,
     margenCupo: 50,
   },
 

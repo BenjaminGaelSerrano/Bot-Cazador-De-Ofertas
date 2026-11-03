@@ -2,8 +2,14 @@ name: Cazador de ofertas
 
 on:
   schedule:
-    - cron: '17 12 * * *'  # 09:17 en Argentina. Minuto no redondo: a la hora en punto GitHub demora más los programados
-    - cron: '41 22 * * *'  # 19:41 en Argentina
+    # Cada 4 horas desde que eBay renueva el cupo (05:00 AR). Minuto no redondo: a la hora en punto GitHub demora más los
+    # programados. ~12 min por corrida x 5 = ~1.800 min/mes (el plan gratis de un repo privado da 2.000).
+    # TIENEN QUE COINCIDIR con config.ebay.corridasUtc (el cupo de eBay se reparte entre estas corridas).
+    - cron: '17 8 * * *'   # 05:17 en Argentina
+    - cron: '17 12 * * *'  # 09:17
+    - cron: '17 16 * * *'  # 13:17
+    - cron: '17 20 * * *'  # 17:17
+    - cron: '17 0 * * *'   # 21:17
   workflow_dispatch:
     inputs:
       dry_run:

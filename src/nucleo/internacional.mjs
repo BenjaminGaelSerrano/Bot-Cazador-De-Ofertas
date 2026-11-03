@@ -38,6 +38,14 @@ export function esPerfume(oferta) {
   return concentracion(oferta.nombre) !== null;
 }
 
+// Lo que no es un perfume aunque esté en la categoría de fragancias: cremas, geles, desodorantes, after shave, etc.
+const NO_PERFUME = /\b(body|lotion|locion corporal|crema|cream|creme|gel|shower|ducha|deo|desodorante|deodorant|antitranspirante|after ?shave|balm|balsamo|jabon|soap|hair|cabello|capilar|talco|powder|polvo|maquillaje|labial|esmalte|mascara|serum|tratamiento)\b/;
+
+/** Solo perfumes (pedido del usuario, 2026-11-03): ni maquillaje, ni cremas, ni tratamientos, ni complementos. */
+export function esSoloPerfume(oferta) {
+  return esPerfume(oferta) && !NO_PERFUME.test(limpiar(oferta.nombre));
+}
+
 // Variantes y productos que no son el frasco que se vende en la tienda argentina.
 const NO_COMPARABLE = /\b(tester|unboxed|gift|set|coffret|mini|travel|refill|sample|vial|bundle|body|lotion|deodorant|deo|shower|gel|balm|after ?shave|hair|roll ?on|rollerball|candle)\b/;
 export const comparable = (...textos) => !textos.some((t) => NO_COMPARABLE.test(limpiar(t)));

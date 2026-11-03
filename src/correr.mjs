@@ -7,6 +7,7 @@ import { ErrorFuente } from './nucleo/http.mjs';
 import { cargar as cargarHistorial, guardar as guardarHistorial, registrar } from './nucleo/historial.mjs';
 import { cargarOtros, construirIndice, precioMercado } from './nucleo/mercado.mjs';
 import { ordenarParaConsultar } from './nucleo/prioridad.mjs';
+import { esSoloPerfume } from './nucleo/internacional.mjs';
 import { compararPorReventa, nivelDemanda, puntuar, velocidadVenta } from './nucleo/reventa.mjs';
 import { agrupar } from './notificar/callmebot.mjs';
 import { enviar } from './notificar/canal.mjs';
@@ -41,6 +42,7 @@ export async function correrFuente({
   avisosPausados = false,
   // Reanálisis forzado: avisa aunque ya se hayan avisado, sin borrar las marcas (las de otras tiendas se conservan).
   ignorarAvisadas = false,
+  fuentesSoloPerfumes = [], // el CLI pasa config.soloPerfumes
   cfgReventa = config.reventa, // las pruebas de la mecánica usan los parámetros de la spec 003 // el CLI pasa config.avisar.pausados; los reenvíos y pruebas no se pausan
   reiniciarAlertasAntesDe = config.reiniciarAlertasAntesDe,
   // Estado de envío compartido por todas las tiendas de una corrida: cuántos mensajes salieron y si CallMeBot ya
@@ -72,7 +74,9 @@ export async function correrFuente({
 
   // 2. Gangas de hoy.
   const gangas = [];
+  const soloPerfumes = fuentesSoloPerfumes.includes(nombre); // perfumerías: ni maquillaje ni cremas (usuario, 2026-11-03)
   for (const oferta of ofertas) {
+    if (soloPerfumes && !esSoloPerfume(oferta)) continue;
     const evaluacion = evaluar(oferta, historial.productos[oferta.id], fecha);
     if (evaluacion) gangas.push({ oferta, evaluacion });
   }
@@ -210,7 +214,7 @@ export async function correrFuente({
           precioMercado: puntaje.precioMercado ?? null, fuenteMercado: puntaje.fuente ?? null, via: puntaje.via ?? null,
           margen: puntaje.margen === undefined ? null : Math.round(puntaje.margen * 100), demanda: puntaje.demanda ?? null,
           ...(ref ? { usd: ref.usd ?? null, pesosUsd: ref.pesos ?? null, viaUsd: ref.via ?? null } : {}),
-          ...(g.ebay?.estado === 'ok' ? { usd: g.ebay.usd, publicacionesEbay: g.ebay.n } : {}),
+          ...(g.ebay?.estado === 'ok' ? { usd: g.ebay.usd, publicacionesEbay: g.ebay.n, ...(g.ebay.ventas !== undefined ? { vendidasEbay: g.ebay.ventas } : {}) } : {}),
         });
       }
     }

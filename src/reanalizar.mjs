@@ -120,7 +120,7 @@ const { resultados, mensajesUsados } = await correrFuentes({
   corrida: correrFuente, // sin avisos de falla: no se lee ningún sitio
   maxMensajesPorFuente: 15, // forzado: que no quede nada afuera por el tope de 8 por tienda
   // Ignora las marcas de "ya avisado" sin borrarlas: así alertas.json queda con las de antes más las de este envío.
-  extra: { referencias, ebay: mercado, ignorarAvisadas: true }, // ignora todas las marcas de "ya avisado"
+  extra: { referencias, ebay: mercado, ignorarAvisadas: true, fuentesSoloPerfumes: config.soloPerfumes ?? [] }, // ignora todas las marcas de "ya avisado"
 });
 
 // El tope diario cuenta solo lo que salió por WhatsApp (con Telegram, las copias).

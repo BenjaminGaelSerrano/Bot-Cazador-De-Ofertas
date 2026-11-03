@@ -131,6 +131,45 @@ export function precioDePublicaciones(items, {
   return { usd: Math.round(valor * 100) / 100, n: razonables.length, url: razonables[abajo].url };
 }
 
+/** Publicaciones que cuentan (nuevas, en dólares, sin packs ni testers), en el orden de eBay ("mejor coincidencia"). */
+export function publicacionesValidas(items) {
+  const validas = [];
+  for (const it of items ?? []) {
+    if (DESCARTE.test(limpiar(it.title))) continue;
+    if (it.price?.currency && it.price.currency !== 'USD') continue;
+    const precio = Number(it.price?.value);
+    if (precio > 0) validas.push({ itemId: it.itemId, precio, url: it.itemWebUrl });
+  }
+  return validas;
+}
+
+/** Percentil con interpolación lineal. */
+export function percentilDe(valores, p) {
+  const s = [...valores].sort((a, b) => a - b);
+  if (s.length === 0) return null;
+  const pos = (s.length - 1) * p;
+  const abajo = Math.floor(pos);
+  const arriba = Math.min(abajo + 1, s.length - 1);
+  return s[abajo] + (s[arriba] - s[abajo]) * (pos - abajo);
+}
+
+/**
+ * Zapatillas y ropa (pedido del usuario, 2026-11-03): "que sean realmente vendidas, no me importan las publicaciones
+ * sino las ventas". Cada ficha de eBay trae cuántas unidades vendió esa publicación. Se suman las ventas; con menos de
+ * `minVentas` no hay referencia (no se avisa). El precio de mercado es la mediana del precio de lo VENDIDO, ponderada
+ * por las unidades. Medido el 2026-11-03: Air Force 1 negra 12 vendidas, Jordan 1 Low celeste 3, Yeezy 350 Onyx 0.
+ * `fichas`: `[{ precio, vendidas, url }]`. Devuelve `{ usd, n, ventas, url }` o `{ sin: 1, ventas }`.
+ */
+export function precioPorVentas(fichas, { minVentas = config.ebay.ventas.minVentas } = {}) {
+  const conVentas = fichas.filter((f) => f.vendidas > 0).sort((a, b) => a.precio - b.precio);
+  const ventas = conVentas.reduce((t, f) => t + f.vendidas, 0);
+  if (ventas === 0 || ventas < minVentas) return { sin: 1, ventas };
+  let acumulado = 0;
+  const mitad = ventas / 2;
+  const centro = conVentas.find((f) => (acumulado += f.vendidas) >= mitad);
+  return { usd: Math.round(centro.precio * 100) / 100, n: conVentas.length, ventas, url: centro.url };
+}
+
 class SinCupo extends Error {}
 
 /**
@@ -205,21 +244,77 @@ export function crearEbay({
     return (await res.json()).itemSummaries ?? [];
   }
 
-  const resultado = (r, via) => (r.sin
-    ? { estado: 'sin' }
-    : { estado: 'ok', precio: Math.round(r.usd * dolar), usd: r.usd, n: r.n, via, url: r.url });
+  /** Ficha de una publicación: cuántas unidades vendió. Cuenta como una consulta del cupo. */
+  async function vendidasDe(itemId, reintento = false) {
+    if (corte) throw corte;
+    if (consultas >= cfg.maxConsultasPorCorrida) throw new SinCupo();
+    if (!token) await obtenerToken();
+    consultas++;
+    const res = await fetchFn(`${API}/buy/browse/v1/item/${encodeURIComponent(itemId)}`, {
+      headers: { Authorization: `Bearer ${token}`, 'X-EBAY-C-MARKETPLACE-ID': 'EBAY_US', Accept: 'application/json' },
+      signal: AbortSignal.timeout(config.timeoutPedidoMs),
+    });
+    if (res.status === 401 && !reintento) { token = null; return vendidasDe(itemId, true); }
+    if (res.status === 429) {
+      corte = new Error('eBay respondió 429: no se consulta más en esta corrida');
+      log(corte.message);
+      throw corte;
+    }
+    if (!res.ok) return 0; // publicación terminada o sin acceso: no suma ventas
+    const ficha = await res.json();
+    return Number(ficha.estimatedAvailabilities?.[0]?.estimatedSoldQuantity) || 0;
+  }
+
+  const porVentas = (via) => via !== 'ean' && (cfg.ventas?.activo ?? false);
+
+  const resultado = (r, via) => {
+    if (r.sin) return { estado: 'sin', ...(r.ventas !== undefined ? { ventas: r.ventas } : {}) };
+    if (r.ventas !== undefined && r.ventas < cfg.ventas.minVentas) return { estado: 'sin', ventas: r.ventas };
+    return { estado: 'ok', precio: Math.round(r.usd * dolar), usd: r.usd, n: r.n, via, url: r.url, ...(r.ventas !== undefined ? { ventas: r.ventas } : {}) };
+  };
+
+  /**
+   * Lo guardado, si sigue sirviendo para esta oferta; si no, null (hay que consultar). Para zapatillas, lo guardado con
+   * el criterio anterior (sin ventas) no sirve; y si solo se guardó la cota (estaba cara), sirve mientras siga cara.
+   */
+  function desdeCache(guardado, consulta, oferta) {
+    if (!guardado || diasEntre(guardado.visto, hoy) >= cfg.vigenciaDias) return null;
+    if (!porVentas(consulta.via)) return resultado(guardado, consulta.via);
+    if (guardado.ventas !== undefined) return resultado(guardado, consulta.via);
+    if (guardado.cota !== undefined) return oferta.precioActual / dolar >= guardado.cota ? { estado: 'sin' } : null;
+    if (guardado.sin && guardado.porVentas) return { estado: 'sin' };
+    return null;
+  }
+
+  /** Zapatillas y ropa: precio de lo vendido y unidades vendidas (ver `precioPorVentas`). */
+  async function consultarPorVentas(consulta, oferta) {
+    const validas = publicacionesValidas(filtrarPorConsulta(await buscar(consulta.params), consulta));
+    if (validas.length === 0) return { sin: 1, porVentas: 1 };
+    // Si ya cuesta más que la mayoría de lo publicado, no puede estar por debajo de lo vendido: no se gastan fichas.
+    const cota = percentilDe(validas.map((v) => v.precio), cfg.ventas.cotaPercentil);
+    if (oferta.precioActual / dolar >= cota) return { cota };
+    const fichas = [];
+    for (const v of validas.slice(0, cfg.ventas.fichas)) fichas.push({ ...v, vendidas: await vendidasDe(v.itemId) });
+    return { ...precioPorVentas(fichas, { minVentas: 0 }), cota };
+  }
 
   async function precio(oferta, fuente) {
     if (!dolar) return { estado: 'sin' };
     const consulta = consultaPara(oferta, fuente);
     if (!consulta) return { estado: 'sin' };
     await cargar();
-    const guardado = cache[consulta.clave];
-    if (guardado && diasEntre(guardado.visto, hoy) < cfg.vigenciaDias) return resultado(guardado, consulta.via);
+    const guardado = desdeCache(cache[consulta.clave], consulta, oferta);
+    if (guardado) return guardado;
     try {
-      const r = precioDePublicaciones(filtrarPorConsulta(await buscar(consulta.params), consulta));
-      cache[consulta.clave] = r ? { ...r, visto: hoy } : { sin: 1, visto: hoy };
+      let r;
+      if (porVentas(consulta.via)) {
+        r = await consultarPorVentas(consulta, oferta);
+      } else {
+        r = precioDePublicaciones(filtrarPorConsulta(await buscar(consulta.params), consulta)) ?? { sin: 1 };
+      }
+      cache[consulta.clave] = { ...r, visto: hoy };
       modificado = true;
+      if (r.cota !== undefined && r.ventas === undefined) return { estado: 'sin' };
       return resultado(cache[consulta.clave], consulta.via);
     } catch (error) {
       if (!(error instanceof SinCupo) && error !== corte) log(`eBay: "${oferta.nombre}" quedó pendiente (${error.message})`);
@@ -234,8 +329,7 @@ export function crearEbay({
     const consulta = consultaPara(oferta, fuente);
     if (!consulta) return null;
     await cargar();
-    const guardado = cache[consulta.clave];
-    return guardado && diasEntre(guardado.visto, hoy) < cfg.vigenciaDias ? resultado(guardado, consulta.via) : null;
+    return desdeCache(cache[consulta.clave], consulta, oferta);
   }
 
   async function guardar() {

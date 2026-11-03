@@ -172,3 +172,60 @@ test('consultaPara: las zapatillas de niños no se buscan por nombre (se compara
   assert.equal(consultaPara({ id: '2', marca: 'Nike', nombre: 'ZAPATILLAS NIKE SPORTSWEAR AIR FORCE 1 LV8 NIÑOS', km: 'nike|1 air force lv8', gen: null }, 'grid'), null);
   assert.equal(consultaPara({ id: '3', marca: 'Nike', nombre: 'ZAPATILLAS NIKE SPORTSWEAR KILLSHOT 2 HOMBRE', km: 'nike|2 killshot', gen: 'h' }, 'grid').via, 'nombre');
 });
+
+// ---------- Zapatillas: ventas reales (pedido del usuario, 2026-11-03) ----------
+
+test('precioPorVentas: mediana del precio de lo vendido, ponderada por unidades; con pocas ventas no hay referencia', async () => {
+  const { precioPorVentas } = await import('../src/nucleo/ebay.mjs');
+  const fichas = [
+    { precio: 300, vendidas: 0, url: 'a' },   // pedido alto que nadie compra: no cuenta
+    { precio: 90, vendidas: 2, url: 'b' },
+    { precio: 100, vendidas: 8, url: 'c' },
+    { precio: 120, vendidas: 1, url: 'd' },
+  ];
+  assert.deepEqual(precioPorVentas(fichas, { minVentas: 3 }), { usd: 100, n: 3, ventas: 11, url: 'c' });
+  assert.deepEqual(precioPorVentas([{ precio: 250, vendidas: 0 }, { precio: 300, vendidas: 0 }], { minVentas: 3 }), { sin: 1, ventas: 0 });
+  assert.deepEqual(precioPorVentas([{ precio: 80, vendidas: 2 }], { minVentas: 3 }), { sin: 1, ventas: 2 });
+});
+
+test('servicio (zapatillas): lee las fichas, exige ventas y no gasta fichas si la oferta ya es cara', async () => {
+  const { crearEbay } = await import('../src/nucleo/ebay.mjs');
+  const busqueda = [
+    { itemId: 'v1|1|0', title: 'Nike Air Force 1 07 Black CT2302-002', price: { value: '100', currency: 'USD' } },
+    { itemId: 'v1|2|0', title: 'Nike Air Force 1 07 Black CT2302-002 New', price: { value: '90', currency: 'USD' } },
+    { itemId: 'v1|3|0', title: 'Nike Air Force 1 07 Black CT2302-002 Size 10', price: { value: '150', currency: 'USD' } },
+  ];
+  const vendidas = { 'v1|1|0': 6, 'v1|2|0': 2, 'v1|3|0': 0 };
+  const pedidos = [];
+  const fetchFn = async (url) => {
+    pedidos.push(url);
+    if (url.includes('/oauth2/token')) return { status: 200, ok: true, json: async () => ({ access_token: 't' }) };
+    if (url.includes('/item_summary/search')) return { status: 200, ok: true, json: async () => ({ itemSummaries: busqueda }) };
+    const id = decodeURIComponent(url.split('/item/')[1]);
+    return { status: 200, ok: true, json: async () => ({ estimatedAvailabilities: [{ estimatedSoldQuantity: vendidas[id] }] }) };
+  };
+  const cfgV = { ...cfg, ventas: { activo: true, minVentas: 3, fichas: 8, cotaPercentil: 0.75 } };
+  const ebay = crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-03', rutaCache: 'x', fetchFn, cfg: cfgV, log: () => {} });
+  const zapa = { id: 'NICT2302-002', marca: 'Nike', nombre: "Air Force 1 '07", km: 'x', precioActual: 80000 }; // US$80
+  const r = await ebay.precio(zapa, 'moov');
+  assert.equal(r.estado, 'ok');
+  assert.equal(r.usd, 100, 'mediana de lo vendido: 2 a US$90 y 6 a US$100');
+  assert.equal(r.ventas, 8);
+  assert.equal(pedidos.filter((u) => u.includes('/buy/browse/v1/item/')).length, 3);
+
+  // Cara (más que el percentil 75 de lo publicado): no se leen fichas.
+  pedidos.length = 0;
+  const cara = { ...zapa, id: 'NICT2302-003', precioActual: 200000 };
+  busqueda.forEach((b) => { b.title = b.title.replace('CT2302-002', 'CT2302-003'); });
+  assert.equal((await ebay.precio(cara, 'moov')).estado, 'sin');
+  assert.equal(pedidos.filter((u) => u.includes('/buy/browse/v1/item/')).length, 0);
+});
+
+test('esSoloPerfume: perfumes sí; maquillaje, cremas, geles y after shave no', async () => {
+  const { esSoloPerfume } = await import('../src/nucleo/internacional.mjs');
+  assert.ok(esSoloPerfume({ nombre: 'Invictus Parfum 50 ml', ml: 50, cat: 'Fragancias' }));
+  assert.ok(esSoloPerfume({ nombre: 'Libre EDP 90 ml', ml: 90, cat: null }));
+  for (const nombre of ['Sauvage After Shave Lotion 100 ml', 'Good Girl Body Lotion 200 ml', 'One Million Shower Gel 150 ml', 'Revitalift Crema 50 ml'])
+    assert.ok(!esSoloPerfume({ nombre, ml: 100, cat: 'Fragancias' }), nombre);
+  assert.ok(!esSoloPerfume({ nombre: 'COLORSTAY SUEDE INK LIPSTICK', ml: null, cat: 'Maquillaje' }));
+});

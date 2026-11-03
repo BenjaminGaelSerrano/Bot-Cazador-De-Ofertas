@@ -46,6 +46,9 @@ export const config = {
   // terminaba en rojo); se pausó a pedido del usuario el 2026-11-02. Para probar si volvió: --fuente parfumerie --dry-run.
   fuentesPausadas: ['parfumerie'],
 
+  // De las perfumerías se avisan solo perfumes: ni maquillaje, ni cremas, ni tratamientos (pedido del usuario, 2026-11-03).
+  soloPerfumes: ['juleriaque', 'rouge', 'parfumerie'],
+
   fuentes: {
     juleriaque: {
       base: 'https://www.juleriaque.com.ar',
@@ -194,6 +197,11 @@ export const config = {
     // no vendidos, y la mediana quedaba por encima de lo que se paga; las 5 más baratas quedaban en el piso.
     percentil: 0.25,
     conEnvio: false,
+    // Zapatillas y ropa (búsqueda por código de modelo o por nombre): se exigen VENTAS, no publicaciones (pedido del
+    // usuario, 2026-11-03). Se leen las fichas de las primeras `fichas` publicaciones (orden de eBay, que favorece las
+    // que venden), se suman las unidades vendidas y el precio es la mediana de lo vendido, ponderada por unidades.
+    // Si la oferta ya cuesta más que el `cotaPercentil` de lo publicado, no se gastan fichas (no puede ser más barata).
+    ventas: { activo: true, minVentas: 3, fichas: 8, cotaPercentil: 0.75 },
   },
 
   // Provisorio hasta que eBay apruebe la cuenta: UPCitemdb (sin cuenta, 100 consultas por día, solo con código de

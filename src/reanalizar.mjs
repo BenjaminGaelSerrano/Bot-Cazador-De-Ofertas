@@ -1,6 +1,7 @@
 import { parseArgs } from 'node:util';
 import { config } from './config.mjs';
 import { correrFuente } from './correr.mjs';
+import { cupoDeCorrida, enviadosHoy, sumarEnviados } from './nucleo/envios.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
 import { crearCliente } from './nucleo/http.mjs';
 import { cargar as cargarHistorial } from './nucleo/historial.mjs';
@@ -95,7 +96,13 @@ if (!mercado && !args['sin-internacional']) {
 }
 
 console.log(`Reanálisis del ${fecha}${dryRun ? ' · DRY-RUN (no se manda nada)' : ''}${referencias ? '' : ' · sin referencia internacional'}`);
+// Tope diario de WhatsApp (CallMeBot deja de entregar en silencio pasado un límite que no publica).
+const rutaEnvios = `${args.datos}/envios.json`;
+const yaEnviadosHoy = await enviadosHoy(rutaEnvios, fecha);
+const maxMensajesTotal = cupoDeCorrida(config.maxMensajesTotalPorCorrida, config.maxMensajesPorDia, yaEnviadosHoy);
+console.log(`WhatsApp: ${yaEnviadosHoy} enviados hoy, quedan ${maxMensajesTotal} para esta corrida (tope diario ${config.maxMensajesPorDia}).`);
 const { resultados, mensajesUsados } = await correrFuentes({
+  maxMensajesTotal,
   nombres: Object.keys(fuentes),
   fuentes,
   fecha,
@@ -106,6 +113,8 @@ const { resultados, mensajesUsados } = await correrFuentes({
   maxMensajesPorFuente: 15, // forzado: que no quede nada afuera por el tope de 8 por tienda
   extra: { referencias, ebay: mercado, reiniciarAlertasAntesDe: '9999-12-31' }, // ignora todas las marcas de "ya avisado"
 });
+
+if (!dryRun && mensajesUsados > 0) await sumarEnviados(rutaEnvios, fecha, mensajesUsados);
 
 for (const r of resultados) {
   if (!r.ok) { console.error(`${r.nombre}: ${r.error.message}`); continue; }

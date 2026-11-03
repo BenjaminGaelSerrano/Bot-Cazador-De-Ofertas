@@ -147,6 +147,9 @@ export const config = {
 
   // Tope de WhatsApp por corrida entre todas las fuentes juntas.
   maxMensajesTotalPorCorrida: 40, // entre todas las tiendas; el bot frena antes si CallMeBot rechaza uno
+  // Tope por DÍA (hora de Argentina). CallMeBot dejó de entregar en silencio tras ~30 mensajes el 2026-11-02 (seguía
+  // respondiendo 200). Lo que no entra queda sin marcar y sale al día siguiente.
+  maxMensajesPorDia: 25,
 
   // Primera corrida de una fuente: se avisan solo las N mejores; el resto queda como línea base.
   primeraCorridaMaxOfertas: 8,

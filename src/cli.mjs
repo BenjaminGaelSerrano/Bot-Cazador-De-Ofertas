@@ -6,6 +6,7 @@ import { leerCatalogo as leerMoov } from './fuentes/moov.mjs';
 import { leerCatalogo as leerNewEra } from './fuentes/newera.mjs';
 import { leerCatalogo as leerParfumerie } from './fuentes/parfumerie.mjs';
 import { leerCatalogo as leerRouge } from './fuentes/rouge.mjs';
+import { cupoDeCorrida, enviadosHoy, sumarEnviados } from './nucleo/envios.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
 import { crearEbay } from './nucleo/ebay.mjs';
 import { crearUpcitemdb } from './nucleo/upcitemdb.mjs';
@@ -91,7 +92,13 @@ if (!ebay && config.internacional.activa) {
   });
 }
 
+// Tope diario de WhatsApp (CallMeBot deja de entregar en silencio pasado un límite que no publica).
+const rutaEnvios = `${args.datos}/envios.json`;
+const yaEnviadosHoy = await enviadosHoy(rutaEnvios, fecha);
+const maxMensajesTotal = cupoDeCorrida(config.maxMensajesTotalPorCorrida, config.maxMensajesPorDia, yaEnviadosHoy);
+console.log(`WhatsApp: ${yaEnviadosHoy} enviados hoy, quedan ${maxMensajesTotal} para esta corrida (tope diario ${config.maxMensajesPorDia}).`);
 const { resultados, fallaron, mensajesUsados, limiteEnvio } = await correrFuentes({
+  maxMensajesTotal,
   nombres,
   fuentes,
   fecha,
@@ -100,6 +107,8 @@ const { resultados, fallaron, mensajesUsados, limiteEnvio } = await correrFuente
   crearCliente: () => crearCliente({ pausaMs: args.pausa ? Number(args.pausa) : config.pausaMs }),
   extra: { referencias, ebay, avisosPausados: config.avisar.pausados ?? false },
 });
+
+if (!dryRun && mensajesUsados > 0) await sumarEnviados(rutaEnvios, fecha, mensajesUsados);
 
 if (ebay) {
   if (!dryRun) await ebay.guardar();

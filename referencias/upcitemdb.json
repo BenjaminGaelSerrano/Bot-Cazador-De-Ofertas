@@ -628,5 +628,49 @@
  "nom:adidas performance short adidas adizero gel mens": {
   "sin": 1,
   "visto": "2026-11-02"
+ },
+ "ean:3439600049855": {
+  "usd": 107.84,
+  "n": 2,
+  "url": "https://www.upcitemdb.com/norob/alink/?id=z2p2y223y2338474r2&tid=1&seq=1793677664&plt=bdeb0790a8a22e1caeead0e35f8a463d",
+  "tiendas": [
+   "UnbeatableSale.com",
+   "Kohl's"
+  ],
+  "visto": "2026-11-03"
+ },
+ "ean:8435415012027": {
+  "usd": 118.45,
+  "n": 1,
+  "url": "https://www.upcitemdb.com/norob/alink/?id=w2r203w2331374a4t2&tid=1&seq=1793677675&plt=64a6b1d199986a09450bd498b024a423",
+  "tiendas": [
+   "UnbeatableSale.com"
+  ],
+  "visto": "2026-11-03"
+ },
+ "ean:3616307080811": {
+  "sin": 1,
+  "visto": "2026-11-03"
+ },
+ "ean:3614274304350": {
+  "sin": 1,
+  "visto": "2026-11-03"
+ },
+ "ean:3616302020652": {
+  "usd": 185,
+  "n": 1,
+  "url": "https://www.upcitemdb.com/norob/alink/?id=13t243z2z20374a4w2&tid=1&seq=1793677708&plt=c0fba4df4826815c49ea096c855d2dee",
+  "tiendas": [
+   "Kohl's"
+  ],
+  "visto": "2026-11-03"
+ },
+ "cod:CT2302-002": {
+  "sin": 1,
+  "visto": "2026-11-03"
+ },
+ "cod:401332-04": {
+  "sin": 1,
+  "visto": "2026-11-03"
  }
 }

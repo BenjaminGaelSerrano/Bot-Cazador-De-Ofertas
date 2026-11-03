@@ -81,10 +81,15 @@ Además de ser ganga, cada oferta se juzga como negocio de reventa (se revende p
   - Se descartan **packs, lotes, kits, combos**, testers, decants, muestras, réplicas, usados y de chicos, y los precios
     absurdos (menos de la mitad de la mediana).
   - Hacen falta **al menos 5 publicaciones**; con menos, *sin referencia* y no se avisa.
-  - El precio es el **cuartil inferior (25 %)** de lo publicado, **sin envío**, × dólar blue medio. Motivo: son precios
-    pedidos, no vendidos (lo caro no se vende y sigue publicado), así que la mediana queda arriba de lo que se paga.
-- **Criterio de aviso** (usuario, 2026-11-02): vale la pena todo lo que cueste **menos que ese precio**, sin margen mínimo
-  ni requisito de demanda.
+  - **Perfumes:** el precio es el **cuartil inferior (25 %)** de lo publicado, **sin envío**, × dólar blue medio. Motivo:
+    son precios pedidos, no vendidos (lo caro no se vende y sigue publicado), así que la mediana queda arriba.
+  - **Zapatillas y ropa: ventas reales** (usuario, 2026-11-03: "no me importan las publicaciones sino las ventas"). Se leen
+    las fichas de las primeras 8 publicaciones del modelo, que traen cuántas unidades vendió cada una. Hacen falta **al
+    menos 3 unidades vendidas**; si no, no se avisa por más descuento que tenga (los Yeezy a US$200-300 tenían 0). El
+    precio es la **mediana de lo vendido**, ponderada por unidades.
+- **De las perfumerías, solo perfumes** (usuario, 2026-11-03): ni maquillaje, ni cremas, ni tratamientos, ni geles,
+  desodorantes o after shave.
+- **Criterio de aviso** (usuario, 2026-11-02): vale la pena todo lo que cueste **menos que ese precio**, sin margen mínimo.
 - Sin credenciales de eBay, el bot vuelve al cruce anterior: el menor precio con stock de *otra* tienda, por código de
   barras, por marca + tamaño + nombre (perfumería) o por marca y modelo (ropa y calzado, con `~`).
 - **Veredicto**: *buena* si el margen estimado (revendiendo un 5 % bajo el mercado) es de 40 % o más y la demanda no es

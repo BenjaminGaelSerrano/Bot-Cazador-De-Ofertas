@@ -18,8 +18,9 @@ const API = 'https://api.ebay.com';
 const limpiar = (s) => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
   .replace(/['’´`]/g, '').replace(/[^a-z0-9 -]+/g, ' ').replace(/\s+/g, ' ').trim();
 
-// Publicaciones que no son el producto nuevo y completo: muestras, decants, testers, réplicas, lotes, de chicos.
-const DESCARTE = /\b(decant|decants|sample|samples|tester|vial|mini|travel|unbox(ed)?|no box|without box|refill|empty|bottle only|replica|inspired|dupe|lot of|lots|bundle|set of|gift set|kids?|toddler|infant|baby|youth|gs|ps|td|preschool|grade school|used|pre ?owned|damaged)\b/;
+// Publicaciones que no son el producto nuevo y completo: muestras, decants, testers, réplicas, de chicos, y también packs,
+// lotes y combos (el 2026-11-03 un esmalte se comparaba con un "THREE PACK" y un labial con un lote de 5 productos).
+const DESCARTE = /\b(decant|decants|sample|samples|tester|vial|mini|travel|unbox(ed)?|no box|without box|refill|empty|bottle only|replica|inspired|dupe|lot|lots|bundle|set|sets|gift set|kit|combo|duo|trio|pack|packs|pk|\d+ ?(pk|pack|pcs|pieces|count|ct)|x ?\d|\d ?x|two|three|four|twin|assorted|variety|kids?|toddler|infant|baby|youth|gs|ps|td|preschool|grade school|used|pre ?owned|damaged)\b/;
 
 /** Código de modelo de Moov: el id sin las dos letras de la marca (NICW2288-111 -> CW2288-111). */
 export function codigoModelo(oferta, fuente) {
@@ -95,27 +96,36 @@ const mediana = (xs) => {
 };
 
 /**
- * Precio de mercado en USD a partir de las publicaciones de una búsqueda. Se descartan muestras, testers y similares;
- * después las publicaciones a menos de la mitad de la mediana (otro producto o un error); y del resto se toma la
- * mediana de las `tomar` más baratas. Hacen falta al menos `minimo` publicaciones. Devuelve `{ usd, n, url }` o null.
+ * Precio de mercado en USD a partir de las publicaciones de una búsqueda. Se descartan muestras, testers, packs y
+ * similares; después las publicaciones a menos de la mitad de la mediana (otro producto o un error); y del resto se toma
+ * el `percentil` (por defecto el cuartil inferior), sin envío salvo `conEnvio`. Son precios PEDIDOS, no vendidos: lo que
+ * está caro no se vende y sigue publicado, así que la mediana queda por encima de lo que se paga. Hacen falta al menos
+ * `minimo` publicaciones. Devuelve `{ usd, n, url }` o null.
  */
-export function precioDePublicaciones(items, { minimo = config.ebay.minPublicaciones, tomar = config.ebay.tomarMasBaratas } = {}) {
+export function precioDePublicaciones(items, {
+  minimo = config.ebay.minPublicaciones,
+  percentil = config.ebay.percentil ?? 0.25,
+  conEnvio = config.ebay.conEnvio ?? false,
+} = {}) {
   const validos = [];
   for (const it of items ?? []) {
     if (DESCARTE.test(limpiar(it.title))) continue;
     if (it.price?.currency && it.price.currency !== 'USD') continue;
     const precio = Number(it.price?.value);
     if (!(precio > 0)) continue;
-    const envio = it.shippingOptions?.find((o) => o.shippingCostType === 'FIXED')?.shippingCost?.value;
-    validos.push({ total: precio + (Number(envio) || 0), url: it.itemWebUrl });
+    const envio = conEnvio ? Number(it.shippingOptions?.find((o) => o.shippingCostType === 'FIXED')?.shippingCost?.value) || 0 : 0;
+    validos.push({ total: precio + envio, url: it.itemWebUrl });
   }
   if (validos.length < minimo) return null;
   const centro = mediana(validos.map((v) => v.total));
   const razonables = validos.filter((v) => v.total >= centro * 0.5).sort((a, b) => a.total - b.total);
   if (razonables.length < minimo) return null;
-  const baratas = razonables.slice(0, tomar);
-  const usd = Math.round(mediana(baratas.map((v) => v.total)) * 100) / 100;
-  return { usd, n: razonables.length, url: baratas[0].url };
+  // Percentil con interpolación lineal sobre los precios ordenados.
+  const pos = (razonables.length - 1) * percentil;
+  const abajo = Math.floor(pos);
+  const arriba = Math.min(abajo + 1, razonables.length - 1);
+  const valor = razonables[abajo].total + (razonables[arriba].total - razonables[abajo].total) * (pos - abajo);
+  return { usd: Math.round(valor * 100) / 100, n: razonables.length, url: razonables[abajo].url };
 }
 
 class SinCupo extends Error {}

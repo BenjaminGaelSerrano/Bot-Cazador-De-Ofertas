@@ -23,10 +23,10 @@ const ONE_MILLION = [
   item('Paco Rabanne 1 Million 3.4 oz', 20),                 // a menos de la mitad de la mediana: fuera
 ];
 
-test('precioDePublicaciones: sin testers ni decants ni precios absurdos, mediana de las 5 más baratas con envío', () => {
-  const r = precioDePublicaciones(ONE_MILLION, { minimo: 3, tomar: 5 });
-  // Quedan 72, 75.99, 79, 84, 88 (el de 20 se descarta): la mediana es 79.
-  assert.equal(r.usd, 79);
+test('precioDePublicaciones: sin testers ni decants ni precios absurdos; cuartil inferior, sin envío', () => {
+  const r = precioDePublicaciones(ONE_MILLION, { minimo: 3, percentil: 0.25, conEnvio: false });
+  // Sin envío quedan 70, 72, 79, 84, 88 (el de 20 se descarta por absurdo): el cuartil inferior es 72.
+  assert.equal(r.usd, 72);
   assert.equal(r.n, 5);
   assert.ok(r.url.includes('ebay.com'));
 });
@@ -70,7 +70,7 @@ function fetchSimulado({ items = ONE_MILLION, estadoBusqueda = 200, estadoToken 
   return { fetchFn, pedidos };
 }
 
-const cfg = { vigenciaDias: 3, maxConsultasPorCorrida: 10, limite: 50, minPublicaciones: 3, tomarMasBaratas: 5 };
+const cfg = { vigenciaDias: 3, maxConsultasPorCorrida: 10, limite: 50, minPublicaciones: 3, percentil: 0.25, conEnvio: false };
 const oferta = { id: '1', ean: '3349666007921', marca: 'RABANNE', nombre: 'One Million EDT 100 ml', ml: 100 };
 
 test('precio: pide token una vez, busca por gtin en EBAY_US con filtros de nuevo y precio fijo, y convierte a pesos', async () => {
@@ -78,7 +78,7 @@ test('precio: pide token una vez, busca por gtin en EBAY_US con filtros de nuevo
   const { fetchFn, pedidos } = fetchSimulado();
   const ebay = crearEbay({ clientId: 'id', clientSecret: 'secreto', dolar: 1555, hoy: '2026-11-02', rutaCache: join(dir, 'e.json'), fetchFn, cfg, log: () => {} });
   const r = await ebay.precio(oferta, 'juleriaque');
-  assert.deepEqual({ ...r, url: undefined }, { estado: 'ok', precio: 122845, usd: 79, n: 5, via: 'ean', url: undefined });
+  assert.deepEqual({ ...r, url: undefined }, { estado: 'ok', precio: Math.round(72 * 1555), usd: 72, n: 5, via: 'ean', url: undefined });
 
   const [token, busqueda] = pedidos;
   assert.ok(token.url.endsWith('/identity/v1/oauth2/token'));
@@ -95,7 +95,7 @@ test('precio: pide token una vez, busca por gtin en EBAY_US con filtros de nuevo
   await ebay.precio(oferta, 'juleriaque');
   assert.equal(pedidos.length, 2);
   await ebay.guardar();
-  assert.equal(JSON.parse(await readFile(join(dir, 'e.json'), 'utf8'))['ean:3349666007921'].usd, 79);
+  assert.equal(JSON.parse(await readFile(join(dir, 'e.json'), 'utf8'))['ean:3349666007921'].usd, 72);
 });
 
 test('precio: sin publicaciones suficientes queda "sin" y se guarda; sin forma de buscar no pide nada', async () => {
@@ -152,4 +152,17 @@ test('filtrarPorConsulta (código de barras): descarta los títulos con otro tam
   ];
   const r = filtrarPorConsulta(items, { via: 'ean', params: { gtin: '3349666007921' }, ml: 100 });
   assert.deepEqual(r.map((x) => x.title), [items[0].title, items[2].title]);
+});
+
+test('precioDePublicaciones: packs, lotes y combos no cuentan (casos reales del 2026-11-03)', () => {
+  const items = [
+    item('BL Sally Hansen Double Duty Base & Top Coat 0.45 oz - *THREE PACK*', 26.83),
+    item('Sally Hansen Double Duty Base & Top Coat Nail Polish #45109 3 Packs New', 19.99),
+    item('Revlon Lot Liners, Pencil, Balm, Lipstick, Colorstay 303, 015, 456, 301, 008 New', 15),
+    item('Sally Hansen Double Duty Base and Top Coat Quick Dry', 8.92),
+    item('Sally Hansen Double Duty Base & Top Coat 2 pk', 14),
+  ];
+  const r = precioDePublicaciones(items, { minimo: 1, percentil: 0.25 });
+  assert.equal(r.n, 1);
+  assert.equal(r.usd, 8.92);
 });

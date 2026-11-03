@@ -77,7 +77,7 @@ if (config.ebay.activo && process.env.EBAY_CLIENT_ID && process.env.EBAY_CLIENT_
     clientSecret: process.env.EBAY_CLIENT_SECRET,
     dolar,
     hoy: fecha,
-    rutaCache: `${args.datos}/referencias/ebay.json`,
+    rutaCache: `${args.datos}/referencias/ebay-v2.json`,
   });
   console.log('Precio de mercado: eBay EE. UU.');
 } else if (config.upcitemdb.activo) {

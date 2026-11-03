@@ -182,16 +182,18 @@ export const config = {
 
   // Precio de mercado en eBay EE. UU. (spec 007, pedido del usuario del 2026-11-02): reemplaza al cruce entre tiendas
   // argentinas y a Perfumania. Se activa solo si están EBAY_CLIENT_ID y EBAY_CLIENT_SECRET; si no, sigue el cruce local.
+  // Caché en referencias/ebay-v2.json: el cálculo cambió el 2026-11-03 (cuartil inferior, sin envío, sin packs).
   ebay: {
     activo: true,
     vigenciaDias: 3,             // un precio de eBay se reutiliza 3 días (después se vuelve a consultar)
     maxConsultasPorCorrida: 1500, // eBay permite ~5.000 por día a la Browse API; el bot corre 2 veces por día
     concurrencia: 4,             // consultas en paralelo
     limite: 50,                  // publicaciones por consulta
-    minPublicaciones: 3,         // con menos, no hay precio de mercado confiable
-    // Precio de mercado = mediana de TODAS las publicaciones válidas (con envío). Con las 5 más baratas quedaba en el piso:
-    // 2026-11-03, One Million EDT 100 ml US$51 (5 más baratas) contra US$79 (mediana); Air Force 1 '07 US$80 contra 100.
-    tomarMasBaratas: 1000,
+    minPublicaciones: 5,         // con menos, un par de publicaciones caras mueven todo (Air Rift: 4, de US$59 a 130)
+    // Precio de mercado = cuartil inferior (25 %) de las publicaciones válidas, SIN envío (2026-11-03): son precios pedidos,
+    // no vendidos, y la mediana quedaba por encima de lo que se paga; las 5 más baratas quedaban en el piso.
+    percentil: 0.25,
+    conEnvio: false,
   },
 
   // Provisorio hasta que eBay apruebe la cuenta: UPCitemdb (sin cuenta, 100 consultas por día, solo con código de

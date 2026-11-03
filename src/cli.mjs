@@ -80,6 +80,8 @@ if (config.ebay.activo && process.env.EBAY_CLIENT_ID && process.env.EBAY_CLIENT_
     rutaCache: `${args.datos}/referencias/ebay-v2.json`,
   });
   console.log('Precio de mercado: eBay EE. UU.');
+  // Si las credenciales fallan, la primera búsqueda lo detecta y lo avisa como falla de fuente.
+  await ebay.ajustarCupo().catch(() => {});
 } else if (config.upcitemdb.activo) {
   // Provisorio hasta que eBay apruebe la cuenta: mismo contrato, solo productos con código de barras.
   ebay = crearUpcitemdb({ dolar, hoy: fecha, rutaCache: `${args.datos}/referencias/upcitemdb.json` });

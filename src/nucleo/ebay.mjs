@@ -194,6 +194,12 @@ export function crearEbay({
   let modificado = false;
   let consultas = 0;
   let corte = null;
+  let tope = cfg.maxConsultasPorCorrida;
+  // Unidades vendidas por publicación ({ itemId: [vendidas, visto] }): se reutilizan `vigenciaFichasDias` días, así al
+  // renovar un modelo solo se leen las fichas de publicaciones nuevas (cada ficha es una consulta del cupo).
+  const rutaFichas = rutaCache.replace(/\.json$/, '') + '-fichas.json';
+  let fichasGuardadas = {};
+  let fichasModificadas = false;
 
   async function cargar() {
     if (cargado) return;
@@ -203,6 +209,40 @@ export function crearEbay({
     } catch (error) {
       if (error.code !== 'ENOENT') log(`Caché de eBay ilegible (${error.message}): se arranca vacío.`);
     }
+    try {
+      fichasGuardadas = JSON.parse(await readFile(rutaFichas, 'utf8'));
+    } catch (error) {
+      if (error.code !== 'ENOENT') log(`Caché de fichas de eBay ilegible (${error.message}): se arranca vacío.`);
+    }
+  }
+
+  /**
+   * Ajusta el tope de la corrida a lo que eBay dice que queda hoy (el cupo diario se renueva a las 08:00 UTC). Si todavía
+   * falta una corrida programada antes de que se renueve (`reservaHastaUtc`), se le deja su parte: así una corrida manual
+   * no deja sin cupo a la de la noche. Si no se puede leer el cupo, queda el tope fijo.
+   */
+  async function ajustarCupo(ahora = new Date()) {
+    try {
+      if (!token) await obtenerToken();
+      const res = await fetchFn(`${API}/developer/analytics/v1_beta/rate_limit/?api_name=browse&api_context=buy`, {
+        headers: { Authorization: `Bearer ${token}`, Accept: 'application/json' },
+        signal: AbortSignal.timeout(config.timeoutPedidoMs),
+      });
+      if (!res.ok) throw new Error(`respondió ${res.status}`);
+      const datos = await res.json();
+      const recurso = datos.rateLimits?.flatMap((l) => l.resources ?? []).find((r) => r.name === 'buy.browse');
+      const restante = recurso?.rates?.[0]?.remaining;
+      if (typeof restante !== 'number') throw new Error('sin dato de cupo');
+      const hora = ahora.getUTCHours() + ahora.getUTCMinutes() / 60;
+      const quedaOtra = hora >= 8 && hora < (cfg.reservaHastaUtc ?? 22.5);
+      const reserva = quedaOtra ? config.ebay.maxConsultasPorCorrida : 0; // lo que usa una corrida programada
+      tope = Math.max(0, Math.min(cfg.maxConsultasPorCorrida, restante - reserva - (cfg.margenCupo ?? 50)));
+      log(`eBay: quedan ${restante} consultas hoy${reserva ? ` (se reservan ${reserva} para la próxima corrida)` : ''}; esta corrida usa hasta ${tope}.`);
+    } catch (error) {
+      if (error.message.startsWith('eBay rechazó las credenciales')) throw error;
+      log(`eBay: no se pudo leer el cupo del día (${error.message}); tope fijo de ${tope}.`);
+    }
+    return tope;
   }
 
   async function obtenerToken() {
@@ -221,7 +261,7 @@ export function crearEbay({
 
   async function buscar(params, reintento = false) {
     if (corte) throw corte;
-    if (consultas >= cfg.maxConsultasPorCorrida) throw new SinCupo();
+    if (consultas >= tope) throw new SinCupo();
     if (!token) await obtenerToken();
     consultas++;
     const qs = new URLSearchParams({
@@ -247,7 +287,7 @@ export function crearEbay({
   /** Ficha de una publicación: cuántas unidades vendió. Cuenta como una consulta del cupo. */
   async function vendidasDe(itemId, reintento = false) {
     if (corte) throw corte;
-    if (consultas >= cfg.maxConsultasPorCorrida) throw new SinCupo();
+    if (consultas >= tope) throw new SinCupo();
     if (!token) await obtenerToken();
     consultas++;
     const res = await fetchFn(`${API}/buy/browse/v1/item/${encodeURIComponent(itemId)}`, {
@@ -294,7 +334,18 @@ export function crearEbay({
     const cota = percentilDe(validas.map((v) => v.precio), cfg.ventas.cotaPercentil);
     if (oferta.precioActual / dolar >= cota) return { cota };
     const fichas = [];
-    for (const v of validas.slice(0, cfg.ventas.fichas)) fichas.push({ ...v, vendidas: await vendidasDe(v.itemId) });
+    for (const v of validas.slice(0, cfg.ventas.fichas)) {
+      const previa = fichasGuardadas[v.itemId];
+      let vendidas;
+      if (previa && diasEntre(previa[1], hoy) < (cfg.ventas.vigenciaFichasDias ?? 7)) {
+        vendidas = previa[0];
+      } else {
+        vendidas = await vendidasDe(v.itemId);
+        fichasGuardadas[v.itemId] = [vendidas, hoy];
+        fichasModificadas = true;
+      }
+      fichas.push({ ...v, vendidas });
+    }
     return { ...precioPorVentas(fichas, { minVentas: 0 }), cota };
   }
 
@@ -332,12 +383,21 @@ export function crearEbay({
     return desdeCache(cache[consulta.clave], consulta, oferta);
   }
 
+  async function escribir(ruta, datos) {
+    await mkdir(dirname(ruta), { recursive: true });
+    const temporal = `${ruta}.tmp`;
+    await writeFile(temporal, `${JSON.stringify(datos, null, 1)}\n`, 'utf8');
+    await rename(temporal, ruta);
+  }
+
   async function guardar() {
-    if (!modificado) return;
-    await mkdir(dirname(rutaCache), { recursive: true });
-    const temporal = `${rutaCache}.tmp`;
-    await writeFile(temporal, `${JSON.stringify(cache, null, 1)}\n`, 'utf8');
-    await rename(temporal, rutaCache);
+    if (modificado) await escribir(rutaCache, cache);
+    if (fichasModificadas) {
+      // Se descartan las fichas vencidas para que el archivo no crezca sin fin.
+      const vigentes = Object.fromEntries(Object.entries(fichasGuardadas)
+        .filter(([, [, visto]]) => diasEntre(visto, hoy) < (cfg.ventas?.vigenciaFichasDias ?? 7)));
+      await escribir(rutaFichas, vigentes);
+    }
   }
 
   return {
@@ -345,6 +405,8 @@ export function crearEbay({
     precio,
     enCache,
     guardar,
+    ajustarCupo,
+    get tope() { return tope; },
     get consultas() { return consultas; },
     get corte() { return corte; },
   };

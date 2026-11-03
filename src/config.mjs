@@ -201,7 +201,12 @@ export const config = {
     // usuario, 2026-11-03). Se leen las fichas de las primeras `fichas` publicaciones (orden de eBay, que favorece las
     // que venden), se suman las unidades vendidas y el precio es la mediana de lo vendido, ponderada por unidades.
     // Si la oferta ya cuesta más que el `cotaPercentil` de lo publicado, no se gastan fichas (no puede ser más barata).
-    ventas: { activo: true, minVentas: 3, fichas: 8, cotaPercentil: 0.75 },
+    // `vigenciaFichasDias`: las unidades vendidas de cada publicación se reutilizan una semana (cuestan 1 consulta cada una).
+    ventas: { activo: true, minVentas: 3, fichas: 8, cotaPercentil: 0.75, vigenciaFichasDias: 7 },
+    // Cupo diario compartido (2026-11-03: unas corridas manuales gastaron las 5.000 del día y la de la noche quedó sin
+    // nada). Al arrancar se lee lo que queda; hasta las 22:30 UTC (la corrida de las 19:41 AR) se reserva su parte.
+    reservaHastaUtc: 22.5,
+    margenCupo: 50,
   },
 
   // Provisorio hasta que eBay apruebe la cuenta: UPCitemdb (sin cuenta, 100 consultas por día, solo con código de

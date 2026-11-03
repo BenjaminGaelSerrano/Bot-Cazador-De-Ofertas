@@ -229,3 +229,58 @@ test('esSoloPerfume: perfumes sí; maquillaje, cremas, geles y after shave no', 
     assert.ok(!esSoloPerfume({ nombre, ml: 100, cat: 'Fragancias' }), nombre);
   assert.ok(!esSoloPerfume({ nombre: 'COLORSTAY SUEDE INK LIPSTICK', ml: null, cat: 'Maquillaje' }));
 });
+
+test('fichas: las unidades vendidas de una publicación se reutilizan y se guardan aparte', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'fichas-'));
+  const busqueda = [
+    { itemId: 'v1|1|0', title: 'Nike Air Force 1 07 Black CT2302-002', price: { value: '100', currency: 'USD' } },
+    { itemId: 'v1|2|0', title: 'Nike Air Force 1 07 Black CT2302-002 New', price: { value: '90', currency: 'USD' } },
+  ];
+  let fichasLeidas = 0;
+  const fetchFn = async (url) => {
+    if (url.includes('/oauth2/token')) return { status: 200, ok: true, json: async () => ({ access_token: 't' }) };
+    if (url.includes('/item_summary/search')) return { status: 200, ok: true, json: async () => ({ itemSummaries: busqueda }) };
+    fichasLeidas++;
+    return { status: 200, ok: true, json: async () => ({ estimatedAvailabilities: [{ estimatedSoldQuantity: 4 }] }) };
+  };
+  const cfgV = { ...cfg, vigenciaDias: 0, ventas: { activo: true, minVentas: 3, fichas: 8, cotaPercentil: 0.75, vigenciaFichasDias: 7 } };
+  const zapa = { id: 'NICT2302-002', marca: 'Nike', nombre: "Air Force 1 '07", km: 'x', precioActual: 80000 };
+  const rutaCache = join(dir, 'ebay-v2.json');
+  const a = crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-03', rutaCache, fetchFn, cfg: cfgV, log: () => {} });
+  assert.equal((await a.precio(zapa, 'moov')).estado, 'ok');
+  assert.equal(fichasLeidas, 2);
+  await a.guardar();
+  assert.deepEqual(JSON.parse(await readFile(join(dir, 'ebay-v2-fichas.json'), 'utf8'))['v1|1|0'], [4, '2026-11-03']);
+
+  // Otra corrida 3 días después: el precio se vuelve a buscar (vigencia 0) pero las fichas no se vuelven a leer.
+  const b = crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-06', rutaCache, fetchFn, cfg: cfgV, log: () => {} });
+  const r = await b.precio(zapa, 'moov');
+  assert.equal(r.ventas, 8);
+  assert.equal(fichasLeidas, 2);
+  assert.equal(b.consultas, 1, 'solo la búsqueda');
+
+  // Vencidas (8 días): se leen de nuevo.
+  const c = crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-11', rutaCache, fetchFn, cfg: cfgV, log: () => {} });
+  await c.precio(zapa, 'moov');
+  assert.equal(fichasLeidas, 4);
+});
+
+test('cupo del día: deja la parte de la corrida de la noche y usa todo lo que queda en la última', async () => {
+  const conRestante = (remaining) => async (url) => {
+    if (url.includes('/oauth2/token')) return { status: 200, ok: true, json: async () => ({ access_token: 't' }) };
+    return { status: 200, ok: true, json: async () => ({ rateLimits: [{ apiContext: 'buy', apiName: 'browse', resources: [{ name: 'buy.browse', rates: [{ limit: 5000, remaining }] }] }] }) };
+  };
+  const crear = (remaining) => crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-03', rutaCache: 'x', fetchFn: conRestante(remaining), cfg: { ...cfg, maxConsultasPorCorrida: 2400, reservaHastaUtc: 22.5, margenCupo: 50 }, log: () => {} });
+  const max = (await import('../src/config.mjs')).config.ebay.maxConsultasPorCorrida;
+  // Mañana (12:17 UTC), cupo entero: la corrida usa su tope.
+  assert.equal(await crear(5000).ajustarCupo(new Date('2026-11-04T12:17:00Z')), Math.min(2400, 5000 - max - 50));
+  // Corrida manual a la tarde, después de la de la mañana: solo lo que sobra por encima de la reserva.
+  assert.equal(await crear(2600).ajustarCupo(new Date('2026-11-04T18:00:00Z')), Math.max(0, 2600 - max - 50));
+  // Noche (22:41 UTC): usa lo que queda.
+  assert.equal(await crear(2600).ajustarCupo(new Date('2026-11-04T22:41:00Z')), 2400);
+  assert.equal(await crear(300).ajustarCupo(new Date('2026-11-04T22:41:00Z')), 250);
+  // Sin dato de cupo: queda el tope fijo.
+  const sinDato = crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-03', rutaCache: 'x', cfg: { ...cfg, maxConsultasPorCorrida: 2400 }, log: () => {},
+    fetchFn: async (url) => (url.includes('/oauth2/token') ? { status: 200, ok: true, json: async () => ({ access_token: 't' }) } : { status: 500, ok: false }) });
+  assert.equal(await sinDato.ajustarCupo(), 2400);
+});

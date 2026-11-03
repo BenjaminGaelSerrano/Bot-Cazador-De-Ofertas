@@ -73,6 +73,7 @@ let mercado = null;
 if (config.ebay.activo && process.env.EBAY_CLIENT_ID && process.env.EBAY_CLIENT_SECRET) {
   const cfgE = { ...config.ebay, ...(args['max-pedidos'] ? { maxConsultasPorCorrida: Number(args['max-pedidos']) } : {}) };
   mercado = crearEbay({ clientId: process.env.EBAY_CLIENT_ID, clientSecret: process.env.EBAY_CLIENT_SECRET, dolar, hoy: fecha, rutaCache: `${args.datos}/referencias/ebay-v2.json`, cfg: cfgE });
+  await mercado.ajustarCupo().catch(() => {});
 } else if (config.upcitemdb.activo) {
   const cfgU = { ...config.upcitemdb, ...(args['max-pedidos'] ? { maxConsultasPorCorrida: Number(args['max-pedidos']) } : {}) };
   mercado = crearUpcitemdb({ dolar, hoy: fecha, rutaCache: `${args.datos}/referencias/upcitemdb.json`, cfg: cfgU });

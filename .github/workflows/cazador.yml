@@ -2,22 +2,22 @@ name: Cazador de ofertas
 
 on:
   schedule:
-    # Cada 2 horas desde que eBay renueva el cupo (05:00 AR). Minuto no redondo: a la hora en punto GitHub demora más los
+    # Cada 2 horas desde las 19:43 AR (pedido del usuario, 2026-11-03). Minuto no redondo: a la hora en punto GitHub demora más los
     # programados. Repo público: los minutos de Actions no tienen límite. Cada 1 hora se puede, pero leer los catálogos tan
     # seguido arriesga que las tiendas bloqueen (Parfumerie, 2026-10-23).
     # TIENEN QUE COINCIDIR con config.ebay.corridasUtc (el cupo de eBay se reparte entre estas corridas).
-    - cron: '17 8 * * *'   # 05:17 en Argentina
-    - cron: '17 10 * * *'  # 07:17 en Argentina
-    - cron: '17 12 * * *'  # 09:17 en Argentina
-    - cron: '17 14 * * *'  # 11:17 en Argentina
-    - cron: '17 16 * * *'  # 13:17 en Argentina
-    - cron: '17 18 * * *'  # 15:17 en Argentina
-    - cron: '17 20 * * *'  # 17:17 en Argentina
-    - cron: '17 22 * * *'  # 19:17 en Argentina
-    - cron: '17 0 * * *'   # 21:17 en Argentina
-    - cron: '17 2 * * *'   # 23:17 en Argentina
-    - cron: '17 4 * * *'   # 01:17 en Argentina
-    - cron: '17 6 * * *'   # 03:17 en Argentina
+    - cron: '43 22 * * *'  # 19:43 en Argentina
+    - cron: '43 0 * * *'   # 21:43 en Argentina
+    - cron: '43 2 * * *'   # 23:43 en Argentina
+    - cron: '43 4 * * *'   # 01:43 en Argentina
+    - cron: '43 6 * * *'   # 03:43 en Argentina
+    - cron: '43 8 * * *'   # 05:43 en Argentina
+    - cron: '43 10 * * *'  # 07:43 en Argentina
+    - cron: '43 12 * * *'  # 09:43 en Argentina
+    - cron: '43 14 * * *'  # 11:43 en Argentina
+    - cron: '43 16 * * *'  # 13:43 en Argentina
+    - cron: '43 18 * * *'  # 15:43 en Argentina
+    - cron: '43 20 * * *'  # 17:43 en Argentina
   workflow_dispatch:
     inputs:
       dry_run:

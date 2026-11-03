@@ -35,7 +35,8 @@ const { values: args } = parseArgs({
 // Para correr en local: las credenciales se leen de .env si existe (en Actions vienen de los secrets).
 try { process.loadEnvFile('.env'); } catch { /* sin .env */ }
 
-const nombres = args.fuente === 'todas' ? Object.keys(FUENTES) : args.fuente.split(',').map((s) => s.trim()).filter(Boolean);
+// "todas" deja afuera las fuentes pausadas (config.fuentesPausadas); se pueden correr igual nombrándolas.
+const nombres = args.fuente === 'todas' ? Object.keys(FUENTES).filter((n) => !(config.fuentesPausadas ?? []).includes(n)) : args.fuente.split(',').map((s) => s.trim()).filter(Boolean);
 const desconocidas = nombres.filter((n) => !FUENTES[n]);
 if (nombres.length === 0 || desconocidas.length > 0) {
   console.error(`Fuente desconocida: ${desconocidas.join(', ') || '(vacía)'}. Disponibles: ${Object.keys(FUENTES).join(', ')}, todas`);

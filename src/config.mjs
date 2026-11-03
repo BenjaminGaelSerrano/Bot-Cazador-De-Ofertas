@@ -42,6 +42,10 @@ export const config = {
   // línea base muchas ofertas buenas que nunca llegaron al WhatsApp. Poner null para no reiniciar.
   reiniciarAlertasAntesDe: '2026-10-23',
 
+  // Fuentes que no se leen en las corridas programadas. Parfumerie bloquea al bot desde el 2026-10-23 (cada corrida
+  // terminaba en rojo); se pausó a pedido del usuario el 2026-11-02. Para probar si volvió: --fuente parfumerie --dry-run.
+  fuentesPausadas: ['parfumerie'],
+
   fuentes: {
     juleriaque: {
       base: 'https://www.juleriaque.com.ar',

@@ -116,7 +116,8 @@ const { resultados, mensajesUsados } = await correrFuentes({
   crearCliente: () => null,
   corrida: correrFuente, // sin avisos de falla: no se lee ningún sitio
   maxMensajesPorFuente: 15, // forzado: que no quede nada afuera por el tope de 8 por tienda
-  extra: { referencias, ebay: mercado, reiniciarAlertasAntesDe: '9999-12-31' }, // ignora todas las marcas de "ya avisado"
+  // Ignora las marcas de "ya avisado" sin borrarlas: así alertas.json queda con las de antes más las de este envío.
+  extra: { referencias, ebay: mercado, ignorarAvisadas: true }, // ignora todas las marcas de "ya avisado"
 });
 
 if (!dryRun && mensajesUsados > 0) await sumarEnviados(rutaEnvios, fecha, mensajesUsados);

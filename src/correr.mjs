@@ -39,6 +39,8 @@ export async function correrFuente({
   formato = config.formatoMensaje, // 'tabla' | 'detalle'
   veredictosAvisables = config.avisar.veredictos,
   avisosPausados = false,
+  // Reanálisis forzado: avisa aunque ya se hayan avisado, sin borrar las marcas (las de otras tiendas se conservan).
+  ignorarAvisadas = false,
   cfgReventa = config.reventa, // las pruebas de la mecánica usan los parámetros de la spec 003 // el CLI pasa config.avisar.pausados; los reenvíos y pruebas no se pausan
   reiniciarAlertasAntesDe = config.reiniciarAlertasAntesDe,
   // Estado de envío compartido por todas las tiendas de una corrida: cuántos mensajes salieron y si CallMeBot ya
@@ -116,7 +118,8 @@ export async function correrFuente({
   });
   let pendientes = gangas
     // Solo se avisa lo que vale la pena (por defecto, las "buena"). Lo demás no se marca: se reevalúa en cada corrida.
-    .filter((g) => !avisosPausados && veredictosAvisables.includes(g.puntaje.veredicto) && debeAvisar(estado, clave(g.oferta), g.oferta.precioActual))
+    .filter((g) => !avisosPausados && veredictosAvisables.includes(g.puntaje.veredicto)
+      && (ignorarAvisadas || debeAvisar(estado, clave(g.oferta), g.oferta.precioActual)))
     .sort(compararPorReventa);
 
   // Primera corrida de una fuente: casi todo el catálogo parece "nuevo". Se avisan solo las mejores y el

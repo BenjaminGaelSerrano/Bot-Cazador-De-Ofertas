@@ -300,3 +300,20 @@ test('eBay: el margen sale del precio de eBay, no de otra tienda; sin precio de 
   assert.equal(aviso.fuenteMercado, 'ebay');
   assert.equal(aviso.usd, 103);
 });
+
+test('ignorarAvisadas: vuelve a avisar lo ya avisado y conserva las marcas de otras tiendas', async () => {
+  const e = await entorno();
+  await e.sembrar('moov', [oferta(1, { precioActual: 200000 })]);
+  e.poner([oferta(1, { precioActual: 100000, precioLista: 200000 })]);
+  await e.correr('2026-10-22');
+  assert.equal(e.enviados.length, 1);
+  const { writeFile } = await import('node:fs/promises');
+  const alertas = await e.leerJson('alertas.json');
+  alertas['rouge:99'] = { precio: 5000, fecha: '2026-10-21' };
+  await writeFile(join(e.directorioDatos, 'alertas.json'), JSON.stringify(alertas));
+  await e.correr('2026-10-22');
+  assert.equal(e.enviados.length, 1, 'sin forzar no repite');
+  await e.correr('2026-10-22', { ignorarAvisadas: true });
+  assert.equal(e.enviados.length, 2, 'forzado repite');
+  assert.ok((await e.leerJson('alertas.json'))['rouge:99'], 'la marca de otra tienda sigue');
+});

@@ -1146,5 +1146,17 @@
  "juleriaque:2049": {
   "precio": 118500,
   "fecha": "2026-11-02"
+ },
+ "juleriaque:12515": {
+  "precio": 112500,
+  "fecha": "2026-11-02"
+ },
+ "juleriaque:17333": {
+  "precio": 133000,
+  "fecha": "2026-11-02"
+ },
+ "juleriaque:14672": {
+  "precio": 186200,
+  "fecha": "2026-11-02"
  }
 }

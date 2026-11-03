@@ -73,10 +73,18 @@ Además de ser ganga, cada oferta se juzga como negocio de reventa (se revende p
 - **Precio de mercado: eBay EE. UU.** (spec 007, decisión del usuario del 2026-11-02). El precio de otra tienda
   argentina resultó inflado 2 a 3 veces respecto de EE. UU. (es su precio de lista), así que no sirve como mercado. Se
   consulta la API oficial de eBay (Browse) solo por los productos en oferta: por código de barras; si no hay, por código
-  de modelo del fabricante; y para ropa y calzado sin códigos, por marca + modelo + género (aproximado, con `~`). El
-  precio es la mediana de las 5 publicaciones nuevas más baratas de vendedores de EE. UU., con envío, × dólar blue
-  medio, y hacen falta al menos 3 publicaciones. Esto cumple también la condición 2 (referencia internacional): si el
-  costo supera el precio de eBay, el veredicto es *evitar*.
+  de modelo del fabricante; y para ropa y calzado sin códigos, por marca + modelo + género (aproximado, con `~`). Esto
+  cumple también la condición 2 (referencia internacional): si el costo supera el precio de eBay, no es ganga.
+- **Cómo se calcula el precio de eBay** (criterio fijado por el usuario el 2026-11-03, "de ahora en adelante"):
+  - Solo publicaciones **nuevas, a precio fijo, de vendedores de EE. UU.**, y del **mismo producto**: por código de modelo
+    el título tiene que tener el código; por código de barras, el mismo tamaño (±5 %).
+  - Se descartan **packs, lotes, kits, combos**, testers, decants, muestras, réplicas, usados y de chicos, y los precios
+    absurdos (menos de la mitad de la mediana).
+  - Hacen falta **al menos 5 publicaciones**; con menos, *sin referencia* y no se avisa.
+  - El precio es el **cuartil inferior (25 %)** de lo publicado, **sin envío**, × dólar blue medio. Motivo: son precios
+    pedidos, no vendidos (lo caro no se vende y sigue publicado), así que la mediana queda arriba de lo que se paga.
+- **Criterio de aviso** (usuario, 2026-11-02): vale la pena todo lo que cueste **menos que ese precio**, sin margen mínimo
+  ni requisito de demanda.
 - Sin credenciales de eBay, el bot vuelve al cruce anterior: el menor precio con stock de *otra* tienda, por código de
   barras, por marca + tamaño + nombre (perfumería) o por marca y modelo (ropa y calzado, con `~`).
 - **Veredicto**: *buena* si el margen estimado (revendiendo un 5 % bajo el mercado) es de 40 % o más y la demanda no es

@@ -284,3 +284,65 @@ test('cupo del día: deja la parte de la corrida de la noche y usa todo lo que q
     fetchFn: async (url) => (url.includes('/oauth2/token') ? { status: 200, ok: true, json: async () => ({ access_token: 't' }) } : { status: 500, ok: false }) });
   assert.equal(await sinDato.ajustarCupo(), 2400);
 });
+
+// Fetch simulado para zapatillas: `pubs` = [{ precio, vendidas }] en el orden de eBay.
+function ebayDeZapas(pubs, { dolar = 1000, cfgExtra = {} } = {}) {
+  const leidas = [];
+  let busquedas = 0;
+  const fetchFn = async (url) => {
+    if (url.includes('/oauth2/token')) return { status: 200, ok: true, json: async () => ({ access_token: 't' }) };
+    if (url.includes('/item_summary/search')) {
+      busquedas++;
+      return { status: 200, ok: true, json: async () => ({ itemSummaries: pubs.map((p, i) => ({ itemId: `v1|${i}|0`, title: 'Nike Air Force 1 07 Black CT2302-002', price: { value: String(p.precio), currency: 'USD' } })) }) };
+    }
+    const i = Number(decodeURIComponent(url.split('/item/')[1]).split('|')[1]);
+    leidas.push(i);
+    return { status: 200, ok: true, json: async () => ({ estimatedAvailabilities: [{ estimatedSoldQuantity: pubs[i].vendidas }] }) };
+  };
+  const cfgV = { ...cfg, ventas: { activo: true, minVentas: 3, fichas: 8, cotaPercentil: 0.75, vigenciaFichasDias: 7 }, ...cfgExtra };
+  const ebay = crearEbay({ clientId: 'i', clientSecret: 's', dolar, hoy: '2026-11-03', rutaCache: 'x', fetchFn, cfg: cfgV, log: () => {} });
+  return { ebay, leidas, get busquedas() { return busquedas; } };
+}
+const zapaA = (usd) => ({ id: 'NICT2302-002', marca: 'Nike', nombre: "Air Force 1 '07", km: 'x', precioActual: usd * 1000 });
+
+test('fichas: si lo más caro que la oferta no suma 2 ventas, no se leen las más baratas', async () => {
+  const s = ebayDeZapas([{ precio: 150, vendidas: 1 }, { precio: 70, vendidas: 10 }, { precio: 120, vendidas: 0 }, { precio: 60, vendidas: 5 }]);
+  assert.equal((await s.ebay.precio(zapaA(80), 'moov')).estado, 'sin');
+  assert.deepEqual(s.leidas.sort(), [0, 2], 'solo las de US$150 y 120');
+  // Guardado como cota: al mismo precio no se vuelve a consultar; más barata sí.
+  assert.equal((await s.ebay.precio(zapaA(80), 'moov')).estado, 'sin');
+  assert.equal(s.busquedas, 1);
+});
+
+test('fichas: se dejan de leer las baratas cuando ya igualan a las caras', async () => {
+  const s = ebayDeZapas([{ precio: 150, vendidas: 3 }, { precio: 70, vendidas: 6 }, { precio: 100, vendidas: 2 }, { precio: 60, vendidas: 9 }]);
+  assert.equal((await s.ebay.precio(zapaA(80), 'moov')).estado, 'sin');
+  assert.deepEqual(s.leidas.sort(), [0, 1, 2], 'la de US$60 no hace falta');
+});
+
+test('fichas: la decisión es la misma que leyendo todas (300 casos al azar)', async () => {
+  const { precioPorVentas, percentilDe } = await import('../src/nucleo/ebay.mjs');
+  let semilla = 7;
+  const azar = () => ((semilla = (semilla * 1103515245 + 12345) % 2147483648) / 2147483648);
+  for (let caso = 0; caso < 300; caso++) {
+    const pubs = Array.from({ length: 2 + Math.floor(azar() * 9) }, () => ({ precio: 40 + Math.floor(azar() * 120), vendidas: azar() < 0.5 ? 0 : Math.floor(azar() * 6) }));
+    const oferta = 40 + Math.floor(azar() * 120) + 0.5;
+    const s = ebayDeZapas(pubs);
+    const r = await s.ebay.precio(zapaA(oferta), 'moov');
+    const buena = r.estado === 'ok' && oferta < r.usd;
+    const todas = precioPorVentas(pubs.slice(0, 8), { minVentas: 3 });
+    const caraPorCota = oferta >= percentilDe(pubs.map((p) => p.precio), 0.75);
+    const esperada = !caraPorCota && !todas.sin && oferta < todas.usd;
+    assert.equal(buena, esperada, `caso ${caso}: ${JSON.stringify({ pubs, oferta })}`);
+    if (buena) assert.equal(r.usd, todas.usd);
+  }
+});
+
+test('la misma búsqueda pedida a la vez por dos ofertas se consulta una sola vez', async () => {
+  const s = ebayDeZapas([{ precio: 150, vendidas: 3 }, { precio: 120, vendidas: 2 }]);
+  const [a, b] = await Promise.all([s.ebay.precio(zapaA(80), 'moov'), s.ebay.precio({ ...zapaA(80), url: 'otro color' }, 'moov')]);
+  assert.equal(a.estado, 'ok');
+  assert.equal(b.usd, a.usd);
+  assert.equal(s.busquedas, 1);
+  assert.equal(s.leidas.length, 2);
+});

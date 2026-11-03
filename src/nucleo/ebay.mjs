@@ -200,6 +200,7 @@ export function crearEbay({
   const rutaFichas = rutaCache.replace(/\.json$/, '') + '-fichas.json';
   let fichasGuardadas = {};
   let fichasModificadas = false;
+  const enVuelo = new Map(); // clave de búsqueda -> consulta en curso
 
   async function cargar() {
     if (cargado) return;
@@ -333,20 +334,42 @@ export function crearEbay({
     // Si ya cuesta más que la mayoría de lo publicado, no puede estar por debajo de lo vendido: no se gastan fichas.
     const cota = percentilDe(validas.map((v) => v.precio), cfg.ventas.cotaPercentil);
     if (oferta.precioActual / dolar >= cota) return { cota };
+    // Se leen solo las fichas que pueden cambiar el resultado (pedido del usuario, 2026-11-03: "más riguroso con lo que
+    // buscás en eBay"). Con A = unidades vendidas MÁS CARAS que la oferta y B = las vendidas a su precio o menos, la
+    // mediana de lo vendido supera a la oferta solo si A > B, y además hacen falta A + B >= minVentas: o sea A >= 2.
+    // Primero se leen las publicaciones más caras que la oferta; si no suman 2 ventas, no puede ser buena y no se leen
+    // las otras. Después, las más baratas, hasta que B alcance a A (ya es cara). La decisión es la misma que leyéndolas
+    // todas; lo que se corta antes se guarda como cota: "a este precio o más, no sirve".
+    const ofertaUsd = oferta.precioActual / dolar;
+    const seleccion = validas.slice(0, cfg.ventas.fichas);
+    const caras = seleccion.filter((v) => v.precio > ofertaUsd);
+    const baratas = seleccion.filter((v) => v.precio <= ofertaUsd);
     const fichas = [];
-    for (const v of validas.slice(0, cfg.ventas.fichas)) {
-      const previa = fichasGuardadas[v.itemId];
-      let vendidas;
-      if (previa && diasEntre(previa[1], hoy) < (cfg.ventas.vigenciaFichasDias ?? 7)) {
-        vendidas = previa[0];
-      } else {
-        vendidas = await vendidasDe(v.itemId);
-        fichasGuardadas[v.itemId] = [vendidas, hoy];
-        fichasModificadas = true;
-      }
+    let a = 0;
+    for (const v of caras) {
+      const vendidas = await vendidasGuardadasODe(v.itemId);
+      a += vendidas;
       fichas.push({ ...v, vendidas });
     }
+    const minimoArriba = Math.max(1, Math.ceil(((cfg.ventas.minVentas ?? 3) + 1) / 2));
+    if (a < minimoArriba) return { cota: Math.min(cota, ofertaUsd) };
+    let b = 0;
+    for (const v of baratas) {
+      const vendidas = await vendidasGuardadasODe(v.itemId);
+      b += vendidas;
+      fichas.push({ ...v, vendidas });
+      if (b >= a) return { cota: Math.min(cota, ofertaUsd) };
+    }
     return { ...precioPorVentas(fichas, { minVentas: 0 }), cota };
+  }
+
+  async function vendidasGuardadasODe(itemId) {
+    const previa = fichasGuardadas[itemId];
+    if (previa && diasEntre(previa[1], hoy) < (cfg.ventas.vigenciaFichasDias ?? 7)) return previa[0];
+    const vendidas = await vendidasDe(itemId);
+    fichasGuardadas[itemId] = [vendidas, hoy];
+    fichasModificadas = true;
+    return vendidas;
   }
 
   async function precio(oferta, fuente) {
@@ -356,6 +379,23 @@ export function crearEbay({
     await cargar();
     const guardado = desdeCache(cache[consulta.clave], consulta, oferta);
     if (guardado) return guardado;
+    // Otra oferta con la misma búsqueda ya se está consultando (Grid: el mismo modelo en otro color): se espera y se
+    // usa ese resultado en vez de gastar otra consulta.
+    if (enVuelo.has(consulta.clave)) {
+      await enVuelo.get(consulta.clave);
+      const compartido = desdeCache(cache[consulta.clave], consulta, oferta);
+      if (compartido) return compartido;
+    }
+    const pedido = consultar(consulta, oferta);
+    enVuelo.set(consulta.clave, pedido);
+    try {
+      return await pedido;
+    } finally {
+      if (enVuelo.get(consulta.clave) === pedido) enVuelo.delete(consulta.clave);
+    }
+  }
+
+  async function consultar(consulta, oferta) {
     try {
       let r;
       if (porVentas(consulta.via)) {

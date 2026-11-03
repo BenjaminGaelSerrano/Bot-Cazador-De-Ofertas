@@ -2,14 +2,22 @@ name: Cazador de ofertas
 
 on:
   schedule:
-    # Cada 4 horas desde que eBay renueva el cupo (05:00 AR). Minuto no redondo: a la hora en punto GitHub demora más los
-    # programados. ~12 min por corrida x 5 = ~1.800 min/mes (el plan gratis de un repo privado da 2.000).
+    # Cada 2 horas desde que eBay renueva el cupo (05:00 AR). Minuto no redondo: a la hora en punto GitHub demora más los
+    # programados. Repo público: los minutos de Actions no tienen límite. Cada 1 hora se puede, pero leer los catálogos tan
+    # seguido arriesga que las tiendas bloqueen (Parfumerie, 2026-10-23).
     # TIENEN QUE COINCIDIR con config.ebay.corridasUtc (el cupo de eBay se reparte entre estas corridas).
     - cron: '17 8 * * *'   # 05:17 en Argentina
-    - cron: '17 12 * * *'  # 09:17
-    - cron: '17 16 * * *'  # 13:17
-    - cron: '17 20 * * *'  # 17:17
-    - cron: '17 0 * * *'   # 21:17
+    - cron: '17 10 * * *'  # 07:17 en Argentina
+    - cron: '17 12 * * *'  # 09:17 en Argentina
+    - cron: '17 14 * * *'  # 11:17 en Argentina
+    - cron: '17 16 * * *'  # 13:17 en Argentina
+    - cron: '17 18 * * *'  # 15:17 en Argentina
+    - cron: '17 20 * * *'  # 17:17 en Argentina
+    - cron: '17 22 * * *'  # 19:17 en Argentina
+    - cron: '17 0 * * *'   # 21:17 en Argentina
+    - cron: '17 2 * * *'   # 23:17 en Argentina
+    - cron: '17 4 * * *'   # 01:17 en Argentina
+    - cron: '17 6 * * *'   # 03:17 en Argentina
   workflow_dispatch:
     inputs:
       dry_run:

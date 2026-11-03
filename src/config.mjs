@@ -206,7 +206,7 @@ export const config = {
     // Cupo diario compartido (2026-11-03: unas corridas manuales gastaron las 5.000 del día y la de la noche quedó sin
     // nada). Al arrancar se lee lo que queda y se reparte en partes iguales entre esta corrida y las programadas que
     // faltan antes de que se renueve (08:00 UTC). TIENE QUE COINCIDIR con los cron de .github/workflows/cazador.yml.
-    corridasUtc: ['08:17', '12:17', '16:17', '20:17', '00:17'],
+    corridasUtc: ['08:17', '10:17', '12:17', '14:17', '16:17', '18:17', '20:17', '22:17', '00:17', '02:17', '04:17', '06:17'],
     cupoDiario: 5000,
     margenCupo: 50,
   },

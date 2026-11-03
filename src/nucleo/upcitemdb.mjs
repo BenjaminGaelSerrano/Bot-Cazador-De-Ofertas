@@ -132,6 +132,7 @@ export function crearUpcitemdb({
     if (!dolar) return { estado: 'sin' };
     const consulta = consultaPara(oferta, fuente);
     if (!consulta) return { estado: 'sin' };
+    if (consulta.via === 'nombre' && !(cfg.buscarPorNombre ?? true)) return { estado: 'sin' };
     await cargar();
     const { clave, via } = consulta;
     const guardado = cache[clave];

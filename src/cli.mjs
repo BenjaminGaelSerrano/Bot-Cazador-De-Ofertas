@@ -17,12 +17,14 @@ import { crearReferencias, obtenerDolar } from './nucleo/internacional.mjs';
 import { ErrorFuente, crearCliente } from './nucleo/http.mjs';
 import { correrFuentes } from './principal.mjs';
 
+// El orden importa: el cupo de consultas de precio de EE. UU. se va gastando tienda por tienda. Moov va segunda para
+// que siempre le llegue (es la única de calzado con búsqueda exacta, por código de modelo).
 const FUENTES = {
   juleriaque: { leer: leerJuleriaque, titulo: 'Ofertas Juleriaque' },
-  grid: { leer: leerGrid, titulo: 'Ofertas Grid' },
-  rouge: { leer: leerRouge, titulo: 'Ofertas Rouge' },
-  parfumerie: { leer: leerParfumerie, titulo: 'Ofertas Parfumerie' },
   moov: { leer: leerMoov, titulo: 'Ofertas Moov' },
+  rouge: { leer: leerRouge, titulo: 'Ofertas Rouge' },
+  grid: { leer: leerGrid, titulo: 'Ofertas Grid' },
+  parfumerie: { leer: leerParfumerie, titulo: 'Ofertas Parfumerie' },
   newera: { leer: leerNewEra, titulo: 'Ofertas New Era' },
 };
 

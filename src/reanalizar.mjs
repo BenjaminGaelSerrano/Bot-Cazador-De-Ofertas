@@ -22,7 +22,7 @@ import { correrFuentes } from './principal.mjs';
 // Escribe alertas.json en esa carpeta con lo que se mandó (para no repetirlo); el resto del estado no cambia.
 
 const TITULOS = {
-  juleriaque: 'Juleriaque', grid: 'Grid', rouge: 'Rouge', parfumerie: 'Parfumerie', moov: 'Moov', newera: 'New Era',
+  juleriaque: 'Juleriaque', moov: 'Moov', rouge: 'Rouge', grid: 'Grid', parfumerie: 'Parfumerie', newera: 'New Era',
 };
 
 const { values: args } = parseArgs({

@@ -69,3 +69,14 @@ test('ofertasDe: por código de modelo solo cuentan los ítems con ese código; 
   const porNombre = ofertasDe(items, { via: 'nombre', params: { q: 'nike air force 1 mens' } });
   assert.deepEqual(porNombre.map((o) => o.price).sort(), [115, 130], 'el GS (de chicos) no cuenta');
 });
+
+test('servicio: con buscarPorNombre en false, Grid (sin códigos) no gasta cupo', async () => {
+  const pedidos = [];
+  const fetchFn = async (url) => { pedidos.push(url); return { status: 200, ok: true, json: async () => ({ items: [] }) }; };
+  const s = crearUpcitemdb({ dolar: 1555, hoy: '2026-11-03', rutaCache: 'x', fetchFn, cfg: { ...cfg, buscarPorNombre: false }, ahora: () => AHORA, log: () => {} });
+  const zapatilla = { id: '2329', marca: 'Adidas Originals', nombre: 'ZAPATILLAS ADIDAS ORIGINALS SAMBA OG', km: 'adidas|og samba', gen: 'h' };
+  assert.deepEqual(await s.precio(zapatilla, 'grid'), { estado: 'sin' });
+  assert.equal(pedidos.length, 0);
+  await s.precio({ id: 'NICW2288-111', marca: 'Nike', nombre: 'Air Force 1', km: 'nike|1 air force' }, 'moov');
+  assert.ok(pedidos[0].includes('search?s=nike%20CW2288-111'), 'Moov sí, por código');
+});

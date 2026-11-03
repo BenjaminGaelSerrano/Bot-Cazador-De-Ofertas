@@ -202,7 +202,10 @@ export const config = {
     diasOferta: 120,            // solo ofertas actualizadas en los últimos 4 meses
     tomarMasBaratas: 3,
     maxConsultasPorCorrida: 45, // 2 corridas por día, dentro de las 100 gratuitas
-    maxConsultasPorFuente: 12,  // repartido entre las tiendas con ofertas (perfumerías y zapatillerías)
+    maxConsultasPorFuente: 5,   // el cupo real ronda las 14 por IP y día: partes chicas para que llegue a todas
+    // Por nombre (Grid) UPCitemdb nunca devolvió precios recientes (6 de 6 sin datos el 2026-11-02): no se gasta cupo.
+    // Con eBay sí se busca por nombre.
+    buscarPorNombre: false,
     pausaMs: 11000,             // ~5 por minuto
   },
 

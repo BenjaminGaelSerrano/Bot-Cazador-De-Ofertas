@@ -166,3 +166,9 @@ test('precioDePublicaciones: packs, lotes y combos no cuentan (casos reales del 
   assert.equal(r.n, 1);
   assert.equal(r.usd, 8.92);
 });
+
+test('consultaPara: las zapatillas de niños no se buscan por nombre (se compararían con precios de adulto)', () => {
+  assert.equal(consultaPara({ id: '1', marca: 'Nike', nombre: 'ZAPATILLAS NIKE SPORTSWEAR KILLSHOT 2 NIÑOS', km: 'nike|2 killshot', gen: 'n' }, 'grid'), null);
+  assert.equal(consultaPara({ id: '2', marca: 'Nike', nombre: 'ZAPATILLAS NIKE SPORTSWEAR AIR FORCE 1 LV8 NIÑOS', km: 'nike|1 air force lv8', gen: null }, 'grid'), null);
+  assert.equal(consultaPara({ id: '3', marca: 'Nike', nombre: 'ZAPATILLAS NIKE SPORTSWEAR KILLSHOT 2 HOMBRE', km: 'nike|2 killshot', gen: 'h' }, 'grid').via, 'nombre');
+});

@@ -50,7 +50,10 @@ export function consultaPara(oferta, fuente) {
   if (codigo) return { via: 'codigo', clave: `cod:${codigo}`, params: { q: `${limpiar(oferta.marca)} ${codigo}` } };
   // Por nombre solo ropa y calzado (tienen clave de modelo). Un perfume sin código no se busca por nombre: en eBay hay
   // demasiados decants, tamaños y ediciones con el mismo nombre.
-  if (oferta.modelo || oferta.km) {
+  // Las de niños no se buscan por nombre: eBay devuelve talles de adulto (y los de chicos se descartan), así que se
+  // compararían con un precio de adulto (Killshot 2 Niños contra Killshot 2 de hombre, 2026-11-03).
+  const genero = oferta.genero ?? oferta.gen;
+  if ((oferta.modelo || oferta.km) && genero !== 'n' && !/\b(ni[nñ]os?|ni[nñ]as?|kids?)\b/i.test(oferta.nombre)) {
     const q = textoNombre(oferta);
     if (q.split(' ').length >= 2) return { via: 'nombre', clave: `nom:${q}`, params: { q } };
   }

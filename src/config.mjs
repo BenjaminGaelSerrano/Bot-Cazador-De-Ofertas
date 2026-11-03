@@ -151,6 +151,9 @@ export const config = {
   // respondiendo 200). Lo que no entra queda sin marcar y sale al día siguiente.
   maxMensajesPorDia: 25,
 
+  // Telegram (canal preferido si hay TELEGRAM_BOT_TOKEN): el chat del usuario no es secreto (sin el token no sirve).
+  telegram: { chatId: null },
+
   // Primera corrida de una fuente: se avisan solo las N mejores; el resto queda como línea base.
   primeraCorridaMaxOfertas: 8,
 

@@ -26,7 +26,12 @@ Si algo contradice la constitución, se discute primero y se cambia la constituc
 - Programación con GitHub Actions (`cron`), minuto no redondo para evitar demoras.
 - Código y commits en español, igual que el resto de los proyectos del usuario.
 
-## Notificaciones (CallMeBot)
+## Notificaciones (Telegram o CallMeBot)
+
+- **Telegram** (`src/notificar/telegram.mjs`) es el canal preferido: se usa si hay `TELEGRAM_BOT_TOKEN` y chat (`config.telegram.chatId`,
+  se averigua con `node src/telegram-chat.mjs`). Si no, CallMeBot, con tope de 25 mensajes por día (límite oculto).
+
+### CallMeBot
 
 - Variables: `CALLMEBOT_PHONE` (con código de país, solo dígitos) y `CALLMEBOT_APIKEY`.
 - Solo texto, uso personal, sin tope publicado ni garantía de disponibilidad. Agrupar ofertas y poner

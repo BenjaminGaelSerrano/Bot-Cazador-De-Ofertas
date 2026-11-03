@@ -8,7 +8,8 @@ import { cargar as cargarHistorial, guardar as guardarHistorial, registrar } fro
 import { cargarOtros, construirIndice, precioMercado } from './nucleo/mercado.mjs';
 import { ordenarParaConsultar } from './nucleo/prioridad.mjs';
 import { compararPorReventa, nivelDemanda, puntuar, velocidadVenta } from './nucleo/reventa.mjs';
-import { agrupar, enviar } from './notificar/callmebot.mjs';
+import { agrupar } from './notificar/callmebot.mjs';
+import { enviar } from './notificar/canal.mjs';
 import { formatearOferta } from './notificar/formato.mjs';
 import { LEYENDA_EBAY, LEYENDA_INTERNACIONAL, agruparTabla, itemTabla } from './notificar/tabla.mjs';
 

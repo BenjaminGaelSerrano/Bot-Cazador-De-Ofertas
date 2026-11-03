@@ -4,7 +4,7 @@ import { config } from './config.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
 import { crearCliente } from './nucleo/http.mjs';
 import { crearReferencias, obtenerDolar } from './nucleo/internacional.mjs';
-import { enviar } from './notificar/callmebot.mjs';
+import { enviar } from './notificar/canal.mjs';
 import { LEYENDA_INTERNACIONAL, agruparTabla, itemTabla, miles } from './notificar/tabla.mjs';
 
 // Reenvío de lo ya avisado un día, con el filtro de la referencia internacional (spec 006). Toma `avisos.jsonl`, arma

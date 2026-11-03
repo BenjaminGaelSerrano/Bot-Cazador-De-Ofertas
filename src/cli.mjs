@@ -7,6 +7,8 @@ import { leerCatalogo as leerNewEra } from './fuentes/newera.mjs';
 import { leerCatalogo as leerParfumerie } from './fuentes/parfumerie.mjs';
 import { leerCatalogo as leerRouge } from './fuentes/rouge.mjs';
 import { cupoDeCorrida, enviadosHoy, sumarEnviados } from './nucleo/envios.mjs';
+import { nombreCanal } from './notificar/canal.mjs';
+import { telegramActivo } from './notificar/telegram.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
 import { crearEbay } from './nucleo/ebay.mjs';
 import { crearUpcitemdb } from './nucleo/upcitemdb.mjs';
@@ -95,8 +97,11 @@ if (!ebay && config.internacional.activa) {
 // Tope diario de WhatsApp (CallMeBot deja de entregar en silencio pasado un límite que no publica).
 const rutaEnvios = `${args.datos}/envios.json`;
 const yaEnviadosHoy = await enviadosHoy(rutaEnvios, fecha);
-const maxMensajesTotal = cupoDeCorrida(config.maxMensajesTotalPorCorrida, config.maxMensajesPorDia, yaEnviadosHoy);
-console.log(`WhatsApp: ${yaEnviadosHoy} enviados hoy, quedan ${maxMensajesTotal} para esta corrida (tope diario ${config.maxMensajesPorDia}).`);
+// El tope diario es por CallMeBot; Telegram no tiene ese límite oculto.
+const maxMensajesTotal = telegramActivo()
+  ? config.maxMensajesTotalPorCorrida
+  : cupoDeCorrida(config.maxMensajesTotalPorCorrida, config.maxMensajesPorDia, yaEnviadosHoy);
+console.log(`Avisos por ${nombreCanal()}: ${yaEnviadosHoy} enviados hoy, ${maxMensajesTotal} disponibles para esta corrida.`);
 const { resultados, fallaron, mensajesUsados, limiteEnvio } = await correrFuentes({
   maxMensajesTotal,
   nombres,

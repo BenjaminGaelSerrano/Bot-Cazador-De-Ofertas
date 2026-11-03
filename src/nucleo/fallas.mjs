@@ -1,6 +1,6 @@
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
-import { enviar } from '../notificar/callmebot.mjs';
+import { enviar } from '../notificar/canal.mjs';
 
 // Estado de fallas: { "<fuente>": { tipo, desde, ultimaVez, avisado } }. Sin entrada = la fuente anda bien.
 // Una falla se avisa una sola vez; si persiste no se repite, y recién tras una corrida exitosa se

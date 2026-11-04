@@ -7230,8 +7230,8 @@
   "visto": "2026-11-03"
  },
  "nom:nike lebron xxiii chosen 1 lux mens": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 155.62636655948552,
+  "visto": "2026-11-04"
  },
  "nom:air jordan mvp 92 mens": {
   "cota": 64.10192307692307,
@@ -7256,11 +7256,15 @@
   "visto": "2026-11-03"
  },
  "nom:air jordan 4 rm mens": {
-  "cota": 93.6725,
+  "usd": 85.49,
+  "n": 2,
+  "ventas": 2,
+  "url": "https://www.ebay.com/itm/398191767453?_skw=air+jordan+4+rm+mens&hash=item5cb6142f9d:g:UUkAAeSwcQBqXMzK",
+  "cota": 95.7175,
   "visto": "2026-11-04"
  },
  "nom:nike ava rover": {
-  "cota": 83.33269230769231,
+  "cota": 64.308038585209,
   "visto": "2026-11-04"
  },
  "nom:nike dunk low retro mens": {
@@ -7278,10 +7282,8 @@
   "visto": "2026-11-03"
  },
  "nom:nike astrograbber womens": {
-  "usd": 60,
-  "n": 50,
-  "url": "https://www.ebay.com/itm/147567158835?_skw=nike+astrograbber+womens&hash=item225bb02633:g:wNIAAeSw3oxqpJhi",
-  "visto": "2026-11-03"
+  "cota": 82.86749999999999,
+  "visto": "2026-11-04"
  },
  "nom:nike air max 90 lv8 womens": {
   "usd": 133.68,
@@ -7326,10 +7328,8 @@
   "visto": "2026-11-03"
  },
  "nom:nike astrograbber textile womens": {
-  "usd": 64.99,
-  "n": 32,
-  "url": "https://www.ebay.com/itm/398283423607?_skw=nike+astrograbber+textile+womens&hash=item5cbb8abf77:g:hxIAAeSwVf1qfonN",
-  "visto": "2026-11-03"
+  "cota": 96.46237942122187,
+  "visto": "2026-11-04"
  },
  "nom:nike p-6000 womens": {
   "sin": 1,
@@ -7566,7 +7566,8 @@
  },
  "nom:camiseta nike golden state warriors mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:jordan flight mens": {
   "cota": 64.10192307692307,
@@ -7630,11 +7631,13 @@
  },
  "nom:campera umbro monogram": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:pantalon umbro monogram": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:nike blazer low 77 vintage mens": {
   "usd": 193,
@@ -7672,28 +7675,32 @@
   "visto": "2026-11-04"
  },
  "nom:mitchell ness dominique wilkins 1986 swingman atlanta hawks mens": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 67.52347266881029,
+  "visto": "2026-11-04"
  },
  "nom:mitchell ness camiseta shaquille oneal 1993 swingman orlando magic mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:gorra new era the league": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:gorra new era new york yankees": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 31.2425,
+  "visto": "2026-11-04"
  },
  "nom:gorra new era 950 nfl pittsburgh": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:remera nike boston celtics mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:pollera adidas essentials": {
   "sin": 1,
@@ -7705,12 +7712,17 @@
   "visto": "2026-11-04"
  },
  "nom:fila uproot mens": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "usd": 75,
+  "n": 1,
+  "ventas": 2,
+  "url": "https://www.ebay.com/itm/266624380515?_skw=fila+uproot+mens&hash=item3e140d2e63:g:MvAAAOSwSpFlqcEj",
+  "cota": 77.485,
+  "visto": "2026-11-04"
  },
  "nom:pantalon fila essential rise ii womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:campera nike dance womens": {
   "sin": 1,
@@ -7731,11 +7743,13 @@
  },
  "nom:gorra mitchell ness san antonio spurs conference patch mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:gorra mitchell ness los angeles lakers team 2 tone 2 0 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:gorra mitchell ness boston celtics mens": {
   "sin": 1,
@@ -7761,15 +7775,17 @@
  },
  "nom:gorra mitchell ness inter miami cf team 2 tone 2 0 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta nike lakers mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:gorra mitchell ness chicago bulls mens": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 14.597427652733119,
+  "visto": "2026-11-04"
  },
  "nom:adidas performance buzo adidas messi": {
   "sin": 1,
@@ -7777,31 +7793,38 @@
  },
  "nom:gorra mitchell ness inter miami cf team ground 2 0 pro mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:gorra mitchell ness inter miami cf pipe mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:gorra mitchell ness inter miami cf team ground 2 0 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness blazers 2012 damian lillard portland trail mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:short mitchell ness celtics 85-86 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness spurs 2013 tim duncan-san antonio spurs mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness pacers 2003 jermaine oneal-indiana mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:remera adidas messi": {
   "sin": 1,
@@ -7821,21 +7844,26 @@
  },
  "nom:asics gel-takumi womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:asics japan s womens": {
-  "usd": 49.95,
-  "n": 45,
-  "url": "https://www.ebay.com/itm/377163920157?_skw=asics+japan+s+womens&hash=item57d0b8b31d:g:G1gAAeSwzN5p-frj",
-  "visto": "2026-11-03"
+  "usd": 47.99,
+  "n": 1,
+  "ventas": 3,
+  "url": "https://www.ebay.com/itm/226430901605?_skw=asics+japan+s+womens&hash=item34b8555d65:g:LP0AAOSwVJVmmEeA",
+  "cota": 69.95,
+  "visto": "2026-11-04"
  },
  "nom:asics gel-lyte iii og": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:pantalon puma wardrobe essentials womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:gorra mitchell ness day one chicago bulls mens": {
   "sin": 1,
@@ -7848,17 +7876,20 @@
  },
  "nom:camiseta nike miami marlins mlb mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:puma suede xl mens": {
-  "cota": 64.10192307692307,
+  "usd": 69.99,
+  "n": 3,
+  "ventas": 10,
+  "url": "https://www.ebay.com/itm/406896420734?_skw=puma+suede+xl+mens&hash=item5ebceaa77e:g:JwEAAeSwAD5q28up&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lMeXHFxObGZ8ZgFewVohc%2FDADOGuKx54qGkAyGS8A%2F0TQrGsAU8XeapOGKlpvWOr%2B%2F7mXpNqE2%2BWeJECRPpr2%2FdAfPJVSbrn06GXVo0IsnUuB76LY09wSDar2Eg72nwjCnbgRjb5glqX0twNMYGClJmSTw9Koz3pzFG%2FQFXCkdKFQwUjN2Xb5OrwOYaYs8BTHpOYuRPzuI7%2BUe--wKAkXe5K21l0VGYZJ7iHmrD1RTtDJ%2BMbiIPwsFJAz%2FACjr5ZsVE%2BCW7lYsGjvhtKiASazHDjerKYdCalW6ilUn6Tzopw%3D%3D",
+  "cota": 66.42,
   "visto": "2026-11-04"
  },
  "nom:puma cali court match womens": {
-  "usd": 49.95,
-  "n": 5,
-  "url": "https://www.ebay.com/itm/407299379561?_skw=puma+cali+court+match+womens&hash=item5ed4ef5169:g:VioAAeSwjclq5Ggn",
-  "visto": "2026-11-03"
+  "cota": 61.73569131832797,
+  "visto": "2026-11-04"
  },
  "nom:remera nike oversized graphic womens": {
   "sin": 1,
@@ -7867,7 +7898,8 @@
  },
  "nom:campera puma wardrobe essentials relaxed mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:nike c1ty mens": {
   "cota": 64.10192307692307,
@@ -7875,15 +7907,17 @@
  },
  "nom:camiseta mitchell ness nba alternate oklahoma city thunder 2015 kevin duran mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:fila racer energized womens": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 30.86752411575563,
+  "visto": "2026-11-04"
  },
  "nom:buzo fila basic womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:jordan one take 5 mens": {
   "cota": 64.10192307692307,
@@ -7897,7 +7931,8 @@
  },
  "nom:fila fx-100 all terrain low womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:remera jordan sport womens": {
   "sin": 1,
@@ -7910,8 +7945,8 @@
   "visto": "2026-11-04"
  },
  "nom:gorra new era 9forty new york yankees": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 34.99,
+  "visto": "2026-11-04"
  },
  "nom:adidas adifom iiinfinity": {
   "usd": 29.99,
@@ -7967,7 +8002,8 @@
  },
  "nom:camiseta mitchell ness detroit pistons 1988-89 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness scottie pippen chicago bulls 1997 mens": {
   "sin": 1,
@@ -7976,7 +8012,8 @@
  },
  "nom:camiseta mitchell ness gary payton seattle supersonics 1994 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:remera mitchell ness pippen chicago bulls mens": {
   "sin": 1,
@@ -7997,22 +8034,23 @@
   "visto": "2026-11-04"
  },
  "nom:short nike victory nfl mens": {
-  "usd": 39.49,
-  "n": 7,
-  "url": "https://www.ebay.com/itm/227248656189?_skw=short+nike+victory+nfl+mens&hash=item34e9134f3d:g:CmoAAeSw27lprttV",
-  "visto": "2026-11-03"
+  "cota": 45.015434083601285,
+  "visto": "2026-11-04"
  },
  "nom:remera nike legend icon nfl mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:buzo nike crew fleece nfl mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:remera nike velocity nfl mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:musculosa puma jaws core mens": {
   "sin": 1,
@@ -8025,19 +8063,23 @@
  },
  "nom:camiseta mitchell ness nfl legacy san francisco 49ers 94 deion sanders mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness nfl legacy jersey cincinnati bengals 2009 chad ochocinco 85 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness chicago bears payton authentic jersey mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness nfl legacy dolphins 1984 dan marino mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:adidas performance remera adidas adi bb": {
   "sin": 1,
@@ -8083,7 +8125,8 @@
  },
  "nom:adidas performance musculosa adidas adizero womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:bermuda fila essential gt mens": {
   "sin": 1,
@@ -8091,15 +8134,18 @@
  },
  "nom:remera fila biella italia womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:pantalon fila work gt mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:pantalon fila workwear mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:jordan hydrip": {
   "usd": 29.99,
@@ -8109,11 +8155,13 @@
  },
  "nom:camiseta mitchell ness nba swingman road jersey celtics 2007 paul pierce - boston celtics mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness nba swingman road jersey nuggets 1991 dikembe mutombo - denver nuggets mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:mochila nike futura365 mini womens": {
   "sin": 1,
@@ -8122,7 +8170,8 @@
  },
  "nom:camiseta mitchell ness nba dark jersey bucks 2013 giannis antetokounmpo - milwaukee bucks mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:nike total 90 mens": {
   "cota": 64.10192307692307,
@@ -8130,15 +8179,18 @@
  },
  "nom:camiseta mitchell ness nba swingman jersey spurs 1998 tim duncan - san antonio spurs mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness nikola jokic denver nuggets 2016 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness dirk nowitzki dallas mavericks 2010 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:puma park sk8 mens": {
   "cota": 53.84551282051282,
@@ -8150,11 +8202,13 @@
  },
  "nom:camiseta mitchell ness jason kidd dallas mavericks 1994 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness kevin durant seattle supersonics 2007 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness shaquille oneal los angeles lakers 1996 mens": {
   "sin": 1,
@@ -8163,7 +8217,8 @@
  },
  "nom:camiseta mitchell ness steve nash phoenix suns 1996 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness chris paul new orleans pelicans 2005 mens": {
   "sin": 1,
@@ -8171,19 +8226,23 @@
  },
  "nom:camiseta mitchell ness anfernee hardaway orlando magic 1994 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness dwyane wade chicago bulls 2016 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness shaquille oneal los angeles lakers 1999 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness mark price cleveland cavaliers 1988 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness jeremy lin new york knicks 2011 mens": {
   "sin": 1,
@@ -8208,7 +8267,8 @@
  },
  "nom:camiseta mitchell ness lebron james cleveland cavaliers 2015 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:short nike solo mens": {
   "cota": 53.84551282051282,
@@ -8244,7 +8304,8 @@
  },
  "nom:remera fila comfort graphic gt mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:remera fila regular graphic court gt mens": {
   "sin": 1,
@@ -8252,7 +8313,8 @@
  },
  "nom:remera fila comfort gt ii mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:musculosa fila gt womens": {
   "sin": 1,
@@ -8261,7 +8323,8 @@
  },
  "nom:musculosa fila cropped tour womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:new balance 2002r": {
   "cota": 89.74294871794872,
@@ -8269,51 +8332,63 @@
  },
  "nom:camiseta mitchell ness brett favre packers 1996 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness chicago bears 1985 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness tony gonzalez kansas city chiefs 2004 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness fran tarkenton minnesota vikings 1975 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness steve gleason new orleans saints 2006 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness eric dickerson los angeles rams 1984 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness reggie white philadelphia eagles 1990 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness joe greene pittsburgh steelers 1976 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness chuck bednarik philadelphia eagles 1960 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness terry bradshaw pittsburgh steelers 1976 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness kevin garnett minnesota timberwolves 1995 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:pantalon mitchell ness branded core mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:adidas performance camiseta oficial adidas seleccion argentina afa home 2006 mens": {
   "sin": 1,
@@ -8332,11 +8407,13 @@
  },
  "nom:remera mitchell ness branded core mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:remera mitchell ness x-ray graphic mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:remera mitchell ness x-ray grpahic mens": {
   "sin": 1,
@@ -8344,11 +8421,13 @@
  },
  "nom:short mitchell ness branded core mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:remera mitchell ness big face larry bird mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:remera mitchell ness carmelo anthony mens": {
   "sin": 1,
@@ -8375,7 +8454,8 @@
  },
  "nom:pantalon mitchell ness los angeles lakers mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:short mitchell ness golde state warriors mens": {
   "usd": 50,
@@ -8387,11 +8467,13 @@
  },
  "nom:remera mitchell ness gary payton mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:remera mitchell ness golden state warriors mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:remera mitchell ness tracy mcgrady mens": {
   "sin": 1,
@@ -8435,7 +8517,8 @@
  },
  "nom:adidas performance calzas adidas adizero mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:adidas performance short adidas anthony edwards mens": {
   "sin": 1,
@@ -8463,12 +8546,13 @@
   "visto": "2026-11-04"
  },
  "nom:adidas performance short adidas adizero gel mens": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 34.49,
+  "visto": "2026-11-04"
  },
  "nom:adidas performance musculosa adidas adizero mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:nike shox z womens": {
   "cota": 83.33269230769231,
@@ -8476,7 +8560,8 @@
  },
  "nom:remera puma wardrobe essentials mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:puma puma-180": {
   "sin": 1,
@@ -8494,7 +8579,8 @@
  },
  "nom:pantalon puma hoops x e t mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:pantalon jordan brooklyn mens": {
   "sin": 1,
@@ -8565,7 +8651,8 @@
  },
  "nom:camiseta mitchell ness nba yellow jersey nuggets 2017 nikola jokic - denver nuggets mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta alternativa adidas afa seleccion argentina 26": {
   "sin": 1,
@@ -8573,7 +8660,8 @@
  },
  "nom:camiseta mitchell ness hakeem olajuwon houston rockets 1993 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:buzo nike brooklyn dodgers mens": {
   "sin": 1,
@@ -8587,7 +8675,8 @@
  },
  "nom:campera fila uc mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:adidas megaride s4 mens": {
   "cota": 141.34551282051282,
@@ -8600,7 +8689,8 @@
  },
  "nom:adidas performance remera adidas basketball": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:adidas performance adidas harden volume 10 mens": {
   "sin": 1,
@@ -8614,7 +8704,8 @@
  },
  "nom:adidas performance pantalon adidas basketball mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:adidas campus 00s mens": {
   "cota": 59.99,
@@ -8675,15 +8766,18 @@
  },
  "nom:remera puma future puma archive t7 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:remera puma wardrobe essentials downtown mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:buzo puma wardrobe essentials mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:nike air force 1 dance womens": {
   "cota": 96.15320512820513,
@@ -8691,7 +8785,8 @@
  },
  "nom:buzo puma sunset drive mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:pantalon puma t7 relaxed big cat mens": {
   "sin": 1,
@@ -8710,11 +8805,13 @@
  },
  "nom:pantalon puma wardrobe ess downtown womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:pantalon puma t7 always on relaxed womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:nike air max 97 futura womens": {
   "cota": 132.735,
@@ -8790,10 +8887,8 @@
   "visto": "2026-11-04"
  },
  "nom:puma la franc mens": {
-  "usd": 74.93,
-  "n": 44,
-  "url": "https://www.ebay.com/itm/327158856426?_skw=puma+la+franc+mens&hash=item4c2c2ffaea:g:CVEAAeSwYOtqBlSH&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nziNsg7TfaYXHN1AKAi8LNGFkWnPa41l9mgXfaEL%2FHPadpGDLTftGBM8UrvaoYUb0f%2BEwCuZ488v9eYcrA07on8GybQTARYEOib3DGmrjb0WkSXh7g060wbV9rcjnsxPyf%2F7H2ZRuDIRStwRa98GWurapUWOpM67ImFc14%2BJ4qZDU0EZbfr%2Bzm6NLE%2FSUZrHuO0y0%2FuIb%2BXotNniFL0y6fXsolElJeoBWfoUb7K3MAcuULK6Yt1Fjf%2BK2jEm9DH9bpq7h0FYwkU2nx%2Bnf0a0sw7hAU7UqAgUMhjII0cwU%2Fgw%3D%3D",
-  "visto": "2026-11-03"
+  "cota": 96.46237942122187,
+  "visto": "2026-11-04"
  },
  "nom:puma mb 05 flutter": {
   "sin": 1,
@@ -8802,7 +8897,8 @@
  },
  "nom:pantalon puma pumatech oversized mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:puma puma-180 pro": {
   "sin": 1,
@@ -8829,15 +8925,18 @@
  },
  "nom:campera puma pumatech raincell mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:campera puma future puma archive king mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:campera puma future puma archive womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:pantalon nike francia energy 2026 mens": {
   "sin": 1,
@@ -8846,7 +8945,8 @@
  },
  "nom:pantalon nike inglaterra energy mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:campera puma pumatech sense womens": {
   "sin": 1,
@@ -8864,19 +8964,23 @@
  },
  "nom:remera puma melo x hive mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:buzo puma melo x hive mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness tracy mcgrady orlando magic 2003 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:campera puma essentials uv relaxed mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:short mitchell ness 1996 houston rockets mens": {
   "cota": 58.332692307692305,
@@ -8899,7 +9003,8 @@
  },
  "nom:camiseta mitchell ness evergreen collection seattle supersonics mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:campera mitchell ness champs new york knicks mens": {
   "sin": 1,
@@ -8913,15 +9018,18 @@
  },
  "nom:remera puma flau jae ls oversized womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness chicago bulls luc longley mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness 1971 oscar robertson milwaukee bucks mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:puma suede classic mens": {
   "cota": 64.10192307692307,
@@ -8929,27 +9037,33 @@
  },
  "nom:puma 180 pro quintessential mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:pantalon puma pumatech sense womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness yao ming houston rockets 2002 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:remera puma x fast furious mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:puma suede xl quintessential mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:musculosa puma x fast furious cut-off mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:nike cortez": {
   "usd": 175,
@@ -8965,18 +9079,18 @@
   "visto": "2026-11-04"
  },
  "nom:short puma x fast furious mens": {
-  "usd": 24.95,
-  "n": 5,
-  "url": "https://www.ebay.com/itm/407303793573?_skw=short+puma+x+fast+furious+mens&hash=item5ed532aba5:g:5iwAAeSwmURq2Q9o",
-  "visto": "2026-11-03"
+  "cota": 49.99,
+  "visto": "2026-11-04"
  },
  "nom:buzo nike crewneck womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:pantalon puma future puma archive extreme mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:buzo nike mlb los angeles dodgers mens": {
   "sin": 1,
@@ -8989,7 +9103,8 @@
  },
  "nom:buzo nike crewneck mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:puma puma-180 pro mens": {
   "sin": 1,
@@ -8997,14 +9112,13 @@
   "visto": "2026-11-04"
  },
  "nom:puma arizona retro womens": {
-  "usd": 75.2,
-  "n": 6,
-  "url": "https://www.ebay.com/itm/407303062634?_skw=puma+arizona+retro+womens&hash=item5ed527846a:g:0qoAAeSwi1tq21Pl",
-  "visto": "2026-11-03"
+  "cota": 67.52347266881029,
+  "visto": "2026-11-04"
  },
  "nom:puma five-0 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:puma 180 pro nazca mens": {
   "sin": 1,
@@ -9013,11 +9127,13 @@
  },
  "nom:puma five-0 quintessential mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:pollera puma leopard luxe womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:nike air force 1 retro mens": {
   "usd": 100,
@@ -9746,6 +9862,28 @@
   "visto": "2026-11-04"
  },
  "nom:remera nike los angeles dodgers mens": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "cod:FD2196-401": {
+  "cota": 41.8,
+  "visto": "2026-11-04"
+ },
+ "nom:nike killshot 2 mens": {
+  "usd": 71.99,
+  "n": 3,
+  "ventas": 8,
+  "url": "https://www.ebay.com/itm/168623253945?_skw=nike+killshot+2+mens&hash=item2742baa9b9:g:XtkAAeSw72hqhfva",
+  "cota": 77.62,
+  "visto": "2026-11-04"
+ },
+ "nom:pantalon puma wardrobe essentials relaxed womens": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "nom:short fila essential gt mens": {
   "sin": 1,
   "porVentas": 1,
   "visto": "2026-11-04"

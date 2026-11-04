@@ -4535,7 +4535,8 @@
  },
  "cod:50604": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:IH1395": {
   "sin": 1,
@@ -4543,7 +4544,8 @@
  },
  "cod:F01L111-5420": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:KI6585": {
   "sin": 1,
@@ -4556,15 +4558,18 @@
  },
  "cod:369579-25": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:395345-02": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:402353-02": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:IH9400": {
   "sin": 1,
@@ -4572,11 +4577,13 @@
  },
  "cod:389021-27": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:389021-02": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:JI2063": {
   "usd": 67.99,
@@ -4608,7 +4615,8 @@
  },
  "cod:SC207521-C3J5": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:KI6544": {
   "usd": 78.48,
@@ -4618,11 +4626,13 @@
  },
  "cod:393802-05": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:SC207521-C6WD": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:FJ2530-301": {
   "cota": 67.30705128205128,
@@ -4672,14 +4682,13 @@
   "visto": "2026-11-03"
  },
  "cod:HF5509-002": {
-  "usd": 95,
-  "n": 31,
-  "url": "https://www.ebay.com/itm/358595432159?_skw=nike+HF5509-002&hash=item537df40edf:g:SqIAAeSw4vpqE6vA",
-  "visto": "2026-11-03"
+  "cota": 117.99249999999999,
+  "visto": "2026-11-04"
  },
  "cod:402593-08": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:1100208270": {
   "sin": 1,
@@ -4687,7 +4696,8 @@
  },
  "cod:1100033914": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:JP9055": {
   "sin": 1,
@@ -4702,16 +4712,12 @@
   "visto": "2026-11-03"
  },
  "cod:IH3369-077": {
-  "usd": 98.49,
-  "n": 14,
-  "url": "https://www.ebay.com/itm/267767401413?_skw=jordan+IH3369-077&hash=item3e582e4bc5:g:eYwAAeSwhPJqjj0m",
-  "visto": "2026-11-03"
+  "cota": 108.72749999999999,
+  "visto": "2026-11-04"
  },
  "cod:DC0774-138": {
-  "usd": 75.8,
-  "n": 34,
-  "url": "https://www.ebay.com/itm/227129201844?_skw=jordan+DC0774-138&hash=item34e1f494b4:g:sbcAAeSw5gxpPGSu",
-  "visto": "2026-11-03"
+  "cota": 99.99,
+  "visto": "2026-11-04"
  },
  "cod:IH1799": {
   "usd": 48.49,
@@ -4721,13 +4727,16 @@
  },
  "cod:395205-69": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:DM0113-600": {
-  "usd": 55,
-  "n": 21,
-  "url": "https://www.ebay.com/itm/395366059922?_skw=nike+DM0113-600&hash=item5c0da74f92:g:sMIAAOSwweZmLAFJ",
-  "visto": "2026-11-03"
+  "usd": 60.36,
+  "n": 1,
+  "ventas": 2,
+  "url": "https://www.ebay.com/itm/225955443329?_skw=nike+DM0113-600&hash=item349bfe7281:g:VoQAAOSwwM1loE7t",
+  "cota": 69.99,
+  "visto": "2026-11-04"
  },
  "cod:GY0042": {
   "usd": 59.62,
@@ -4747,7 +4756,8 @@
  },
  "cod:388981-99": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:VN000CWK4PICASA": {
   "sin": 1,
@@ -4755,7 +4765,8 @@
  },
  "cod:401679-02": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:HQ5718-103": {
   "cota": 84.435,
@@ -4793,11 +4804,13 @@
  },
  "cod:402366-22": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:397648-72": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:IB5824-100": {
   "cota": 83.33269230769231,
@@ -4830,27 +4843,33 @@
  },
  "cod:393504-02": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:396018-01": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:393504-01": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:W57472M": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:41498134622": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:41498130121": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:5RM01911-822": {
   "sin": 1,
@@ -4862,15 +4881,18 @@
  },
  "cod:41472556617": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:41471525251": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:41472559053": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:JH7238": {
   "usd": 49.98,
@@ -4901,20 +4923,22 @@
   "visto": "2026-11-03"
  },
  "cod:IH5084-219": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 173.07628205128205,
+  "visto": "2026-11-04"
  },
  "cod:384209-01": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 64.10192307692307,
+  "visto": "2026-11-04"
  },
  "cod:402244-01": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:41469200090": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:JQ0594": {
   "usd": 58.17,
@@ -4932,17 +4956,16 @@
  },
  "cod:41457413624": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:JQ4435": {
   "sin": 1,
   "visto": "2026-11-03"
  },
  "cod:IB4414-100": {
-  "usd": 69.99,
-  "n": 8,
-  "url": "https://www.ebay.com/itm/227268612387?_skw=jordan+IB4414-100&hash=item34ea43d123:g:Al8AAeSwKRtpwCmC",
-  "visto": "2026-11-03"
+  "cota": 76.9224358974359,
+  "visto": "2026-11-04"
  },
  "cod:IB3952-001": {
   "cota": 76.9224358974359,
@@ -4957,10 +4980,8 @@
   "visto": "2026-11-03"
  },
  "cod:IH7694-200": {
-  "usd": 118.5,
-  "n": 22,
-  "url": "https://www.ebay.com/itm/205695173792?_skw=jordan+IH7694-200&hash=item2fe46344a0:g:uYkAAeSwQcNq0nzG",
-  "visto": "2026-11-03"
+  "cota": 157.4925,
+  "visto": "2026-11-04"
  },
  "cod:VN0A5HFEX0ZCASA": {
   "sin": 1,
@@ -4987,16 +5008,18 @@
   "visto": "2026-11-03"
  },
  "cod:DC0774-130": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 102.56346153846154,
+  "visto": "2026-11-04"
  },
  "cod:1100034437": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:1100033103": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:KH9020": {
   "sin": 1,
@@ -5012,11 +5035,13 @@
  },
  "cod:404173-01": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:401606-09": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:A12595C": {
   "sin": 1,
@@ -5025,11 +5050,13 @@
  },
  "cod:398446-02": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:SC207989-C5Q6": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:401287-07": {
   "sin": 1,
@@ -5045,7 +5072,8 @@
  },
  "cod:100251850": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:5RM02238-045": {
   "sin": 1,
@@ -5053,7 +5081,8 @@
  },
  "cod:1100033101": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:HJ9338-106": {
   "usd": 72.19,
@@ -5069,11 +5098,12 @@
  },
  "cod:403512-01": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:403619-01": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 64.10192307692307,
+  "visto": "2026-11-04"
  },
  "cod:398445-01": {
   "sin": 1,
@@ -5081,11 +5111,13 @@
  },
  "cod:395986-08": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:400967-01": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:JS0279": {
   "sin": 1,
@@ -5097,7 +5129,8 @@
  },
  "cod:388962-02": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:JR3731": {
   "sin": 1,
@@ -5108,8 +5141,8 @@
   "visto": "2026-11-03"
  },
  "cod:FJ7409-100": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 87.74,
+  "visto": "2026-11-04"
  },
  "cod:IG4279": {
   "usd": 63.25,
@@ -5129,7 +5162,8 @@
  },
  "cod:1100033905": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:H03474": {
   "usd": 50.49,
@@ -5157,15 +5191,18 @@
  },
  "cod:307538-02": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:89831": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:SC207988-C001": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:JI2494": {
   "sin": 1,
@@ -5193,11 +5230,13 @@
  },
  "cod:50603": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:41461050090": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:400968-02": {
   "sin": 1,
@@ -5205,27 +5244,24 @@
  },
  "cod:F01L082-5762": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:HF8126-100": {
-  "usd": 76.49,
-  "n": 38,
-  "url": "https://www.ebay.com/itm/327085254050?_skw=jordan+HF8126-100&hash=item4c27cce5a2:g:2rUAAeSwvwppyXUX",
-  "visto": "2026-11-03"
+  "cota": 100,
+  "visto": "2026-11-04"
  },
  "cod:89111": {
   "sin": 1,
   "visto": "2026-11-03"
  },
  "cod:1RM01972-027": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 25.640384615384615,
+  "visto": "2026-11-04"
  },
  "cod:HF3255-201": {
-  "usd": 65,
-  "n": 17,
-  "url": "https://www.ebay.com/itm/820199672920?_skw=jordan+HF3255-201&hash=itembef7b5cc58:g:1M0AAeSwm~FqwRxe",
-  "visto": "2026-11-03"
+  "cota": 70.51217948717948,
+  "visto": "2026-11-04"
  },
  "cod:DV2440-100": {
   "cota": 88.46089743589744,
@@ -5251,11 +5287,13 @@
  },
  "cod:400002900001": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:50616": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:KJ5952": {
   "sin": 1,
@@ -5267,7 +5305,8 @@
  },
  "cod:389021-14": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:FJ4146-111": {
   "cota": 96.15320512820513,
@@ -5299,11 +5338,13 @@
  },
  "cod:392291-02": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:SC207670-C100": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:KJ6154": {
   "sin": 1,
@@ -5320,8 +5361,8 @@
   "visto": "2026-11-03"
  },
  "cod:848386-001": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 39.74294871794872,
+  "visto": "2026-11-04"
  },
  "cod:VN0A5HFEBAECASA": {
   "sin": 1,
@@ -5349,11 +5390,13 @@
  },
  "cod:400752-01": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:CJ1651-002": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:SC207937-C2Q9": {
   "sin": 1,
@@ -5361,7 +5404,8 @@
  },
  "cod:410189-06": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:HF2016-600": {
   "usd": 119,
@@ -5370,10 +5414,8 @@
   "visto": "2026-11-03"
  },
  "cod:AR3565-010": {
-  "usd": 71.15,
-  "n": 43,
-  "url": "https://www.ebay.com/itm/168106185764?_skw=nike+AR3565-010&hash=item2723e8d424:g:O2EAAeSwGvNpdBbq",
-  "visto": "2026-11-03"
+  "cota": 104.14,
+  "visto": "2026-11-04"
  },
  "cod:IF3667": {
   "usd": 75,
@@ -5387,7 +5429,8 @@
  },
  "cod:100CD0006": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "cod:JQ5757": {
   "usd": 399.99,
@@ -5402,10 +5445,8 @@
   "visto": "2026-11-03"
  },
  "cod:DD1873-112": {
-  "usd": 76.5,
-  "n": 39,
-  "url": "https://www.ebay.com/itm/820055378412?_skw=nike+DD1873-112&hash=itembeef1c09ec:g:PHgAAeSw04tqkJsS",
-  "visto": "2026-11-03"
+  "cota": 96.15320512820513,
+  "visto": "2026-11-04"
  },
  "cod:JI0308": {
   "usd": 68.2,
@@ -7218,10 +7259,8 @@
   "visto": "2026-11-03"
  },
  "nom:air jordan mvp 92 mens": {
-  "usd": 66.12,
-  "n": 48,
-  "url": "https://www.ebay.com/itm/377606288561?_skw=air+jordan+mvp+92+mens&hash=item57eb16b4b1:g:FkQAAeSwoMtq44FK",
-  "visto": "2026-11-03"
+  "cota": 64.10192307692307,
+  "visto": "2026-11-04"
  },
  "nom:air jordan 1 method make low womens": {
   "usd": 70,
@@ -7252,7 +7291,11 @@
   "visto": "2026-11-03"
  },
  "nom:nike dunk low retro mens": {
-  "cota": 115.38397435897436,
+  "usd": 80.74,
+  "n": 1,
+  "ventas": 3,
+  "url": "https://www.ebay.com/itm/920001803473?_skw=nike+dunk+low+retro+mens&hash=itemd6346174d1:g:fJsAAeSwPXBqwAH7&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lrGs6InW6uM%2BJMFgOxbi9SlaRQbRJ%2BzSf8SodTnq50XwmmrwQA2D0pEuYqOkwqLpX%2FDmQWJems%2BlU%2B8Lsm0bglRcDd70763IS%2F4L5wzHSXtQMk3RGUA2FzEGAgy6%2FcT7m6BmvI%2Bwsk6iyWOfrxImxgKMTZipw33RfFvY73EtDEJe48LAhDx3pfXZvRds8UmhtC0NJMLUAaf0NLn4jWS19vGiCnWv25wPFC9KMkcSr9WZgs0sbTcF4fiXEHTL%2Fv7aiuTd4dITwOH6zB3qEU7CHdsnLRtLEzj0zvtrFZ2ohlXQ%3D%3D",
+  "cota": 116.76,
   "visto": "2026-11-04"
  },
  "nom:nike shox r4 womens": {
@@ -7362,10 +7405,8 @@
   "visto": "2026-11-03"
  },
  "nom:nike air max invigor mens": {
-  "usd": 60,
-  "n": 50,
-  "url": "https://www.ebay.com/itm/257819109938?_skw=nike+air+max+invigor+mens&hash=item3c07376a32:g:qNgAAeSwAe9q36ZC&amdata=enc%3AAQALAAABAOf5zIIojhOf%2BkQK%2Bxzjn7kc7rS2tPfiF%2BnAkXXijaztVYlZPZtQhCq1DJ1bmp1%2BGH0yOVntqSG2NdBxsmnIBt6GTbbrr9F6E4tiUeS1FOGKdQ01st8b38RBglE%2FUWo0ZyxkIbFI7EW91HvcsOJYKMZHw4RGjhwGRU2hZ13qMToY%2BYE98h0nZX1TQoCTyXnJ%2FHsX%2B9QaeZSNLPDiRSI%2FY%2Bak4xnoIkVz3kUeVXnh28eu0%2FpuKLTCO242BrPjCKn7ANB5451AUeZrJxPuFvBS293f5N1iReS09pFD%2B5urg7irHVDd2F4yd1yWJ7z9pgsXfrXqX762rMPf9fDgNBzmEZ8%3D",
-  "visto": "2026-11-03"
+  "cota": 81.485,
+  "visto": "2026-11-04"
  },
  "nom:jordan trunner o s mens": {
   "usd": 69.24,
@@ -7420,10 +7461,12 @@
   "visto": "2026-11-03"
  },
  "nom:nike air max muse womens": {
-  "usd": 69.99,
-  "n": 49,
-  "url": "https://www.ebay.com/itm/318793311081?_skw=nike+air+max+muse+womens&hash=item4a398fe369:g:8tkAAeSw9XJqkgqq",
-  "visto": "2026-11-03"
+  "usd": 73.31,
+  "n": 3,
+  "ventas": 10,
+  "url": "https://www.ebay.com/itm/187022559709?_skw=nike+air+max+muse+womens&hash=item2b8b69c9dd:g:P8YAAeSwU7xqWkfF&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7m4SdZt6F0yUgoFAFSyPB9uhLLowy8DoBB5iSpBzP8QvSQp58XE4xuVkPwqF9QwksCeBzz7LsK01tVQoDlAD8KMEsRVcj8PKZRDC%2FqNLfBA7BPPRUZQaNKHobV2npzTbG8G3nE2tlH3ffGix7m9eAV0mXBlHu96eLGHDaCMI37zR1RdNtdzsuVCEBvyrRiR1RDm6pLGBYzEeWwQ1FDvfx5KscoT5JVw%2F4Wwvnks97%2Br8QSZDtlwCl6L%2FJNydclF%2B081ecSJkiliKFCyt5LgFxU7XriItuiwfxrazHOu3ZGcvw%3D%3D",
+  "cota": 89.99,
+  "visto": "2026-11-04"
  },
  "nom:remera nike phoenix suns mens": {
   "sin": 1,
@@ -7455,7 +7498,8 @@
  },
  "nom:remera manga larga jordan flight womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:jordan 23 7 easyon": {
   "sin": 1,
@@ -7472,10 +7516,12 @@
   "visto": "2026-11-03"
  },
  "nom:air jordan 1 low se mens": {
-  "usd": 89.88,
-  "n": 45,
-  "url": "https://www.ebay.com/itm/168803753103?_skw=air+jordan+1+low+se+mens&hash=item274d7cdc8f:g:zqkAAeSwtlZqeh4h&amdata=enc%3AAQALAAABAOf5zIIojhOf%2BkQK%2Bxzjn7mZSxhbofFEKWQpPnNR9hUaEikYSl0uMc8SKhI7XidPrwo5WWkrqpd%2BNe8pxKKd%2FxsRQYye9SAUHi1ms8M4%2FZ%2BZL%2F3LUFdHjBry2cpOMLnEdMn7ubOOaZPsWyJc5KMlmm2JIAU5eM09XyPCixiM8EOZQkqyOk78VvD1b5I7uOD3eVyv2b%2BXj0hhQNYjYPN0O9dEJk05IU%2Bs26FO5621qDQwkjvzkoo%2B%2FV6xtUGN7PRXzXoMknRPCZqYi2bgfIcHE%2FL0p0OljDG%2BTVhd6BCmfY9ahnqMws%2F%2Bz8DwcqNRahacTRw5nytv4KCHCYCqgUPDUZw%3D",
-  "visto": "2026-11-03"
+  "usd": 113.04,
+  "n": 3,
+  "ventas": 14,
+  "url": "https://www.ebay.com/itm/267673715563?_skw=air+jordan+1+low+se+mens&hash=item3e5298c36b:g:9DIAAeSwS4JqJtMg",
+  "cota": 115.8825,
+  "visto": "2026-11-04"
  },
  "nom:nike reactx rejuven8 mens": {
   "usd": 52.3,
@@ -7510,10 +7556,8 @@
   "visto": "2026-11-03"
  },
  "nom:jordan stadium 90 womens": {
-  "usd": 64.56,
-  "n": 49,
-  "url": "https://www.ebay.com/itm/205647593328?_skw=jordan+stadium+90+womens&hash=item2fe18d3f70:g:ofMAAeSw9JhojS3i",
-  "visto": "2026-11-03"
+  "cota": 64.10192307692307,
+  "visto": "2026-11-04"
  },
  "nom:nike dunk mens": {
   "usd": 65,
@@ -7552,10 +7596,8 @@
   "visto": "2026-11-03"
  },
  "nom:air jordan 5 retro el grito mens": {
-  "usd": 150.03,
-  "n": 39,
-  "url": "https://www.ebay.com/itm/227337241123?_skw=air+jordan+5+retro+el+grito+mens&hash=item34ee5b0223:g:sHYAAeSw3bJpHlRX&amdata=enc%3AAQALAAABAOf5zIIojhOf%2BkQK%2Bxzjn7m3rrusKhfXp9ykl98DgaG%2F6JjbHBSiZrSznzfATPKvrxIzpM3cVyg3q9v7demUKbDH9RupNQsWczYhgDAihLX%2BmrIyXvXuxo77cvP6KDKhnDGjjIZVOqDmWXgeF1U7UNXr0%2FJ1JH46ioxY3A9596pOiufeF9qcJQN3fPtKLdzbo9Ds08dr0jDBYyea1QxS7AOz17ujyFENmw%2BiqX4Y3EuzIP%2BjvcG6zMT4M%2BmW8lslYMHUY13JvksgbkQQQTGNOJGOEaCs9yXZKp%2FQ6fDB345Vy3%2FFCacmImrU3AOImOPqLXONylEwhEJ2AxZoTAv%2FyHU%3D",
-  "visto": "2026-11-03"
+  "cota": 201.9224358974359,
+  "visto": "2026-11-04"
  },
  "nom:air jordan 1 mid mens": {
   "usd": 88.06,
@@ -7588,12 +7630,13 @@
   "visto": "2026-11-03"
  },
  "nom:puma mayze lth": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 59,
+  "visto": "2026-11-04"
  },
  "nom:botitas nike blazer mid 77 vintage": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:puma cali court lth womens": {
   "cota": 51.281410256410254,
@@ -7639,10 +7682,8 @@
   "visto": "2026-11-04"
  },
  "nom:short nike mid rise 4 womens": {
-  "usd": 24.68,
-  "n": 31,
-  "url": "https://www.ebay.com/itm/157997281889?_skw=short+nike+mid+rise+4+womens&hash=item24c95f3261:g:04UAAeSwHk1qLb2o",
-  "visto": "2026-11-03"
+  "cota": 30,
+  "visto": "2026-11-04"
  },
  "nom:mitchell ness dominique wilkins 1986 swingman atlanta hawks mens": {
   "sin": 1,
@@ -7781,10 +7822,12 @@
   "visto": "2026-11-03"
  },
  "nom:adidas sl 72 og womens": {
-  "usd": 48.23,
-  "n": 50,
-  "url": "https://www.ebay.com/itm/307193210703?_skw=adidas+sl+72+og+womens&hash=item478624674f:g:1tMAAeSwVE9qsq~D",
-  "visto": "2026-11-03"
+  "usd": 54,
+  "n": 3,
+  "ventas": 4,
+  "url": "https://www.ebay.com/itm/198688306255?_skw=adidas+sl+72+og+womens&hash=item2e42bef44f:g:Qh8AAeSwKzZqcmpB",
+  "cota": 69.3,
+  "visto": "2026-11-04"
  },
  "nom:asics gel-takumi womens": {
   "sin": 1,
@@ -7817,10 +7860,8 @@
   "visto": "2026-11-03"
  },
  "nom:puma suede xl mens": {
-  "usd": 48.45,
-  "n": 47,
-  "url": "https://www.ebay.com/itm/407307021382?_skw=puma+suede+xl+mens&hash=item5ed563ec46:g:yvIAAeSwgzNq3vyB",
-  "visto": "2026-11-03"
+  "cota": 64.10192307692307,
+  "visto": "2026-11-04"
  },
  "nom:puma cali court match womens": {
   "usd": 49.95,
@@ -7837,10 +7878,8 @@
   "visto": "2026-11-03"
  },
  "nom:nike c1ty mens": {
-  "usd": 65.47,
-  "n": 49,
-  "url": "https://www.ebay.com/itm/800626880777?_skw=nike+c1ty+mens&hash=itemba6914b109:g:-oQAAeSwjjRpvS3i&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7kmB4fJa8raVJAd77Z2p%2FPjwzRs84ndkB2gUyXWMaXGW6DTN0KOB1U%2BkRuST%2BILL1hTYRn4A%2Fm%2ByEgH9YSe%2FThYGubhTs3uJtW6yl2IB%2BVIqc9Z4xFG4owgwWrSC8lV1R76oT9UZQVSDY12npIVSOGE45qWNlNJ7LidvbhcA2xAzblgS%2B73xmOC1fsPfe3F21ZXnadMxtcN1yqql1SudXL7JoAGytlP4OpUrg%2FMTnMLwu8gwsli4mneIc%2FOgzQtF563sffhFafI8Ld4E6nm7VyTeVNJoo254Z4t%2F1zGZ%2FG%2Fdg%3D%3D",
-  "visto": "2026-11-03"
+  "cota": 64.10192307692307,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness nba alternate oklahoma city thunder 2015 kevin duran mens": {
   "sin": 1,
@@ -7894,7 +7933,8 @@
  },
  "nom:buzo adidas buffy 20th century fox disney womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:camiseta puma king relaxed": {
   "sin": 1,
@@ -7909,20 +7949,21 @@
   "visto": "2026-11-03"
  },
  "nom:puma mayze classic womens": {
-  "usd": 77.97,
-  "n": 7,
-  "url": "https://www.ebay.com/itm/377535219788?_skw=puma+mayze+classic+womens&hash=item57e6da484c:g:YHsAAeSwD3ZqvdXr&amdata=enc%3AAQALAAABAOf5zIIojhOf%2BkQK%2Bxzjn7kP0oj8ms6B28S0WhvCzpxrWg2G4zYgFvVhBJLDwed8T1na7Rl8zaDAKovHejG0oarzxKRjIQ%2FPlB88kTfLSIE8MsDLhqSUioJD%2FL0AWJ%2FuTL1zTHL4OvAlCbsbXwPduQZio3CXQQUgoIPTZ0xskq1z6zhAeYktpI%2BWqJlyMfip41mp7zoimf4W0x6DEHHj%2B8%2BprrHha%2FJqU4ZCKTef4%2BdjWldUZh1uSyZazU7ZNhFGZdfmgoIeJHl%2F4Qtuvq%2BuVeB4vU7F6Fwwkz4%2FoAFlkgx9F%2FPhL1WG%2BLljJlMnmxRDwbGkjpfFE2T%2BIVBYTeyi%2BDA%3D",
-  "visto": "2026-11-03"
+  "cota": 54.48653846153846,
+  "visto": "2026-11-04"
  },
  "nom:nike cortez womens": {
-  "usd": 54.99,
-  "n": 46,
-  "url": "https://www.ebay.com/itm/388757371218?_skw=nike+cortez+womens&hash=item5a83beb952:g:jZAAAeSwd-dog-t3&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7kx--jrAcMsgx3Q1cLLycDqf7osUsN3vfnyyK%2BvyqBnOajyaZJWtjoYy8tSXZb5s%2FDkVyQTUWlKDLUS5Ka0l71pQPpcZqMgb6eFeDG6uw5vkmz93GCIMPFQ96cP8INUuMUlXjSuzBLHr%2Bfbimnz10UhVmjIXTCVemv3gvRupRUDYU2LOMJOKUtM5blfWNcuqNZCdd6gY0aIFsrNcfkSKNBLbMtHhltMxgWobzyZrbDNPW65gQm9kBnjHT26u%2Fvz38JwFY84ZtjieOdFoXj1m9SFaxp12%2FXLyjs54CLsIaRAHg%3D%3D",
-  "visto": "2026-11-03"
+  "usd": 59.97,
+  "n": 4,
+  "ventas": 12,
+  "url": "https://www.ebay.com/itm/336675580372?_skw=nike+cortez+womens&hash=item4e636da9d4:g:PwsAAeSwEBRqTDeC",
+  "cota": 66.445,
+  "visto": "2026-11-04"
  },
  "nom:remera adidas techfit womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:pantalon adidas teamgeist adicolor": {
   "sin": 1,
@@ -7979,10 +8020,8 @@
   "visto": "2026-11-03"
  },
  "nom:adidas predator sala womens": {
-  "usd": 48.97,
-  "n": 49,
-  "url": "https://www.ebay.com/itm/267817241238?_skw=adidas+predator+sala+womens&hash=item3e5b26ca96:g:tWYAAeSwKA1qTTCZ&amdata=enc%3AAQALAAABAOf5zIIojhOf%2BkQK%2Bxzjn7kskIqTR4N7j23JDUeE%2B9yFU1t3IsDHxj%2FG2wrveRAEnnKCv8ThVmLPAPJv2bXX8cUzKpqeAIs0LO90DN6zqU6N07wis30rgQ7TmuEEgvvKb2bSY4616YUNh%2BECOr54J%2BKAF55UeGJi7PB8hRS3hZ55PqQPflZQ1u4SlfHiftysV4rCuRS7K6FCt2C5IxwkrvWE3rFXtgpoVsAr2pao%2BgQOzA0r84HYf0kqc0H%2Fqj1MNqVAxfgd%2BYwwvnJWb7B06PnZz0BjaD8voxba6L%2B4JwZwko5RkC6OqfsP%2FBzUIi9HaF2GnZm7BgK0ThuZQDMg9gU%3D",
-  "visto": "2026-11-03"
+  "cota": 46.15320512820513,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness nfl legacy san francisco 49ers 94 deion sanders mens": {
   "sin": 1,
@@ -8081,10 +8120,8 @@
   "visto": "2026-11-03"
  },
  "nom:nike total 90 mens": {
-  "usd": 59.99,
-  "n": 48,
-  "url": "https://www.ebay.com/itm/206671156048?_skw=nike+total+90+mens&hash=item301e8f9350:g:cnsAAeSw4mRqwom8",
-  "visto": "2026-11-03"
+  "cota": 64.10192307692307,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness nba swingman jersey spurs 1998 tim duncan - san antonio spurs mens": {
   "sin": 1,
@@ -8099,10 +8136,8 @@
   "visto": "2026-11-03"
  },
  "nom:puma park sk8 mens": {
-  "usd": 42.95,
-  "n": 44,
-  "url": "https://www.ebay.com/itm/820221753791?_skw=puma+park+sk8+mens&hash=itembef906b9bf:g:ErcAAeSwyetqyVWO&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mXreLHhvv0qq6GJs9h1xullXUwfr7NbsRpYG2BdtkXpYuR9fzoIfFlXGACJxUm4nHELCKDIMTFJ9O3wfAnBMw9EPNPQsQ0D4rRURVWT1F6hQPS7p%2F7jcoP%2FyUDoMRVbcQubcWlHrNFtDXtMDlgALezJadCyIhTAEnvCB6j5UAw2d5x5fQK9%2BSuiT0%2FiEPqL7rlVtJQWMZwUUM%2FlflWBYPn2QWrbm9jAoJAi8bfnZVaU9qfGSJsBnEVuz%2FgEUnoQwVeQqRCBMj81%2Bv1ePs7zukDZq%2BSKgCZ9CuuyF81hRem6w%3D%3D",
-  "visto": "2026-11-03"
+  "cota": 53.84551282051282,
+  "visto": "2026-11-04"
  },
  "nom:short nike club mens": {
   "usd": 32.63,
@@ -8167,10 +8202,8 @@
   "visto": "2026-11-03"
  },
  "nom:nike gato lv8 mens": {
-  "usd": 54.88,
-  "n": 50,
-  "url": "https://www.ebay.com/itm/267421566269?_skw=nike+gato+lv8+mens&hash=item3e4391453d:g:TLQAAeSwtdJo3Cku",
-  "visto": "2026-11-03"
+  "cota": 64.10192307692307,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness lebron james cleveland cavaliers 2015 mens": {
   "sin": 1,
@@ -8229,10 +8262,8 @@
   "visto": "2026-11-03"
  },
  "nom:new balance 2002r": {
-  "usd": 81,
-  "n": 26,
-  "url": "https://www.ebay.com/itm/168572485054?_skw=new+balance+2002r&hash=item273fb3fdbe:g:iLYAAeSwZlJqafDC&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7n2IbFjKdYRNVNrvS%2BMoxEySl3gKMHQcWNHD5yEBF6Y8CHegOJ3wsnYkNxildzg2AVY2rP4FJyfBVxXrrCVPK12bNgayy0EdP1T0pqCA%2BYyyGAC949ffrhXhz4BFODysJQHAei2S%2FvlVW9O9C2vFwgy%2BsWYC357GuNhB5Bmg4nYnKVXHdT0BfizMZhmiSig1iC0WUUL1yQDOqXYUAs2KxBv1cFHzptm4hSyyhikn%2B%2FJrP39FWmmSWbV34HdWYBvzaaK18yU3%2BPLx%2B%2FHGXbZEQ9ltZK%2BgZP1uNed2mqVFQ71Gw%3D%3D",
-  "visto": "2026-11-03"
+  "cota": 89.74294871794872,
+  "visto": "2026-11-04"
  },
  "nom:camiseta mitchell ness brett favre packers 1996 mens": {
   "sin": 1,
@@ -8362,7 +8393,8 @@
  },
  "nom:adidas performance adidas adizero evo sl womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:adidas superstar ii womens": {
   "usd": 54.99,
@@ -8375,16 +8407,16 @@
   "visto": "2026-11-04"
  },
  "nom:adidas samba womens": {
-  "usd": 64.5,
-  "n": 47,
-  "url": "https://www.ebay.com/itm/860044586127?_skw=adidas+samba+womens&hash=itemc83ea6ec8f:g:dBcAAeSwwFtqz5zd&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lcL7FVWIDbjAzLBO33ijBnqgwkoZk6JAH6GnpEGs%2Bi2nCPQo5BWiWXhytvEvNXMGHLnzl1b2I5o79X%2B17FVIbfwVBljljcgu2QLJygIODXWrQoYyMA7adH58d9AqF53S9E%2F69HgWruob11Sth1ICQM3gu9SkXd4ZhbpDeVgIH%2FMFRZyqKhCj95MK2SR8kZf0NBPBjYV9TQ9iBDHQ5QgjB5%2BEvkpdui%2FHzZO76TZiIZB1QHjKU%2BDDS1arc8XH7hu2b42ATFRK%2BWGNl%2B9Tq2OTPKV46N%2FQ%2BqFRdknNL2y2%2FTvg%3D%3D",
-  "visto": "2026-11-03"
+  "cota": 69.23012820512821,
+  "visto": "2026-11-04"
  },
  "nom:nike dunk low ret mens": {
-  "usd": 85.06,
-  "n": 12,
-  "url": "https://www.ebay.com/itm/920001803473?_skw=nike+dunk+low+ret+mens&hash=itemd6346174d1:g:fJsAAeSwPXBqwAH7&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lrGs6InW6uM%2BJMFgOxbi9SlaRQbRJ%2BzSf8SodTnq50XwmmrwQA2D0pEuYqOkwqLpX%2FDmQWJems%2BlU%2B8Lsm0bglRcDd70763IS%2F4L5wzHSXtQMk3RGUA2FzEGAgy6%2FcT7nE3aI7PqexCoGVc%2BddCYy4bceTwB%2BwoKvOBniavJanVZ4OXoOE9NZq7CpudNBx7lQvKPE2uQaaQlC%2Bb1u8U6%2FomFzFRnmR%2BOqnzPaLlOsahLKlC4JzrS1aHe5qNMeitJZ82iUgxblsFrxpWAV63HMbW2DcsP5Jfe%2FUsSybO3I%2F9A%3D%3D",
-  "visto": "2026-11-03"
+  "usd": 80.74,
+  "n": 2,
+  "ventas": 4,
+  "url": "https://www.ebay.com/itm/920001803473?_skw=nike+dunk+low+ret+mens&hash=itemd6346174d1:g:fJsAAeSwPXBqwAH7&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lrGs6InW6uM%2BJMFgOxbi9SlaRQbRJ%2BzSf8SodTnq50XwmmrwQA2D0pEuYqOkwqLpX%2FDmQWJems%2BlU%2B8Lsm0bglRcDd70763IS%2F4L5wzHSXtQMk3RGUA2FzEGAgy6%2FcT7mNiwhQaRYJ%2B%2F4zJrJDWpSdni7EmDQaMDnNfk3P3t03dJZo4zbY9UqDJP%2BkQxgBqtv4huSBH7Q6cIIVdb%2BuIdQxEhQVHMljw8YvUXHw%2BTym6yLnVYZLca3LhWbaQP7U8yROLDWMMlv%2FQFlUN6TTHdK%2BEqN711hY7oGuKX8tPEXh8A%3D%3D",
+  "cota": 111.5075,
+  "visto": "2026-11-04"
  },
  "nom:adidas performance adidas adizero evo mens": {
   "sin": 1,
@@ -8454,30 +8486,25 @@
   "visto": "2026-11-03"
  },
  "nom:short adidas wc print short": {
-  "usd": 34.99,
-  "n": 6,
-  "url": "https://www.ebay.com/itm/800863788567?_skw=short+adidas+wc+print+short&hash=itemba77339e17:g:sM0AAeSwfdpq53Qe&amdata=enc%3AAQALAAABAOf5zIIojhOf%2BkQK%2Bxzjn7nqM0s6w5gug562lHEg40%2BldfQa%2FshmObd%2B7gef4s6Tjkz0bEvE3Cnx41kDCOLjVi0egCrWQsmCz%2BFn96yb9OXZjhZEZYdp9OY9uf4CbJKYR%2B7%2F1b8Mrc56SjLYh20zrKaBAizoJNDh9nn475pIh95hOZNiQGLfvcixHumGhvv9tl%2FshOEKEhQbrIM032PMuHmX2FxLZ7Icfi9TFbupVS7TqbZJVPtoEBB1voWm6UXvIXruWpGdGKSQ9OkvC1sR7bkNDFXsEGwC4V8ZFifzFRBOYoNkL%2BjAyiuQc3g%2FhHaWFYczIhTz1gcvR%2BOFpIkcvj0%3D",
-  "visto": "2026-11-03"
+  "cota": 37.9075,
+  "visto": "2026-11-04"
  },
  "nom:remera adidas gales 150 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:adidas superstar ii": {
-  "usd": 57.21,
-  "n": 48,
-  "url": "https://www.ebay.com/itm/800746832130?_skw=adidas+superstar+ii&hash=itemba703b0102:g:7~AAAeSwm~Fqv06H",
-  "visto": "2026-11-03"
+  "cota": 72.515,
+  "visto": "2026-11-04"
  },
  "nom:adidas performance remera adidas colgiate mens": {
   "sin": 1,
   "visto": "2026-11-03"
  },
  "nom:adidas jabbar hi womens": {
-  "usd": 59.96,
-  "n": 46,
-  "url": "https://www.ebay.com/itm/407307283411?_skw=adidas+jabbar+hi+womens&hash=item5ed567ebd3:g:IL8AAeSwUxdq2~rv",
-  "visto": "2026-11-03"
+  "cota": 41.025,
+  "visto": "2026-11-04"
  },
  "nom:adidas jabbar hi mens": {
   "cota": 46.15320512820513,
@@ -8485,7 +8512,8 @@
  },
  "nom:remera adidas jamaica alternativa 26 version jugador bob marley mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:adidas performance adidas adizero boston 13 womens": {
   "sin": 1,
@@ -8540,10 +8568,8 @@
   "visto": "2026-11-03"
  },
  "nom:adidas megaride s4 mens": {
-  "usd": 157.33,
-  "n": 5,
-  "url": "https://www.ebay.com/itm/318889326147?_skw=adidas+megaride+s4+mens&hash=item4a3f48f643:g:RScAAeSwOydqrglD&amdata=enc%3AAQALAAABAOf5zIIojhOf%2BkQK%2Bxzjn7l3bUCe9%2FA%2BQxIZUw8a4s0qTs8cKub7%2BSdV3hLLjDGhPsN%2F9rc7N7TB46h8zNfu2p6%2BhiPO1R1E447fw4THX%2FSuD7p8gLTEyFHIM%2B4FT%2FfudBaoA50wiWyKk0PKwZ2ny0Mp5Siy5Mv5jtZ5xN5kkAvkDjzfnzRaRoK8o2z8uWXLobfErMADrV2xrRhQhQSDJqO7TVjR7Jpat%2F5rhUKlrqscW9h2m4D0j2G4UrH62cvkmSLnuNYG393YZpEMzqACfX5eHLpF%2BCu%2FPs8edBdGFCS9HiFjw20OnSSzLjcZT5Y7%2Fple3rHActRZUhZZEk1yoOk%3D",
-  "visto": "2026-11-03"
+  "cota": 141.34551282051282,
+  "visto": "2026-11-04"
  },
  "nom:adidas performance adidas adizero sl2 mens": {
   "sin": 1,
@@ -8559,17 +8585,16 @@
  },
  "nom:adidas campus 00s pulse mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:adidas performance pantalon adidas basketball mens": {
   "sin": 1,
   "visto": "2026-11-03"
  },
  "nom:adidas campus 00s mens": {
-  "usd": 48.96,
-  "n": 50,
-  "url": "https://www.ebay.com/itm/407307247615?_skw=adidas+campus+00s+mens&hash=item5ed5675fff:g:R~0AAeSwOKhq2w1m",
-  "visto": "2026-11-03"
+  "cota": 59.99,
+  "visto": "2026-11-04"
  },
  "nom:jordan mvp 92 mens": {
   "usd": 64.99,
@@ -8585,7 +8610,8 @@
  },
  "nom:morral adidas cruzado": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:air jordan 1 mid lt mens": {
   "usd": 93.51,
@@ -8624,16 +8650,12 @@
   "visto": "2026-11-03"
  },
  "nom:adidas campus 00s": {
-  "usd": 48.95,
-  "n": 46,
-  "url": "https://www.ebay.com/itm/407307193035?_skw=adidas+campus+00s&hash=item5ed5668acb:g:IHUAAeSweo5q3sw7",
-  "visto": "2026-11-03"
+  "cota": 59.995000000000005,
+  "visto": "2026-11-04"
  },
  "nom:adidas adimule": {
-  "usd": 80,
-  "n": 49,
-  "url": "https://www.ebay.com/itm/336864926882?_skw=adidas+adimule&hash=item4e6eb6dca2:g:G0oAAeSw7Vdq4BRu",
-  "visto": "2026-11-03"
+  "cota": 104,
+  "visto": "2026-11-04"
  },
  "nom:short puma pivot mens": {
   "sin": 1,
@@ -8697,15 +8719,18 @@
  },
  "nom:short adidas seleccion espanola mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:campera adidas athem alternativa seleccion espanola mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:pantalon adidas seleccion espanola mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:air jordan 1 zm air cmft mens": {
   "usd": 100,
@@ -8715,11 +8740,13 @@
  },
  "nom:pantalon adidas seleccion alemana mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:short adidas seleccion alemana mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:puma la france rnr mens": {
   "usd": 71.21,
@@ -8729,11 +8756,13 @@
  },
  "nom:campera adidas seleccion alemana mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:campera adidas seleccion espanola mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:fila pantera womens": {
   "sin": 1,
@@ -8801,14 +8830,13 @@
   "visto": "2026-11-03"
  },
  "nom:adidas campus 00s winter mid womens": {
-  "usd": 88,
-  "n": 6,
-  "url": "https://www.ebay.com/itm/205748647758?_skw=adidas+campus+00s+winter+mid+womens&hash=item2fe793374e:g:WhEAAeSw2pJq53Jq&amdata=enc%3AAQALAAABAOf5zIIojhOf%2BkQK%2Bxzjn7lsnoCBMs7TQgaa7W2DTikkZ%2FiIlTHQmjC09UtySfI%2FfyxfnafzF0JcWL3BbQ98Hnae1XeiIpAmEEsuxDCmngpx2FhXI%2Fnq82jY%2FCk5FTQqfi2tRJc9jkL7sKjcYxETcNaJK%2BaWPezaDuAgxS9%2FWs9u1L%2BmaG5ZznnLvgaEMfTpvdlNCKDaI36W5k9U1Uce1gxo5tFLp7lDokg5ooqBOP%2BQ5dyQpdxczL%2FNynNortCBh2NA36ead0MMDIRKE7tSqzfvQx68hKQDT873bLTWmftYEdUk50DrjITqg6WFfUEwcm%2BgyZAuq6lDvGxEFLfcUZU%3D",
-  "visto": "2026-11-03"
+  "cota": 104.97999999999999,
+  "visto": "2026-11-04"
  },
  "nom:adidas campus 00s wtr low womens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:remera puma melo x hive mens": {
   "sin": 1,
@@ -8967,9 +8995,11 @@
  },
  "nom:nike air force 1 retro mens": {
   "usd": 100,
-  "n": 48,
-  "url": "https://www.ebay.com/itm/307253116242?_skw=nike+air+force+1+retro+mens&hash=item4789b67d52:g:VokAAeSw-X1q4ZJO",
-  "visto": "2026-11-03"
+  "n": 3,
+  "ventas": 7,
+  "url": "https://www.ebay.com/itm/168586277103?_skw=nike+air+force+1+retro+mens&hash=item27408670ef:g:AF8AAeSwOKhqcOzf",
+  "cota": 123.96000000000001,
+  "visto": "2026-11-04"
  },
  "ean:3605972768919": {
   "usd": 97.99,
@@ -9434,6 +9464,26 @@
  },
  "nom:nike air max aura womens": {
   "cota": 83.33269230769231,
+  "visto": "2026-11-04"
+ },
+ "cod:1100201080": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "nom:puma ca plus sd": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "nom:puma ca plus sd mens": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "nom:puma ca plus sd womens": {
+  "sin": 1,
+  "porVentas": 1,
   "visto": "2026-11-04"
  }
 }

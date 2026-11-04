@@ -4902,7 +4902,7 @@
   "visto": "2026-11-03"
  },
  "cod:IH5084-219": {
-  "cota": 173.07628205128205,
+  "cota": 144.69389067524116,
   "visto": "2026-11-04"
  },
  "cod:384209-01": {
@@ -9886,6 +9886,89 @@
  "nom:short fila essential gt mens": {
   "sin": 1,
   "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "ean:7640233341704": {
+  "sin": 1,
+  "visto": "2026-11-04"
+ },
+ "cod:400214-06": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "cod:FZ5307-500": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "cod:309097-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "cod:DV3808-112": {
+  "cota": 79.99249999999999,
+  "visto": "2026-11-04"
+ },
+ "cod:IH6907": {
+  "cota": 79.99,
+  "visto": "2026-11-04"
+ },
+ "cod:406616-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "cod:402569-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "cod:FQ7939-105": {
+  "cota": 112.5395498392283,
+  "visto": "2026-11-04"
+ },
+ "cod:IH4096": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "cod:JQ1551": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "cod:401261-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "cod:398846-42": {
+  "cota": 54.66173633440514,
+  "visto": "2026-11-04"
+ },
+ "cod:VN0A5HF5IX6SMUA": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "cod:KI6150": {
+  "cota": 86.81607717041801,
+  "visto": "2026-11-04"
+ },
+ "cod:IH4202": {
+  "cota": 90.03151125401929,
+  "visto": "2026-11-04"
+ },
+ "ean:3614273308229": {
+  "usd": 87.95,
+  "n": 5,
+  "url": "https://www.ebay.com/itm/175470628010?hash=item28dadd4caa:g:~ocAAOSw6OpjXt~H",
+  "visto": "2026-11-04"
+ },
+ "nom:gorra new era chicago": {
+  "cota": 36.3475,
   "visto": "2026-11-04"
  }
 }

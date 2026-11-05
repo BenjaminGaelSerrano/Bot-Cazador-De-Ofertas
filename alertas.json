@@ -807,10 +807,6 @@
   "precio": 263400,
   "fecha": "2026-11-01"
  },
- "juleriaque:22844": {
-  "precio": 221400,
-  "fecha": "2026-11-01"
- },
  "grid:47680": {
   "precio": 99999,
   "fecha": "2026-11-01"
@@ -923,14 +919,6 @@
   "precio": 174600,
   "fecha": "2026-11-02"
  },
- "juleriaque:25679": {
-  "precio": 275400,
-  "fecha": "2026-11-02"
- },
- "juleriaque:1589": {
-  "precio": 275400,
-  "fecha": "2026-11-02"
- },
  "juleriaque:20362": {
   "precio": 125988,
   "fecha": "2026-11-02"
@@ -939,28 +927,8 @@
   "precio": 278850,
   "fecha": "2026-11-02"
  },
- "juleriaque:18743": {
-  "precio": 278850,
-  "fecha": "2026-11-02"
- },
- "juleriaque:1630": {
-  "precio": 291850,
-  "fecha": "2026-11-02"
- },
  "juleriaque:1895": {
   "precio": 291850,
-  "fecha": "2026-11-02"
- },
- "juleriaque:17877": {
-  "precio": 298350,
-  "fecha": "2026-11-02"
- },
- "juleriaque:18745": {
-  "precio": 239850,
-  "fecha": "2026-11-02"
- },
- "juleriaque:25880": {
-  "precio": 253400,
   "fecha": "2026-11-02"
  },
  "grid:50807": {
@@ -1013,14 +981,6 @@
  },
  "juleriaque:12515": {
   "precio": 112500,
-  "fecha": "2026-11-02"
- },
- "juleriaque:17333": {
-  "precio": 133000,
-  "fecha": "2026-11-02"
- },
- "juleriaque:14672": {
-  "precio": 186200,
   "fecha": "2026-11-02"
  },
  "juleriaque:29136": {
@@ -1381,6 +1341,14 @@
  },
  "grid:50326": {
   "precio": 77499,
+  "fecha": "2026-11-05"
+ },
+ "pigmento:2406": {
+  "precio": 21000,
+  "fecha": "2026-11-05"
+ },
+ "grid:54108": {
+  "precio": 90999,
   "fecha": "2026-11-05"
  }
 }

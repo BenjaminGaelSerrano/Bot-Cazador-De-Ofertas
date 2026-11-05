@@ -49,3 +49,18 @@ test('ordenarParaConsultar: caché primero; después baja real y marca, no el de
   assert.equal(relacion.get('ck'), 1.5);
   assert.equal(gangas[3].ebay.precio, 80000, 'la cacheada ya queda resuelta');
 });
+
+test('puntajeAviso: margen por confianza en las ventas (pedido del usuario, 2026-11-05)', async () => {
+  const { puntajeAviso } = await import('../src/nucleo/prioridad.mjs');
+  const ofertas = [
+    { n: 'The Move', margen: 0.14, ventas: 0 },
+    { n: 'Fuel for Life', margen: 0.09, ventas: 174 },
+    { n: 'Zuecos', margen: 0.36, ventas: 3 },
+    { n: 'Botitas', margen: 0.28, ventas: 26 },
+    { n: 'Yeezy', margen: 3.11, ventas: 21 },
+  ];
+  const orden = ofertas.sort((a, b) => puntajeAviso(b) - puntajeAviso(a)).map((o) => o.n);
+  assert.deepEqual(orden, ['Yeezy', 'Botitas', 'Zuecos', 'Fuel for Life', 'The Move']);
+  assert.equal(puntajeAviso({ margen: 0.5, ventas: 0 }), 0, 'sin ventas no suma');
+  assert.equal(puntajeAviso({ margen: 0.4, ventas: undefined }), 0.2, 'sin dato: confianza media');
+});

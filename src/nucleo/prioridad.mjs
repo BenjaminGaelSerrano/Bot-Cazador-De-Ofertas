@@ -68,3 +68,15 @@ export async function ordenarParaConsultar(gangas, { historial, fecha, enCache }
   resto.sort((a, b) => prioridades.get(b) - prioridades.get(a));
   return { orden: [...cacheadas, ...resto], prioridades, relacion };
 }
+
+/**
+ * Orden de los avisos (pedido del usuario, 2026-11-05: "ordename según las que te parecen mejores ofertas, teniendo
+ * como criterio el porcentaje de ahorro y la cantidad de ventas"). Puntaje = margen × confianza, con confianza =
+ * ventas ÷ (ventas + 5): 0 ventas no suma, 3 ventas 0,38, 20 ventas 0,8, 100 o más casi 1. Así un margen enorme con
+ * pocas ventas no pasa adelante de uno bueno que se vende mucho. Sin dato de ventas, confianza 0,5.
+ */
+export const VENTAS_MEDIA_CONFIANZA = 5;
+export function puntajeAviso({ margen, ventas }) {
+  const confianza = Number.isFinite(ventas) ? ventas / (ventas + VENTAS_MEDIA_CONFIANZA) : 0.5;
+  return (Number.isFinite(margen) ? margen : 0) * confianza;
+}

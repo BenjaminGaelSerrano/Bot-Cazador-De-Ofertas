@@ -6,7 +6,7 @@ import { anexarAvisos } from './nucleo/avisos.mjs';
 import { ErrorFuente } from './nucleo/http.mjs';
 import { cargar as cargarHistorial, guardar as guardarHistorial, registrar } from './nucleo/historial.mjs';
 import { cargarOtros, construirIndice, precioMercado } from './nucleo/mercado.mjs';
-import { ordenarParaConsultar } from './nucleo/prioridad.mjs';
+import { ordenarParaConsultar, puntajeAviso } from './nucleo/prioridad.mjs';
 import { esSoloPerfume } from './nucleo/internacional.mjs';
 import { compararPorReventa, nivelDemanda, puntuar, velocidadVenta } from './nucleo/reventa.mjs';
 import { agrupar } from './notificar/callmebot.mjs';
@@ -183,6 +183,8 @@ export async function correrFuente({
       if (Number.isFinite(ventas)) g.ebay = { ...g.ebay, ventas };
     }
   }
+  // 3e. Orden del aviso: margen y cantidad de ventas en eBay (ver `puntajeAviso`), las mejores primero.
+  if (ebay) pendientes.sort((a, b) => puntajeAviso({ margen: b.puntaje.margen, ventas: b.ebay?.ventas }) - puntajeAviso({ margen: a.puntaje.margen, ventas: a.ebay?.ventas }));
 
   // 4. Avisar, anotando cada mensaje recién cuando salió.
   // En la primera corrida el título es corto a propósito: cada caracter del encabezado le resta lugar a una oferta.

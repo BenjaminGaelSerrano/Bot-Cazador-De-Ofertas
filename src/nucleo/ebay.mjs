@@ -46,8 +46,15 @@ export function textoNombre(oferta) {
 /** Cómo buscar una oferta: `{ via, clave, params }` o null si no hay forma segura. */
 export function consultaPara(oferta, fuente) {
   if (eanValido(oferta.ean)) return { via: 'ean', clave: `ean:${oferta.ean}`, params: { gtin: oferta.ean }, ml: oferta.ml ?? null };
-  const codigo = codigoModelo(oferta, fuente);
-  if (codigo) return { via: 'codigo', clave: `cod:${codigo}`, params: { q: `${limpiar(oferta.marca)} ${codigo}` } };
+  // Código de estilo (modelo + color): el de Moov sale del id; el de Grid, de la descripción del producto.
+  const codigo = oferta.codigo ?? codigoModelo(oferta, fuente);
+  if (codigo) {
+    const marca = limpiar(oferta.marca).replace(/\b(originals|sportswear)\b/g, '').trim();
+    return { via: 'codigo', clave: `cod:${codigo}`, params: { q: `${marca} ${codigo}`.trim() } };
+  }
+  // Sin código no hay forma de asegurar el color: por nombre se mezclaban todos los colores del modelo. Solo se busca
+  // por nombre si se habilita a propósito (el usuario eligió "solo color exacto" el 2026-11-05).
+  if (!config.ebay.buscarPorNombre) return null;
   // Por nombre solo ropa y calzado (tienen clave de modelo). Un perfume sin código no se busca por nombre: en eBay hay
   // demasiados decants, tamaños y ediciones con el mismo nombre.
   // Las de niños no se buscan por nombre: eBay devuelve talles de adulto (y los de chicos se descartan), así que se

@@ -188,7 +188,10 @@ export const config = {
   // Caché en referencias/ebay-v2.json: el cálculo cambió el 2026-11-03 (cuartil inferior, sin envío, sin packs).
   ebay: {
     activo: true,
-    vigenciaDias: 3,             // un precio de eBay se reutiliza 3 días (después se vuelve a consultar)
+    // Ropa y calzado sin código de estilo: no se buscan por nombre (mezclaba colores). El usuario eligió "solo color
+    // exacto" el 2026-11-05: se compara solo con el mismo código (modelo + color).
+    buscarPorNombre: false,
+    vigenciaDias: 3,            // un precio de eBay se reutiliza 3 días (después se vuelve a consultar)
     maxConsultasPorCorrida: 4950, // tope de seguridad; el reparto real lo hace `ajustarCupo` con el cupo que queda
     concurrencia: 4,             // consultas en paralelo
     limite: 50,                  // publicaciones por consulta

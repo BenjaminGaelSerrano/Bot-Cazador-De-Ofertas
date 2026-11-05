@@ -42,6 +42,8 @@ export function registrar(historial, producto, fecha) {
     ...(producto.attrs ? { attrs: 1 } : {}),
     // Clave de modelo y género (ropa y calzado): sirven para emparejar con otras tiendas sin código de barras.
     ...(producto.modelo ? { km: producto.modelo, gen: producto.genero ?? null } : {}),
+    // Código de estilo (modelo + color) para buscar en eBay el color exacto (Grid, 2026-11-05).
+    ...(producto.codigo ? { cod: producto.codigo } : {}),
   };
 
   const cantidad = Number.isFinite(producto.stock) ? producto.stock : 0;

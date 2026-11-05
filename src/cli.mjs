@@ -2,7 +2,7 @@ import { parseArgs } from 'node:util';
 import { config } from './config.mjs';
 import { leerCatalogo as leerGrid } from './fuentes/grid.mjs';
 import { leerCatalogo as leerJuleriaque } from './fuentes/juleriaque.mjs';
-import { leerCatalogo as leerMoov } from './fuentes/moov.mjs';
+import { leerCatalogo as leerMoov, leerTalles as tallesMoov } from './fuentes/moov.mjs';
 import { leerCatalogo as leerNewEra } from './fuentes/newera.mjs';
 import { leerCatalogo as leerParfumerie } from './fuentes/parfumerie.mjs';
 import { leerCatalogo as leerRouge } from './fuentes/rouge.mjs';
@@ -21,7 +21,7 @@ import { correrFuentes } from './principal.mjs';
 // que siempre le llegue (es la única de calzado con búsqueda exacta, por código de modelo).
 const FUENTES = {
   juleriaque: { leer: leerJuleriaque, titulo: 'Ofertas Juleriaque' },
-  moov: { leer: leerMoov, titulo: 'Ofertas Moov' },
+  moov: { leer: leerMoov, titulo: 'Ofertas Moov', talles: tallesMoov },
   rouge: { leer: leerRouge, titulo: 'Ofertas Rouge' },
   grid: { leer: leerGrid, titulo: 'Ofertas Grid' },
   parfumerie: { leer: leerParfumerie, titulo: 'Ofertas Parfumerie' },

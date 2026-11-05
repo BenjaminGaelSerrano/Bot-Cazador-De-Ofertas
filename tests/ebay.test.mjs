@@ -48,13 +48,21 @@ test('textoNombre: marca + modelo + género en inglés, sin relleno', () => {
   assert.equal(textoNombre({ marca: 'Nike', nombre: "ZAPATILLAS NIKE SPORTSWEAR AIR FORCE 1 '07 MUJER", genero: 'm' }), 'nike air force 1 07 womens');
 });
 
-test('consultaPara: código de barras, después código de modelo, después nombre (solo ropa y calzado)', () => {
+// La búsqueda por nombre quedó apagada (solo color exacto, 2026-11-05); estas pruebas la prenden a propósito.
+async function conNombre(fn) {
+  const { config } = await import('../src/config.mjs');
+  const antes = config.ebay.buscarPorNombre;
+  config.ebay.buscarPorNombre = true;
+  try { return await fn(); } finally { config.ebay.buscarPorNombre = antes; }
+}
+
+test('consultaPara: código de barras, después código de modelo, después nombre (solo ropa y calzado)', () => conNombre(() => {
   assert.deepEqual(consultaPara({ ean: '3349666007921', nombre: 'One Million EDT 100 ml', marca: 'RABANNE' }, 'juleriaque'),
     { via: 'ean', clave: 'ean:3349666007921', params: { gtin: '3349666007921' }, ml: null });
   assert.equal(consultaPara({ id: 'NICW2288-111', marca: 'Nike', nombre: 'Air Force 1', km: 'nike|1 air force' }, 'moov').via, 'codigo');
   assert.equal(consultaPara({ id: '2329', marca: 'Adidas Originals', nombre: 'ZAPATILLAS ADIDAS ORIGINALS SAMBA OG', km: 'adidas|og samba', gen: 'h' }, 'grid').via, 'nombre');
   assert.equal(consultaPara({ id: '9', ean: null, marca: 'DIOR', nombre: 'Sauvage EDT 100 ml', ml: 100 }, 'rouge'), null, 'perfume sin código: no');
-});
+}));
 
 // ---------- Servicio ----------
 
@@ -167,11 +175,11 @@ test('precioDePublicaciones: packs, lotes y combos no cuentan (casos reales del 
   assert.equal(r.usd, 8.92);
 });
 
-test('consultaPara: las zapatillas de niños no se buscan por nombre (se compararían con precios de adulto)', () => {
+test('consultaPara: las zapatillas de niños no se buscan por nombre (se compararían con precios de adulto)', () => conNombre(() => {
   assert.equal(consultaPara({ id: '1', marca: 'Nike', nombre: 'ZAPATILLAS NIKE SPORTSWEAR KILLSHOT 2 NIÑOS', km: 'nike|2 killshot', gen: 'n' }, 'grid'), null);
   assert.equal(consultaPara({ id: '2', marca: 'Nike', nombre: 'ZAPATILLAS NIKE SPORTSWEAR AIR FORCE 1 LV8 NIÑOS', km: 'nike|1 air force lv8', gen: null }, 'grid'), null);
   assert.equal(consultaPara({ id: '3', marca: 'Nike', nombre: 'ZAPATILLAS NIKE SPORTSWEAR KILLSHOT 2 HOMBRE', km: 'nike|2 killshot', gen: 'h' }, 'grid').via, 'nombre');
-});
+}));
 
 // ---------- Zapatillas: ventas reales (pedido del usuario, 2026-11-03) ----------
 
@@ -393,4 +401,22 @@ test('caché: un precio por ventas guardado antes del tope se vuelve a calcular'
   const e = crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-03', rutaCache, cfg: { ...cfg, ventas: { activo: true, minVentas: 3, fichas: 8, vigenciaFichasDias: 7 } }, log: () => {} });
   // No devuelve los US$193 guardados: hay que volver a calcularlo con el tope.
   assert.equal(await e.enCache(zapaA(80), 'moov'), null);
+});
+
+test('consultaPara: Grid con código de estilo busca el color exacto; sin código no se consulta', () => {
+  const blazer = { id: '3280013', marca: 'Nike Sportswear', nombre: "ZAPATILLAS NIKE BLAZER LOW '77 VINTAGE HOMBRE", km: 'nike|77 blazer low vintage', gen: 'h', codigo: 'DA6364-001' };
+  assert.deepEqual(consultaPara(blazer, 'grid'), { via: 'codigo', clave: 'cod:DA6364-001', params: { q: 'nike DA6364-001' } });
+  assert.equal(consultaPara({ ...blazer, codigo: undefined }, 'grid'), null, 'por nombre se mezclaban colores');
+  assert.equal(consultaPara({ id: '1', marca: 'Adidas Originals', nombre: 'SAMBA OG', km: 'x', codigo: 'JI0079' }, 'grid').params.q, 'adidas JI0079');
+});
+
+test('Grid (VTEX): código de estilo, color y talles con stock', async () => {
+  const { codigoEstilo, tallesDe } = await import('../src/fuentes/vtex.mjs');
+  assert.equal(codigoEstilo("Zapatillas Nike BLAZER LOW '77 VINTAGE De Moda Para HOMBRE Código: DA6364-001"), 'DA6364-001');
+  assert.equal(codigoEstilo('<p>Zapatillas adidas</p><p>Código: JI0079</p>'), 'JI0079');
+  assert.equal(codigoEstilo('Puma Suede XL Codigo: 395205-02'), '395205-02');
+  assert.equal(codigoEstilo('ZAPATILLAS JORDAN CMFT ERA MUJER ¿Buscas tenis?'), null);
+  const item = (talle, ref, u) => ({ Talle: [talle], name: talle, referenceId: [{ Key: 'RefId', Value: ref }], sellers: [{ commertialOffer: { AvailableQuantity: u } }] });
+  assert.deepEqual(tallesDe([item('38', '328-0013/06.5', 0), item('39', '328-0013/07 *', 1), item('42', '328-0013/09.5', 3)]),
+    [{ t: '39', us: '7', u: 1 }, { t: '42', us: '9.5', u: 3 }]);
 });

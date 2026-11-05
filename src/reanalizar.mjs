@@ -48,6 +48,7 @@ function ofertaDesdeHistorial(id, p) {
     id, ean: p.ean, marca: p.marca, nombre: p.nombre, ml: p.ml, categoria: p.cat, url: p.url,
     precioActual, precioLista, moneda: 'ARS', stock: p.stock ? Math.max(1, cantidad) : 0,
     ...(p.km ? { modelo: p.km, genero: p.gen ?? null } : {}),
+    ...(p.cod ? { codigo: p.cod } : {}),
     ...(p.attrs ? { attrs: 1 } : {}),
   };
 }

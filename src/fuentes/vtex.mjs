@@ -7,6 +7,35 @@ export function extraerMl(nombre) {
   return m ? Number(m[1].replace(',', '.')) : null;
 }
 
+/**
+ * Código de estilo del fabricante en la descripción ("... HOMBRE Código: DA6364-001"): identifica modelo Y color, así que
+ * en eBay se busca el color exacto (pedido del usuario, 2026-11-05). Grid lo trae en ~84 % de los productos.
+ */
+export function codigoEstilo(descripcion) {
+  const texto = String(descripcion ?? '').replace(/<[^>]+>/g, ' ');
+  const m = /C[oó]digo:?\s*([A-Z0-9][A-Z0-9-]{4,15})\b/i.exec(texto);
+  if (!m || !/\d/.test(m[1]) || !/[A-Z]/i.test(m[1]) && !m[1].includes('-')) return null;
+  return m[1].toUpperCase();
+}
+
+/**
+ * Talles con stock de un producto VTEX (cada SKU es un talle): `[{ t, us, u }]` = talle argentino, talle de EE. UU. (del
+ * RefId "328-0013/07 *" -> "7", si está) y unidades disponibles.
+ */
+export function tallesDe(items) {
+  const talles = [];
+  for (const item of items ?? []) {
+    const u = item.sellers?.[0]?.commertialOffer?.AvailableQuantity ?? 0;
+    if (!(u > 0)) continue;
+    const t = String(item.Talle?.[0] ?? item.name ?? '').trim();
+    if (!t) continue;
+    const ref = item.referenceId?.find?.((r) => r.Key === 'RefId')?.Value ?? '';
+    const us = /\/0*(\d+(?:\.\d)?)\b/.exec(ref)?.[1] ?? null;
+    talles.push({ t, ...(us ? { us } : {}), u });
+  }
+  return talles;
+}
+
 /** Categoría raíz a partir de `categories` (la última entrada es la raíz: "/Tratamiento/"). */
 export function categoriaRaiz(categories) {
   const raiz = categories?.at(-1);
@@ -69,6 +98,9 @@ export function crearLector(cfg) {
         ml: extraerMl(p.productName),
         modelo: m.clave,
         genero: m.genero,
+        codigo: codigoEstilo(p.description),
+        color: p.Color?.[0] ?? null,
+        talles: tallesDe(p.items),
         precioActual: elegido.precioActual,
         precioLista: elegido.precioLista,
         stock: validos.reduce((suma, v) => suma + v.stock, 0),

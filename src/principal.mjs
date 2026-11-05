@@ -35,6 +35,7 @@ export async function correrFuentes({
         nombre,
         titulo: fuente.titulo,
         leer: fuente.leer,
+        leerTalles: fuente.talles ?? null,
         cliente: crearCliente(),
         fecha,
         dryRun,

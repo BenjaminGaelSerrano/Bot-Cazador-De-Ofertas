@@ -28,6 +28,8 @@ export async function correrFuente({
   nombre,
   titulo,
   leer,
+  // Talles disponibles (Moov: página del producto). Grid ya los trae en el catálogo. null = la tienda no los da.
+  leerTalles = null,
   cliente,
   fecha,
   dryRun = false,
@@ -163,6 +165,12 @@ export async function correrFuente({
     pendientes = quedan;
   }
 
+  // 3c. Talles (pedido del usuario, 2026-11-05): solo de lo que se va a avisar, así se pide lo menos posible. Se avisa
+  // igual; el aviso muestra los talles y marca ⚠ si solo quedan talles poco comerciales o muy pocas unidades.
+  if (leerTalles) {
+    for (const g of pendientes) if (g.oferta.talles === undefined) g.oferta.talles = await leerTalles(g.oferta, cliente);
+  }
+
   // 4. Avisar, anotando cada mensaje recién cuando salió.
   // En la primera corrida el título es corto a propósito: cada caracter del encabezado le resta lugar a una oferta.
   const tituloEnvio = silenciadas > 0 ? `${titulo} · 1ª lectura, de ${pendientes.length + silenciadas}` : titulo;
@@ -215,6 +223,7 @@ export async function correrFuente({
           margen: puntaje.margen === undefined ? null : Math.round(puntaje.margen * 100), demanda: puntaje.demanda ?? null,
           ...(ref ? { usd: ref.usd ?? null, pesosUsd: ref.pesos ?? null, viaUsd: ref.via ?? null } : {}),
           ...(g.ebay?.estado === 'ok' ? { usd: g.ebay.usd, publicacionesEbay: g.ebay.n, ...(g.ebay.ventas !== undefined ? { vendidasEbay: g.ebay.ventas } : {}) } : {}),
+          ...(Array.isArray(g.oferta.talles) ? { talles: g.oferta.talles.map((x) => x.t), ...(g.oferta.codigo ? { codigo: g.oferta.codigo } : {}), ...(g.oferta.color ? { color: g.oferta.color } : {}) } : {}),
         });
       }
     }

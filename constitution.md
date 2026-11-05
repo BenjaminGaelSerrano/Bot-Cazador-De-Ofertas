@@ -89,6 +89,13 @@ Además de ser ganga, cada oferta se juzga como negocio de reventa (se revende p
     precio es la **mediana de lo vendido**, ponderada por unidades, **con tope en la mediana de lo publicado** (usuario,
     2026-11-05): eBay da las ventas de toda la vida de una publicación con su precio de hoy, y una sola publicación cara
     con ventas viejas inflaba el precio (Blazer Low '77: US$193 con 8 ventas, cuando el resto pedía de 40 a 83).
+  - **Color exacto** (usuario, 2026-11-05): zapatillas y ropa se buscan en eBay solo por el código de estilo del
+    fabricante, que identifica modelo y color (Moov lo trae en el id; Grid, en la descripción: "Código: DA6364-001").
+    Sin código no se consulta: por nombre se mezclaban todos los colores del modelo.
+  - **Talles** (usuario, 2026-11-05): el aviso muestra los talles con stock (Grid los trae en el catálogo; Moov, en la
+    página del producto, que se pide solo para lo que se va a avisar). Se avisa igual, pero con **⚠** si solo quedan
+    talles poco comerciales (hombre fuera de 39 a 45; mujer, de 35,5 a 39,5) o 2 unidades o menos (Yeezy 350 V2 en
+    Moov a $90k con solo 34,5 y 35,5).
 - **De las perfumerías, solo perfumes** (usuario, 2026-11-03): ni maquillaje, ni cremas, ni tratamientos, ni geles,
   desodorantes o after shave.
 - **Criterio de aviso** (usuario, 2026-11-02): vale la pena todo lo que cueste **menos que ese precio**, sin margen mínimo.

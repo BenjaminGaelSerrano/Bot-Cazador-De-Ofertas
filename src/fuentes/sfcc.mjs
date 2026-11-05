@@ -120,5 +120,39 @@ export function crearLectorSfcc(cfg) {
     return { ofertas: lista, informe };
   }
 
-  return { normalizarProducto, leerCatalogo };
+  /**
+   * Talles disponibles de un producto, desde su página (la grilla no los trae). Un pedido por producto: se usa solo con
+   * las ofertas que se van a avisar (pedido del usuario, 2026-11-05). Devuelve `[{ t }]` o null si no se pudo leer.
+   */
+  async function leerTalles(oferta, cliente) {
+    if (!oferta.url) return null;
+    try {
+      const { datos: html } = await cliente.obtenerTexto(oferta.url);
+      return tallesDePagina(html);
+    } catch {
+      return null; // sin talles el aviso sale igual, sin la lista
+    }
+  }
+
+  return { normalizarProducto, leerCatalogo, leerTalles };
+}
+
+/**
+ * Talles seleccionables de la página de producto de SFCC: el JSON del producto (con `&quot;`) trae el atributo `size`
+ * con cada valor y si se puede elegir (`selectable`). Medido con las Yeezy 350 V2 de Moov el 2026-11-05: 34.5 y 35.5
+ * seleccionables, del 36 al 46 no.
+ */
+export function tallesDePagina(html) {
+  const texto = String(html ?? '').replace(/&quot;/g, '"');
+  const bloque = /"id":"size"[\s\S]{0,20000}?"values":\[([\s\S]*?)\]\s*[,}]/.exec(texto)
+    ?? /"id":"size"([\s\S]{0,20000})/.exec(texto);
+  if (!bloque) return null;
+  const talles = [];
+  const vistos = new Set();
+  for (const m of bloque[1].matchAll(/"displayValue":"([^"]+)"[^{}]*?"selectable":(true|false)/g)) {
+    if (m[2] !== 'true' || vistos.has(m[1])) continue;
+    vistos.add(m[1]);
+    talles.push({ t: m[1] });
+  }
+  return talles;
 }

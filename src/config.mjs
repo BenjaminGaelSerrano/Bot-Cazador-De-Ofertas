@@ -200,9 +200,11 @@ export const config = {
     // Zapatillas y ropa (búsqueda por código de modelo o por nombre): se exigen VENTAS, no publicaciones (pedido del
     // usuario, 2026-11-03). Se leen las fichas de las primeras `fichas` publicaciones (orden de eBay, que favorece las
     // que venden), se suman las unidades vendidas y el precio es la mediana de lo vendido, ponderada por unidades.
-    // Si la oferta ya cuesta más que el `cotaPercentil` de lo publicado, no se gastan fichas (no puede ser más barata).
+    // Tope (aprobado por el usuario, 2026-11-05): el precio es el MENOR entre la mediana de lo vendido y la mediana de lo
+    // publicado (`topePublicado`): una publicación cara con ventas viejas inflaba el precio (Blazer '77: US$193 vs. 40-83).
+    // Si la oferta ya cuesta ese tope o más, no se gastan fichas (no puede ser más barata).
     // `vigenciaFichasDias`: las unidades vendidas de cada publicación se reutilizan una semana (cuestan 1 consulta cada una).
-    ventas: { activo: true, minVentas: 3, fichas: 8, cotaPercentil: 0.75, vigenciaFichasDias: 7 },
+    ventas: { activo: true, minVentas: 3, fichas: 8, topePublicado: 0.5, vigenciaFichasDias: 7 },
     // Cupo diario compartido (2026-11-03: unas corridas manuales gastaron las 5.000 del día y la de la noche quedó sin
     // nada). Al arrancar se lee lo que queda y se reparte en partes iguales entre esta corrida y las programadas que
     // faltan antes de que se renueve (08:00 UTC). TIENE QUE COINCIDIR con los cron de .github/workflows/cazador.yml.

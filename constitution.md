@@ -86,7 +86,9 @@ Además de ser ganga, cada oferta se juzga como negocio de reventa (se revende p
   - **Zapatillas y ropa: ventas reales** (usuario, 2026-11-03: "no me importan las publicaciones sino las ventas"). Se leen
     las fichas de las primeras 8 publicaciones del modelo, que traen cuántas unidades vendió cada una. Hacen falta **al
     menos 3 unidades vendidas**; si no, no se avisa por más descuento que tenga (los Yeezy a US$200-300 tenían 0). El
-    precio es la **mediana de lo vendido**, ponderada por unidades.
+    precio es la **mediana de lo vendido**, ponderada por unidades, **con tope en la mediana de lo publicado** (usuario,
+    2026-11-05): eBay da las ventas de toda la vida de una publicación con su precio de hoy, y una sola publicación cara
+    con ventas viejas inflaba el precio (Blazer Low '77: US$193 con 8 ventas, cuando el resto pedía de 40 a 83).
 - **De las perfumerías, solo perfumes** (usuario, 2026-11-03): ni maquillaje, ni cremas, ni tratamientos, ni geles,
   desodorantes o after shave.
 - **Criterio de aviso** (usuario, 2026-11-02): vale la pena todo lo que cueste **menos que ese precio**, sin margen mínimo.

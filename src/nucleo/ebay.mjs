@@ -343,7 +343,11 @@ export function crearEbay({
   function desdeCache(guardado, consulta, oferta) {
     if (!guardado || diasEntre(guardado.visto, hoy) >= cfg.vigenciaDias) return null;
     if (!porVentas(consulta.via)) return resultado(guardado, consulta.via);
-    if (guardado.ventas !== undefined) return resultado(guardado, consulta.via);
+    if (guardado.ventas !== undefined) {
+      // Con precio y guardado antes del tope por lo publicado (2026-11-05): se vuelve a calcular (las fichas están en caché).
+      if (guardado.usd && guardado.usdPublicado === undefined) return null;
+      return resultado(guardado, consulta.via);
+    }
     if (guardado.cota !== undefined) return oferta.precioActual / dolar >= guardado.cota ? { estado: 'sin' } : null;
     if (guardado.sin && guardado.porVentas) return { estado: 'sin' };
     return null;
@@ -353,8 +357,13 @@ export function crearEbay({
   async function consultarPorVentas(consulta, oferta) {
     const validas = publicacionesValidas(filtrarPorConsulta(await buscar(consulta.params), consulta));
     if (validas.length === 0) return { sin: 1, porVentas: 1 };
-    // Si ya cuesta más que la mayoría de lo publicado, no puede estar por debajo de lo vendido: no se gastan fichas.
-    const cota = percentilDe(validas.map((v) => v.precio), cfg.ventas.cotaPercentil);
+    // Tope: la mediana de lo PUBLICADO (aprobado por el usuario el 2026-11-05). eBay da las ventas de toda la vida de una
+    // publicación con su precio de hoy, y un vendedor que vendió barato y después subió el precio inflaba todo: Blazer Low
+    // '77 Vintage con 8 ventas a US$193 cuando el resto pide 40 a 83; Cortez "Nike ID RARE" a US$175 contra US$75 de la
+    // clásica. Si casi todos piden menos, nadie paga más: el precio de mercado es el menor entre lo vendido y ese tope.
+    // Si la oferta ya cuesta eso o más, no puede ser buena: no se gastan fichas.
+    const usdPublicado = Math.round(percentilDe(validas.map((v) => v.precio), cfg.ventas.topePublicado ?? 0.5) * 100) / 100;
+    const cota = usdPublicado;
     if (oferta.precioActual / dolar >= cota) return { cota };
     // Se leen solo las fichas que pueden cambiar el resultado (pedido del usuario, 2026-11-03: "más riguroso con lo que
     // buscás en eBay"). Con A = unidades vendidas MÁS CARAS que la oferta y B = las vendidas a su precio o menos, la
@@ -382,7 +391,9 @@ export function crearEbay({
       fichas.push({ ...v, vendidas });
       if (b >= a) return { cota: Math.min(cota, ofertaUsd) };
     }
-    return { ...precioPorVentas(fichas, { minVentas: 0 }), cota };
+    const r = precioPorVentas(fichas, { minVentas: 0 });
+    if (r.sin) return { ...r, cota, usdPublicado };
+    return { ...r, usd: Math.min(r.usd, usdPublicado), usdVendido: r.usd, usdPublicado, cota };
   }
 
   async function vendidasGuardadasODe(itemId) {

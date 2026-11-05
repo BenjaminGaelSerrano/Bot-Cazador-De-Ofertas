@@ -348,10 +348,11 @@ test('fichas: la decisión es la misma que leyendo todas (300 casos al azar)', a
     const r = await s.ebay.precio(zapaA(oferta), 'moov');
     const buena = r.estado === 'ok' && oferta < r.usd;
     const todas = precioPorVentas(pubs.slice(0, 8), { minVentas: 3 });
-    const caraPorCota = oferta >= percentilDe(pubs.map((p) => p.precio), 0.75);
+    const publicado = Math.round(percentilDe(pubs.map((p) => p.precio), 0.5) * 100) / 100;
+    const caraPorCota = oferta >= publicado;
     const esperada = !caraPorCota && !todas.sin && oferta < todas.usd;
     assert.equal(buena, esperada, `caso ${caso}: ${JSON.stringify({ pubs, oferta })}`);
-    if (buena) assert.equal(r.usd, todas.usd);
+    if (buena) assert.equal(r.usd, Math.min(todas.usd, publicado));
   }
 });
 
@@ -369,4 +370,27 @@ test('los horarios del cupo de eBay coinciden con los cron del workflow', async 
   const yml = await readFile(new URL('../.github/workflows/cazador.yml', import.meta.url), 'utf8');
   const crons = [...yml.matchAll(/cron: '(\d+) (\d+) \* \* \*'/g)].map(([, m, h]) => `${h.padStart(2, '0')}:${m.padStart(2, '0')}`);
   assert.deepEqual([...crons].sort(), [...config.ebay.corridasUtc].sort());
+});
+
+test('tope por lo publicado: una publicación cara con ventas viejas no infla el precio (Blazer Low 77, 2026-11-05)', async () => {
+  // Datos reales del 2026-11-05: una a US$193 con 8 ventas, otra a 71,20 con 1, el resto sin ventas entre 40 y 83.
+  const s = ebayDeZapas([193, 79, 71.2, 82.95, 64.99, 74, 40, 67].map((precio, i) => ({ precio, vendidas: [8, 0, 1, 0, 0, 0, 0, 0][i] })));
+  const r = await s.ebay.precio(zapaA(52), 'moov');
+  assert.equal(r.estado, 'ok');
+  assert.equal(r.usd, 72.6, 'mediana de lo publicado, no los US$193 de lo vendido');
+  assert.equal(r.ventas, 9);
+  // Más cara que lo que pide la mitad de los vendedores: ni se leen fichas.
+  const t = ebayDeZapas([193, 79, 71.2, 82.95, 64.99, 74, 40, 67].map((precio) => ({ precio, vendidas: 5 })));
+  assert.equal((await t.ebay.precio(zapaA(80), 'moov')).estado, 'sin');
+  assert.equal(t.leidas.length, 0);
+});
+
+test('caché: un precio por ventas guardado antes del tope se vuelve a calcular', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'tope-'));
+  const rutaCache = join(dir, 'ebay-v2.json');
+  const { writeFile } = await import('node:fs/promises');
+  await writeFile(rutaCache, JSON.stringify({ 'cod:CT2302-002': { usd: 193, n: 2, ventas: 9, visto: '2026-11-03' } }));
+  const e = crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-03', rutaCache, cfg: { ...cfg, ventas: { activo: true, minVentas: 3, fichas: 8, vigenciaFichasDias: 7 } }, log: () => {} });
+  // No devuelve los US$193 guardados: hay que volver a calcularlo con el tope.
+  assert.equal(await e.enCache(zapaA(80), 'moov'), null);
 });

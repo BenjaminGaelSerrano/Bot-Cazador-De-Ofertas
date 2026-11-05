@@ -3799,12 +3799,8 @@
   "visto": "2026-11-03"
  },
  "cod:JQ2110": {
-  "usd": 29.95,
-  "n": 1,
-  "ventas": 2,
-  "url": "https://www.ebay.com/itm/407300592874?_skw=adidas+JQ2110&hash=item5ed501d4ea:g:TDcAAeSwyIJq4FbM",
-  "cota": 79.95,
-  "visto": "2026-11-03"
+  "cota": 71.42792207792208,
+  "visto": "2026-11-05"
  },
  "cod:400497-01": {
   "sin": 1,
@@ -4203,12 +4199,14 @@
   "visto": "2026-11-03"
  },
  "cod:CT2302-002": {
-  "usd": 99.56,
+  "usd": 89.99,
   "n": 5,
   "ventas": 9,
-  "url": "https://www.ebay.com/itm/257375173841?_skw=nike+CT2302-002&hash=item3becc17cd1:g:l4YAAeSwpZRpnJnJ",
-  "cota": 109.49249999999999,
-  "visto": "2026-11-03"
+  "url": "https://www.ebay.com/itm/357360321074?_skw=nike+CT2302-002&hash=item533455c232:g:pckAAeSwtdhohUTs",
+  "usdVendido": 89.99,
+  "usdPublicado": 100,
+  "cota": 100,
+  "visto": "2026-11-05"
  },
  "cod:FB1362-100": {
   "sin": 1,
@@ -4545,8 +4543,8 @@
   "visto": "2026-11-04"
  },
  "cod:KK3391": {
-  "cota": 153.84551282051282,
-  "visto": "2026-11-04"
+  "cota": 143.18116883116883,
+  "visto": "2026-11-05"
  },
  "cod:JP6812": {
   "sin": 1,
@@ -10564,6 +10562,451 @@
  "cod:HF5441-600": {
   "sin": 1,
   "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:GX2272": {
+  "cota": 29.22012987012987,
+  "visto": "2026-11-05"
+ },
+ "cod:VN000EE3NVY": {
+  "cota": 19.47987012987013,
+  "visto": "2026-11-05"
+ },
+ "cod:FJ4146-112": {
+  "cota": 64.93441558441559,
+  "visto": "2026-11-05"
+ },
+ "cod:FV9350-100": {
+  "cota": 51.9474025974026,
+  "visto": "2026-11-05"
+ },
+ "cod:DZ2795-404": {
+  "cota": 51.9474025974026,
+  "visto": "2026-11-05"
+ },
+ "cod:NBAJS525102-BK1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBAPT600001-BK1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:HF0451-001": {
+  "cota": 64.93441558441559,
+  "visto": "2026-11-05"
+ },
+ "cod:NBATT725102-BK1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBAPT525108-BK2": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBATT525106-BK1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBATT525106-BK3": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBATS625102-GY1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBATS725104-BK1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBATS725105-RD1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBATS725104-BK2": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:FB2269-130": {
+  "cota": 59.49,
+  "visto": "2026-11-05"
+ },
+ "cod:FD4328-110": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:JD1972": {
+  "cota": 14.285064935064936,
+  "visto": "2026-11-05"
+ },
+ "cod:HF6940-010": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:BQ6806-100": {
+  "usd": 99,
+  "n": 3,
+  "ventas": 26,
+  "url": "https://www.ebay.com/itm/227555948618?_skw=nike+BQ6806-100&hash=item34fb64384a:g:Us8AAeSwVI5qxX~S",
+  "usdVendido": 99,
+  "usdPublicado": 99,
+  "cota": 99,
+  "visto": "2026-11-05"
+ },
+ "cod:HF3416-600": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBASW525104-BK2": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:749680-006": {
+  "cota": 84.5,
+  "visto": "2026-11-05"
+ },
+ "cod:NBASW525104-GY2": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:HZ262P51143-001": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:IF1859-010": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:IO9716-010": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:MYNJK526103-BK2": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:HQ1908-600": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:FJ4146-121": {
+  "cota": 110,
+  "visto": "2026-11-05"
+ },
+ "cod:HV4089-006": {
+  "cota": 94.98,
+  "visto": "2026-11-05"
+ },
+ "cod:IM6572-101": {
+  "cota": 105.1,
+  "visto": "2026-11-05"
+ },
+ "cod:IM6649-700": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:IM6572-102": {
+  "cota": 95.48,
+  "visto": "2026-11-05"
+ },
+ "cod:HQ1966-700": {
+  "cota": 103.57077922077922,
+  "visto": "2026-11-05"
+ },
+ "cod:FB4496-300": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:MLBCT625203-BK1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:JQ0814": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:IH7654-004": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:IM4613-100": {
+  "usd": 106.71,
+  "n": 2,
+  "ventas": 2,
+  "url": "https://www.ebay.com/itm/237136369564?_skw=nike+IM4613-100&hash=item37366dd79c:g:iwoAAeSwrGVq2Rpq&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mOu7ObLcOQ%2F%2BAnmNKEZNLHRD1Ii27%2Bp260f8ThRpr4VAYqATMWM%2FJG9v9bFE2puISCrqaCAnmmzQ8gml74nzs2saawL2jLq55z%2FwZJquN0q4irIoa4oSW7JHqxzO0Cga9mZqRVapstK0jLG2k8quMczFZgvlYwEIXCC73r43fBDTtIwXnq5QjgSzYgzcOjl8T4knizdlUMVo9L6X1G1fmBoHNiF34OEkYUmKo%2F31q%2B3jbzDHSTmcR7C6uvoNIflZkAvkwLfjZPAZ%2BNVGWOuOE7EtqsiWiUUOdbKZIB8p9%2FGw%3D%3D",
+  "usdVendido": 109.42,
+  "usdPublicado": 106.71,
+  "cota": 106.71,
+  "visto": "2026-11-05"
+ },
+ "cod:FV7056-104": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:MLBSH626101-RD1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:HZ261T51002-001": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:553558-149": {
+  "cota": 105.6,
+  "visto": "2026-11-05"
+ },
+ "cod:3WG10054-723": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:JP9247": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:KC3573": {
+  "cota": 34.99,
+  "visto": "2026-11-05"
+ },
+ "cod:NBASH626103-NV1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:KH1706": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:MLBCJ626104-WH1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:KI3381": {
+  "cota": 89.95,
+  "visto": "2026-11-05"
+ },
+ "cod:BMTRINTL1276-": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:HV5062-001": {
+  "usd": 67.97,
+  "n": 3,
+  "ventas": 3,
+  "url": "https://www.ebay.com/itm/406245441107?_skw=nike+HV5062-001&hash=item5e961d7e53:g:gWsAAeSwtEVo17g3&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7k9mdLbrSUJbuqazTg3TkNCLlbGDNyxW10vt4G7gI9bJVWQ%2Fw00El1kEstnfISpSAqRtKMC5NN9cgDv1iQumwdzw8bKcIUCC3QhwfCcEZSUlDiemeWk75kAy%2Bbc2v8fhoav3sq08Z3p9JY74shRA7ZL7IPnwDIwPC0ZeI%2FbNq9cuLgeRgmK%2BZSEtiwq1JB%2BWRFIP52R%2BLN2WjXBHGjl%2BdRH4Ei6OevoUEUCcbVjcdfHHkyrYa3GQDDce9gYpPDJ2fKKQ7k96LCELsTGx17CCex7rQ8LLxbWn0%2BeTywS3zQvwA%3D%3D",
+  "usdVendido": 67.97,
+  "usdPublicado": 74.97,
+  "cota": 74.97,
+  "visto": "2026-11-05"
+ },
+ "cod:NBASH625207-BK1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:3MF30223-651": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:IH8464-078": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBASH625201-RD1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:DX0817-010": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:HQ8898-034": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:5RM02983125": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:HV1204-300": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:DZ2795-101": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:IF0666-100": {
+  "cota": 51.9474025974026,
+  "visto": "2026-11-05"
+ },
+ "cod:NBAJK525104-WH1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:MLBJS525201-GY1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:HJ0070-010": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:DM4044-001": {
+  "usd": 74.99,
+  "n": 7,
+  "ventas": 27,
+  "url": "https://www.ebay.com/itm/277798431510?_skw=nike+DM4044-001&hash=item40ae13ab16:g:yrEAAeSwdUVpsvc5",
+  "usdVendido": 74.99,
+  "usdPublicado": 82.86,
+  "cota": 82.86,
+  "visto": "2026-11-05"
+ },
+ "cod:NBASH725102-BK1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBAPT600001-DG1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBAJK525104-BK1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBATT725102-WH1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBAHD625103-GY1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:N199-10A-NK-PA7": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBATS625102-TQ1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:IB0170-100": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:FZ7477-504": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:HT8031-BCEOFWH": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:SMJY4453-": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:HHSS3264-": {
+  "usd": 25.99,
+  "n": 5,
+  "ventas": 30,
+  "url": "https://www.ebay.com/itm/285553590314?_skw=mitchell+ness+HHSS3264-&hash=item427c52002a:g:EP0AAOSwkWtmF82h",
+  "usdVendido": 25.99,
+  "usdPublicado": 25.99,
+  "cota": 25.99,
+  "visto": "2026-11-05"
+ },
+ "cod:HF7849-028": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBAJS552201-PUR": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:JC7317": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:HF7849-844": {
+  "cota": 34.09025974025974,
+  "visto": "2026-11-05"
+ },
+ "cod:NBATS625102-WH1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:NBASW525104-BK3": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:WS327MF": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-05"
+ },
+ "cod:DA6364-001": {
+  "cota": 51.9474025974026,
   "visto": "2026-11-05"
  }
 }

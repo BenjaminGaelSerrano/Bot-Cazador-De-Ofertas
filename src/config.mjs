@@ -44,10 +44,10 @@ export const config = {
 
   // Fuentes que no se leen en las corridas programadas. Parfumerie bloquea al bot desde el 2026-10-23 (cada corrida
   // terminaba en rojo); se pausó a pedido del usuario el 2026-11-02. Para probar si volvió: --fuente parfumerie --dry-run.
-  fuentesPausadas: ['parfumerie'],
+  fuentesPausadas: ['parfumerie', 'simplicity'], // simplicity: el usuario prefirió Pigmento (2026-11-05)
 
   // De las perfumerías se avisan solo perfumes: ni maquillaje, ni cremas, ni tratamientos (pedido del usuario, 2026-11-03).
-  soloPerfumes: ['juleriaque', 'rouge', 'simplicity', 'parfumerie'],
+  soloPerfumes: ['juleriaque', 'rouge', 'pigmento', 'simplicity', 'parfumerie'],
 
   fuentes: {
     juleriaque: {
@@ -106,6 +106,18 @@ export const config = {
       agrupar: 'sku',
       categoriasExcluidas: [],
       categorias: [{ name: 'Fragancias', ruta: '/14/' }],
+      toleranciaCobertura: 1,
+    },
+
+    // Pigmento (perfumería de shoppings): VTEX. Pedida por el usuario el 2026-11-05 en lugar de Simplicity. Solo la
+    // categoría Perfume (id 1): 866 productos, casi todos con código de barras, marcas de diseñador. Se lee solo esa raíz.
+    pigmento: {
+      base: 'https://www.perfumeriaspigmento.com.ar',
+      maxPorPedido: 50,
+      maxOffset: 2500,
+      agrupar: 'sku',
+      categoriasExcluidas: [],
+      categorias: [{ name: 'Perfume', ruta: '/1/' }],
       toleranciaCobertura: 1,
     },
 

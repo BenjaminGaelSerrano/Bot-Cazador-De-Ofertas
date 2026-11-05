@@ -8,6 +8,7 @@ import { leerCatalogo as leerNewEra } from './fuentes/newera.mjs';
 import { leerCatalogo as leerParfumerie } from './fuentes/parfumerie.mjs';
 import { leerCatalogo as leerRouge } from './fuentes/rouge.mjs';
 import { leerCatalogo as leerSimplicity } from './fuentes/simplicity.mjs';
+import { leerCatalogo as leerPigmento } from './fuentes/pigmento.mjs';
 import { cupoDeCorrida, enviadosHoy, sumarEnviados } from './nucleo/envios.mjs';
 import { limitarWhatsapp, nombreCanal, whatsappEnviados } from './notificar/canal.mjs';
 import { telegramActivo } from './notificar/telegram.mjs';
@@ -26,6 +27,7 @@ const FUENTES = {
   moov: { leer: leerMoov, titulo: 'Ofertas Moov', talles: tallesMoov },
   dexter: { leer: leerDexter, titulo: 'Ofertas Dexter', talles: tallesDexter },
   rouge: { leer: leerRouge, titulo: 'Ofertas Rouge' },
+  pigmento: { leer: leerPigmento, titulo: 'Ofertas Pigmento' },
   simplicity: { leer: leerSimplicity, titulo: 'Ofertas Simplicity' },
   grid: { leer: leerGrid, titulo: 'Ofertas Grid' },
   parfumerie: { leer: leerParfumerie, titulo: 'Ofertas Parfumerie' },

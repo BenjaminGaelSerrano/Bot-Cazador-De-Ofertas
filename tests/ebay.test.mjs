@@ -420,3 +420,32 @@ test('Grid (VTEX): código de estilo, color y talles con stock', async () => {
   assert.deepEqual(tallesDe([item('38', '328-0013/06.5', 0), item('39', '328-0013/07 *', 1), item('42', '328-0013/09.5', 3)]),
     [{ t: '39', us: '7', u: 1 }, { t: '42', us: '9.5', u: 3 }]);
 });
+
+test('ventasDe (perfumes): suma lo vendido de las publicaciones válidas, sin tocar el precio, y lo guarda', async () => {
+  const pubs = [
+    { itemId: 'v1|a|0', title: 'Paco Rabanne 1 Million EDT 3.4 oz 100 ml', price: { value: '72', currency: 'USD' } },
+    { itemId: 'v1|b|0', title: 'Paco Rabanne 1 Million Tester 3.4 oz', price: { value: '50', currency: 'USD' } }, // tester: no cuenta
+    { itemId: 'v1|c|0', title: '1 Million by Paco Rabanne 100ml EDT Spray', price: { value: '79', currency: 'USD' } },
+  ];
+  const vendidas = { 'v1|a|0': 7, 'v1|b|0': 50, 'v1|c|0': 4 };
+  let busquedas = 0;
+  const fetchFn = async (url) => {
+    if (url.includes('/oauth2/token')) return { status: 200, ok: true, json: async () => ({ access_token: 't' }) };
+    if (url.includes('/item_summary/search')) { busquedas++; return { status: 200, ok: true, json: async () => ({ itemSummaries: pubs }) }; }
+    const id = decodeURIComponent(url.split('/item/')[1]);
+    return { status: 200, ok: true, json: async () => ({ estimatedAvailabilities: [{ estimatedSoldQuantity: vendidas[id] }] }) };
+  };
+  const dir = await mkdtemp(join(tmpdir(), 'vend-'));
+  const { writeFile } = await import('node:fs/promises');
+  const rutaCache = join(dir, 'ebay-v2.json');
+  await writeFile(rutaCache, JSON.stringify({ 'ean:3349666007921': { usd: 70, n: 6, visto: '2026-11-05' } }));
+  const ebay = crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-05', rutaCache, fetchFn, cfg: { ...cfg, ventas: { activo: true, minVentas: 3, fichas: 8, vigenciaFichasDias: 7 } }, log: () => {} });
+  const perfume = { id: '1', ean: '3349666007921', nombre: 'One Million EDT 100 ml', marca: 'RABANNE', ml: 100, precioActual: 60000 };
+  assert.equal(await ebay.ventasDe(perfume, 'juleriaque'), 11);
+  assert.equal(await ebay.ventasDe(perfume, 'juleriaque'), 11, 'la segunda vez sale del caché');
+  assert.equal(busquedas, 1);
+  const r = await ebay.precio(perfume, 'juleriaque');
+  assert.equal(r.estado, 'ok', 'el precio del perfume no depende de las ventas');
+  assert.equal(r.usd, 70);
+  assert.equal(await ebay.ventasDe({ id: 'NICT2302-002', marca: 'Nike', nombre: 'AF1', km: 'x' }, 'moov'), undefined, 'zapatillas: ya vienen con ventas');
+});

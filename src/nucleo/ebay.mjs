@@ -412,6 +412,30 @@ export function crearEbay({
     return vendidas;
   }
 
+  /**
+   * Unidades vendidas en eBay de un perfume (por código de barras), para mostrarlas en el aviso (pedido del usuario,
+   * 2026-11-05). NO cambia el precio de mercado de los perfumes (cuartil inferior de lo publicado): es solo un dato.
+   * Se suma lo vendido de las primeras `fichas` publicaciones válidas (mismo tamaño, sin testers ni packs) y se guarda
+   * en la entrada del caché (`vend`). Se llama solo para lo que se va a avisar. Devuelve undefined si no se pudo.
+   */
+  async function ventasDe(oferta, fuente) {
+    if (!dolar) return undefined;
+    const consulta = consultaPara(oferta, fuente);
+    if (!consulta || consulta.via !== 'ean') return undefined;
+    await cargar();
+    const guardado = cache[consulta.clave];
+    if (guardado?.vend !== undefined) return guardado.vend;
+    try {
+      const validas = publicacionesValidas(filtrarPorConsulta(await buscar(consulta.params), consulta)).slice(0, cfg.ventas.fichas);
+      let total = 0;
+      for (const v of validas) total += await vendidasGuardadasODe(v.itemId);
+      if (guardado) { guardado.vend = total; modificado = true; }
+      return total;
+    } catch {
+      return undefined; // sin cupo o error: el aviso sale igual, sin la cantidad
+    }
+  }
+
   async function precio(oferta, fuente) {
     if (!dolar) return { estado: 'sin' };
     const consulta = consultaPara(oferta, fuente);
@@ -486,6 +510,7 @@ export function crearEbay({
     enCache,
     guardar,
     ajustarCupo,
+    ventasDe,
     /**
      * Antes de cada tienda: le toca una parte igual de lo que queda de la corrida (`fuentesRestantes` = esta y las que
      * siguen). Lo que no usa pasa a las siguientes. Así la última (Grid) no queda siempre sin cupo.

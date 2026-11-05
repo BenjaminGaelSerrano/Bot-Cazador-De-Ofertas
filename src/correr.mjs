@@ -175,6 +175,14 @@ export async function correrFuente({
       if (detalle?.color && !g.oferta.color) g.oferta.color = detalle.color;
     }
   }
+  // 3d. Perfumes: cuántas se vendieron en eBay, solo como dato del aviso (el precio sigue saliendo de lo publicado).
+  if (ebay?.ventasDe) {
+    for (const g of pendientes) {
+      if (g.ebay?.estado !== 'ok' || g.ebay.ventas !== undefined) continue;
+      const ventas = await ebay.ventasDe(g.oferta, nombre);
+      if (Number.isFinite(ventas)) g.ebay = { ...g.ebay, ventas };
+    }
+  }
 
   // 4. Avisar, anotando cada mensaje recién cuando salió.
   // En la primera corrida el título es corto a propósito: cada caracter del encabezado le resta lugar a una oferta.

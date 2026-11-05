@@ -121,14 +121,14 @@ export function crearLectorSfcc(cfg) {
   }
 
   /**
-   * Talles disponibles de un producto, desde su página (la grilla no los trae). Un pedido por producto: se usa solo con
-   * las ofertas que se van a avisar (pedido del usuario, 2026-11-05). Devuelve `[{ t }]` o null si no se pudo leer.
+   * Talles disponibles y color de un producto, desde su página (la grilla no los trae). Un pedido por producto: se usa
+   * solo con las ofertas que se van a avisar (pedido del usuario, 2026-11-05). Devuelve `{ talles, color }` o null.
    */
   async function leerTalles(oferta, cliente) {
     if (!oferta.url) return null;
     try {
       const { datos: html } = await cliente.obtenerTexto(oferta.url);
-      return tallesDePagina(html);
+      return { talles: tallesDePagina(html), color: colorDePagina(html) };
     } catch {
       return null; // sin talles el aviso sale igual, sin la lista
     }
@@ -155,4 +155,11 @@ export function tallesDePagina(html) {
     talles.push({ t: m[1] });
   }
   return talles;
+}
+
+/** Color de la ficha de producto de SFCC: `{"label":"Color","value":["Blanco+Verde"]}` -> "Blanco/Verde". */
+export function colorDePagina(html) {
+  const texto = String(html ?? '').replace(/&quot;/g, '"');
+  const m = /"label":"Color","value":\["([^"]+)"/.exec(texto);
+  return m ? decodificar(m[1]).replace(/\+/g, '/').trim() || null : null;
 }

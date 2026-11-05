@@ -26,5 +26,21 @@ export function evaluarTalles(talles, genero = null) {
   const lista = talles.length > MAX_LISTADOS
     ? `${talles[0].t} a ${talles.at(-1).t} (${talles.length} talles)`
     : talles.map((x) => `${x.t}${Number.isFinite(x.u) && x.u <= POCAS_UNIDADES ? ` (${x.u} u.)` : ''}`).join(', ');
-  return { texto: `${alerta ? '⚠ ' : ''}talles ${lista}`, alerta };
+  return { texto: `${talles.length === 1 ? 'talle' : 'talles'} ${lista}`, alerta };
+}
+
+/**
+ * Línea de detalle de un producto en el aviso (pedido del usuario, 2026-11-05): color · talles · ventas en eBay, con ⚠
+ * adelante si los talles lo ameritan. `oferta.vendidas` = unidades vendidas en eBay del mismo código (modelo + color).
+ * Devuelve '' si no hay nada que mostrar (perfumes).
+ */
+export function detalleProducto(oferta) {
+  const talles = evaluarTalles(oferta.talles, oferta.genero);
+  const partes = [
+    oferta.color ? String(oferta.color) : null,
+    talles?.texto ?? null,
+    Number.isFinite(oferta.vendidas) ? `${oferta.vendidas} vendidas en eBay` : null,
+  ].filter(Boolean);
+  if (partes.length === 0) return '';
+  return `${talles?.alerta ? '⚠ ' : ''}${partes.join(' · ')}`;
 }

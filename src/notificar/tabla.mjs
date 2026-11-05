@@ -1,6 +1,6 @@
 import { config } from '../config.mjs';
 import { largoEfectivo } from './callmebot.mjs';
-import { evaluarTalles } from '../nucleo/talles.mjs';
+import { detalleProducto } from '../nucleo/talles.mjs';
 
 // Formato de tabla para WhatsApp (pedido del usuario, 2026-10-23): el mensaje por oferta de 3 a 4 líneas era
 // ineficiente. Ahora cada oferta es UNA fila de ancho fijo y los links van abajo, numerados.
@@ -64,8 +64,8 @@ export function itemTabla(oferta, puntaje, ref = null) {
     mercado: conReferencia ? `${puntaje.via === 'modelo' ? '~' : ''}${miles(puntaje.precioMercado)}` : '—',
     gana: conReferencia ? `${puntaje.margen >= 0 ? '+' : ''}${Math.round(puntaje.margen * 100)}%` : '—',
     url: oferta.url,
-    // Calzado y ropa: talles disponibles, con ⚠ si solo quedan poco comerciales o muy pocas unidades (2026-11-05).
-    talles: evaluarTalles(oferta.talles, oferta.genero)?.texto ?? null,
+    // Calzado y ropa: color · talles · ventas en eBay, con ⚠ si solo quedan talles poco comerciales o pocas unidades.
+    talles: detalleProducto(oferta) || null,
   };
 }
 

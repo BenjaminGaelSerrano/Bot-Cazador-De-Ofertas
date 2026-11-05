@@ -168,7 +168,12 @@ export async function correrFuente({
   // 3c. Talles (pedido del usuario, 2026-11-05): solo de lo que se va a avisar, así se pide lo menos posible. Se avisa
   // igual; el aviso muestra los talles y marca ⚠ si solo quedan talles poco comerciales o muy pocas unidades.
   if (leerTalles) {
-    for (const g of pendientes) if (g.oferta.talles === undefined) g.oferta.talles = await leerTalles(g.oferta, cliente);
+    for (const g of pendientes) {
+      if (g.oferta.talles !== undefined) continue;
+      const detalle = await leerTalles(g.oferta, cliente); // { talles, color } (Moov: de la página del producto)
+      g.oferta.talles = detalle?.talles ?? null;
+      if (detalle?.color && !g.oferta.color) g.oferta.color = detalle.color;
+    }
   }
 
   // 4. Avisar, anotando cada mensaje recién cuando salió.
@@ -176,7 +181,8 @@ export async function correrFuente({
   const tituloEnvio = silenciadas > 0 ? `${titulo} · 1ª lectura, de ${pendientes.length + silenciadas}` : titulo;
   const { mensajes, porMensaje } = formato === 'tabla'
     ? agruparTabla(
-      pendientes.map((g) => itemTabla(g.oferta, g.puntaje, g.ref)),
+      // Unidades vendidas en eBay (zapatillas y ropa): van en la línea de cada producto, con el color y los talles.
+      pendientes.map((g) => itemTabla({ ...g.oferta, vendidas: g.ebay?.ventas }, g.puntaje, g.ref)),
       { titulo: tituloEnvio, tituloContinuacion: `*${titulo}* (cont.)`, maxMensajes, ...(ebay ? { leyenda: ebay.leyenda ?? LEYENDA_EBAY } : referencias ? { leyenda: LEYENDA_INTERNACIONAL } : {}), ...limitesMensaje },
     )
     : agrupar(

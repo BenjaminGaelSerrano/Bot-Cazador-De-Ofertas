@@ -27,8 +27,9 @@ export function tallesDe(items) {
   for (const item of items ?? []) {
     const u = item.sellers?.[0]?.commertialOffer?.AvailableQuantity ?? 0;
     if (!(u > 0)) continue;
-    const t = String(item.Talle?.[0] ?? item.name ?? '').trim();
+    let t = String(item.Talle?.[0] ?? item.name ?? '').trim();
     if (!t) continue;
+    if (/^(talle\s*)?[uú]nico$|^u$/i.test(t)) t = 'único'; // gorras: "Talle Unico"
     const ref = item.referenceId?.find?.((r) => r.Key === 'RefId')?.Value ?? '';
     const us = /\/0*(\d+(?:\.\d)?)\b/.exec(ref)?.[1] ?? null;
     talles.push({ t, ...(us ? { us } : {}), u });

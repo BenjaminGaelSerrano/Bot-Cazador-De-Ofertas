@@ -7,7 +7,11 @@ export const RANGO_COMERCIAL = { h: [39, 45], m: [35.5, 39.5], otro: [36, 45] };
 export const POCAS_UNIDADES = 2;
 const MAX_LISTADOS = 6;
 
-const numero = (t) => Number(String(t).replace(',', '.'));
+// Primer número del talle: "42", "42,5" o el doble de Dexter "42-42.5" -> 42. Sin número (S, M, único) -> NaN.
+const numero = (t) => {
+  const m = /^\s*(\d+(?:[.,]\d+)?)/.exec(String(t));
+  return m ? Number(m[1].replace(',', '.')) : NaN;
+};
 
 /**
  * `talles`: `[{ t, u? }]` (talle argentino y, si la tienda lo informa, unidades). Devuelve `{ texto, alerta }`, o null si

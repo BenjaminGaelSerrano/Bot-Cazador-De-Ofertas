@@ -139,6 +139,20 @@ export const config = {
       maxPaginas: 40,
     },
 
+    // Dexter (multimarca en shoppings): mismo SFCC que Moov. En octubre compartían catálogo; el 2026-11-05 solo 8 de los
+    // primeros 96 productos de Dexter estaban en Moov (con el mismo precio), así que se lee aparte (pedido del usuario).
+    // El id trae el código de modelo y color (NIFJ9509-402) y la página de producto, talles ("42-42.5") y color.
+    dexter: {
+      base: 'https://www.dexter.com.ar',
+      sitio: 'Sites-Dexter-Site',
+      categorias: [
+        { cgid: 'hombre-calzado', genero: 'h' },
+        { cgid: 'mujer-calzado', genero: 'm' },
+      ],
+      porPagina: 48,
+      maxPaginas: 40,
+    },
+
     // New Era (gorras). Shopify: 924 productos el 2026-10-20 en 4 páginas de 250.
     newera: {
       base: 'https://www.newera.com.ar',

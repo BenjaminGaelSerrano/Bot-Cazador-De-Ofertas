@@ -56,3 +56,11 @@ test('Grid: "Talle Unico" se muestra como talle único', async () => {
   const { tallesDe } = await import('../src/fuentes/vtex.mjs');
   assert.deepEqual(tallesDe([{ Talle: ['Talle Unico'], referenceId: [], sellers: [{ commertialOffer: { AvailableQuantity: 1 } }] }]), [{ t: 'único', u: 1 }]);
 });
+
+test('Dexter: código de modelo en el id y talles dobles ("42-42.5")', async () => {
+  const { consultaPara } = await import('../src/nucleo/ebay.mjs');
+  assert.deepEqual(consultaPara({ id: 'NIFJ9509-402', marca: 'Nike', nombre: 'Zapatillas Running Nike Air Winflo 11 Hombre', km: 'x' }, 'dexter'),
+    { via: 'codigo', clave: 'cod:FJ9509-402', params: { q: 'nike FJ9509-402' } });
+  assert.equal(evaluarTalles([{ t: '42-42.5' }], 'h').alerta, false, '42 es comercial');
+  assert.equal(evaluarTalles([{ t: '46-46.5' }], 'h').alerta, true);
+});

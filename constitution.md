@@ -90,9 +90,9 @@ Además de ser ganga, cada oferta se juzga como negocio de reventa (se revende p
     2026-11-05): eBay da las ventas de toda la vida de una publicación con su precio de hoy, y una sola publicación cara
     con ventas viejas inflaba el precio (Blazer Low '77: US$193 con 8 ventas, cuando el resto pedía de 40 a 83).
   - **Color exacto** (usuario, 2026-11-05): zapatillas y ropa se buscan en eBay solo por el código de estilo del
-    fabricante, que identifica modelo y color (Moov lo trae en el id; Grid, en la descripción: "Código: DA6364-001").
+    fabricante, que identifica modelo y color (Moov y Dexter lo traen en el id; Grid, en la descripción: "Código: DA6364-001").
     Sin código no se consulta: por nombre se mezclaban todos los colores del modelo.
-  - **Talles** (usuario, 2026-11-05): el aviso muestra los talles con stock (Grid los trae en el catálogo; Moov, en la
+  - **Talles** (usuario, 2026-11-05): el aviso muestra los talles con stock (Grid los trae en el catálogo; Moov y Dexter, en la
     página del producto, que se pide solo para lo que se va a avisar). Se avisa igual, pero con **⚠** si solo quedan
     talles poco comerciales (hombre fuera de 39 a 45; mujer, de 35,5 a 39,5) o 2 unidades o menos (Yeezy 350 V2 en
     Moov a $90k con solo 34,5 y 35,5).

@@ -24,7 +24,7 @@ const DESCARTE = /\b(decant|decants|sample|samples|tester|vial|mini|travel|unbox
 
 /** Código de modelo de Moov: el id sin las dos letras de la marca (NICW2288-111 -> CW2288-111). */
 export function codigoModelo(oferta, fuente) {
-  if (fuente !== 'moov') return null;
+  if (!['moov', 'dexter'].includes(fuente)) return null; // SFCC: el id es marca + código (NIFJ9509-402)
   const m = /^[A-Z]{2}([A-Z0-9][A-Z0-9-]{3,})$/.exec(String(oferta.id ?? ''));
   return m && /\d/.test(m[1]) ? m[1] : null;
 }

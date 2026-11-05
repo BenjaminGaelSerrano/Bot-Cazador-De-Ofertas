@@ -7731,7 +7731,8 @@
  },
  "nom:gorra mitchell ness chicago bulls day 5 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:gorra mitchell ness brooklyn nets mens": {
   "sin": 1,
@@ -7739,7 +7740,8 @@
  },
  "nom:gorra mitchell ness golden state warriors team 2 tone 2 0 mens": {
   "sin": 1,
-  "visto": "2026-11-03"
+  "porVentas": 1,
+  "visto": "2026-11-04"
  },
  "nom:gorra mitchell ness san antonio spurs conference patch mens": {
   "sin": 1,
@@ -10304,6 +10306,20 @@
  },
  "ean:8411061996980": {
   "sin": 1,
+  "visto": "2026-11-04"
+ },
+ "cod:388981-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "cod:1100033737": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-04"
+ },
+ "cod:JI2004": {
+  "cota": 35.483225806451614,
   "visto": "2026-11-04"
  }
 }

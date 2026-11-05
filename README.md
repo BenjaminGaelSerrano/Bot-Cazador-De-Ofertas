@@ -6,7 +6,7 @@ link directo. **Nunca compra**: la decisión es siempre de la persona. Reglas de
 
 ## Cómo funciona
 
-1. Lee el catálogo de siete tiendas (Juleriaque, Grid, Rouge, Parfumerie —pausada: bloquea—, Moov, Dexter y New Era) y guarda el precio de cada producto.
+1. Lee el catálogo de siete tiendas (Juleriaque, Rouge, Simplicity, Grid, Moov, Dexter y New Era; Parfumerie quedó pausada porque bloquea) y guarda el precio de cada producto.
 2. Un producto es ganga si está al menos 30 % por debajo de su precio mínimo de los últimos 30 días.
    Mientras no haya 30 días de historial usa el descuento que declara el sitio ("vs lista" en el aviso).
 3. Para cada ganga mira cuánto vende el mismo producto otra tienda (perfumería: por código de barras; zapatillas: por

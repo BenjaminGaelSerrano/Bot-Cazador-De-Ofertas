@@ -47,7 +47,7 @@ export const config = {
   fuentesPausadas: ['parfumerie'],
 
   // De las perfumerías se avisan solo perfumes: ni maquillaje, ni cremas, ni tratamientos (pedido del usuario, 2026-11-03).
-  soloPerfumes: ['juleriaque', 'rouge', 'parfumerie'],
+  soloPerfumes: ['juleriaque', 'rouge', 'simplicity', 'parfumerie'],
 
   fuentes: {
     juleriaque: {
@@ -94,6 +94,19 @@ export const config = {
       categoriasExcluidas: [],
       categorias: [{ name: 'Catálogo completo', ruta: null }],
       toleranciaCobertura: 0.01,
+    },
+
+    // Simplicity (perfumería de shoppings, grupo Farmacity): VTEX. Reemplaza a Parfumerie, que bloquea (pedido del
+    // usuario, 2026-11-05). Solo la categoría Fragancias (id 14): 2.460 productos, todos con código de barras, la mitad
+    // con descuento. Se lee solo esa raíz, así que el resto del sitio (maquillaje, piel) no cuenta como "sin cubrir".
+    simplicity: {
+      base: 'https://www.simplicity.com.ar',
+      maxPorPedido: 50,
+      maxOffset: 2500,
+      agrupar: 'sku',
+      categoriasExcluidas: [],
+      categorias: [{ name: 'Fragancias', ruta: '/14/' }],
+      toleranciaCobertura: 1,
     },
 
     // Rouge (perfumería). 4.836 productos el 2026-10-20. Cada SKU es un tamaño con su propio precio.

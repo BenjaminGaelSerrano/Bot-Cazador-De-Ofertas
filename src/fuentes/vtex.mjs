@@ -19,6 +19,27 @@ export function codigoEstilo(descripcion) {
 }
 
 /**
+ * Código de estilo a partir de la referencia de Sporting (2026-11-05): "HJ8485001-000" -> HJ8485-001 (Nike: 6 + color
+ * de 3), "6ID8760-000" -> ID8760 (Adidas, con un 6 adelante), "31399801-000" -> 313998-01 (Puma: 6 dígitos + color de 2).
+ */
+export function codigoDeReferencia(referencia) {
+  const r = String(referencia ?? '').trim().toUpperCase().replace(/-0+$/, '');
+  let m;
+  if ((m = /^([A-Z]{2}\d{4})(\d{3})$/.exec(r))) return `${m[1]}-${m[2]}`;
+  if ((m = /^6?([A-Z]{2}\d{4})$/.exec(r))) return m[1];
+  if ((m = /^(\d{6})(\d{2})$/.exec(r))) return `${m[1]}-${m[2]}`;
+  return null;
+}
+
+/** Código de barras limpio: Beauty 24 trae algunos con una letra al final ("8411061106297P"). */
+export function limpiarEan(ean) {
+  const texto = String(ean ?? '').trim();
+  if (!texto) return null;
+  const m = /^(\d{8,14})[A-Za-z]+$/.exec(texto);
+  return m ? m[1] : texto;
+}
+
+/**
  * Talles con stock de un producto VTEX (cada SKU es un talle): `[{ t, us, u }]` = talle argentino, talle de EE. UU. (del
  * RefId "328-0013/07 *" -> "7", si está) y unidades disponibles.
  */
@@ -99,7 +120,8 @@ export function crearLector(cfg) {
         ml: extraerMl(p.productName),
         modelo: m.clave,
         genero: m.genero,
-        codigo: codigoEstilo(p.description),
+        // Grid y Dash lo traen en la descripción ("Código: DA6364-001"); Sporting, en la referencia del producto.
+        codigo: cfg.codigoDe === 'referencia' ? codigoDeReferencia(p.productReference) : codigoEstilo(p.description),
         color: p.Color?.[0] ?? null,
         talles: tallesDe(p.items),
         precioActual: elegido.precioActual,
@@ -115,7 +137,7 @@ export function crearLector(cfg) {
       const nombre = item.name.toLowerCase().includes(p.productName.toLowerCase())
         ? item.name
         : `${p.productName} ${item.name}`;
-      resultado.push({ ...comunes, id: String(item.itemId), ean: item.ean || null, nombre, ml: extraerMl(item.name), ...datos });
+      resultado.push({ ...comunes, id: String(item.itemId), ean: limpiarEan(item.ean), nombre, ml: extraerMl(item.name), ...datos });
     }
     return resultado;
   }

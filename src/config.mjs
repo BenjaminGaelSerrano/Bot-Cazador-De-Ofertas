@@ -47,7 +47,7 @@ export const config = {
   fuentesPausadas: ['parfumerie', 'simplicity'], // simplicity: el usuario prefirió Pigmento (2026-11-05)
 
   // De las perfumerías se avisan solo perfumes: ni maquillaje, ni cremas, ni tratamientos (pedido del usuario, 2026-11-03).
-  soloPerfumes: ['juleriaque', 'rouge', 'pigmento', 'simplicity', 'parfumerie'],
+  soloPerfumes: ['juleriaque', 'rouge', 'pigmento', 'beauty24', 'simplicity', 'parfumerie'],
 
   fuentes: {
     juleriaque: {
@@ -94,6 +94,55 @@ export const config = {
       categoriasExcluidas: [],
       categorias: [{ name: 'Catálogo completo', ruta: null }],
       toleranciaCobertura: 0.01,
+    },
+
+    // Dash (multimarca deportiva, Abasto y otros shoppings): VTEX igual que Grid (pedido del usuario, 2026-11-05). 3.314
+    // productos: no caben en una consulta, se lee por raíz. Trae el código de estilo en la descripción, color y talles.
+    dash: {
+      base: 'https://www.dashdeportes.com.ar',
+      maxPorPedido: 50,
+      maxOffset: 2500,
+      agrupar: 'producto',
+      categoriasExcluidas: [],
+      categorias: [
+        { name: 'Calzado', ruta: '/1/' },
+        { name: 'Indumentaria', ruta: '/6/' },
+        { name: 'Accesorios', ruta: '/9/' },
+      ],
+      toleranciaCobertura: 1, // los combos (raíz 37) no se leen
+    },
+
+    // Sporting (multimarca deportiva): VTEX (2026-11-05). El código de estilo viene en la referencia del producto
+    // ("HJ8485001-000" = Nike HJ8485-001). Calzado, indumentaria y accesorios; bicicletas y componentes no.
+    sporting: {
+      base: 'https://www.sporting.com.ar',
+      maxPorPedido: 50,
+      maxOffset: 2500,
+      agrupar: 'producto',
+      codigoDe: 'referencia',
+      categoriasExcluidas: [],
+      categorias: [
+        { name: 'Calzado', ruta: '/106/107/' },
+        { name: 'Indumentaria', ruta: '/106/108/' },
+        { name: 'Accesorios', ruta: '/106/109/' },
+      ],
+      toleranciaCobertura: 1,
+    },
+
+    // Beauty 24 (perfumería de shoppings, Abasto): VTEX (2026-11-05). Solo perfumes de mujer, hombre y unisex: 1.614 en
+    // la raíz de perfumes, marcas de diseñador. Algunos códigos de barras traen una letra al final (se limpia).
+    beauty24: {
+      base: 'https://www.beauty24.com.ar',
+      maxPorPedido: 50,
+      maxOffset: 2500,
+      agrupar: 'sku',
+      categoriasExcluidas: [],
+      categorias: [
+        { name: 'Perfumes de mujer', ruta: '/100/101/' },
+        { name: 'Perfumes de hombre', ruta: '/100/102/' },
+        { name: 'Perfumes unisex', ruta: '/100/103/' },
+      ],
+      toleranciaCobertura: 1,
     },
 
     // Simplicity (perfumería de shoppings, grupo Farmacity): VTEX. Reemplaza a Parfumerie, que bloquea (pedido del
@@ -170,6 +219,18 @@ export const config = {
     dexter: {
       base: 'https://www.dexter.com.ar',
       sitio: 'Sites-Dexter-Site',
+      categorias: [
+        { cgid: 'hombre-calzado', genero: 'h' },
+        { cgid: 'mujer-calzado', genero: 'm' },
+      ],
+      porPagina: 48,
+      maxPaginas: 40,
+    },
+
+    // Stock Center (calzado, tipo outlet): mismo SFCC que Moov y Dexter (2026-11-05).
+    stockcenter: {
+      base: 'https://www.stockcenter.com.ar',
+      sitio: 'Sites-StockCenter-Site',
       categorias: [
         { cgid: 'hombre-calzado', genero: 'h' },
         { cgid: 'mujer-calzado', genero: 'm' },

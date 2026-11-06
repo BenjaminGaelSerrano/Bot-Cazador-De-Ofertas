@@ -64,3 +64,15 @@ test('Dexter: código de modelo en el id y talles dobles ("42-42.5")', async () 
   assert.equal(evaluarTalles([{ t: '42-42.5' }], 'h').alerta, false, '42 es comercial');
   assert.equal(evaluarTalles([{ t: '46-46.5' }], 'h').alerta, true);
 });
+
+test('Sporting: código de estilo desde la referencia; Beauty 24: códigos de barras con letra', async () => {
+  const { codigoDeReferencia, limpiarEan } = await import('../src/fuentes/vtex.mjs');
+  assert.equal(codigoDeReferencia('HJ8485001-000'), 'HJ8485-001', 'Nike');
+  assert.equal(codigoDeReferencia('6ID8760-000'), 'ID8760', 'Adidas');
+  assert.equal(codigoDeReferencia('31399801-000'), '313998-01', 'Puma');
+  assert.equal(codigoDeReferencia('ABC-12'), null);
+  assert.equal(limpiarEan('8411061106297P'), '8411061106297');
+  assert.equal(limpiarEan(''), null);
+  const { consultaPara } = await import('../src/nucleo/ebay.mjs');
+  assert.equal(consultaPara({ id: 'NIFN4322-700', marca: 'Nike', nombre: 'Precision 7', km: 'x' }, 'stockcenter').clave, 'cod:FN4322-700', 'Stock Center: SFCC');
+});

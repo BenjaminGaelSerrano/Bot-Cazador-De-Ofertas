@@ -46,6 +46,8 @@ const { values: args } = parseArgs({
   options: {
     fuente: { type: 'string', default: 'todas' }, // un nombre, varios separados por coma, o "todas"
     'dry-run': { type: 'boolean', default: false },
+    // Con --dry-run: guarda igual los precios de eBay consultados (caché), para que las corridas siguientes los reutilicen.
+    'guardar-mercado': { type: 'boolean', default: false },
     forzar: { type: 'boolean', default: false }, // avisa todo lo que vale la pena aunque ya se haya avisado
     datos: { type: 'string', default: 'datos' },
     pausa: { type: 'string' },
@@ -139,7 +141,7 @@ const porWhatsapp = telegramActivo() ? whatsappEnviados() : mensajesUsados;
 if (!dryRun && porWhatsapp > 0) await sumarEnviados(rutaEnvios, fecha, porWhatsapp);
 
 if (ebay) {
-  if (!dryRun) await ebay.guardar();
+  if (!dryRun || args['guardar-mercado']) await ebay.guardar();
   console.log(`${ebay.nombre}: ${ebay.consultas} consultas${ebay.corte ? ` (cortado: ${ebay.corte.message})` : ''}`);
   // Si eBay corta desde el principio (credenciales o acceso), ninguna oferta tiene precio de mercado y nada se avisaría:
   // eso se avisa una vez, como una fuente caída. Un corte a mitad de corrida (límite) no: lo pendiente sale en la próxima.

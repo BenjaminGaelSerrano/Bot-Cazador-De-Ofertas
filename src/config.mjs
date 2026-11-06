@@ -36,7 +36,16 @@ export const config = {
   // `pausados`: true corta los avisos de ofertas; el bot sigue leyendo y guardando precios, las fallas se siguen avisando
   // y lo no avisado no se marca (sale al reanudar). Se pausó el 2026-11-02 porque el precio de mercado entre tiendas
   // argentinas está inflado 2 a 3 veces respecto de EE. UU.; el usuario pidió reactivarlos mientras se conecta eBay.
-  avisar: { veredictos: ['buena'], pausados: false },  // se puede sumar 'regular' y 'sin-referencia'
+  avisar: {
+    veredictos: ['buena'], // se puede sumar 'regular' y 'sin-referencia'
+    pausados: false,
+    // Filtro del usuario (2026-11-05: compra para él; "solo márgenes grandes, solo modelos que se venden mucho, solo marcas
+    // o modelos que elija"). Margen contra eBay (precio justo), ventas en eBay del mismo producto y lista de términos
+    // (marca o modelo, en el nombre). Lista vacía = todas las marcas.
+    margenMinimo: 0.30,
+    ventasMinimas: 10,
+    soloTerminos: [],
+  },
   tabla: { monoespaciado: true },     // false: filas separadas por barras y sin alinear (si WhatsApp no respeta el ancho fijo)
   // Las marcas de "ya avisado" anteriores a esta fecha se ignoran (una sola vez): las primeras corridas silenciaron como
   // línea base muchas ofertas buenas que nunca llegaron al WhatsApp. Poner null para no reiniciar.

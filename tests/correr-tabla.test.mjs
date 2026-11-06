@@ -288,7 +288,7 @@ test('eBay: el margen sale del precio de eBay, no de otra tienda; sin precio de 
     3: { estado: 'pendiente' },                                                                          // sin consultar
   };
   const ebay = { precio: async (o) => respuestas[o.id] };
-  const r = await e.correr('2026-10-22', { ebay, concurrenciaEbay: 2 });
+  const r = await e.correr('2026-10-22', { ebay, concurrenciaEbay: 2, filtroAviso: {} }); // mecánica, sin el filtro del usuario
 
   assert.equal(e.enviados.length, 1);
   const m = e.enviados[0];

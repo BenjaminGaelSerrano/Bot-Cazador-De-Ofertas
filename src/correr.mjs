@@ -6,7 +6,7 @@ import { anexarAvisos } from './nucleo/avisos.mjs';
 import { ErrorFuente } from './nucleo/http.mjs';
 import { cargar as cargarHistorial, guardar as guardarHistorial, registrar } from './nucleo/historial.mjs';
 import { cargarOtros, construirIndice, precioMercado } from './nucleo/mercado.mjs';
-import { ordenarParaConsultar, puntajeAviso } from './nucleo/prioridad.mjs';
+import { ordenarParaConsultar, pasaFiltroAviso, puntajeAviso } from './nucleo/prioridad.mjs';
 import { esSoloPerfume } from './nucleo/internacional.mjs';
 import { compararPorReventa, nivelDemanda, puntuar, velocidadVenta } from './nucleo/reventa.mjs';
 import { agrupar } from './notificar/callmebot.mjs';
@@ -41,6 +41,7 @@ export async function correrFuente({
   limitesMensaje = {}, // para pruebas: pisa los topes de largo de cada mensaje
   formato = config.formatoMensaje, // 'tabla' | 'detalle'
   veredictosAvisables = config.avisar.veredictos,
+  filtroAviso = config.avisar, // margen y ventas mínimas, lista de marcas o modelos (las pruebas pasan {})
   avisosPausados = false,
   // Reanálisis forzado: avisa aunque ya se hayan avisado, sin borrar las marcas (las de otras tiendas se conservan).
   ignorarAvisadas = false,
@@ -185,6 +186,9 @@ export async function correrFuente({
   }
   // 3e. Orden del aviso: margen y cantidad de ventas en eBay (ver `puntajeAviso`), las mejores primero.
   if (ebay) pendientes.sort((a, b) => puntajeAviso({ margen: b.puntaje.margen, ventas: b.ebay?.ventas }) - puntajeAviso({ margen: a.puntaje.margen, ventas: a.ebay?.ventas }));
+  // 3f. Filtro del usuario: margen y ventas mínimas, y solo las marcas o modelos de su lista (config.avisar). Lo que no
+  // pasa no se marca como avisado: se reevalúa en cada corrida (si baja de precio, puede pasar).
+  if (ebay) pendientes = pendientes.filter((g) => pasaFiltroAviso({ oferta: g.oferta, margen: g.puntaje.margen, ventas: g.ebay?.ventas }, filtroAviso));
 
   // 4. Avisar, anotando cada mensaje recién cuando salió.
   // En la primera corrida el título es corto a propósito: cada caracter del encabezado le resta lugar a una oferta.

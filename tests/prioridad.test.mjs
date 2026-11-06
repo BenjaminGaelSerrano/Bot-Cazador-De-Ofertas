@@ -64,3 +64,19 @@ test('puntajeAviso: margen por confianza en las ventas (pedido del usuario, 2026
   assert.equal(puntajeAviso({ margen: 0.5, ventas: 0 }), 0, 'sin ventas no suma');
   assert.equal(puntajeAviso({ margen: 0.4, ventas: undefined }), 0.2, 'sin dato: confianza media');
 });
+
+test('pasaFiltroAviso: margen y ventas mínimas, y solo las marcas o modelos de la lista', async () => {
+  const { pasaFiltroAviso } = await import('../src/nucleo/prioridad.mjs');
+  const cfg = { margenMinimo: 0.30, ventasMinimas: 10, soloTerminos: [] };
+  const superstar = { oferta: { marca: 'adidas', nombre: 'Zapatillas Adidas Superstar' }, margen: 1.06, ventas: 17 };
+  assert.equal(pasaFiltroAviso(superstar, cfg), true);
+  assert.equal(pasaFiltroAviso({ ...superstar, margen: 0.16 }, cfg), false, 'margen chico');
+  assert.equal(pasaFiltroAviso({ ...superstar, ventas: 4 }, cfg), false, 'pocas ventas');
+  assert.equal(pasaFiltroAviso({ ...superstar, ventas: undefined }, cfg), false, 'sin dato de ventas');
+  assert.equal(pasaFiltroAviso(superstar, { ...cfg, soloTerminos: ['jordan', 'samba'] }), false);
+  assert.equal(pasaFiltroAviso(superstar, { ...cfg, soloTerminos: ['superstar'] }), true);
+  const ch = { oferta: { marca: 'Carolina Herrera', nombre: 'Bad Boy EDT 100 ml' }, margen: 0.4, ventas: 50 };
+  assert.equal(pasaFiltroAviso(ch, { ...cfg, soloTerminos: ['carolina herrera'] }), true);
+  assert.equal(pasaFiltroAviso(ch, { ...cfg, soloTerminos: ['herrer'] }), false, 'palabras enteras');
+  assert.equal(pasaFiltroAviso(superstar, {}), true, 'sin filtro');
+});

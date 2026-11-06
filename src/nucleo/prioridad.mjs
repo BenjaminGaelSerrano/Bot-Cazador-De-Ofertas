@@ -80,3 +80,17 @@ export function puntajeAviso({ margen, ventas }) {
   const confianza = Number.isFinite(ventas) ? ventas / (ventas + VENTAS_MEDIA_CONFIANZA) : 0.5;
   return (Number.isFinite(margen) ? margen : 0) * confianza;
 }
+
+const normal = (s) => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+
+/**
+ * Filtro del aviso (pedido del usuario, 2026-11-05): margen mínimo contra eBay, ventas mínimas en eBay y, si hay lista,
+ * que la marca o el nombre contengan alguno de los términos ("jordan", "samba", "carolina herrera"...).
+ */
+export function pasaFiltroAviso({ oferta, margen, ventas }, { margenMinimo = 0, ventasMinimas = 0, soloTerminos = [] } = {}) {
+  if (!(margen >= margenMinimo)) return false;
+  if (ventasMinimas > 0 && !((ventas ?? 0) >= ventasMinimas)) return false;
+  if (soloTerminos.length === 0) return true;
+  const texto = ` ${normal(oferta.marca)} ${normal(oferta.nombre)} `;
+  return soloTerminos.some((t) => texto.includes(` ${normal(t)} `));
+}

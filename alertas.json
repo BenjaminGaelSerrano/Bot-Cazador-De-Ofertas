@@ -1342,5 +1342,29 @@
  "grid:54853": {
   "precio": 162499,
   "fecha": "2026-11-05"
+ },
+ "moov:ADJI1547": {
+  "precio": 54999,
+  "fecha": "2026-11-06"
+ },
+ "moov:ADFZ6224": {
+  "precio": 69999,
+  "fecha": "2026-11-06"
+ },
+ "moov:ADJP7845": {
+  "precio": 54999,
+  "fecha": "2026-11-06"
+ },
+ "dexter:SAS10823-25": {
+  "precio": 39999,
+  "fecha": "2026-11-06"
+ },
+ "dexter:ADJS1304": {
+  "precio": 89999,
+  "fecha": "2026-11-06"
+ },
+ "dexter:NIDV3853-001": {
+  "precio": 74999,
+  "fecha": "2026-11-06"
  }
 }

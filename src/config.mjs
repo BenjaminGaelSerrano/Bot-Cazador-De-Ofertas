@@ -224,7 +224,7 @@ export const config = {
         { cgid: 'mujer-calzado', genero: 'm' },
       ],
       porPagina: 48,
-      maxPaginas: 40,
+      maxPaginas: 60, // 40 x 48 = 1.920 se quedaba corto en hombre-calzado (2026-11-06)
     },
 
     // Stock Center (calzado, tipo outlet): mismo SFCC que Moov y Dexter (2026-11-05).

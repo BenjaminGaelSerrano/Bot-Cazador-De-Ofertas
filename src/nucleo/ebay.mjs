@@ -50,7 +50,8 @@ export function consultaPara(oferta, fuente) {
   // Código de estilo (modelo + color): el de Moov sale del id; el de Grid, de la descripción del producto.
   const codigo = oferta.codigo ?? codigoModelo(oferta, fuente);
   if (codigo) {
-    const marca = limpiar(oferta.marca).replace(/\b(originals|sportswear)\b/g, '').trim();
+    // Solo la marca: "adidas performance IH8218" devolvía 2 publicaciones y "adidas IH8218", 34 (Dash, 2026-11-07).
+    const marca = limpiar(oferta.marca).replace(/\b(originals|sportswear|performance|running|training|football|basketball)\b/g, '').replace(/\s+/g, ' ').trim();
     return { via: 'codigo', clave: `cod:${codigo}`, params: { q: `${marca} ${codigo}`.trim() } };
   }
   // Sin código no hay forma de asegurar el color: por nombre se mezclaban todos los colores del modelo. Solo se busca

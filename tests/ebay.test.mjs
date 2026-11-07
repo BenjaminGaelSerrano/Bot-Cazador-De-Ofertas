@@ -449,3 +449,11 @@ test('ventasDe (perfumes): suma lo vendido de las publicaciones válidas, sin to
   assert.equal(r.usd, 70);
   assert.equal(await ebay.ventasDe({ id: 'NICT2302-002', marca: 'Nike', nombre: 'AF1', km: 'x' }, 'moov'), undefined, 'zapatillas: ya vienen con ventas');
 });
+
+test('consultaPara: la marca va sin "performance" ni "originals" (Dash, adidas performance IH8218 dio 2 resultados; adidas IH8218, 34)', () => {
+  const o = { id: '1', marca: 'Adidas Performance', nombre: 'ZAPATILLAS ADIDAS PERFORMANCE DURAMO SL2', km: 'x', codigo: 'IH8218' };
+  assert.equal(consultaPara(o, 'dash').params.q, 'adidas IH8218');
+  assert.equal(consultaPara({ ...o, marca: 'Adidas Originals' }, 'grid').params.q, 'adidas IH8218');
+  assert.equal(consultaPara({ ...o, marca: 'Nike Sportswear', codigo: 'DA6364-001' }, 'grid').params.q, 'nike DA6364-001');
+  assert.equal(consultaPara({ ...o, marca: 'Puma', codigo: '313998-01' }, 'sporting').params.q, 'puma 313998-01');
+});

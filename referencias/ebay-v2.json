@@ -4570,8 +4570,8 @@
   "visto": "2026-11-04"
  },
  "cod:IB4414-120": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 75.38,
+  "visto": "2026-11-06"
  },
  "cod:IH3369-077": {
   "cota": 108.72749999999999,
@@ -4847,10 +4847,8 @@
   "visto": "2026-11-04"
  },
  "cod:400384-02": {
-  "usd": 80.75,
-  "n": 8,
-  "url": "https://www.ebay.com/itm/327375748515?_skw=puma+400384-02&hash=item4c391d7da3:g:uKAAAeSwJOVquBoV&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7kDCEhizYmn1AN4IBAPAFJdBu3pFXGiWlD4%2F2pzaz4eX6PgcGhnYfjQDMXi0Q6nu1jtjraJTnV5dBlw1OBsceKZaEqXDtkD3%2F6cOaB5KgNDxy9F0sRMv6Ssk3IosYg%2FU2OoluYsO6f5ziZlRvLF74cMG9zwvkPx%2BwzfdJPWFPOWkrjxDp8QEOlmr%2BxaQXF5vd910WHJqychf4a5BLEcVFGa5hCTZGjAfUruxn5MhCd0U7YwgBNlnPoS%2Bq1hEQ2nacS70QwvBtkIrVk64xY36%2Bw8DwNdH0mbuGq%2FI27WUwx3rA%3D%3D",
-  "visto": "2026-11-03"
+  "cota": 38.83430420711974,
+  "visto": "2026-11-06"
  },
  "cod:DV3808-113": {
   "cota": 94.2,
@@ -4912,8 +4910,8 @@
   "visto": "2026-11-04"
  },
  "cod:401287-07": {
-  "sin": 1,
-  "visto": "2026-11-03"
+  "cota": 61.48802588996764,
+  "visto": "2026-11-06"
  },
  "cod:HQ1918-200": {
   "cota": 96.15320512820513,
@@ -5225,10 +5223,8 @@
   "visto": "2026-11-04"
  },
  "cod:403619-02": {
-  "usd": 85.95,
-  "n": 5,
-  "url": "https://www.ebay.com/itm/407326687061?_skw=puma+403619-02&hash=item5ed68fff55:g:r3YAAeSwYOBq5Gjp",
-  "visto": "2026-11-03"
+  "cota": 64.7242718446602,
+  "visto": "2026-11-06"
  },
  "cod:IG2010": {
   "cota": 75,
@@ -15196,7 +15192,8 @@
   "visto": "2026-11-06"
  },
  "cod:JP8689": {
-  "cota": 108.73721682847896,
+  "sin": 1,
+  "porVentas": 1,
   "visto": "2026-11-06"
  },
  "cod:IH4790": {
@@ -22392,6 +22389,54 @@
  },
  "cod:HP6973": {
   "cota": 49.95,
+  "visto": "2026-11-06"
+ },
+ "cod:399936-12": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-06"
+ },
+ "cod:392312-08": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-06"
+ },
+ "cod:398799-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-06"
+ },
+ "cod:399936-05": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-06"
+ },
+ "cod:390028-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-06"
+ },
+ "cod:393802-22": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-06"
+ },
+ "cod:384209-02": {
+  "cota": 61.48802588996764,
+  "visto": "2026-11-06"
+ },
+ "cod:404263-01": {
+  "cota": 61.48802588996764,
+  "visto": "2026-11-06"
+ },
+ "cod:1100010773": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-06"
+ },
+ "cod:KE8164": {
+  "sin": 1,
+  "porVentas": 1,
   "visto": "2026-11-06"
  }
 }

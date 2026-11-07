@@ -317,3 +317,14 @@ test('ignorarAvisadas: vuelve a avisar lo ya avisado y conserva las marcas de ot
   assert.equal(e.enviados.length, 2, 'forzado repite');
   assert.ok((await e.leerJson('alertas.json'))['rouge:99'], 'la marca de otra tienda sigue');
 });
+
+test('agotadas: si la página no tiene ningún talle disponible, no se avisa (Superstar de Moov, 2026-11-07)', async () => {
+  const e = await entorno();
+  e.poner([1, 2].map((id) => oferta(id, { precioActual: 100000, precioLista: 200000 })));
+  const ebay = { precio: async (o) => ({ estado: 'ok', precio: 200000, usd: 130, n: 8, via: 'codigo', ventas: 20, url: `https://www.ebay.com/itm/${o.id}` }) };
+  const leerTalles = async (o) => (String(o.id) === '1' ? { talles: [], color: 'Negro' } : { talles: [{ t: '42' }], color: 'Blanco' });
+  await e.correr('2026-10-22', { ebay, leerTalles, filtroAviso: {} });
+  const texto = e.enviados.join('\n');
+  assert.ok(texto.includes('MODELO 2') || texto.includes('Modelo 2'), texto);
+  assert.ok(!texto.includes('MODELO 1') && !texto.includes('Modelo 1'), 'la agotada no sale');
+});

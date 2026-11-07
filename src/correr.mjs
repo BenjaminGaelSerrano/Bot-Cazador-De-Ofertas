@@ -179,6 +179,9 @@ export async function correrFuente({
       if (detalle?.color && !g.oferta.color) g.oferta.color = detalle.color;
     }
   }
+  // Agotadas (2026-11-07): Moov seguía listando Superstar y Top Ten con precio pero sin ningún talle para elegir. Si se
+  // sabe que no queda ningún talle, no se avisa (tampoco se marca: si reponen, sale en una corrida siguiente).
+  pendientes = pendientes.filter((g) => !(Array.isArray(g.oferta.talles) && g.oferta.talles.length === 0));
   // 3d. Perfumes: cuántas se vendieron en eBay, solo como dato del aviso (el precio sigue saliendo de lo publicado).
   if (ebay?.ventasDe) {
     for (const g of pendientes) {

@@ -42,7 +42,7 @@ export const config = {
     // Filtro del usuario (2026-11-05: compra para él; "solo márgenes grandes, solo modelos que se venden mucho, solo marcas
     // o modelos que elija"). Margen contra eBay (precio justo), ventas en eBay del mismo producto y lista de términos
     // (marca o modelo, en el nombre). Lista vacía = todas las marcas.
-    margenMinimo: 0.30,
+    margenMinimo: 0.05, // 30 % el 2026-11-06; el usuario lo bajó a 5 % el 2026-11-07
     ventasMinimas: 10,
     soloTerminos: [],
     // Nada de mujer (2026-11-06: "todo lo que es de mujer no me va a interesar nunca"): por categoría o nombre.

@@ -13,6 +13,7 @@ import { agrupar } from './notificar/callmebot.mjs';
 import { enviar } from './notificar/canal.mjs';
 import { formatearOferta } from './notificar/formato.mjs';
 import { LEYENDA_EBAY, LEYENDA_INTERNACIONAL, agruparTabla, itemTabla } from './notificar/tabla.mjs';
+import { agruparTarjetas, itemTarjeta } from './notificar/tarjetas.mjs';
 
 const dormirReal = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -193,7 +194,13 @@ export async function correrFuente({
   // 4. Avisar, anotando cada mensaje recién cuando salió.
   // En la primera corrida el título es corto a propósito: cada caracter del encabezado le resta lugar a una oferta.
   const tituloEnvio = silenciadas > 0 ? `${titulo} · 1ª lectura, de ${pendientes.length + silenciadas}` : titulo;
-  const { mensajes, porMensaje } = formato === 'tabla'
+  // Tarjetas (2026-11-06): nombre con link, acá → eBay, ahorro, ventas y color · talles. Solo con precio de eBay.
+  const { mensajes, porMensaje } = formato === 'tarjetas' && ebay
+    ? agruparTarjetas(
+      pendientes.map((g) => itemTarjeta({ ...g.oferta, vendidas: g.ebay?.ventas }, g.puntaje)),
+      { titulo: tituloEnvio, tituloContinuacion: `*${titulo}* (cont.)`, maxMensajes, ...limitesMensaje },
+    )
+    : formato === 'tabla' || formato === 'tarjetas'
     ? agruparTabla(
       // Unidades vendidas en eBay (zapatillas y ropa): van en la línea de cada producto, con el color y los talles.
       pendientes.map((g) => itemTabla({ ...g.oferta, vendidas: g.ebay?.ventas }, g.puntaje, g.ref)),

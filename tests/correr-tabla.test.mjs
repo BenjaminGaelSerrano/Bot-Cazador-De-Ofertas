@@ -293,7 +293,7 @@ test('eBay: el margen sale del precio de eBay, no de otra tienda; sin precio de 
   assert.equal(e.enviados.length, 1);
   const m = e.enviados[0];
   assert.ok(m.includes('eBay EE.UU.'), m);
-  assert.ok(m.includes('NIKE MODELO 1') && m.includes('160k') && m.includes('+52%'), m);
+  assert.ok(m.includes('Nike Modelo 1') && m.includes('160k') && m.includes('+52%'), m); // tarjetas: nombre legible
   assert.ok(!m.includes('MODELO 2') && !m.includes('MODELO 3'), m);
   assert.deepEqual(r.ebay, { conPrecio: 2, sinPrecio: 0, pendientes: 1 });
   const aviso = JSON.parse((await readFile(join(e.directorioDatos, 'avisos.jsonl'), 'utf8')).trim());

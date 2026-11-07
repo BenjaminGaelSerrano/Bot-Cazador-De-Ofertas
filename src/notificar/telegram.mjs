@@ -16,7 +16,10 @@ export function aHtml(texto) {
   const partes = texto.split('```');
   return partes.map((parte, i) => {
     if (i % 2 === 1) return `<pre>${escapar(parte.replace(/^\n/, '').replace(/\n$/, ''))}</pre>`;
-    return escapar(parte).replace(/\*([^*\n]+)\*/g, '<b>$1</b>');
+    // [texto](url) -> link con nombre (formato de tarjetas, 2026-11-06); después *negrita*.
+    return escapar(parte)
+      .replace(/\[([^\]\n]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2">$1</a>')
+      .replace(/\*([^*\n]+)\*/g, '<b>$1</b>');
   }).join('');
 }
 

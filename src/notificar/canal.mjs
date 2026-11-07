@@ -1,6 +1,7 @@
 import { config } from '../config.mjs';
 import { enviar as enviarCallmebot } from './callmebot.mjs';
 import { enviarTelegram, telegramActivo } from './telegram.mjs';
+import { paraWhatsapp } from './tarjetas.mjs';
 
 // Canales de avisos (pedido del usuario, 2026-11-02: "los dos a la vez"). Telegram es el principal: si está configurado,
 // todo sale por ahí y un fallo de Telegram es un fallo del envío. WhatsApp (CallMeBot) recibe una COPIA de cada mensaje,
@@ -20,13 +21,13 @@ export function limitarWhatsapp(cupo) {
 export const whatsappEnviados = () => copiasWhatsapp;
 
 export async function enviar(texto, opciones = {}) {
-  if (!telegramActivo()) return enviarCallmebot(texto, opciones);
+  if (!telegramActivo()) return enviarCallmebot(paraWhatsapp(texto), opciones);
 
   const resultado = await enviarTelegram(texto, opciones);
   const log = opciones.log ?? console.log;
   if ((config.notificar?.copiaWhatsapp ?? true) && !opciones.dryRun && cupoWhatsapp > 0) {
     try {
-      const r = await enviarCallmebot(texto, { log: () => {} });
+      const r = await enviarCallmebot(paraWhatsapp(texto), { log: () => {} });
       if (r.enviado) {
         cupoWhatsapp--;
         copiasWhatsapp++;

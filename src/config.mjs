@@ -32,7 +32,7 @@ export const config = {
   // Qué se avisa y cómo se ve (pedido del usuario, 2026-10-23): solo lo que realmente vale la pena, en formato de tabla,
   // porque el mensaje de varias líneas por oferta era ineficiente. Lo que no se avisa no se marca como avisado: se
   // reevalúa en cada corrida y sale si más adelante pasa a valer la pena (ej. cuando otra tienda lo respalda).
-  formatoMensaje: 'tabla',            // 'tabla' | 'detalle' (el formato anterior, de varias líneas por oferta)
+  formatoMensaje: 'tarjetas',         // 'tarjetas' (2026-11-06, como en el chat) | 'tabla' | 'detalle' (varias líneas)
   // `pausados`: true corta los avisos de ofertas; el bot sigue leyendo y guardando precios, las fallas se siguen avisando
   // y lo no avisado no se marca (sale al reanudar). Se pausó el 2026-11-02 porque el precio de mercado entre tiendas
   // argentinas está inflado 2 a 3 veces respecto de EE. UU.; el usuario pidió reactivarlos mientras se conecta eBay.

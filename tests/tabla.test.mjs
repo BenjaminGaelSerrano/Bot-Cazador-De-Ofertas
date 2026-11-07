@@ -165,8 +165,8 @@ test('con links reales de Grid (~72 caracteres) entran 5 ofertas por mensaje', (
   for (const m of mensajes) assert.ok(largoEfectivo(m) <= config.maxCaracteres);
 });
 
-test('configuración: tabla y solo "buena" por defecto', () => {
-  assert.equal(config.formatoMensaje, 'tabla');
+test('configuración: tarjetas y solo "buena" por defecto', () => {
+  assert.equal(config.formatoMensaje, 'tarjetas'); // desde el 2026-11-06
   assert.deepEqual(config.avisar.veredictos, ['buena']);
   assert.equal(config.tabla.monoespaciado, true);
 });

@@ -3457,8 +3457,8 @@
   "visto": "2026-11-06"
  },
  "cod:AA2190-100": {
-  "cota": 43.36504854368932,
-  "visto": "2026-11-06"
+  "cota": 42.0705501618123,
+  "visto": "2026-11-07"
  },
  "cod:100209052": {
   "sin": 1,
@@ -3667,12 +3667,8 @@
   "visto": "2026-11-03"
  },
  "cod:HM8818-001": {
-  "usd": 119.97,
-  "n": 4,
-  "ventas": 6,
-  "url": "https://www.ebay.com/itm/227270042238?_skw=nike+HM8818-001&hash=item34ea59a27e:g:tz8AAeSwHKtpwYat&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7kxxOXH1K1%2BJ07a4AuXWUFLP7yHjBEqkOeQxLNT6X2HsxvCCTk97iZ%2ForRH%2BxgGkE%2FZQ1WgzaV9cPuNdRB773T7igiSZYFIyO10N%2FykWpRA5LnK7F9tYc2Q92c4y5XciFFHTfDYT92TiVy5Ckh8e%2FsfhxAmLDmPip%2FFTDSNWqulXh3aYhbnrV%2BVeL4QS2PKhEJJzFHMDMck2hAXyFsYQBRgRjDAmOst7hR8wyXwOfca1zbBG5t9olshhw1R5LnDrNUV310HhFKpI8byu0JAhhTukitnCs4OjvBPyR4mrXwm1g%3D%3D",
-  "cota": 160,
-  "visto": "2026-11-03"
+  "cota": 139.47,
+  "visto": "2026-11-07"
  },
  "cod:SC207521-C6UB": {
   "sin": 1,
@@ -22589,6 +22585,38 @@
  "cod:108842-02": {
   "sin": 1,
   "porVentas": 1,
+  "visto": "2026-11-07"
+ },
+ "cod:IB1047-068": {
+  "cota": 58.25177993527508,
+  "visto": "2026-11-07"
+ },
+ "cod:JP7781": {
+  "cota": 49.19029126213592,
+  "visto": "2026-11-07"
+ },
+ "cod:NBATS525113-BK2": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-07"
+ },
+ "cod:NBAJK525202-WH2": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-07"
+ },
+ "cod:JQ0482": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-07"
+ },
+ "cod:394915-51": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-07"
+ },
+ "cod:JI0958": {
+  "cota": 58.89902912621359,
   "visto": "2026-11-07"
  }
 }

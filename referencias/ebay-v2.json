@@ -3612,8 +3612,8 @@
   "visto": "2026-11-06"
  },
  "cod:VN000D6CBMV": {
-  "cota": 76.9224358974359,
-  "visto": "2026-11-04"
+  "cota": 76.99,
+  "visto": "2026-11-07"
  },
  "cod:404366-01": {
   "cota": 84.14174757281553,
@@ -4397,8 +4397,8 @@
   "visto": "2026-11-03"
  },
  "cod:JI3445": {
-  "cota": 60.896794871794874,
-  "visto": "2026-11-04"
+  "cota": 61.48802588996764,
+  "visto": "2026-11-07"
  },
  "cod:398481-01": {
   "sin": 1,
@@ -4408,26 +4408,26 @@
  "cod:50604": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:IH1395": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:F01L111-5420": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:KI6585": {
-  "cota": 102.56346153846154,
-  "visto": "2026-11-04"
+  "cota": 103.55922330097087,
+  "visto": "2026-11-07"
  },
  "cod:IH4463-001": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:369579-25": {
   "sin": 1,
@@ -4437,30 +4437,30 @@
  "cod:395345-02": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:402353-02": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:IH9400": {
   "cota": 111.95,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:389021-27": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:389021-02": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:JI2063": {
-  "cota": 73.7173076923077,
-  "visto": "2026-11-04"
+  "cota": 69.97,
+  "visto": "2026-11-07"
  },
  "cod:KK3391": {
   "cota": 142.7177993527508,
@@ -4469,7 +4469,7 @@
  "cod:JP6812": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:KI6674": {
   "cota": 69.90226537216829,
@@ -5012,11 +5012,17 @@
  "cod:1100033905": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:H03474": {
-  "cota": 57.69166666666667,
-  "visto": "2026-11-04"
+  "usd": 59.99,
+  "n": 1,
+  "ventas": 2,
+  "url": "https://www.ebay.com/itm/366075205517?_skw=adidas+H03474&hash=item553bc8578d:g:uBIAAeSwWZRpSfk1",
+  "usdVendido": 59.99,
+  "usdPublicado": 59.99,
+  "cota": 59.99,
+  "visto": "2026-11-07"
  },
  "cod:JR3607": {
   "usd": 69.97,
@@ -5031,11 +5037,11 @@
  "cod:IG3757": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:HJ4316-700": {
-  "cota": 66.66602564102564,
-  "visto": "2026-11-04"
+  "cota": 67.31326860841423,
+  "visto": "2026-11-07"
  },
  "cod:100210142": {
   "cota": 29.12556634304207,
@@ -5044,7 +5050,7 @@
  "cod:307538-02": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:89831": {
   "sin": 1,
@@ -5054,7 +5060,7 @@
  "cod:SC207988-C001": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:JI2494": {
   "sin": 1,
@@ -5070,26 +5076,26 @@
  "cod:JQ7092": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:JI2585": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:JP7844": {
-  "cota": 62.96,
-  "visto": "2026-11-04"
+  "cota": 59.95,
+  "visto": "2026-11-07"
  },
  "cod:50603": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:41461050090": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:400968-02": {
   "sin": 1,
@@ -5099,11 +5105,11 @@
  "cod:F01L082-5762": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:HF8126-100": {
-  "cota": 100,
-  "visto": "2026-11-04"
+  "cota": 96.5,
+  "visto": "2026-11-07"
  },
  "cod:89111": {
   "sin": 1,
@@ -5111,21 +5117,21 @@
   "visto": "2026-11-06"
  },
  "cod:1RM01972-027": {
-  "cota": 25.640384615384615,
-  "visto": "2026-11-04"
+  "cota": 25.889320388349514,
+  "visto": "2026-11-07"
  },
  "cod:HF3255-201": {
-  "cota": 70.51217948717948,
-  "visto": "2026-11-04"
+  "cota": 69.99,
+  "visto": "2026-11-07"
  },
  "cod:DV2440-100": {
-  "cota": 88.46089743589744,
-  "visto": "2026-11-04"
+  "cota": 75.87,
+  "visto": "2026-11-07"
  },
  "cod:JI2586": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:F01L019-100": {
   "sin": 1,
@@ -5133,22 +5139,28 @@
   "visto": "2026-11-06"
  },
  "cod:JR0912": {
-  "cota": 73.7173076923077,
-  "visto": "2026-11-04"
+  "cota": 74.43300970873787,
+  "visto": "2026-11-07"
  },
  "cod:CN6916-001": {
-  "cota": 33.97371794871795,
-  "visto": "2026-11-04"
+  "usd": 54.19,
+  "n": 1,
+  "ventas": 4,
+  "url": "https://www.ebay.com/itm/284831355453?_skw=nike+CN6916-001&hash=item425145923d:g:FYAAAOSwEONfF8rg",
+  "usdVendido": 54.19,
+  "usdPublicado": 64.99,
+  "cota": 64.99,
+  "visto": "2026-11-07"
  },
  "cod:400002900001": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:50616": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:KJ5952": {
   "sin": 1,
@@ -5156,33 +5168,33 @@
   "visto": "2026-11-06"
  },
  "cod:VN0A3WKT3SP": {
-  "cota": 32.05064102564103,
-  "visto": "2026-11-04"
+  "cota": 32.36181229773463,
+  "visto": "2026-11-07"
  },
  "cod:389021-14": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:FJ4146-111": {
-  "cota": 96.15320512820513,
-  "visto": "2026-11-04"
+  "cota": 97.08673139158576,
+  "visto": "2026-11-07"
  },
  "cod:FJ7109-002": {
-  "cota": 93.58910256410256,
-  "visto": "2026-11-04"
+  "cota": 94.49773462783172,
+  "visto": "2026-11-07"
  },
  "cod:VN0A38G1P0S": {
-  "cota": 32.05064102564103,
-  "visto": "2026-11-04"
+  "cota": 32.36181229773463,
+  "visto": "2026-11-07"
  },
  "cod:II1161-095": {
   "cota": 105.50097087378641,
   "visto": "2026-11-06"
  },
  "cod:JH8998": {
-  "cota": 64.10192307692307,
-  "visto": "2026-11-04"
+  "cota": 64.7242718446602,
+  "visto": "2026-11-07"
  },
  "cod:169958C": {
   "sin": 1,
@@ -5192,7 +5204,7 @@
  "cod:392291-02": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:SC207670-C100": {
   "sin": 1,
@@ -5257,7 +5269,7 @@
  "cod:410189-06": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:HF2016-600": {
   "cota": 110.03171521035598,
@@ -5272,13 +5284,13 @@
   "visto": "2026-11-05"
  },
  "cod:IB2986-003": {
-  "cota": 96.49249999999999,
-  "visto": "2026-11-04"
+  "cota": 83.23,
+  "visto": "2026-11-07"
  },
  "cod:100CD0006": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:JQ5757": {
   "cota": 64.10192307692307,
@@ -9029,15 +9041,15 @@
   "usd": 71.54,
   "n": 11,
   "url": "https://www.ebay.com/itm/128095665516?hash=item1dd318bd6c:g:-HQAAeSwWV5qtJB7",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3605972698742": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3605972698780": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3605973084353": {
   "sin": 1,
@@ -9045,7 +9057,7 @@
  },
  "ean:3605972793317": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3605973080768": {
   "sin": 1,
@@ -9068,34 +9080,34 @@
   "visto": "2026-11-04"
  },
  "ean:3360372009436": {
-  "usd": 23.49,
-  "n": 35,
+  "usd": 23.71,
+  "n": 36,
   "url": "https://www.ebay.com/itm/227384357716?hash=item34f129f354:m:mwmJWUP5MpeQ2u1fnySEXMw",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3605971512612": {
   "usd": 45,
   "n": 9,
-  "url": "https://www.ebay.com/itm/297379390648?hash=item453d3164b8:g:Q30AAOSwRlRoQas6",
-  "visto": "2026-11-04"
+  "url": "https://www.ebay.com/itm/128079988221?hash=item1dd22985fd:g:GosAAeSwkFdqqIZq",
+  "visto": "2026-11-07"
  },
  "ean:3614273474641": {
   "usd": 29.99,
   "n": 9,
   "url": "https://www.ebay.com/itm/276716885532?hash=item406d9c961c:g:~XEAAOSwqx5nKaUE",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3605971512575": {
   "usd": 65,
   "n": 17,
   "url": "https://www.ebay.com/itm/178447907549?hash=item298c52fadd:g:E~wAAeSw7dJqkZNB",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3360377022928": {
   "usd": 56.47,
   "n": 27,
   "url": "https://www.ebay.com/itm/287554650445?hash=item42f397c14d:g:WuIAAeSw9IdqlG0p",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614273069557": {
   "usd": 124.74,
@@ -9116,18 +9128,18 @@
   "visto": "2026-11-04"
  },
  "ean:3614273898478": {
-  "usd": 119.99,
-  "n": 17,
-  "url": "https://www.ebay.com/itm/188622592523?hash=item2beac85a0b:m:mb40mP5DrJKT2uKVmbzlfig",
-  "visto": "2026-11-04"
+  "usd": 119.87,
+  "n": 16,
+  "url": "https://www.ebay.com/itm/147427387798?hash=item22535b6996:m:m0wB92P-frApj9kKn2iJ3Lg",
+  "visto": "2026-11-07"
  },
  "ean:3614274329384": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614274266801": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3605532612690": {
   "usd": 48.97,
@@ -9137,7 +9149,7 @@
  },
  "ean:3614274380415": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614274169706": {
   "usd": 52.63,
@@ -9168,10 +9180,10 @@
   "visto": "2026-11-04"
  },
  "ean:3614274114645": {
-  "usd": 94.48,
-  "n": 17,
-  "url": "https://www.ebay.com/itm/366483744986?hash=item55542228da:g:ryEAAeSwkEFqMbQt",
-  "visto": "2026-11-04"
+  "usd": 93.49,
+  "n": 19,
+  "url": "https://www.ebay.com/itm/128168967446?hash=item1dd7773d16:g:YoEAAeSw2hFq55xt",
+  "visto": "2026-11-07"
  },
  "ean:3614274076202": {
   "usd": 130,
@@ -9191,13 +9203,13 @@
  },
  "ean:3614274479096": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614273683401": {
   "usd": 93.48,
   "n": 15,
-  "url": "https://www.ebay.com/itm/277683447367?hash=item40a7392647:g:0vUAAeSwr59pevJ0&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7nFi7bFw0yWDRaeZY0VHw6bD6j0CNOifIiBMLX1c0rV9POMM1Ht8uQ7SGENMSX%2Fej4Rv8mQr%2BNvchLw61oOPpUJ6GfgMUMxzqvWwHJilbqtaq7hnhL%2BKENS7Hr8x%2BW3zF5IR1HmGY3SczIclJMQpdjUqRqOD6H9zV8m3dBrlbjMLcYp6xRCHBCTyTuVB1C64EaRvgqYdZQRdMBAd0Urh6fJd4ZWo0bm8%2F5ZVkkvge3FHaAnp%2BHsFrl4oi%2Bg6SmHrtVoSCZc0HlaYRb0f0tOCjsn",
-  "visto": "2026-11-04"
+  "url": "https://www.ebay.com/itm/277683447367?hash=item40a7392647:g:0vUAAeSwr59pevJ0&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7nFi7bFw0yWDRaeZY0VHw6bD6j0CNOifIiBMLX1c0rV9POMM1Ht8uQ7SGENMSX%2Fej4Rv8mQr%2BNvchLw61oOPpUJ6GfgMUMxzqvWwHJilbqtaq7hnhL%2BKENS7Hr8x%2BW3zF4Zyhu3joNn591HqxTTq6lvuXJiZeLX6X%2BhqdG6G94ntDBSsaZt%2BCKB5L0i4eiLs05DAvp46rH8JWghMrHi%2Bvj5%2Fv0lswwtanYXmHMAPME7izADdvYicfJOoRgwBm%2BbAsRrQNOIeNTlHyLA%2BmVwBrF0",
+  "visto": "2026-11-07"
  },
  "ean:3614273069175": {
   "usd": 110.74,
@@ -9260,14 +9272,14 @@
  "ean:3614273953849": {
   "usd": 78.75,
   "n": 12,
-  "url": "https://www.ebay.com/itm/168680285577?hash=item274620e589:g:W9UAAeSwTvFqo6cf",
-  "visto": "2026-11-04"
+  "url": "https://www.ebay.com/itm/168680285577?hash=item274620e589:g:W9UAAeSwTvFqo6cf&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7mHGnSqldhsZNvt6MXUAwJsMiRyTbTBOpDS7D%2FWK1%2FF%2FFLd9JPNRXsAhgwe8FwOemJ7AQs8QV2L887vJ0jr4tYVIwtq6pjw6meApEJGXlb4UzNm8eNTpGxFoSP4r6o7crzb6%2FZ3NUxoUA42TbK3bDuepCm2U7BAOiW17tNt%2FbPAeK0%2F%2BYZh70hMcYdI651qTkTtQUnveUlvbFgJG83bqC7lTxXTMryvVYJ8jsGVCkQzhB26s6s4LhH2QWx6rkZd6mBrA46FQZ07%2FNFztyvSKNxP",
+  "visto": "2026-11-07"
  },
  "ean:3614273636568": {
-  "usd": 62.78,
-  "n": 24,
+  "usd": 62.36,
+  "n": 22,
   "url": "https://www.ebay.com/itm/168451550832?hash=item27387eae70:g:FP4AAeSwG3JqxQ2F",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614273955416": {
   "sin": 1,
@@ -9325,51 +9337,51 @@
  },
  "ean:3614274644432": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3605522040588": {
-  "usd": 79.32,
-  "n": 20,
-  "url": "https://www.ebay.com/itm/284102079129?hash=item4225cdb299:g:TacAAOSwmktfyGaZ",
-  "visto": "2026-11-04"
+  "usd": 82.5,
+  "n": 19,
+  "url": "https://www.ebay.com/itm/153876946824?hash=item23d3c7df88:g:k5UAAOSwYJZhDsNd",
+  "visto": "2026-11-07"
  },
  "ean:3605522040281": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614273954167": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614273604932": {
   "usd": 149.99,
   "n": 5,
   "url": "https://www.ebay.com/itm/326433627025?hash=item4c00f5db91:g:7pwAAOSwfDpnppbq",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614273636384": {
   "usd": 133.34,
   "n": 5,
-  "url": "https://www.ebay.com/itm/800460001498?hash=itemba5f2250da:g:3MsAAeSwvqJqceh-&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7kqjf1DPoh3lXnuALz4lmcjz1X843MuxPA2JurUxUPVDZC0Gxp%2FHmJXb8UKa3cROSYHe7oCoh9ZjRdgrZPGEdQZJAFap0SWchgxnX4L0OyRV%2BFuD%2FjnOEIoXZ%2FHz9%2FYnWEgNAyTwZFM98Hvn82R5mCPZ1JvZicncPg97Wqh7NTQuRW3hi8EekafO1hTG5ZZ%2FPR%2FGDxdkIUL%2B1oJsmKD5e4QOaAdEFCa9YeoqHpB%2FQMlLy0lCEj8BkN80MlTOqV%2BSfygDvKA1pQ86F6pwb02W3ND",
-  "visto": "2026-11-04"
+  "url": "https://www.ebay.com/itm/800460001498?hash=itemba5f2250da:g:3MsAAeSwvqJqceh-&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7kqjf1DPoh3lXnuALz4lmcjz1X843MuxPA2JurUxUPVDZC0Gxp%2FHmJXb8UKa3cROSYHe7oCoh9ZjRdgrZPGEdQZJAFap0SWchgxnX4L0OyRV%2BFuD%2FjnOEIoXZ%2FHz9%2FYnWF%2FszBJUhgIia%2Buekepa8ELAM3TlJWMWggSMJyVe%2BbxAyEUrGIPesTRACABo9HatGIab2DwIUUvPbMW8Mvzkm9zulbE9vG6XAHlznQL6HZX%2FAj8AaOAWrgBD1w%2BnOUiTdw9QQOFY2N5GJOQPfNx3WRg",
+  "visto": "2026-11-07"
  },
  "ean:3614274626872": {
-  "usd": 108.12,
-  "n": 8,
-  "url": "https://www.ebay.com/itm/800485925278?hash=itemba60ade19e:g:0X0AAeSwwyJqebp0",
-  "visto": "2026-11-04"
+  "usd": 121.25,
+  "n": 10,
+  "url": "https://www.ebay.com/itm/257679127199?hash=item3bfedf729f:g:S6UAAeSwMk1qjRUp",
+  "visto": "2026-11-07"
  },
  "ean:3614272761452": {
-  "usd": 73.91,
-  "n": 14,
-  "url": "https://www.ebay.com/itm/800459998464?hash=itemba5f224500:g:sZkAAeSwHjVqcejv",
-  "visto": "2026-11-04"
+  "usd": 79.74,
+  "n": 16,
+  "url": "https://www.ebay.com/itm/326162158865?hash=item4bf0c79511:g:eE8AAOSwlPtma45F",
+  "visto": "2026-11-07"
  },
  "ean:3614273790826": {
-  "usd": 65.5,
-  "n": 37,
-  "url": "https://www.ebay.com/itm/127850421371?hash=item1dc47a9c7b:g:gNwAAeSwBb1p-6Cl",
-  "visto": "2026-11-04"
+  "usd": 56.28,
+  "n": 43,
+  "url": "https://www.ebay.com/itm/820019767837?hash=itembeecfcaa1d:g:jTkAAeSww45qhMc8&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7lANoa6Y6MN0c93ksL8XKdR1KJvKxQ9Y6U1%2B7Ytn19VY2G6cWK9SlPtSA2y5yx8V1E1PfgQEi6ntpeFZaDPB%2FoleaI6u2pCo8f%2BOoa9nW6iAY1vnsMJHYlmErU%2BJcCf0x%2FgAAdt6PHfSVyo%2Buo0bsmatjDfqtvzmxbQCfRMHV0WAl5RWK1H4RUGyXmDmGlFV7mjcd1iG20oBbr0WVDc0F%2FAoeuhmNud9rk2euKFY67gUKZMFAQn5ZdWltQyH2ox03lfLimJhviln4fNF4l1N8Mh",
+  "visto": "2026-11-07"
  },
  "ean:3614274626858": {
   "usd": 134.88,
@@ -9399,7 +9411,7 @@
   "usd": 85,
   "n": 30,
   "url": "https://www.ebay.com/itm/278415007772?hash=item40d2d3e01c:g:1agAAeSw0O5quYCE",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614274350739": {
   "usd": 122.49,
@@ -9410,7 +9422,7 @@
  "cod:395205-70": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3423222048167": {
   "sin": 1,
@@ -9432,13 +9444,13 @@
  },
  "ean:31800533101": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3423222106225": {
-  "usd": 50.23,
-  "n": 6,
-  "url": "https://www.ebay.com/itm/297481194166?hash=item454342cab6:g:ibsAAeSwsSdqwtW3&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7n7OmauROAPYAQ6kM1xrf8lU1OwyXNdN4bkVnOZSxg3MNBmurgbHwrwN5nqXsy7hS%2BVksY4seQvE1FDKWC05V2OCmghJq%2FNQ78moLO32K2nyQJZsAsEZq%2BdFjhNgx0R8Ys4Dy%2FFhT9H7ilzB7ygYBNsNrPIk5dgJQpqbFFpNc8bPXCVfWYTc8YlrSSCdly75jenJRbIEI5frhyKwTN5F69kHZWSojgDq4qWoByjZRgajN2SLJCeyXvEIJ7aZu0HqgnqrW%2FtAwDrWrFmua6wKZ4Z",
-  "visto": "2026-11-04"
+  "usd": 50.79,
+  "n": 7,
+  "url": "https://www.ebay.com/itm/297481194166?hash=item454342cab6:g:ibsAAeSwsSdqwtW3&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7n7OmauROAPYAQ6kM1xrf8lU1OwyXNdN4bkVnOZSxg3MNBmurgbHwrwN5nqXsy7hS%2BVksY4seQvE1FDKWC05V2OCmghJq%2FNQ78moLO32K2nyQJZsAsEZq%2BdFjhNgx0R8Ysv%2BoX8kmLElDpSmy1I1Ms15SJ1akv90kHLARkKf5Ts7Dngj1mDZRGdOA4UgHJS6ODbR%2BGXy1%2BD0nWy%2Bk3pFb%2B%2F4HUB4BlEGYh5aKdF%2Fzkgr4vZQg3KVsiN1UX%2FpXg%2Bva5Nwmhpc2LHadVhR0FMr1wk",
+  "visto": "2026-11-07"
  },
  "ean:3423222105884": {
   "sin": 1,
@@ -9464,21 +9476,21 @@
  },
  "ean:3423222090715": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3423222048037": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3423222048044": {
-  "usd": 48.91,
-  "n": 6,
+  "usd": 45.92,
+  "n": 5,
   "url": "https://www.ebay.com/itm/396879936720?hash=item5c67e33cd0:g:xTQAAeSwaX9q1sjx",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3616301781172": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "nom:nike air max aura womens": {
   "cota": 83.33269230769231,
@@ -9527,13 +9539,13 @@
  },
  "ean:3614274289527": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614273852814": {
   "usd": 89.99,
   "n": 47,
-  "url": "https://www.ebay.com/itm/137293074825?hash=item1ff74e1189:g:GRYAAeSws11p~ecu",
-  "visto": "2026-11-04"
+  "url": "https://www.ebay.com/itm/327163486540?hash=item4c2c76a14c:g:~0EAAeSw7ztqCdcF",
+  "visto": "2026-11-07"
  },
  "ean:7790033360259": {
   "sin": 1,
@@ -9569,7 +9581,7 @@
   "usd": 87.8,
   "n": 8,
   "url": "https://www.ebay.com/itm/307153630494?hash=item4783c8751e:g:fXwAAeSwzadqicWk",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614273790857": {
   "usd": 97.96,
@@ -9609,15 +9621,15 @@
  },
  "ean:3614274708400": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614273955522": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614274492163": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614273947770": {
   "sin": 1,
@@ -9637,15 +9649,15 @@
  },
  "ean:3614273636360": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614273636414": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614273604833": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3614273844666": {
   "usd": 95.01,
@@ -9657,11 +9669,11 @@
   "usd": 70,
   "n": 11,
   "url": "https://www.ebay.com/itm/326740197504?hash=item4c133bc080:g:Q4cAAeSwg2Vop2P5",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3605970859299": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3605972696984": {
   "sin": 1,
@@ -9671,23 +9683,23 @@
   "usd": 78.99,
   "n": 5,
   "url": "https://www.ebay.com/itm/327112907695?hash=item4c2972dbaf:g:XhAAAeSwntxp5X6z",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3605972975874": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3605970416003": {
   "usd": 45,
-  "n": 32,
+  "n": 31,
   "url": "https://www.ebay.com/itm/127244323738?hash=item1da05a4b9a:g:HLoAAeSwBeFpB2m3",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:3360377032767": {
-  "usd": 45.22,
-  "n": 23,
-  "url": "https://www.ebay.com/itm/168428945869?hash=item273725c1cd:g:90oAAeSw65JqIOei",
-  "visto": "2026-11-04"
+  "usd": 42.93,
+  "n": 24,
+  "url": "https://www.ebay.com/itm/117496619763?hash=item1b5b5822f3:g:lCkAAeSwOfxq5g7X",
+  "visto": "2026-11-07"
  },
  "ean:3614274517873": {
   "sin": 1,
@@ -9771,17 +9783,17 @@
  "cod:400214-06": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:FZ5307-500": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:309097-01": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:DV3808-112": {
   "cota": 79.99249999999999,
@@ -9789,31 +9801,31 @@
  },
  "cod:IH6907": {
   "cota": 79.99,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:406616-01": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:402569-01": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:FQ7939-105": {
-  "cota": 112.5395498392283,
-  "visto": "2026-11-04"
+  "cota": 97.49,
+  "visto": "2026-11-07"
  },
  "cod:IH4096": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:JQ1551": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:401261-01": {
   "sin": 1,
@@ -9830,8 +9842,8 @@
   "visto": "2026-11-04"
  },
  "cod:KI6150": {
-  "cota": 86.81607717041801,
-  "visto": "2026-11-04"
+  "cota": 87.3779935275081,
+  "visto": "2026-11-07"
  },
  "cod:IH4202": {
   "cota": 90.03151125401929,
@@ -9841,7 +9853,7 @@
   "usd": 87.95,
   "n": 5,
   "url": "https://www.ebay.com/itm/175470628010?hash=item28dadd4caa:g:~ocAAOSw6OpjXt~H",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "nom:gorra new era chicago": {
   "cota": 36.3475,
@@ -9904,10 +9916,10 @@
   "visto": "2026-11-04"
  },
  "ean:8411061083772": {
-  "usd": 84.1,
-  "n": 11,
+  "usd": 83.65,
+  "n": 14,
   "url": "https://www.ebay.com/itm/168150035227?hash=item272685eb1b:g:wrQAAeSw6~hpi4Ut",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:8411061056769": {
   "usd": 78.74,
@@ -9931,7 +9943,7 @@
  },
  "ean:8411061124840": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:8411061081600": {
   "usd": 61.77,
@@ -10006,18 +10018,20 @@
   "visto": "2026-11-04"
  },
  "cod:DN2647-003": {
-  "cota": 57.41870967741936,
-  "visto": "2026-11-04"
+  "cota": 57.60453074433657,
+  "visto": "2026-11-07"
  },
  "ean:8411061027837": {
-  "sin": 1,
-  "visto": "2026-11-04"
+  "usd": 89.54,
+  "n": 5,
+  "url": "https://www.ebay.com/itm/198776090867?hash=item2e47fa70f3:g:f5AAAeSwTARq7TgK",
+  "visto": "2026-11-07"
  },
  "ean:8411061723760": {
   "usd": 71.24,
   "n": 14,
   "url": "https://www.ebay.com/itm/178092832514?hash=item297728f702:g:AAQAAeSwzGVp88dV",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "nom:campera puma pumatech mens": {
   "sin": 1,
@@ -10050,13 +10064,13 @@
  },
  "ean:8411061124833": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:8411061923245": {
-  "usd": 86.9,
-  "n": 11,
+  "usd": 85.85,
+  "n": 9,
   "url": "https://www.ebay.com/itm/385415020757?hash=item59bc8680d5:g:BxcAAOSwZ0Nj6shd",
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:8411061865408": {
   "usd": 76.49,
@@ -10158,7 +10172,7 @@
  },
  "ean:8411061083765": {
   "sin": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "ean:8411061083505": {
   "sin": 1,
@@ -10190,7 +10204,7 @@
  "cod:1100033737": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-07"
  },
  "cod:JI2004": {
   "cota": 35.483225806451614,
@@ -22483,5 +22497,9 @@
   "sin": 1,
   "porVentas": 1,
   "visto": "2026-11-06"
+ },
+ "ean:8411061991909": {
+  "sin": 1,
+  "visto": "2026-11-07"
  }
 }

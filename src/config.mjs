@@ -45,6 +45,8 @@ export const config = {
     margenMinimo: 0.30,
     ventasMinimas: 10,
     soloTerminos: [],
+    // Nada de mujer (2026-11-06: "todo lo que es de mujer no me va a interesar nunca"): por categoría o nombre.
+    excluirMujer: true,
   },
   tabla: { monoespaciado: true },     // false: filas separadas por barras y sin alinear (si WhatsApp no respeta el ancho fijo)
   // Las marcas de "ya avisado" anteriores a esta fecha se ignoran (una sola vez): las primeras corridas silenciaron como
@@ -147,7 +149,6 @@ export const config = {
       agrupar: 'sku',
       categoriasExcluidas: [],
       categorias: [
-        { name: 'Perfumes de mujer', ruta: '/100/101/' },
         { name: 'Perfumes de hombre', ruta: '/100/102/' },
         { name: 'Perfumes unisex', ruta: '/100/103/' },
       ],
@@ -216,7 +217,6 @@ export const config = {
       sitio: 'Sites-Moov-Site',
       categorias: [
         { cgid: 'hombre-calzado', genero: 'h' },
-        { cgid: 'mujer-calzado', genero: 'm' },
       ],
       porPagina: 48,
       maxPaginas: 40,
@@ -230,7 +230,6 @@ export const config = {
       sitio: 'Sites-Dexter-Site',
       categorias: [
         { cgid: 'hombre-calzado', genero: 'h' },
-        { cgid: 'mujer-calzado', genero: 'm' },
       ],
       porPagina: 48,
       maxPaginas: 60, // 40 x 48 = 1.920 se quedaba corto en hombre-calzado (2026-11-06)
@@ -242,7 +241,6 @@ export const config = {
       sitio: 'Sites-StockCenter-Site',
       categorias: [
         { cgid: 'hombre-calzado', genero: 'h' },
-        { cgid: 'mujer-calzado', genero: 'm' },
       ],
       porPagina: 48,
       maxPaginas: 40,

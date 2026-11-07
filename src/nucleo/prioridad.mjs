@@ -94,3 +94,16 @@ export function pasaFiltroAviso({ oferta, margen, ventas }, { margenMinimo = 0, 
   const texto = ` ${normal(oferta.marca)} ${normal(oferta.nombre)} `;
   return soloTerminos.some((t) => texto.includes(` ${normal(t)} `));
 }
+
+// Palabras que marcan un producto de mujer en el nombre (perfumes sin categoría de género, ropa y calzado).
+const DE_MUJER = /\b(mujer|mujeres|women|womens|woman|femme|femenin[oa]s?|dama|damas|her|elle|lady|girl)\b/;
+
+/**
+ * El usuario no quiere nada de mujer (2026-11-06: "todo lo que es de mujer no me va a interesar nunca"): por el género
+ * del producto (categoría de la tienda) o por el nombre. Unisex o sin dato: se queda.
+ */
+export function esDeMujer(oferta) {
+  if (oferta.genero === 'm') return true;
+  if (oferta.genero === 'h' || oferta.genero === 'u') return false;
+  return DE_MUJER.test(normal(oferta.nombre));
+}

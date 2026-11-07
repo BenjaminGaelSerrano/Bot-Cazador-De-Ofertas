@@ -80,3 +80,18 @@ test('pasaFiltroAviso: margen y ventas mínimas, y solo las marcas o modelos de 
   assert.equal(pasaFiltroAviso(ch, { ...cfg, soloTerminos: ['herrer'] }), false, 'palabras enteras');
   assert.equal(pasaFiltroAviso(superstar, {}), true, 'sin filtro');
 });
+
+test('esDeMujer: por género de la tienda o por el nombre; unisex y hombre se quedan', async () => {
+  const { esDeMujer } = await import('../src/nucleo/prioridad.mjs');
+  const { generoDeCategorias } = await import('../src/fuentes/vtex.mjs');
+  assert.equal(generoDeCategorias(['/Fragancias/Premium/Femeninas/', '/Fragancias/']), 'm');
+  assert.equal(generoDeCategorias(['/Perfumes y fragancias/Perfumes de hombre/']), 'h');
+  assert.equal(generoDeCategorias(['/Perfume/Unisex/']), 'u');
+  assert.equal(generoDeCategorias(['/Calzado/Zapatillas/']), null);
+  assert.equal(esDeMujer({ nombre: 'Good Girl EDP 80 ml', genero: 'm' }), true);
+  assert.equal(esDeMujer({ nombre: 'ZAPATILLAS NIKE CORTEZ MUJER' }), true);
+  assert.equal(esDeMujer({ nombre: 'Lady Million EDP' }), true);
+  assert.equal(esDeMujer({ nombre: 'Carolina Herrera Bad Boy EDT' }), false, '"Herrera" no es "her"');
+  assert.equal(esDeMujer({ nombre: 'Zapatillas Adidas Superstar', genero: 'u' }), false);
+  assert.equal(esDeMujer({ nombre: 'CK One EDT', genero: 'u' }), false);
+});

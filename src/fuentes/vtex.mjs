@@ -58,6 +58,18 @@ export function tallesDe(items) {
   return talles;
 }
 
+/**
+ * Género a partir de las categorías del producto (2026-11-06): las perfumerías y Sporting lo marcan ahí ("/Fragancias/
+ * Premium/Femeninas/", "/Perfumes y fragancias/Perfumes de mujer/", "/SPORTING/Mujer/"). 'm', 'h', 'u' o null.
+ */
+export function generoDeCategorias(categories) {
+  const segmentos = (categories ?? []).flatMap((c) => String(c).split('/')).map((s) => s.trim().toLowerCase());
+  if (segmentos.some((s) => /^(femeninas?|mujer(es)?|perfumes de mujer|damas?)$/.test(s))) return 'm';
+  if (segmentos.some((s) => /^(masculinas?|hombres?|perfumes de hombre)$/.test(s))) return 'h';
+  if (segmentos.some((s) => /^(unisex|perfumes unisex)$/.test(s))) return 'u';
+  return null;
+}
+
 /** Categoría raíz a partir de `categories` (la última entrada es la raíz: "/Tratamiento/"). */
 export function categoriaRaiz(categories) {
   const raiz = categories?.at(-1);
@@ -119,7 +131,7 @@ export function crearLector(cfg) {
         nombre: p.productName,
         ml: extraerMl(p.productName),
         modelo: m.clave,
-        genero: m.genero,
+        genero: m.genero ?? generoDeCategorias(p.categories),
         // Grid y Dash lo traen en la descripción ("Código: DA6364-001"); Sporting, en la referencia del producto.
         codigo: cfg.codigoDe === 'referencia' ? codigoDeReferencia(p.productReference) : codigoEstilo(p.description),
         color: p.Color?.[0] ?? null,
@@ -137,7 +149,8 @@ export function crearLector(cfg) {
       const nombre = item.name.toLowerCase().includes(p.productName.toLowerCase())
         ? item.name
         : `${p.productName} ${item.name}`;
-      resultado.push({ ...comunes, id: String(item.itemId), ean: limpiarEan(item.ean), nombre, ml: extraerMl(item.name), ...datos });
+      const genero = generoDeCategorias(p.categories);
+      resultado.push({ ...comunes, id: String(item.itemId), ean: limpiarEan(item.ean), nombre, ml: extraerMl(item.name), ...datos, ...(genero ? { genero } : {}) });
     }
     return resultado;
   }

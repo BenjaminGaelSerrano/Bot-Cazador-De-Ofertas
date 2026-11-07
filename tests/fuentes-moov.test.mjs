@@ -174,7 +174,7 @@ test('si se alcanza el tope de páginas, lo informa', async () => {
 test('configuración de Moov coherente con el sitio', () => {
   const c = config.fuentes.moov;
   assert.equal(c.sitio, 'Sites-Moov-Site');
-  assert.deepEqual(c.categorias.map((x) => [x.cgid, x.genero]), [['hombre-calzado', 'h'], ['mujer-calzado', 'm']]);
+  assert.deepEqual(c.categorias.map((x) => [x.cgid, x.genero]), [['hombre-calzado', 'h']]); // sin mujer desde el 2026-11-06 (pedido del usuario)
   assert.ok(c.porPagina === 48 && c.maxPaginas * c.porPagina >= 960, 'alcanza para las categorías relevadas');
 });
 

@@ -14167,7 +14167,7 @@
  "cod:11U335X-001": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-09"
  },
  "cod:FD6575-100": {
   "usd": 74.99,
@@ -14615,7 +14615,7 @@
  "cod:KFW218001": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-09"
  },
  "cod:1100010614": {
   "sin": 1,
@@ -18502,7 +18502,7 @@
  "cod:JR2406": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-09"
  },
  "cod:402329-09": {
   "sin": 1,
@@ -27448,6 +27448,943 @@
  "cod:026593-02": {
   "sin": 1,
   "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:11134416132CN": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:IM7425-100": {
+  "cota": 100,
+  "visto": "2026-11-09"
+ },
+ "cod:DQ8426-200": {
+  "cota": 119.99,
+  "visto": "2026-11-09"
+ },
+ "cod:398846-18": {
+  "cota": 84.14174757281553,
+  "visto": "2026-11-09"
+ },
+ "cod:408198-01": {
+  "cota": 89.95,
+  "visto": "2026-11-09"
+ },
+ "cod:404336-05": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:168601C": {
+  "cota": 46.08349514563107,
+  "visto": "2026-11-09"
+ },
+ "cod:HQ2091-001": {
+  "cota": 168.284142394822,
+  "visto": "2026-11-09"
+ },
+ "cod:27461": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HQ2011-100": {
+  "cota": 114,
+  "visto": "2026-11-09"
+ },
+ "cod:554724-093": {
+  "cota": 128.94,
+  "visto": "2026-11-09"
+ },
+ "cod:100008492": {
+  "cota": 67.96051779935276,
+  "visto": "2026-11-09"
+ },
+ "cod:HQ7370": {
+  "cota": 48.95,
+  "visto": "2026-11-09"
+ },
+ "cod:1071A112400": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:1011B984003": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:1071A116300": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:312731-42": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:3027000-323": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:1011C056003": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:IH7963": {
+  "cota": 48.99,
+  "visto": "2026-11-09"
+ },
+ "cod:C0424570MN01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:27353": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:JQ9959": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:308973-04": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:404560-15": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:52532": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:K43210417BCOPTO": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:402667-01": {
+  "cota": 61.48802588996764,
+  "visto": "2026-11-09"
+ },
+ "cod:C0424570MGC67": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:25910": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:1011B960600": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:26912": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:1051A096960": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:311140-10": {
+  "cota": 94.97,
+  "visto": "2026-11-09"
+ },
+ "cod:JQ1444": {
+  "cota": 69.95,
+  "visto": "2026-11-09"
+ },
+ "cod:KJ6610": {
+  "cota": 145.6304207119741,
+  "visto": "2026-11-09"
+ },
+ "cod:JP9228": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:1071A116400": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:JS3120": {
+  "cota": 62.95,
+  "visto": "2026-11-09"
+ },
+ "cod:JQ1445": {
+  "cota": 74.99,
+  "visto": "2026-11-09"
+ },
+ "cod:JQ3952": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:402413-05": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:JS3045": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:397495-12": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:C0324823MAN44": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:26437": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:21131585132CN": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:211315041WBCN": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:27347": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:25823": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:U01FB00206-111": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:F01L00374-001": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:NC0024913MR07": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:25851": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:25783": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:111312261C6CN": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:C0424550MN01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:21131579110CN": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:C0424550MVM94": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:C0424560MA11": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:111341231BVCN": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:100MC0005": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:1041A492402": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:K43271285BCO-VM": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:21131579132CN": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:26401": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:26926": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:C04241035MVM94": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:27348": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:26910": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:C0324823MBA53": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:52228": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:25791": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:BKS-09710M-803": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:26434": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:312906-01": {
+  "cota": 168.9313915857605,
+  "visto": "2026-11-09"
+ },
+ "cod:52226": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:26556": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:111344321WBCN": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:211315851C2CN": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:26913": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:25707": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HKS-05110M-008": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:25861": {
+  "cota": 25,
+  "visto": "2026-11-09"
+ },
+ "cod:52225": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:50230": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:59814": {
+  "cota": 12.56,
+  "visto": "2026-11-09"
+ },
+ "cod:100230797": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:50177": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:87388918": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:1013A170500": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:399068-13": {
+  "cota": 55.015533980582525,
+  "visto": "2026-11-09"
+ },
+ "cod:25752": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:100MC0001": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:100033964": {
+  "cota": 51.77928802588997,
+  "visto": "2026-11-09"
+ },
+ "cod:25641": {
+  "cota": 38.83430420711974,
+  "visto": "2026-11-09"
+ },
+ "cod:52397": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:397495-10": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:401431-02": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:402681-02": {
+  "cota": 58.25177993527508,
+  "visto": "2026-11-09"
+ },
+ "cod:KC9158": {
+  "usd": 120,
+  "n": 3,
+  "ventas": 12,
+  "url": "https://www.ebay.com/itm/206292893795?_skw=adidas+KC9158&hash=item300803c063:g:XyYAAeSw8ohqER41",
+  "usdVendido": 120,
+  "usdPublicado": 120,
+  "cota": 120,
+  "visto": "2026-11-09"
+ },
+ "cod:KT0572": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KE0735": {
+  "cota": 87.3779935275081,
+  "visto": "2026-11-09"
+ },
+ "cod:IH6893": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:95C655-U9J": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KF0419": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:MA0924-R78": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:MLBJS520220-WHT": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HZ262J98-0015-": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:CHM25-502GREYMEL": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:MLBLS526101-BK1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:MLSTS325207-PK1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:1387797-002": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:6005027-003": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:A37219-100": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:1382640-001": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:1354529-844": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HZ243T05564-T100": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:MLBPT526108-BK1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:1354529-402": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KB9498": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:F13TR00867": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KG3579": {
+  "cota": 20.711326860841424,
+  "visto": "2026-11-09"
+ },
+ "cod:HQ9315-410": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KH2160": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HV0874-010": {
+  "cota": 79.99,
+  "visto": "2026-11-09"
+ },
+ "cod:1361596-090": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KC0711": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:JZ7706": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:JD1877": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:JL8665": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:MLBTS520201-BLU": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:MLBTS520201-WHT": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:MLBTS520201-BK3": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KT3265": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:IF1288-072": {
+  "cota": 69.99,
+  "visto": "2026-11-09"
+ },
+ "cod:KB9499": {
+  "cota": 21.28,
+  "visto": "2026-11-09"
+ },
+ "cod:KH0355": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KH2876": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:IF7054-724": {
+  "cota": 71.1967637540453,
+  "visto": "2026-11-09"
+ },
+ "cod:HZ262P48-0007-": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HZ262B98-0019-": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HV0409-010": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HZ262B48-0025-": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HZ262P98-0022-": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HZ262P98-0018-": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HV6400-610": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:MLBHD526101-BL1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:ASHTI-01BLACK": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:ASHTI-01BLUE": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:FN2403-010": {
+  "cota": 42.47,
+  "visto": "2026-11-09"
+ },
+ "cod:IN6183": {
+  "cota": 45,
+  "visto": "2026-11-09"
+ },
+ "cod:KG4791": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KF3817": {
+  "cota": 39.95,
+  "visto": "2026-11-09"
+ },
+ "cod:KH2869": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HZ262P98-0039-": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HZ261T48-0002-": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:JM1775": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KD6414": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:IH1159-573": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:IB5267-302": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:F11TR00870": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:F13TR008693682": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:IY1119": {
+  "cota": 37.42,
+  "visto": "2026-11-09"
+ },
+ "cod:FN2405-437": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HZ261B98-0005-": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HV6402-425": {
+  "cota": 52.49,
+  "visto": "2026-11-09"
+ },
+ "cod:A37182-412": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KF5660": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HZ262P98-0024-": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HZ262P48-0010-": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KE8201": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HZ261T98-0001-": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:6005014-308": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:IH4238-010": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:FB7490-289": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:HV6402-610": {
+  "cota": 40.49,
+  "visto": "2026-11-09"
+ },
+ "cod:HV4062-619": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KF0381": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:JY7023": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:JM5904": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:FN2405-010": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:JI8858": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:JE8993": {
+  "cota": 17.49,
+  "visto": "2026-11-09"
+ },
+ "cod:JY7659": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KE5925": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KF5663": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:KE8557": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:A37149-412": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:A37156-498": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:JI7069": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:WTB7200XB05": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:WZ2019101XB7": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-09"
+ },
+ "cod:WZ4028801XB7": {
+  "cota": 72.49126213592233,
   "visto": "2026-11-09"
  }
 }

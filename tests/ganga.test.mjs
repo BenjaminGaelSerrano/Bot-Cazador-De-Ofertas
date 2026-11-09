@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { cargarAlertas, debeAvisar, guardarAlertas, limpiar, marcarAvisada } from '../src/nucleo/alertas.mjs';
 import { evaluar } from '../src/nucleo/ganga.mjs';
+import { config } from '../src/config.mjs';
 import { crearHistorial, registrar } from '../src/nucleo/historial.mjs';
 import { formatearOferta, pesos } from '../src/notificar/formato.mjs';
 
@@ -31,8 +32,8 @@ test('sin historial: usa el descuento declarado por el sitio', () => {
 });
 
 test('sin historial: justo 30 % califica, 29 % no', () => {
-  assert.ok(evaluar(oferta({ precioActual: 70000, precioLista: 100000 }), undefined, HOY));
-  assert.equal(evaluar(oferta({ precioActual: 71000, precioLista: 100000 }), undefined, HOY), null);
+  assert.ok(evaluar(oferta({ precioActual: 70000, precioLista: 100000 }), undefined, HOY, { cfg: { ...config, descuentoMinimo: 0.30 } }));
+  assert.equal(evaluar(oferta({ precioActual: 71000, precioLista: 100000 }), undefined, HOY, { cfg: { ...config, descuentoMinimo: 0.30 } }), null);
 });
 
 test('sin historial: sin descuento declarado no califica', () => {
@@ -55,7 +56,7 @@ test('con historial: un "descuento" que el sitio declara pero que no es real no 
 
 test('con historial: si ya estaba barato antes, bajar poco no califica', () => {
   const registro = conHistorial(80000);
-  assert.equal(evaluar(oferta({ precioActual: 70000, precioLista: 150000 }), registro, HOY), null);
+  assert.equal(evaluar(oferta({ precioActual: 70000, precioLista: 150000 }), registro, HOY, { cfg: { ...config, descuentoMinimo: 0.30 } }), null);
 });
 
 test('menos de 30 días de historial: vuelve a la regla del sitio', () => {

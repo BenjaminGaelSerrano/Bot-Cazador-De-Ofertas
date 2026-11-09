@@ -6,7 +6,7 @@ export const config = {
   timeoutPedidoMs: 30000,
 
   // Regla de ganga
-  descuentoMinimo: 0.30,     // 30 % bajo el mínimo previo (o bajo el precio de lista si no hay historial)
+  descuentoMinimo: 0.10,     // 10 % (el usuario lo bajó desde 30 % el 2026-11-09) bajo el mínimo previo (o bajo el precio de lista si no hay historial)
   descuentoAdicional: 0.10,  // para volver a avisar: otro 10 % bajo el precio ya avisado
   diasHistorial: 30,
 

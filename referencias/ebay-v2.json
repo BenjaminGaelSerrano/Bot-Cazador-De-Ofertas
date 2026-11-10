@@ -3396,10 +3396,10 @@
   "visto": "2026-11-09"
  },
  "ean:3349668622009": {
-  "usd": 106.97,
+  "usd": 95.99,
   "n": 9,
-  "url": "https://www.ebay.com/itm/277407281194?hash=item4096c3302a:g:Sm8AAeSwEEFo15Xd&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7nedHictBOl5MUdBR9Se9PVQwvDqJkADCq9vur74urVGkBK7DnTyrPaaTPXJvdxEgwOHY3%2BaGSiwHOwXds04oXKE16v%2BWWfr69jZqTsFFUpJvtNUvtI6oLCAc73PI1wGX7ueDxCyUcywUKGaoQBJJ5gkssBl0gr%2BvqKakWkc8KyiKeUxT2Zt0EcYYgFFezykBH%2FrW4M1NqKBj15IfOhVtBF7jkXilktGn2EI1OQDBJWuvtRIDrNhbIA4syobutCdF6IyCzd6lToEZV6aQfDH4zB",
-  "visto": "2026-11-06"
+  "url": "https://www.ebay.com/itm/327443230736?hash=item4c3d233010:g:hCsAAeSwAdJq7lX3&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7nvSw6ufucvv3Y6SPjTfNBOV%2FqqrVedW5fWhRxMUJjYt8rekMNao9F%2FW3AtuHLzPg4La5K6YHRPB9LOCof%2FZ00B5zx7iZJZMOuU0zGi%2FJPK200pDPr1WA0yGtMZ%2FPkfp5q0gZi%2BVYabjc%2BOP6uG9eIhcpuL3DkXMeYJO4Iiji0tNQJmq%2FTz%2Ba2upakUJBMRYluQIJDWc9CZbm9Lovtg3O6n7aJad1scmbLLiFRPUhbYkbgI94vGWTVLtk3d4kp3p7ZugQmTbdxOwpKwYPGPTwpQ",
+  "visto": "2026-11-10"
  },
  "ean:3616306690240": {
   "sin": 1,
@@ -20069,7 +20069,7 @@
  },
  "cod:FQ3680-004": {
   "cota": 35.59805825242719,
-  "visto": "2026-11-06"
+  "visto": "2026-11-10"
  },
  "cod:DD9293-402": {
   "usd": 60,
@@ -20577,7 +20577,7 @@
  "cod:3ME10144-284": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-10"
  },
  "cod:100209943": {
   "sin": 1,
@@ -22430,7 +22430,7 @@
  "cod:606692-85": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-10"
  },
  "cod:JP8799": {
   "sin": 1,
@@ -28580,6 +28580,30 @@
  "cod:JQ1847": {
   "sin": 1,
   "porVentas": 1,
+  "visto": "2026-11-10"
+ },
+ "cod:401332-02": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-10"
+ },
+ "cod:S20768-30": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-10"
+ },
+ "cod:HT8032-SASBLCK": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-10"
+ },
+ "cod:KA2990": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-10"
+ },
+ "cod:JP9394": {
+  "cota": 33.00906148867314,
   "visto": "2026-11-10"
  }
 }

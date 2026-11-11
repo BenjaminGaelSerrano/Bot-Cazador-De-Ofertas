@@ -4321,7 +4321,7 @@
  "cod:SC11016-C07W": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-11"
  },
  "cod:397340-01": {
   "sin": 1,
@@ -28782,6 +28782,11 @@
   "usd": 152.5,
   "n": 7,
   "url": "https://www.ebay.com/itm/137867576658?hash=item20198c4552:g:n5IAAeSwRQNq2twa",
+  "visto": "2026-11-11"
+ },
+ "cod:310237-08": {
+  "sin": 1,
+  "porVentas": 1,
   "visto": "2026-11-11"
  }
 }

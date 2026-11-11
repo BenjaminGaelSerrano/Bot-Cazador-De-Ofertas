@@ -22587,7 +22587,7 @@
  "cod:394915-51": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-07"
+  "visto": "2026-11-11"
  },
  "cod:JI0958": {
   "cota": 58.89902912621359,
@@ -28830,6 +28830,60 @@
  },
  "cod:JZ6292": {
   "cota": 49.5,
+  "visto": "2026-11-11"
+ },
+ "cod:JP3309": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-11"
+ },
+ "cod:658653-03": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-11"
+ },
+ "cod:KC3154": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-11"
+ },
+ "cod:KB9459": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-11"
+ },
+ "cod:KC0920": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-11"
+ },
+ "cod:JP1933": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-11"
+ },
+ "cod:KE6550": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-11"
+ },
+ "cod:KD5924": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-11"
+ },
+ "cod:JZ1167": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-11"
+ },
+ "cod:DV9831-633": {
+  "cota": 34.99,
+  "visto": "2026-11-11"
+ },
+ "cod:HQ5573-091": {
+  "sin": 1,
+  "porVentas": 1,
   "visto": "2026-11-11"
  }
 }

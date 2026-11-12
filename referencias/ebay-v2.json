@@ -10963,7 +10963,7 @@
  "cod:312033-11": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-12"
  },
  "cod:NFW20233": {
   "sin": 1,
@@ -18536,7 +18536,7 @@
  "cod:JR2406": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-09"
+  "visto": "2026-11-12"
  },
  "cod:402329-09": {
   "sin": 1,
@@ -29660,6 +29660,25 @@
   "visto": "2026-11-12"
  },
  "cod:JF0426": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-12"
+ },
+ "cod:FD4329-006": {
+  "cota": 38.58456591639872,
+  "visto": "2026-11-12"
+ },
+ "cod:HM6803-005": {
+  "usd": 124,
+  "n": 2,
+  "ventas": 2,
+  "url": "https://www.ebay.com/itm/398367305295?_skw=nike+HM6803-005&hash=item5cc08aae4f:g:SBAAAeSw2G9qngNG",
+  "usdVendido": 124,
+  "usdPublicado": 139.95,
+  "cota": 139.95,
+  "visto": "2026-11-12"
+ },
+ "cod:JZ6861": {
   "sin": 1,
   "porVentas": 1,
   "visto": "2026-11-12"

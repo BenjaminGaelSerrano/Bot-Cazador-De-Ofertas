@@ -12488,8 +12488,8 @@
   "visto": "2026-11-05"
  },
  "cod:KA3796": {
-  "cota": 56.409615384615385,
-  "visto": "2026-11-11"
+  "cota": 42.44308681672026,
+  "visto": "2026-11-12"
  },
  "cod:MLBSH326102-NV1": {
   "sin": 1,
@@ -12917,7 +12917,7 @@
   "visto": "2026-11-05"
  },
  "cod:DX4215-100": {
-  "cota": 83.33269230769231,
+  "cota": 61.73569131832797,
   "visto": "2026-11-12"
  },
  "cod:HF2898-100": {
@@ -13802,8 +13802,8 @@
   "visto": "2026-11-06"
  },
  "cod:IG6211": {
-  "cota": 32.36181229773463,
-  "visto": "2026-11-06"
+  "cota": 32.15369774919614,
+  "visto": "2026-11-12"
  },
  "cod:JP7845": {
   "usd": 49.99,
@@ -19914,6 +19914,12 @@
   "visto": "2026-11-06"
  },
  "cod:FQ7939-110": {
+  "usd": 84.99,
+  "n": 2,
+  "ventas": 3,
+  "url": "https://www.ebay.com/itm/147316099290?_skw=jordan+FQ7939-110&hash=item224cb948da:g:gukAAeSw9KNprsd6&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7kneFxXu%2FdU%2F4xUkAcHl9%2FcDumRwHq9VW9jizczJtqQ%2FMI1rRXoZM0cEAEA9hSwXv6dtkEJvbbPXL6FIYyzc0AUi%2Bi4Gl%2BniXsiJX9s65haiMwRRUbbWJVmveIv9OgDl7vkiW%2B%2Fv9i5%2FsSmId%2BEMPJJU5%2B%2BM3f46986BQfJKGk0EJdLQVZplNZgMXbgWtd05nFLzKuHGEGnRIE65ayOLs7TEV%2F5TGu7IK56oL%2FfGOSzL6ZQ5gayWFN46nhc6jj6M4UpgNeadDxASOERlDXL1bNRzzkgzn7lVKFibTAbN7Lekg%3D%3D",
+  "usdVendido": 84.99,
+  "usdPublicado": 98.18,
   "cota": 98.18,
   "visto": "2026-11-12"
  },
@@ -29651,6 +29657,11 @@
  },
  "cod:IN6159": {
   "cota": 25,
+  "visto": "2026-11-12"
+ },
+ "cod:JF0426": {
+  "sin": 1,
+  "porVentas": 1,
   "visto": "2026-11-12"
  }
 }

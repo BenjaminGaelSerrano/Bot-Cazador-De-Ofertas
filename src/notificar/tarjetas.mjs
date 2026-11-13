@@ -31,7 +31,7 @@ export function itemTarjeta(oferta, puntaje) {
   const conReferencia = puntaje?.precioMercado !== undefined && puntaje?.precioMercado !== null;
   const talles = evaluarTalles(oferta.talles, oferta.genero);
   return {
-    nombre: nombreLindo(oferta.nombre),
+    nombre: `${oferta.nueva ? '🆕 ' : ''}${nombreLindo(oferta.nombre)}`,
     url: oferta.url,
     costo: `$${miles(oferta.precioActual)}`,
     mercado: conReferencia ? `${puntaje.via === 'modelo' ? '~' : ''}$${miles(puntaje.precioMercado)}` : '—',

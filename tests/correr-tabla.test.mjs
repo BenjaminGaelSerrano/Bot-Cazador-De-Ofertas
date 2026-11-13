@@ -328,3 +328,28 @@ test('agotadas: si la página no tiene ningún talle disponible, no se avisa (Su
   assert.ok(texto.includes('MODELO 2') || texto.includes('Modelo 2'), texto);
   assert.ok(!texto.includes('MODELO 1') && !texto.includes('Modelo 1'), 'la agotada no sale');
 });
+
+test('repetir vigentes: cada corrida manda todo lo vigente, y solo lo no avisado antes lleva 🆕 (2026-11-12)', async () => {
+  const e = await entorno();
+  const ebay = { precio: async (o) => ({ estado: 'ok', precio: 200000, usd: 130, n: 8, via: 'codigo', ventas: 20, url: `https://www.ebay.com/itm/${o.id}` }) };
+  const barata = (id) => oferta(id, { precioActual: 100000, precioLista: 200000 });
+  e.poner([barata(1), barata(2)]);
+  // 1ª corrida: lo avisa y lo marca como avisado.
+  await e.correr('2026-11-12', { ebay, filtroAviso: {} });
+  assert.equal(e.enviados.length, 1);
+  // 2ª corrida sin repetir: no hay nada nuevo, no manda nada.
+  await e.correr('2026-11-12', { ebay, filtroAviso: {} });
+  assert.equal(e.enviados.length, 1, 'sin repetir, no manda lo ya avisado');
+  // 3ª corrida repitiendo y con una oferta nueva: manda las 3, y solo la nueva lleva 🆕.
+  e.poner([barata(1), barata(2), barata(3)]);
+  await e.correr('2026-11-12', { ebay, filtroAviso: {}, ignorarAvisadas: true });
+  assert.equal(e.enviados.length, 2);
+  const m = e.enviados[1];
+  assert.ok(m.includes('Nike Modelo 1') && m.includes('Nike Modelo 2') && m.includes('Nike Modelo 3'), m);
+  assert.equal((m.match(/🆕/g) ?? []).length, 1, 'una sola nueva');
+  assert.ok(m.includes('🆕 Nike Modelo 3'), m);
+  // 4ª corrida repitiendo y sin novedades: manda las 3 sin ningún 🆕.
+  await e.correr('2026-11-12', { ebay, filtroAviso: {}, ignorarAvisadas: true });
+  assert.equal(e.enviados.length, 3);
+  assert.ok(!e.enviados[2].includes('🆕') && e.enviados[2].includes('Nike Modelo 3'), e.enviados[2]);
+});

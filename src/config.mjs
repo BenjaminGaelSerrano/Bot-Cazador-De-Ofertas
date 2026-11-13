@@ -47,6 +47,9 @@ export const config = {
     soloTerminos: [],
     // Nada de mujer (2026-11-06: "todo lo que es de mujer no me va a interesar nunca"): por categoría o nombre.
     excluirMujer: true,
+    // Cada corrida manda TODO lo que sigue vigente (pasa el filtro, hay stock), aunque ya se haya avisado y no haya nada
+    // nuevo (pedido del usuario, 2026-11-12). Lo que no se había avisado antes lleva 🆕. false = solo lo nuevo.
+    repetirVigentes: true,
   },
   tabla: { monoespaciado: true },     // false: filas separadas por barras y sin alinear (si WhatsApp no respeta el ancho fijo)
   // Las marcas de "ya avisado" anteriores a esta fecha se ignoran (una sola vez): las primeras corridas silenciaron como

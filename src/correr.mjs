@@ -195,6 +195,8 @@ export async function correrFuente({
   // 3f. Filtro del usuario: margen y ventas mínimas, y solo las marcas o modelos de su lista (config.avisar). Lo que no
   // pasa no se marca como avisado: se reevalúa en cada corrida (si baja de precio, puede pasar).
   if (ebay) pendientes = pendientes.filter((g) => pasaFiltroAviso({ oferta: g.oferta, margen: g.puntaje.margen, ventas: g.ebay?.ventas }, filtroAviso));
+  // 3g. Al repetir lo vigente, lo que no se había avisado antes lleva 🆕 (se calcula antes de marcar como avisadas).
+  if (ignorarAvisadas) for (const g of pendientes) g.oferta.nueva = debeAvisar(estado, clave(g.oferta), g.oferta.precioActual);
 
   // 4. Avisar, anotando cada mensaje recién cuando salió.
   // En la primera corrida el título es corto a propósito: cada caracter del encabezado le resta lugar a una oferta.

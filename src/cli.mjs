@@ -133,7 +133,7 @@ const { resultados, fallaron, mensajesUsados, limiteEnvio } = await correrFuente
   dryRun,
   directorioDatos: args.datos,
   crearCliente: () => crearCliente({ pausaMs: args.pausa ? Number(args.pausa) : config.pausaMs }),
-  extra: { referencias, ebay, avisosPausados: config.avisar.pausados ?? false, ignorarAvisadas: args.forzar, fuentesSoloPerfumes: config.soloPerfumes ?? [] },
+  extra: { referencias, ebay, avisosPausados: config.avisar.pausados ?? false, ignorarAvisadas: args.forzar || (config.avisar.repetirVigentes ?? false), fuentesSoloPerfumes: config.soloPerfumes ?? [] },
 });
 
 // El tope diario cuenta solo lo que salió por WhatsApp (con Telegram, las copias).

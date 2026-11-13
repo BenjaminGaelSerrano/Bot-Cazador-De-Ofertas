@@ -185,7 +185,8 @@
   "usd": 45.24,
   "n": 6,
   "url": "https://www.ebay.com/itm/206598187470?hash=item301a3629ce:g:AWYAAeSwmKhqkcXQ",
-  "visto": "2026-11-12"
+  "visto": "2026-11-12",
+  "vend": 0
  },
  "ean:8433982013201": {
   "sin": 1,
@@ -405,7 +406,8 @@
   "usd": 51,
   "n": 5,
   "url": "https://www.ebay.com/itm/306600668324?hash=item4762d2eca4:g:zVgAAeSwBW5pFkJq",
-  "visto": "2026-11-12"
+  "visto": "2026-11-12",
+  "vend": 179
  },
  "ean:3614273622622": {
   "usd": 62.49,
@@ -9089,7 +9091,8 @@
   "usd": 29.99,
   "n": 9,
   "url": "https://www.ebay.com/itm/276716885532?hash=item406d9c961c:g:~XEAAOSwqx5nKaUE",
-  "visto": "2026-11-13"
+  "visto": "2026-11-13",
+  "vend": 6
  },
  "ean:3605971512575": {
   "usd": 65,
@@ -10898,7 +10901,7 @@
   "usdVendido": 25.99,
   "usdPublicado": 25.99,
   "cota": 25.99,
-  "visto": "2026-11-05"
+  "visto": "2026-11-13"
  },
  "cod:HF7849-028": {
   "sin": 1,
@@ -11482,8 +11485,8 @@
   "visto": "2026-11-11"
  },
  "cod:HHSS1102-": {
-  "cota": 19.230128205128207,
-  "visto": "2026-11-12"
+  "cota": 19.034726688102893,
+  "visto": "2026-11-13"
  },
  "cod:SMJY5943-": {
   "sin": 1,
@@ -15645,7 +15648,7 @@
  "cod:25756": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-13"
  },
  "cod:25785": {
   "sin": 1,
@@ -20810,7 +20813,7 @@
  "cod:405985-01": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-13"
  },
  "cod:26570": {
   "sin": 1,
@@ -22952,7 +22955,8 @@
   "usd": 23.81,
   "n": 6,
   "url": "https://www.ebay.com/itm/287524967873?hash=item42f1d2d5c1:g:-vQAAeSwfjZqfzXX&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7m8LgjzQStKNu3sF8vBikCuXiQzWkD%2BSZWZnJqzrulB5g%2Fb5N%2BtvJxVT3sGn1aKQnl0SspB34pYH2aNHkTl0bVWG8UxIgtRI41Av5SG5yGShpuRTs8f0laDUgBsqdzWWmUsInLBZnGbIGLXBF%2FvuhTuyKr7ELP3Ae6cKN1w%2FhmuUpVCxm0Qlq6QcPuAX8GbOhGV9rv%2BHvErdlUm11fMPXdIs8uqo4oTZWELroS9iRC88UJNHEeKX3BqLg%2B0O5xY2M3lipaGKFG9F8jxjpp%2BxiVP",
-  "visto": "2026-11-12"
+  "visto": "2026-11-12",
+  "vend": 106
  },
  "ean:8411061081266": {
   "sin": 1,
@@ -23173,8 +23177,8 @@
   "visto": "2026-11-09"
  },
  "cod:JQ5241": {
-  "cota": 64.56,
-  "visto": "2026-11-09"
+  "cota": 65.05,
+  "visto": "2026-11-13"
  },
  "cod:IE1379": {
   "cota": 68,
@@ -29752,6 +29756,47 @@
   "visto": "2026-11-13"
  },
  "cod:IF9487-010": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-13"
+ },
+ "cod:HJ1102-800": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-13"
+ },
+ "cod:HQ2592-005": {
+  "cota": 154.5,
+  "visto": "2026-11-13"
+ },
+ "cod:DC9413-006": {
+  "cota": 35.36913183279743,
+  "visto": "2026-11-13"
+ },
+ "cod:NBAJS525102-RD1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-13"
+ },
+ "cod:FB1802-007": {
+  "cota": 54.018649517684885,
+  "visto": "2026-11-13"
+ },
+ "cod:HHSS3256-": {
+  "usd": 22.49,
+  "n": 1,
+  "ventas": 3,
+  "url": "https://www.ebay.com/itm/336609289588?_skw=mitchell+ness+HHSS3256-&hash=item4e5f7a2574:g:yQAAAeSw-wlqGfX5",
+  "usdVendido": 22.49,
+  "usdPublicado": 23.74,
+  "cota": 23.74,
+  "visto": "2026-11-13"
+ },
+ "cod:FQ8903-003": {
+  "cota": 38.58456591639872,
+  "visto": "2026-11-13"
+ },
+ "cod:NBACA525201-RD1": {
   "sin": 1,
   "porVentas": 1,
   "visto": "2026-11-13"

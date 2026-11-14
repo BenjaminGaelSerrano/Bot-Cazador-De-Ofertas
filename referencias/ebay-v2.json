@@ -3696,8 +3696,8 @@
   "visto": "2026-11-13"
  },
  "cod:FZ3863-006": {
-  "cota": 49.517041800643085,
-  "visto": "2026-11-12"
+  "cota": 49.20063897763578,
+  "visto": "2026-11-13"
  },
  "cod:406203-03": {
   "cota": 59.95,
@@ -29921,6 +29921,11 @@
   "usd": 81.84,
   "n": 14,
   "url": "https://www.ebay.com/itm/398356569513?hash=item5cbfe6dda9:g:H1MAAeSwXyxqmgv1&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7m%2Fauw6FgXS6IQPdSzK5RJCXaeZZYouYsJu6TL8WoiLnmWeTZWtxWxIyReBPgqf12w44XaV4c3wK53iPxn05vmzp%2FjCnciW33XIu%2FcRkq3r%2FW2CaYrMzxj2xOJuEaxDIf0kb66CzEQUAYLYs2GCOywMWdWfiAv1csf2CDyfZH3hTwOibz%2FqIxyr%2FJYjTaCVtql4JBg7925sId353Wkf4lRg98nwcMPjcgoEtIQ543IcD4M9K3Jltp4IYqUxh3H54rbXgr%2FUt5uXDpeRUEel3FIh",
+  "visto": "2026-11-13"
+ },
+ "cod:25743": {
+  "sin": 1,
+  "porVentas": 1,
   "visto": "2026-11-13"
  }
 }

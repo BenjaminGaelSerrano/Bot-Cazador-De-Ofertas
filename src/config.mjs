@@ -43,7 +43,7 @@ export const config = {
     // o modelos que elija"). Margen contra eBay (precio justo), ventas en eBay del mismo producto y lista de términos
     // (marca o modelo, en el nombre). Lista vacía = todas las marcas.
     margenMinimo: 0.05, // 30 % el 2026-11-06; el usuario lo bajó a 5 % el 2026-11-07
-    ventasMinimas: 10,
+    ventasMinimas: 5, // 10 hasta el 2026-11-15; el usuario lo bajó a 5 para que lleguen más zapatillas
     soloTerminos: [],
     // Nada de mujer (2026-11-06: "todo lo que es de mujer no me va a interesar nunca"): por categoría o nombre.
     excluirMujer: true,

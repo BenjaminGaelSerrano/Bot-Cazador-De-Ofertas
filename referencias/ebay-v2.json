@@ -3465,8 +3465,8 @@
   "visto": "2026-11-12"
  },
  "cod:IB3566-001": {
-  "cota": 74.99,
-  "visto": "2026-11-15"
+  "cota": 47.92268370607029,
+  "visto": "2026-11-16"
  },
  "cod:1100033913": {
   "sin": 1,
@@ -10320,8 +10320,8 @@
   "visto": "2026-11-05"
  },
  "cod:HF5441-113": {
-  "cota": 50.16012861736334,
-  "visto": "2026-11-12"
+  "cota": 49.83961661341853,
+  "visto": "2026-11-16"
  },
  "cod:IB3731-003": {
   "cota": 51.281410256410254,
@@ -11018,7 +11018,7 @@
  "cod:310957-01": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-16"
  },
  "cod:DR5720-800": {
   "cota": 35.59805825242719,
@@ -13604,8 +13604,8 @@
   "visto": "2026-11-05"
  },
  "cod:DR2695-002": {
-  "cota": 75,
-  "visto": "2026-11-14"
+  "cota": 57.5073482428115,
+  "visto": "2026-11-16"
  },
  "cod:FV5524-001": {
   "cota": 57.5073482428115,
@@ -14825,7 +14825,7 @@
  "cod:AA2195-200": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-16"
  },
  "cod:1100034031": {
   "sin": 1,
@@ -14859,7 +14859,7 @@
  "cod:H220333ABKRD": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-13"
+  "visto": "2026-11-16"
  },
  "cod:100BR0121": {
   "sin": 1,
@@ -15625,7 +15625,7 @@
  "cod:25756": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-13"
+  "visto": "2026-11-16"
  },
  "cod:25785": {
   "sin": 1,
@@ -16551,7 +16551,7 @@
  },
  "cod:1387111-100": {
   "cota": 13.417891373801917,
-  "visto": "2026-11-13"
+  "visto": "2026-11-16"
  },
  "cod:F23L1303102": {
   "sin": 1,
@@ -16949,7 +16949,7 @@
  },
  "cod:DV9359-010": {
   "cota": 25.55846645367412,
-  "visto": "2026-11-13"
+  "visto": "2026-11-16"
  },
  "cod:KA2383": {
   "sin": 1,
@@ -17408,7 +17408,7 @@
  "cod:JZ0170": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-12"
+  "visto": "2026-11-16"
  },
  "cod:IT0545": {
   "sin": 1,
@@ -20347,8 +20347,8 @@
   "visto": "2026-11-06"
  },
  "cod:FD6454-001": {
-  "cota": 69.99,
-  "visto": "2026-11-14"
+  "cota": 67.09201277955272,
+  "visto": "2026-11-16"
  },
  "cod:26464": {
   "sin": 1,
@@ -21875,8 +21875,8 @@
   "visto": "2026-11-12"
  },
  "cod:HQ3950-006": {
-  "cota": 92.06,
-  "visto": "2026-11-09"
+  "cota": 89.97,
+  "visto": "2026-11-16"
  },
  "cod:406203-05": {
   "sin": 1,
@@ -23693,7 +23693,7 @@
  "cod:KJ1741": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-12"
+  "visto": "2026-11-16"
  },
  "cod:KI1033": {
   "cota": 66.45303514376997,
@@ -29766,8 +29766,8 @@
   "visto": "2026-11-16"
  },
  "cod:FB1802-007": {
-  "cota": 54.018649517684885,
-  "visto": "2026-11-13"
+  "cota": 89.45623003194888,
+  "visto": "2026-11-16"
  },
  "cod:HHSS3256-": {
   "usd": 22.49,
@@ -30539,6 +30539,65 @@
   "usd": 69.99,
   "n": 14,
   "url": "https://www.ebay.com/itm/147526446011?hash=item225942ebbb:g:r7wAAeSwrwFqtWbL",
+  "visto": "2026-11-16"
+ },
+ "ean:3616306701939": {
+  "sin": 1,
+  "visto": "2026-11-16"
+ },
+ "cod:394921-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-16"
+ },
+ "cod:397447-07": {
+  "cota": 15.973801916932908,
+  "visto": "2026-11-16"
+ },
+ "cod:400214-03": {
+  "cota": 25.55846645367412,
+  "visto": "2026-11-16"
+ },
+ "cod:IF9211": {
+  "cota": 44.72779552715655,
+  "visto": "2026-11-16"
+ },
+ "cod:394915-58": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-16"
+ },
+ "cod:310957-19": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-16"
+ },
+ "cod:310957-10": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-16"
+ },
+ "cod:DH2987-108": {
+  "usd": 59.99,
+  "n": 2,
+  "ventas": 2,
+  "url": "https://www.ebay.com/itm/276659094250?_skw=nike+DH2987-108&hash=item406a2ac2ea:g:mFAAAOSwAPxm9f7u&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7kDXQ5dNJjBUHXnMcU%2Bv3i%2BjygRByA%2Fm2AsrYz5GpDTgW7EAe6F1%2BmIGOjy3XgEeuqMN1KRx27fDZuAHl48clBkAd2iVaUS28nKyCyvCUq9JrLxkpsQYokCx1qNOwHrlPwLyv4POD%2BB4G2tOGFaYzRcLg2%2FFH0HpKshONgAZt0YYDksnVzLBQY1JVwjbK9MQ5IKTLnS5CBBr%2FSnTEw3OSjCVDj0brGaVkyQb8FgjUzZxnaldse6zT%2BwDM4v60%2FigKNupn%2F4kk3o2AeFhx%2FFYgkWqjEj5l9zXu3OG5tiG%2FmjPw%3D%3D",
+  "usdVendido": 59.99,
+  "usdPublicado": 72.74,
+  "cota": 72.74,
+  "visto": "2026-11-16"
+ },
+ "cod:FQ8714-201": {
+  "cota": 53.673482428115015,
+  "visto": "2026-11-16"
+ },
+ "cod:HQ8605-003": {
+  "cota": 76.67667731629393,
+  "visto": "2026-11-16"
+ },
+ "cod:MADUC18994A71": {
+  "sin": 1,
+  "porVentas": 1,
   "visto": "2026-11-16"
  }
 }

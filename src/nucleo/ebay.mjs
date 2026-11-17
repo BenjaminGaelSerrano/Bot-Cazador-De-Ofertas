@@ -355,6 +355,8 @@ export function crearEbay({
     if (guardado.ventas !== undefined) {
       // Con precio y guardado antes del tope por lo publicado (2026-11-05): se vuelve a calcular (las fichas están en caché).
       if (guardado.usd && guardado.usdPublicado === undefined) return null;
+      // Con precio y guardado antes de exigir varias publicaciones (2026-11-17): se vuelve a calcular.
+      if (guardado.usd && guardado.nValidas === undefined) return null;
       return resultado(guardado, consulta.via);
     }
     if (guardado.cota !== undefined) return oferta.precioActual / dolar >= guardado.cota ? { estado: 'sin' } : null;
@@ -366,6 +368,11 @@ export function crearEbay({
   async function consultarPorVentas(consulta, oferta) {
     const validas = publicacionesValidas(filtrarPorConsulta(await buscar(consulta.params), consulta));
     if (validas.length === 0) return { sin: 1, porVentas: 1 };
+    // Referencia de una sola publicación (o dos): no es un precio de mercado (2026-11-17, el usuario vio precios "retail"
+    // mal en avisos): camisetas Mitchell & Ness con 1 publicación de US$115, Fila Stackhouse con 1 de US$102. El tope por
+    // lo publicado no sirve con una sola, y esa publicación puede estar inflada o ser de otro talle. Se exigen varias.
+    const minPublicaciones = cfg.ventas.minPublicaciones ?? 3;
+    if (validas.length < minPublicaciones) return { sin: 1, porVentas: 1, nValidas: validas.length };
     // Tope: la mediana de lo PUBLICADO (aprobado por el usuario el 2026-11-05). eBay da las ventas de toda la vida de una
     // publicación con su precio de hoy, y un vendedor que vendió barato y después subió el precio inflaba todo: Blazer Low
     // '77 Vintage con 8 ventas a US$193 cuando el resto pide 40 a 83; Cortez "Nike ID RARE" a US$175 contra US$75 de la
@@ -401,8 +408,8 @@ export function crearEbay({
       if (b >= a) return { cota: Math.min(cota, ofertaUsd) };
     }
     const r = precioPorVentas(fichas, { minVentas: 0 });
-    if (r.sin) return { ...r, cota, usdPublicado };
-    return { ...r, usd: Math.min(r.usd, usdPublicado), usdVendido: r.usd, usdPublicado, cota };
+    if (r.sin) return { ...r, cota, usdPublicado, nValidas: validas.length };
+    return { ...r, usd: Math.min(r.usd, usdPublicado), usdVendido: r.usd, usdPublicado, nValidas: validas.length, cota };
   }
 
   async function vendidasGuardadasODe(itemId) {

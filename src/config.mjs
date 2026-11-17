@@ -317,7 +317,7 @@ export const config = {
     // publicado (`topePublicado`): una publicación cara con ventas viejas inflaba el precio (Blazer '77: US$193 vs. 40-83).
     // Si la oferta ya cuesta ese tope o más, no se gastan fichas (no puede ser más barata).
     // `vigenciaFichasDias`: las unidades vendidas de cada publicación se reutilizan una semana (cuestan 1 consulta cada una).
-    ventas: { activo: true, minVentas: 3, fichas: 8, topePublicado: 0.5, vigenciaFichasDias: 7 },
+    ventas: { activo: true, minVentas: 3, fichas: 8, topePublicado: 0.5, vigenciaFichasDias: 7, minPublicaciones: 3 },
     // Cupo diario compartido (2026-11-03: unas corridas manuales gastaron las 5.000 del día y la de la noche quedó sin
     // nada). Al arrancar se lee lo que queda y se reparte en partes iguales entre esta corrida y las programadas que
     // faltan antes de que se renueve (08:00 UTC). TIENE QUE COINCIDIR con los cron de .github/workflows/cazador.yml.

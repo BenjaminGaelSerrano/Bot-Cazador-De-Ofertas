@@ -251,7 +251,7 @@ test('fichas: las unidades vendidas de una publicación se reutilizan y se guard
     fichasLeidas++;
     return { status: 200, ok: true, json: async () => ({ estimatedAvailabilities: [{ estimatedSoldQuantity: 4 }] }) };
   };
-  const cfgV = { ...cfg, vigenciaDias: 0, ventas: { activo: true, minVentas: 3, fichas: 8, cotaPercentil: 0.75, vigenciaFichasDias: 7 } };
+  const cfgV = { ...cfg, vigenciaDias: 0, ventas: { activo: true, minVentas: 3, fichas: 8, cotaPercentil: 0.75, vigenciaFichasDias: 7, minPublicaciones: 1 } };
   const zapa = { id: 'NICT2302-002', marca: 'Nike', nombre: "Air Force 1 '07", km: 'x', precioActual: 80000 };
   const rutaCache = join(dir, 'ebay-v2.json');
   const a = crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-03', rutaCache, fetchFn, cfg: cfgV, log: () => {} });
@@ -324,7 +324,7 @@ function ebayDeZapas(pubs, { dolar = 1000, cfgExtra = {} } = {}) {
     leidas.push(i);
     return { status: 200, ok: true, json: async () => ({ estimatedAvailabilities: [{ estimatedSoldQuantity: pubs[i].vendidas }] }) };
   };
-  const cfgV = { ...cfg, ventas: { activo: true, minVentas: 3, fichas: 8, cotaPercentil: 0.75, vigenciaFichasDias: 7 }, ...cfgExtra };
+  const cfgV = { ...cfg, ventas: { activo: true, minVentas: 3, fichas: 8, cotaPercentil: 0.75, vigenciaFichasDias: 7, minPublicaciones: 1 }, ...cfgExtra };
   const ebay = crearEbay({ clientId: 'i', clientSecret: 's', dolar, hoy: '2026-11-03', rutaCache: 'x', fetchFn, cfg: cfgV, log: () => {} });
   return { ebay, leidas, get busquedas() { return busquedas; } };
 }
@@ -398,7 +398,7 @@ test('caché: un precio por ventas guardado antes del tope se vuelve a calcular'
   const rutaCache = join(dir, 'ebay-v2.json');
   const { writeFile } = await import('node:fs/promises');
   await writeFile(rutaCache, JSON.stringify({ 'cod:CT2302-002': { usd: 193, n: 2, ventas: 9, visto: '2026-11-03' } }));
-  const e = crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-03', rutaCache, cfg: { ...cfg, ventas: { activo: true, minVentas: 3, fichas: 8, vigenciaFichasDias: 7 } }, log: () => {} });
+  const e = crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-03', rutaCache, cfg: { ...cfg, ventas: { activo: true, minVentas: 3, fichas: 8, vigenciaFichasDias: 7, minPublicaciones: 1 } }, log: () => {} });
   // No devuelve los US$193 guardados: hay que volver a calcularlo con el tope.
   assert.equal(await e.enCache(zapaA(80), 'moov'), null);
 });
@@ -439,7 +439,7 @@ test('ventasDe (perfumes): suma lo vendido de las publicaciones válidas, sin to
   const { writeFile } = await import('node:fs/promises');
   const rutaCache = join(dir, 'ebay-v2.json');
   await writeFile(rutaCache, JSON.stringify({ 'ean:3349666007921': { usd: 70, n: 6, visto: '2026-11-05' } }));
-  const ebay = crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-05', rutaCache, fetchFn, cfg: { ...cfg, ventas: { activo: true, minVentas: 3, fichas: 8, vigenciaFichasDias: 7 } }, log: () => {} });
+  const ebay = crearEbay({ clientId: 'i', clientSecret: 's', dolar: 1000, hoy: '2026-11-05', rutaCache, fetchFn, cfg: { ...cfg, ventas: { activo: true, minVentas: 3, fichas: 8, vigenciaFichasDias: 7, minPublicaciones: 1 } }, log: () => {} });
   const perfume = { id: '1', ean: '3349666007921', nombre: 'One Million EDT 100 ml', marca: 'RABANNE', ml: 100, precioActual: 60000 };
   assert.equal(await ebay.ventasDe(perfume, 'juleriaque'), 11);
   assert.equal(await ebay.ventasDe(perfume, 'juleriaque'), 11, 'la segunda vez sale del caché');
@@ -456,4 +456,15 @@ test('consultaPara: la marca va sin "performance" ni "originals" (Dash, adidas p
   assert.equal(consultaPara({ ...o, marca: 'Adidas Originals' }, 'grid').params.q, 'adidas IH8218');
   assert.equal(consultaPara({ ...o, marca: 'Nike Sportswear', codigo: 'DA6364-001' }, 'grid').params.q, 'nike DA6364-001');
   assert.equal(consultaPara({ ...o, marca: 'Puma', codigo: '313998-01' }, 'sporting').params.q, 'puma 313998-01');
+});
+
+test('referencia de una sola publicación: no es precio de mercado y no se avisa (2026-11-17)', async () => {
+  // Camiseta Mitchell & Ness: 1 sola publicación válida de US$115 con 29 ventas. Antes daba +146 % de margen.
+  const una = ebayDeZapas([{ precio: 115, vendidas: 29 }], { cfgExtra: { ventas: { activo: true, minVentas: 3, fichas: 8, vigenciaFichasDias: 7, minPublicaciones: 3 } } });
+  const r = await una.ebay.precio(zapaA(49), 'moov');
+  assert.equal(r.estado, 'sin');
+  assert.equal(una.leidas.length, 0, 'ni siquiera se gastan fichas');
+  // Con 3 publicaciones sí hay referencia.
+  const tres = ebayDeZapas([{ precio: 115, vendidas: 20 }, { precio: 120, vendidas: 5 }, { precio: 130, vendidas: 0 }], { cfgExtra: { ventas: { activo: true, minVentas: 3, fichas: 8, vigenciaFichasDias: 7, minPublicaciones: 3 } } });
+  assert.equal((await tres.ebay.precio(zapaA(49), 'moov')).estado, 'ok');
 });

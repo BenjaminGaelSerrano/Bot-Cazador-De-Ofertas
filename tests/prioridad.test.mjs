@@ -123,11 +123,13 @@ test('pasaPerfil: perfumes de diseñador o nacionales; calzado de las marcas ele
   const perfume = (marca, nombre = 'EDP 100 ml') => pasaPerfil({ marca, nombre }, { esPerfumeria: true, perfil });
   assert.ok(perfume('Carolina Herrera') && perfume('RABANNE') && perfume('BANDERAS') && perfume('Adolfo Dominguez'), 'diseñador');
   assert.ok(perfume('Cher') && perfume('Caro Cuore') && perfume('Ciel'), 'nacionales');
-  assert.ok(!perfume('Lattafa') && !perfume('Hamidi') && !perfume('Shakira') && !perfume('David Beckham'), 'árabes de nicho y celebrities, no');
+  assert.ok(!perfume('Lattafa') && !perfume('Hamidi') && !perfume('Nusuk'), 'árabes de nicho, no');
+  assert.ok(perfume('Shakira') && perfume('David Beckham') && perfume('Kylie Jenner') && perfume('Mercedes-Benz') && perfume('Adidas') && perfume('Nautica') && perfume('Benetton'), 'a pedido del usuario');
   const z = (marca, nombre) => pasaPerfil({ marca, nombre }, { perfil });
   assert.ok(z('Nike Sportswear', 'ZAPATILLAS NIKE SPORTSWEAR DUNK LOW RETRO HOMBRE'), 'Nike lifestyle');
   assert.ok(z('Jordan', 'ZAPATILLAS AIR JORDAN 1 LOW') && z('Adidas Originals', 'Zapatillas adidas Samba OG') && z('Puma', 'Zapatillas Puma Suede Classic'));
   assert.ok(z('New Balance', 'Zapatillas New Balance 550') && z('Converse', 'Zapatillas Converse Star Player 76') && z('Vans', 'Zapatillas Vans Classic Slip-On'));
+  assert.ok(z('Asics', 'Zapatillas ASICS Japan S'), 'Asics, a pedido del usuario');
   assert.ok(!z('Topper', 'Zapatillas Topper Leroi King of the Kongo') && !z('Fila', 'Zapatillas Fila Arcade Low') && !z('Reebok', 'Zapatillas Reebok Premier Road'), 'otras marcas de calzado, no');
   assert.ok(!z('Nike', 'Zapatillas Running Nike Air Zoom Pegasus 40') && !z('Adidas Performance', 'Zapatillas adidas Galaxy 7 de Hombre'), 'running');
   assert.ok(!z('Adidas', 'Botines Futbol Adidas Predator Elite Fg'), 'botines');

@@ -64,14 +64,16 @@ export const config = {
           'chloe', 'marc jacobs', 'michael kors', 'paco rabanne', 'bentley', 'dunhill', 'joop', 'rochas', 'loewe', 'benetton',
           'banderas', 'adolfo dominguez', 'guerlain', 'dsquared', 'tory burch', 'ferragamo', 'zadig voltaire', 'nautica',
           'halloween', 'bensimon', 'ted lapidus', 'salvador dali',
+          // A pedido del usuario (2026-11-18) entran también estas, aunque no sean de diseñador clásico:
+          'mercedes benz', 'adidas', 'shakira', 'kylie jenner', 'david beckham',
         ],
         nacionales: [
           'cher', 'ciel', 'caro cuore', 'paula cahen', 'rapsodia', 'jazmin chebar', 'tucci', 'kevingston', 'complot',
           'mimo', 'wanama', 'sweet', 'vitamina', 'ona saez', 'cuesta blanca', 'prune', 'maria cher', 'lorena',
         ],
       },
-      // Calzado: solo estas marcas (Nike, Jordan, Adidas, Puma y, a sugerencia, New Balance, Converse y Vans).
-      calzadoMarcas: ['nike', 'jordan', 'adidas', 'puma', 'new balance', 'converse', 'vans'],
+      // Calzado: solo estas marcas (Nike, Jordan, Adidas, Puma, New Balance, Converse, Vans y Asics).
+      calzadoMarcas: ['nike', 'jordan', 'adidas', 'puma', 'new balance', 'converse', 'vans', 'asics'],
       // Calzado y ropa: afuera lo claramente de rendimiento deportivo.
       excluirRendimiento: true,
     },

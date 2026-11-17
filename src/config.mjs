@@ -58,13 +58,13 @@ export const config = {
 
   // Fuentes que no se leen en las corridas programadas. Parfumerie bloquea al bot desde el 2026-10-23 (cada corrida
   // terminaba en rojo); se pausó a pedido del usuario el 2026-11-02. Para probar si volvió: --fuente parfumerie --dry-run.
-  fuentesPausadas: ['newera'], // New Era: el usuario pidió sacarla (2026-11-18). Simplicity se reactivó el 2026-11-17
+  fuentesPausadas: ['newera'], // New Era: el usuario pidió sacarla (2026-11-18).
   // Fuentes que pueden fallar sin poner roja la corrida: Parfumerie bloquea al bot desde el 2026-10-23 (403). Se intenta en
   // cada corrida y vuelve sola cuando deje de bloquear (el usuario la pidió de nuevo el 2026-11-17).
   fuentesOpcionales: ['parfumerie'],
 
   // De las perfumerías se avisan solo perfumes: ni maquillaje, ni cremas, ni tratamientos (pedido del usuario, 2026-11-03).
-  soloPerfumes: ['juleriaque', 'rouge', 'pigmento', 'beauty24', 'simplicity', 'parfumerie'],
+  soloPerfumes: ['juleriaque', 'rouge', 'pigmento', 'beauty24', 'parfumerie'],
 
   fuentes: {
     juleriaque: {
@@ -159,19 +159,6 @@ export const config = {
         { name: 'Perfumes de hombre', ruta: '/100/102/' },
         { name: 'Perfumes unisex', ruta: '/100/103/' },
       ],
-      toleranciaCobertura: 1,
-    },
-
-    // Simplicity (perfumería de shoppings, grupo Farmacity): VTEX. Reemplaza a Parfumerie, que bloquea (pedido del
-    // usuario, 2026-11-05). Solo la categoría Fragancias (id 14): 2.460 productos, todos con código de barras, la mitad
-    // con descuento. Se lee solo esa raíz, así que el resto del sitio (maquillaje, piel) no cuenta como "sin cubrir".
-    simplicity: {
-      base: 'https://www.simplicity.com.ar',
-      maxPorPedido: 50,
-      maxOffset: 2500,
-      agrupar: 'sku',
-      categoriasExcluidas: [],
-      categorias: [{ name: 'Fragancias', ruta: '/14/' }],
       toleranciaCobertura: 1,
     },
 

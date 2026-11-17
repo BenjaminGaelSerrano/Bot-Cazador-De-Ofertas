@@ -7,7 +7,6 @@ import { leerCatalogo as leerDexter, leerTalles as tallesDexter } from './fuente
 import { leerCatalogo as leerNewEra } from './fuentes/newera.mjs';
 import { leerCatalogo as leerParfumerie } from './fuentes/parfumerie.mjs';
 import { leerCatalogo as leerRouge } from './fuentes/rouge.mjs';
-import { leerCatalogo as leerSimplicity } from './fuentes/simplicity.mjs';
 import { leerCatalogo as leerPigmento } from './fuentes/pigmento.mjs';
 import { leerCatalogo as leerBeauty24 } from './fuentes/beauty24.mjs';
 import { leerCatalogo as leerDash } from './fuentes/dash.mjs';
@@ -34,7 +33,6 @@ const FUENTES = {
   rouge: { leer: leerRouge, titulo: 'Ofertas Rouge' },
   pigmento: { leer: leerPigmento, titulo: 'Ofertas Pigmento' },
   beauty24: { leer: leerBeauty24, titulo: 'Ofertas Beauty 24' },
-  simplicity: { leer: leerSimplicity, titulo: 'Ofertas Simplicity' },
   grid: { leer: leerGrid, titulo: 'Ofertas Grid' },
   dash: { leer: leerDash, titulo: 'Ofertas Dash' },
   sporting: { leer: leerSporting, titulo: 'Ofertas Sporting' },

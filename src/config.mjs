@@ -46,7 +46,7 @@ export const config = {
     ventasMinimas: 5, // 10 hasta el 2026-11-15; el usuario lo bajó a 5 para que lleguen más zapatillas
     soloTerminos: [],
     // Nada de mujer (2026-11-06: "todo lo que es de mujer no me va a interesar nunca"): por categoría o nombre.
-    excluirMujer: true,
+    excluirMujer: false, // true hasta el 2026-11-18; el usuario pidió sacar el filtro de solo hombre
     // Cada corrida manda TODO lo que sigue vigente (pasa el filtro, hay stock), aunque ya se haya avisado y no haya nada
     // nuevo (pedido del usuario, 2026-11-12). Lo que no se había avisado antes lleva 🆕. false = solo lo nuevo.
     repetirVigentes: true,
@@ -58,7 +58,7 @@ export const config = {
 
   // Fuentes que no se leen en las corridas programadas. Parfumerie bloquea al bot desde el 2026-10-23 (cada corrida
   // terminaba en rojo); se pausó a pedido del usuario el 2026-11-02. Para probar si volvió: --fuente parfumerie --dry-run.
-  fuentesPausadas: [], // Simplicity se reactivó el 2026-11-17 (pedido del usuario: si solo suma, activarla)
+  fuentesPausadas: ['newera'], // New Era: el usuario pidió sacarla (2026-11-18). Simplicity se reactivó el 2026-11-17
   // Fuentes que pueden fallar sin poner roja la corrida: Parfumerie bloquea al bot desde el 2026-10-23 (403). Se intenta en
   // cada corrida y vuelve sola cuando deje de bloquear (el usuario la pidió de nuevo el 2026-11-17).
   fuentesOpcionales: ['parfumerie'],
@@ -155,6 +155,7 @@ export const config = {
       agrupar: 'sku',
       categoriasExcluidas: [],
       categorias: [
+        { name: 'Perfumes de mujer', ruta: '/100/101/' }, // vuelve el 2026-11-18 (el usuario sacó el filtro de solo hombre)
         { name: 'Perfumes de hombre', ruta: '/100/102/' },
         { name: 'Perfumes unisex', ruta: '/100/103/' },
       ],
@@ -223,6 +224,7 @@ export const config = {
       sitio: 'Sites-Moov-Site',
       categorias: [
         { cgid: 'hombre-calzado', genero: 'h' },
+        { cgid: 'mujer-calzado', genero: 'm' },
       ],
       porPagina: 48,
       maxPaginas: 40,
@@ -236,6 +238,7 @@ export const config = {
       sitio: 'Sites-Dexter-Site',
       categorias: [
         { cgid: 'hombre-calzado', genero: 'h' },
+        { cgid: 'mujer-calzado', genero: 'm' },
       ],
       porPagina: 48,
       maxPaginas: 60, // 40 x 48 = 1.920 se quedaba corto en hombre-calzado (2026-11-06)
@@ -247,6 +250,7 @@ export const config = {
       sitio: 'Sites-StockCenter-Site',
       categorias: [
         { cgid: 'hombre-calzado', genero: 'h' },
+        { cgid: 'mujer-calzado', genero: 'm' },
       ],
       porPagina: 48,
       maxPaginas: 40,

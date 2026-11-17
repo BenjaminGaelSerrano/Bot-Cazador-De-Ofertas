@@ -73,17 +73,22 @@ async function detalle(tienda, id, p) {
 }
 
 if (import.meta.url === `file:///${process.argv[1]?.replace(/\\/g, '/')}`) {
-  const { values: a } = parseArgs({ options: { datos: { type: 'string', default: 'datos' }, min: { type: 'string', default: '0.15' }, dias: { type: 'string', default: '14' }, top: { type: 'string', default: '40' }, 'sin-talles': { type: 'boolean', default: false } } });
+  const { values: a } = parseArgs({ options: { datos: { type: 'string', default: 'datos' }, min: { type: 'string', default: '0.15' }, dias: { type: 'string', default: '14' }, top: { type: 'string', default: '40' }, 'sin-talles': { type: 'boolean', default: false },
+    ropa: { type: 'boolean', default: false } } }); // --ropa: solo indumentaria (remeras, camisetas, pantalones...) de las tiendas con catálogo de ropa
+  const ES_ROPA = /\b(remera|camiseta|musculosa|buzo|campera|pantal[oó]n|short|bermuda|calza|chomba|canguro|jogger|chaleco|polera|sweater|top|conjunto|rompevientos|parka)\b/i;
+  const NO_ROPA = /\b(zapatilla|zapatillas|botin|botines|ojota|ojotas|bota|botita|botitas|zueco|zuecos|sandalia|gorra|mochila|bolso)\b/i;
   const hoy = hoyArgentina();
   const filas = [];
   for (const tienda of TIENDAS) {
+    if (a.ropa && !VTEX_CON_TALLES.has(tienda)) continue; // la ropa se lee en Grid, Dash y Sporting
     let historial;
     try { historial = JSON.parse(await readFile(`${a.datos}/${tienda}/historial.json`, 'utf8')).productos; } catch { continue; }
     for (const [id, p] of Object.entries(historial)) {
       if (p.visto !== hoy || !p.stock) continue;
+      if (a.ropa && (!ES_ROPA.test(p.nombre) || NO_ROPA.test(p.nombre))) continue;
       const oferta = { nombre: p.nombre, marca: p.marca, ml: p.ml, categoria: p.cat, genero: p.gen ?? null };
       if (PERFUMERIAS.has(tienda) && !esSoloPerfume(oferta)) continue;
-      if (esDeMujer(oferta) || p.gen === 'n' || /\b(ni[nñ]os?|ni[nñ]as?|kids?)\b/i.test(p.nombre)) continue;
+      if ((config.avisar.excluirMujer && esDeMujer(oferta)) || p.gen === 'n' || /\b(ni[nñ]os?|ni[nñ]as?|kids?)\b/i.test(p.nombre)) continue;
       const b = bajaHabitual(p.obs, hoy);
       if (!b || b.baja < Number(a.min) || diasEntre(b.desde, hoy) > Number(a.dias)) continue;
       filas.push({ tienda, id, p, ...b, precio: p.obs.at(-1)[1] });

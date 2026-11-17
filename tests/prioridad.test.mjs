@@ -115,3 +115,22 @@ test('ordenarParaConsultar: sin baja real, el mayor descuento declarado se consu
   const { orden } = await ordenarParaConsultar([g('b', 'Y', 0.23), g('a', 'X', 0.5), g('c', 'Z', 0.37)], { historial: h, fecha: '2026-11-02', enCache: async () => null });
   assert.deepEqual(orden.map((x) => x.oferta.id), ['a', 'c', 'b'], 'todas con baja real 0: manda el descuento declarado');
 });
+
+test('pasaPerfil: perfumes de diseñador o nacionales; calzado de las marcas elegidas; sin rendimiento (2026-11-18)', async () => {
+  const { pasaPerfil } = await import('../src/nucleo/prioridad.mjs');
+  const { config } = await import('../src/config.mjs');
+  const perfil = config.avisar.perfil;
+  const perfume = (marca, nombre = 'EDP 100 ml') => pasaPerfil({ marca, nombre }, { esPerfumeria: true, perfil });
+  assert.ok(perfume('Carolina Herrera') && perfume('RABANNE') && perfume('BANDERAS') && perfume('Adolfo Dominguez'), 'diseñador');
+  assert.ok(perfume('Cher') && perfume('Caro Cuore') && perfume('Ciel'), 'nacionales');
+  assert.ok(!perfume('Lattafa') && !perfume('Hamidi') && !perfume('Shakira') && !perfume('David Beckham'), 'árabes de nicho y celebrities, no');
+  const z = (marca, nombre) => pasaPerfil({ marca, nombre }, { perfil });
+  assert.ok(z('Nike Sportswear', 'ZAPATILLAS NIKE SPORTSWEAR DUNK LOW RETRO HOMBRE'), 'Nike lifestyle');
+  assert.ok(z('Jordan', 'ZAPATILLAS AIR JORDAN 1 LOW') && z('Adidas Originals', 'Zapatillas adidas Samba OG') && z('Puma', 'Zapatillas Puma Suede Classic'));
+  assert.ok(z('New Balance', 'Zapatillas New Balance 550') && z('Converse', 'Zapatillas Converse Star Player 76') && z('Vans', 'Zapatillas Vans Classic Slip-On'));
+  assert.ok(!z('Topper', 'Zapatillas Topper Leroi King of the Kongo') && !z('Fila', 'Zapatillas Fila Arcade Low') && !z('Reebok', 'Zapatillas Reebok Premier Road'), 'otras marcas de calzado, no');
+  assert.ok(!z('Nike', 'Zapatillas Running Nike Air Zoom Pegasus 40') && !z('Adidas Performance', 'Zapatillas adidas Galaxy 7 de Hombre'), 'running');
+  assert.ok(!z('Adidas', 'Botines Futbol Adidas Predator Elite Fg'), 'botines');
+  assert.ok(z('Mitchell & Ness', 'CAMISETA MITCHELL & NESS CHICAGO BULLS 1996') && !z('Nike', 'CALZA JORDAN DRI-FIT SPORT HOMBRE'), 'ropa de estilo sí, técnica no');
+  assert.equal(pasaPerfil({ marca: 'X', nombre: 'Zapatillas Topper' }, {}), true, 'sin perfil, todo pasa');
+});

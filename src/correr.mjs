@@ -6,7 +6,7 @@ import { anexarAvisos } from './nucleo/avisos.mjs';
 import { ErrorFuente } from './nucleo/http.mjs';
 import { cargar as cargarHistorial, guardar as guardarHistorial, registrar } from './nucleo/historial.mjs';
 import { cargarOtros, construirIndice, precioMercado } from './nucleo/mercado.mjs';
-import { esDeMujer, ordenarParaConsultar, pasaFiltroAviso, puntajeAviso } from './nucleo/prioridad.mjs';
+import { esDeMujer, ordenarParaConsultar, pasaPerfil, pasaFiltroAviso, puntajeAviso } from './nucleo/prioridad.mjs';
 import { esSoloPerfume } from './nucleo/internacional.mjs';
 import { compararPorReventa, nivelDemanda, puntuar, velocidadVenta } from './nucleo/reventa.mjs';
 import { agrupar } from './notificar/callmebot.mjs';
@@ -83,6 +83,8 @@ export async function correrFuente({
     if (soloPerfumes && !esSoloPerfume(oferta)) continue;
     // Nada de mujer (usuario, 2026-11-06): se descarta antes de consultar eBay, así no gasta cupo.
     if (filtroAviso?.excluirMujer && esDeMujer(oferta)) continue;
+    // Perfil del usuario (2026-11-18): marcas y estilo; antes de consultar eBay, así no gasta cupo.
+    if (!pasaPerfil(oferta, { esPerfumeria: soloPerfumes, perfil: filtroAviso?.perfil })) continue;
     const evaluacion = evaluar(oferta, historial.productos[oferta.id], fecha);
     if (evaluacion) gangas.push({ oferta, evaluacion });
   }

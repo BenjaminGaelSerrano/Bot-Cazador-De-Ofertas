@@ -50,6 +50,31 @@ export const config = {
     // Cada corrida manda TODO lo que sigue vigente (pasa el filtro, hay stock), aunque ya se haya avisado y no haya nada
     // nuevo (pedido del usuario, 2026-11-12). Lo que no se había avisado antes lleva 🆕. false = solo lo nuevo.
     repetirVigentes: true,
+    // Perfil del usuario (2026-11-18): "en perfumerías, nacionales y de diseñador; en calzado, las marcas que más se llevan;
+    // y en ropa y calzado, prendas visualmente atractivas y no tanto de rendimiento deportivo". Se aplica ANTES de consultar
+    // eBay (no gasta cupo). Las listas son palabras enteras de la marca o del nombre; sin lista = sin filtro.
+    perfil: {
+      perfumes: {
+        disenador: [
+          'carolina herrera', 'rabanne', 'dior', 'chanel', 'yves saint laurent', 'ysl', 'armani', 'versace', 'dolce gabbana',
+          'calvin klein', 'hugo boss', 'boss', 'jean paul gaultier', 'gaultier', 'givenchy', 'lancome', 'burberry', 'bvlgari',
+          'tommy hilfiger', 'ralph lauren', 'azzaro', 'montblanc', 'prada', 'valentino', 'mugler', 'viktor rolf',
+          'issey miyake', 'narciso rodriguez', 'hermes', 'gucci', 'tom ford', 'jimmy choo', 'nina ricci', 'davidoff',
+          'cacharel', 'lacoste', 'diesel', 'moschino', 'kenzo', 'antonio banderas', 'escada', 'elie saab', 'cartier',
+          'chloe', 'marc jacobs', 'michael kors', 'paco rabanne', 'bentley', 'dunhill', 'joop', 'rochas', 'loewe', 'benetton',
+          'banderas', 'adolfo dominguez', 'guerlain', 'dsquared', 'tory burch', 'ferragamo', 'zadig voltaire', 'nautica',
+          'halloween', 'bensimon', 'ted lapidus', 'salvador dali',
+        ],
+        nacionales: [
+          'cher', 'ciel', 'caro cuore', 'paula cahen', 'rapsodia', 'jazmin chebar', 'tucci', 'kevingston', 'complot',
+          'mimo', 'wanama', 'sweet', 'vitamina', 'ona saez', 'cuesta blanca', 'prune', 'maria cher', 'lorena',
+        ],
+      },
+      // Calzado: solo estas marcas (Nike, Jordan, Adidas, Puma y, a sugerencia, New Balance, Converse y Vans).
+      calzadoMarcas: ['nike', 'jordan', 'adidas', 'puma', 'new balance', 'converse', 'vans'],
+      // Calzado y ropa: afuera lo claramente de rendimiento deportivo.
+      excluirRendimiento: true,
+    },
   },
   tabla: { monoespaciado: true },     // false: filas separadas por barras y sin alinear (si WhatsApp no respeta el ancho fijo)
   // Las marcas de "ya avisado" anteriores a esta fecha se ignoran (una sola vez): las primeras corridas silenciaron como

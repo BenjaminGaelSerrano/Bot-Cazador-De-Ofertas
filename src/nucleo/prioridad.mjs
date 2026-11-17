@@ -111,3 +111,25 @@ export function esDeMujer(oferta) {
   if (oferta.genero === 'h' || oferta.genero === 'u') return false;
   return DE_MUJER.test(normal(oferta.nombre));
 }
+
+const CALZADO = /\b(zapatillas?|botines?|botitas?|ojotas?|botas?|sandalias?|zuecos?|calzado|mocasines?)\b/;
+// Rendimiento deportivo: disciplinas, líneas de running y telas técnicas (calzado y ropa).
+const RENDIMIENTO = /\b(running|runner|run|trail|training|entrenamiento|botines?|futbol|futsal|rugby|hockey|padel|tenis|golf|natacion|ciclismo|trekking|crossfit|metcon|dri fit|aeroready|climacool|climalite|compresion|pegasus|vomero|structure|winflo|revolution|downshifter|quest|adizero|ultraboost|supernova|duramo|galaxy|runfalcon|response|solarglide|velocity nitro|deviate|zoom fly|invincible|calzas?)\b/;
+
+/**
+ * Perfil del usuario (2026-11-18): perfumes de diseñador o nacionales; calzado solo de las marcas elegidas; y nada de
+ * rendimiento deportivo en calzado ni ropa. `perfil` viene de config.avisar.perfil; sin perfil, todo pasa.
+ */
+export function pasaPerfil(oferta, { esPerfumeria = false, perfil } = {}) {
+  if (!perfil) return true;
+  const texto = ` ${normal(oferta.marca)} ${normal(oferta.nombre)} `;
+  const contiene = (t) => texto.includes(` ${normal(t)} `);
+  if (esPerfumeria) {
+    const marcas = [...(perfil.perfumes?.disenador ?? []), ...(perfil.perfumes?.nacionales ?? [])];
+    return marcas.length === 0 || marcas.some(contiene);
+  }
+  const esCalzado = CALZADO.test(normal(oferta.nombre));
+  if (esCalzado && perfil.calzadoMarcas?.length && !perfil.calzadoMarcas.some(contiene)) return false;
+  if (perfil.excluirRendimiento && RENDIMIENTO.test(normal(oferta.nombre))) return false;
+  return true;
+}

@@ -95,3 +95,13 @@ test('esDeMujer: por género de la tienda o por el nombre; unisex y hombre se qu
   assert.equal(esDeMujer({ nombre: 'Zapatillas Adidas Superstar', genero: 'u' }), false);
   assert.equal(esDeMujer({ nombre: 'CK One EDT', genero: 'u' }), false);
 });
+
+test('pasaFiltroAviso: las ventas mínimas valen para zapatillas y ropa, no para perfumes (2026-11-17)', async () => {
+  const { pasaFiltroAviso } = await import('../src/nucleo/prioridad.mjs');
+  const cfg = { margenMinimo: 0.05, ventasMinimas: 5 };
+  const perfume = { oferta: { marca: 'Mercedes-Benz', nombre: 'The Move EDT 100 ml' }, margen: 0.10, ventas: 0, via: 'ean' };
+  assert.equal(pasaFiltroAviso(perfume, cfg), true, 'perfume con 0 ventas pasa si es más barato que eBay');
+  assert.equal(pasaFiltroAviso({ ...perfume, margen: 0.02 }, cfg), false, 'pero con margen mínimo');
+  assert.equal(pasaFiltroAviso({ ...perfume, via: 'codigo' }, cfg), false, 'zapatilla con 0 ventas no pasa');
+  assert.equal(pasaFiltroAviso({ ...perfume, via: 'codigo', ventas: 5 }, cfg), true);
+});

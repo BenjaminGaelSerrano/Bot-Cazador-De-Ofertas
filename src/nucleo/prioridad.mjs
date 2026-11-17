@@ -87,9 +87,11 @@ const normal = (s) => String(s ?? '').toLowerCase().normalize('NFD').replace(/[�
  * Filtro del aviso (pedido del usuario, 2026-11-05): margen mínimo contra eBay, ventas mínimas en eBay y, si hay lista,
  * que la marca o el nombre contengan alguno de los términos ("jordan", "samba", "carolina herrera"...).
  */
-export function pasaFiltroAviso({ oferta, margen, ventas }, { margenMinimo = 0, ventasMinimas = 0, soloTerminos = [] } = {}) {
+export function pasaFiltroAviso({ oferta, margen, ventas, via }, { margenMinimo = 0, ventasMinimas = 0, soloTerminos = [] } = {}) {
   if (!(margen >= margenMinimo)) return false;
-  if (ventasMinimas > 0 && !((ventas ?? 0) >= ventasMinimas)) return false;
+  // Las ventas mínimas valen para zapatillas y ropa. Perfumes (por código de barras): "más barato que eBay, sin exigir
+  // ventas" (criterio aprobado el 2026-11-03); ahí las ventas son solo un dato (2026-11-17: dejaba afuera a Juleriaque).
+  if (ventasMinimas > 0 && via !== 'ean' && !((ventas ?? 0) >= ventasMinimas)) return false;
   if (soloTerminos.length === 0) return true;
   const texto = ` ${normal(oferta.marca)} ${normal(oferta.nombre)} `;
   return soloTerminos.some((t) => texto.includes(` ${normal(t)} `));

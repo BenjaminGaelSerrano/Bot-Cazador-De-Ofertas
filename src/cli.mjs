@@ -187,4 +187,5 @@ for (const r of resultados) {
 
 if (limiteEnvio) console.warn(`AVISO: CallMeBot rechazó un mensaje tras ${mensajesUsados} enviados: ese es su límite por corrida. Lo que falta sale en la próxima. Si en el WhatsApp llegaron menos de ${mensajesUsados}, bajar maxMensajesTotalPorCorrida en src/config.mjs.`);
 console.log(`\nTotal: ${minutosDesde(inicio)} min · mensajes: ${mensajesUsados}/${config.maxMensajesTotalPorCorrida} · fallas: ${fallaron.length ? fallaron.join(', ') : 'ninguna'}`);
-if (fallaron.length) process.exitCode = 1;
+// Una fuente opcional que falla (Parfumerie bloqueada) no pone roja la corrida; las demás sí.
+if (fallaron.some((n) => !(config.fuentesOpcionales ?? []).includes(n))) process.exitCode = 1;

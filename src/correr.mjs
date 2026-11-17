@@ -194,7 +194,7 @@ export async function correrFuente({
   if (ebay) pendientes.sort((a, b) => puntajeAviso({ margen: b.puntaje.margen, ventas: b.ebay?.ventas }) - puntajeAviso({ margen: a.puntaje.margen, ventas: a.ebay?.ventas }));
   // 3f. Filtro del usuario: margen y ventas mínimas, y solo las marcas o modelos de su lista (config.avisar). Lo que no
   // pasa no se marca como avisado: se reevalúa en cada corrida (si baja de precio, puede pasar).
-  if (ebay) pendientes = pendientes.filter((g) => pasaFiltroAviso({ oferta: g.oferta, margen: g.puntaje.margen, ventas: g.ebay?.ventas }, filtroAviso));
+  if (ebay) pendientes = pendientes.filter((g) => pasaFiltroAviso({ oferta: g.oferta, margen: g.puntaje.margen, ventas: g.ebay?.ventas, via: g.ebay?.via }, filtroAviso));
   // 3g. Al repetir lo vigente, lo que no se había avisado antes lleva 🆕 (se calcula antes de marcar como avisadas).
   if (ignorarAvisadas) for (const g of pendientes) g.oferta.nueva = debeAvisar(estado, clave(g.oferta), g.oferta.precioActual);
 

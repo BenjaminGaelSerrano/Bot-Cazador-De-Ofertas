@@ -61,7 +61,9 @@ export async function ordenarParaConsultar(gangas, { historial, fecha, enCache }
   const prioridades = new Map();
   for (const g of resto) {
     const baja = bajaReal(historial?.productos?.[g.oferta.id], g.oferta.precioActual, fecha);
-    const base = baja ?? (g.evaluacion?.descuento ?? 0) * 0.5;
+    // Primero lo que más probabilidad tiene de ser buena (2026-11-18): la mayor entre la baja real y la mitad del descuento
+    // declarado. Antes, con historial y sin baja real la prioridad era 0 y el descuento no contaba (todo empataba).
+    const base = Math.max(baja ?? 0, (g.evaluacion?.descuento ?? 0) * 0.5);
     const r = relacion.get(claveMarca(g.oferta.marca));
     prioridades.set(g, base + (r ? (1 - r) * PESO_MARCA : 0));
   }

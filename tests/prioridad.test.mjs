@@ -105,3 +105,13 @@ test('pasaFiltroAviso: las ventas mínimas valen para zapatillas y ropa, no para
   assert.equal(pasaFiltroAviso({ ...perfume, via: 'codigo' }, cfg), false, 'zapatilla con 0 ventas no pasa');
   assert.equal(pasaFiltroAviso({ ...perfume, via: 'codigo', ventas: 5 }, cfg), true);
 });
+
+test('ordenarParaConsultar: sin baja real, el mayor descuento declarado se consulta primero (2026-11-18)', async () => {
+  const h = historialCon([
+    ['2026-10-25', [producto('a', 'X', 100000, 200000), producto('b', 'Y', 100000, 130000), producto('c', 'Z', 100000, 160000)]],
+    ['2026-11-02', [producto('a', 'X', 100000, 200000), producto('b', 'Y', 100000, 130000), producto('c', 'Z', 100000, 160000)]],
+  ]);
+  const g = (id, marca, descuento) => ({ oferta: { id, marca, precioActual: 100000 }, evaluacion: { descuento } });
+  const { orden } = await ordenarParaConsultar([g('b', 'Y', 0.23), g('a', 'X', 0.5), g('c', 'Z', 0.37)], { historial: h, fecha: '2026-11-02', enCache: async () => null });
+  assert.deepEqual(orden.map((x) => x.oferta.id), ['a', 'c', 'b'], 'todas con baja real 0: manda el descuento declarado');
+});

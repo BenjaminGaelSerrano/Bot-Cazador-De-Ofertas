@@ -132,8 +132,12 @@ test('pasaPerfil: perfumes de diseñador o nacionales; calzado de las marcas ele
   assert.ok(z('Asics', 'Zapatillas ASICS Japan S'), 'Asics, a pedido del usuario');
   assert.ok(z('Salomon', 'Zapatillas Trekking Salomon Speedcross 6 de Hombre'), 'Salomon entra aunque figure como trekking');
   assert.ok(!z('Nike', 'Zapatillas Trekking Nike ACG Mountain Fly'), 'otras marcas técnicas siguen afuera');
+  // Running que se usa como estilo (el usuario, 2026-11-18): entran; el running de verdad sigue afuera.
+  for (const [m, n] of [['Nike', 'Zapatillas Running Nike Vomero 17 Hombre'], ['Nike', 'Zapatillas Running Nike Pegasus Premium'], ['Adidas Performance', 'Zapatillas Adidas Performance ADIZERO EVO COMFORT SL HOMBRE'],
+    ['Adidas Originals', 'ADIDAS ORIGINALS RESPONSE CL'], ['Puma', 'Zapatillas Running Puma Velocity Nitro 3'], ['Asics', 'Zapatillas Asics Gel-Kayano 14'], ['New Balance', 'Zapatillas Running New Balance Fresh Foam 1080']]) assert.ok(z(m, n), n);
+  for (const [m, n] of [['Adidas', 'Zapatillas Running adidas Galaxy 7 de Hombre'], ['Nike', 'Zapatillas Running Nike Downshifter 13'], ['Adidas', 'adidas Duramo Speed 2'], ['Adidas', 'adidas Supernova Ease 2'], ['Puma', 'Zapatillas Running Puma Flyer Lite 3']]) assert.ok(!z(m, n), n);
   assert.ok(!z('Topper', 'Zapatillas Topper Leroi King of the Kongo') && !z('Fila', 'Zapatillas Fila Arcade Low') && !z('Reebok', 'Zapatillas Reebok Premier Road'), 'otras marcas de calzado, no');
-  assert.ok(!z('Nike', 'Zapatillas Running Nike Air Zoom Pegasus 40') && !z('Adidas Performance', 'Zapatillas adidas Galaxy 7 de Hombre'), 'running');
+  assert.ok(!z('Nike', 'Zapatillas Running Nike Winflo 11') && !z('Adidas Performance', 'Zapatillas adidas Galaxy 7 de Hombre'), 'running');
   assert.ok(!z('Adidas', 'Botines Futbol Adidas Predator Elite Fg'), 'botines');
   assert.ok(!z('Adidas Originals', 'ZAPATILLAS ADIDAS ORIGINALS HARDEN VOLUMEN 8 DE HOMBRE') && !z('Adidas', 'Zapatillas Básquet Adidas Harden Volume 9'), 'básquet de rendimiento');
   assert.ok(z('Jordan', 'ZAPATILLAS AIR JORDAN 1 LOW HOMBRE'), 'Jordan sigue (es estilo)');

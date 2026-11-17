@@ -76,9 +76,14 @@ export const config = {
       calzadoMarcas: ['nike', 'jordan', 'adidas', 'puma', 'new balance', 'converse', 'vans', 'asics', 'salomon'],
       // Calzado y ropa: afuera lo claramente de rendimiento deportivo.
       excluirRendimiento: true,
-      // Marcas que se usan como estilo aunque sean técnicas: no se les aplica el descarte de rendimiento (Salomon:
-      // Speedcross, XT-6, etc. figuran como trekking, 2026-11-18).
-      sinFiltroRendimiento: ['salomon'],
+      // Marcas y modelos que se usan como estilo aunque sean técnicos: no se les aplica el descarte de rendimiento (Salomon:
+      // Speedcross, XT-6, etc. figuran como trekking).
+      sinFiltroRendimiento: [
+        'salomon', 'new balance',
+        // Líneas de running que se usan como estilo (2026-11-18, el usuario: "algunas son de rendimiento pero se usan también para estilo"):
+        'vomero', 'pegasus', 'adizero evo', 'response cl', 'velocity nitro',
+        'gel kayano', 'gel 1130', 'gel nyc', 'gt 2160', 'gel nimbus',
+      ],
     },
   },
   tabla: { monoespaciado: true },     // false: filas separadas por barras y sin alinear (si WhatsApp no respeta el ancho fijo)

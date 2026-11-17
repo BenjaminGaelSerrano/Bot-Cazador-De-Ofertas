@@ -25310,8 +25310,8 @@
   "visto": "2026-11-15"
  },
  "cod:KA6852": {
-  "cota": 84.90503144654087,
-  "visto": "2026-11-16"
+  "cota": 72.1377358490566,
+  "visto": "2026-11-17"
  },
  "cod:KS6098": {
   "sin": 1,
@@ -30711,6 +30711,31 @@
   "usd": 43.98,
   "n": 6,
   "url": "https://www.ebay.com/itm/194846406419?hash=item2d5dc03713:g:stAAAeSw3pNq7lu1&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7m00zE3N2vcV8qryJBqQ0YEONJfCkHDhYF6f6kcT38HwERy3wqxuQTat2u%2BnrWVchUXBmf5XBbNAH6lWSqizDALvPJiBCiyMILVL5Z9bRugb%2BLp%2FRWygrUY5oSGeIqgHMfYTwwQTEuFDSe1hy5%2BzH6ltk9G1zQ2QtGZGqWAxdNQZo2qQhEmsHz0yRTJZzbevIkb6ZBaoyn4dEZCLHs9CE9rxdUDM7YV8pXi%2FEoj4CYiRyU82tGyPdF1fgLvkUsnEQyDkvQjXv13E%2BFA8hVVGnoY",
+  "visto": "2026-11-17"
+ },
+ "cod:636735-36": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:634936-49": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:696064-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:527509-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:786511-04": {
+  "sin": 1,
+  "porVentas": 1,
   "visto": "2026-11-17"
  }
 }

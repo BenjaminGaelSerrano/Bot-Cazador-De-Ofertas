@@ -58,7 +58,7 @@ export const config = {
 
   // Fuentes que no se leen en las corridas programadas. Parfumerie bloquea al bot desde el 2026-10-23 (cada corrida
   // terminaba en rojo); se pausó a pedido del usuario el 2026-11-02. Para probar si volvió: --fuente parfumerie --dry-run.
-  fuentesPausadas: ['simplicity'], // simplicity: el usuario prefirió Pigmento (2026-11-05)
+  fuentesPausadas: [], // Simplicity se reactivó el 2026-11-17 (pedido del usuario: si solo suma, activarla)
   // Fuentes que pueden fallar sin poner roja la corrida: Parfumerie bloquea al bot desde el 2026-10-23 (403). Se intenta en
   // cada corrida y vuelve sola cuando deje de bloquear (el usuario la pidió de nuevo el 2026-11-17).
   fuentesOpcionales: ['parfumerie'],

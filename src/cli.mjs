@@ -22,20 +22,21 @@ import { avisarFalla, marcarRecuperada } from './nucleo/fallas.mjs';
 import { crearReferencias, obtenerDolar } from './nucleo/internacional.mjs';
 import { ErrorFuente, crearCliente } from './nucleo/http.mjs';
 import { correrFuentes } from './principal.mjs';
+import { anotarCompleta, cargarLecturas, guardarLecturas, leerRapido } from './nucleo/lecturas.mjs';
 
 // El orden importa: el cupo de consultas de precio de EE. UU. se va gastando tienda por tienda. Moov va segunda para
 // que siempre le llegue (es la única de calzado con búsqueda exacta, por código de modelo).
 const FUENTES = {
-  juleriaque: { leer: leerJuleriaque, titulo: 'Ofertas Juleriaque' },
+  juleriaque: { leer: leerJuleriaque, titulo: 'Ofertas Juleriaque', vtex: true },
   moov: { leer: leerMoov, titulo: 'Ofertas Moov', talles: tallesMoov },
   dexter: { leer: leerDexter, titulo: 'Ofertas Dexter', talles: tallesDexter },
   stockcenter: { leer: leerStockCenter, titulo: 'Ofertas Stock Center', talles: tallesStockCenter },
-  rouge: { leer: leerRouge, titulo: 'Ofertas Rouge' },
-  pigmento: { leer: leerPigmento, titulo: 'Ofertas Pigmento' },
-  beauty24: { leer: leerBeauty24, titulo: 'Ofertas Beauty 24' },
-  grid: { leer: leerGrid, titulo: 'Ofertas Grid' },
-  dash: { leer: leerDash, titulo: 'Ofertas Dash' },
-  sporting: { leer: leerSporting, titulo: 'Ofertas Sporting' },
+  rouge: { leer: leerRouge, titulo: 'Ofertas Rouge', vtex: true },
+  pigmento: { leer: leerPigmento, titulo: 'Ofertas Pigmento', vtex: true },
+  beauty24: { leer: leerBeauty24, titulo: 'Ofertas Beauty 24', vtex: true },
+  grid: { leer: leerGrid, titulo: 'Ofertas Grid', vtex: true },
+  dash: { leer: leerDash, titulo: 'Ofertas Dash', vtex: true },
+  sporting: { leer: leerSporting, titulo: 'Ofertas Sporting', vtex: true },
   parfumerie: { leer: leerParfumerie, titulo: 'Ofertas Parfumerie' },
   newera: { leer: leerNewEra, titulo: 'Ofertas New Era' },
 };
@@ -47,6 +48,7 @@ const { values: args } = parseArgs({
     // Con --dry-run: guarda igual los precios de eBay consultados (caché), para que las corridas siguientes los reutilicen.
     'guardar-mercado': { type: 'boolean', default: false },
     forzar: { type: 'boolean', default: false }, // avisa todo lo que vale la pena aunque ya se haya avisado
+    completa: { type: 'boolean', default: false }, // lee el catálogo entero de las tiendas VTEX (por defecto, solo la primera vez del día)
     datos: { type: 'string', default: 'datos' },
     pausa: { type: 'string' },
   },
@@ -71,12 +73,22 @@ console.log(`Fuentes: ${nombres.join(', ')} · ${fecha}${dryRun ? ' · DRY-RUN (
 if (config.avisar.pausados) console.log('AVISOS PAUSADOS (config.avisar.pausados): se leen y guardan precios, no se mandan ofertas. Las fallas sí se avisan.');
 
 // El tiempo de cada fuente se mide acá, envolviendo la lectura.
+const rutaLecturas = `${args.datos}/lecturas.json`;
+const lecturas = await cargarLecturas(rutaLecturas);
+let lecturasModificadas = false;
 const tiempos = {};
 const fuentes = Object.fromEntries(Object.entries(FUENTES).map(([nombre, f]) => [nombre, {
   ...f,
-  leer: async (...a) => {
+  leer: async (cliente, opciones = {}) => {
     const t = Date.now();
-    try { return await f.leer(...a); } finally { tiempos[nombre] = minutosDesde(t); }
+    try {
+      // Tiendas VTEX: lectura rápida (solo lo que tiene descuento) salvo la primera del día, que es completa.
+      const rapido = f.vtex && leerRapido(lecturas, nombre, fecha, { forzarCompleta: args.completa });
+      const resultado = await f.leer(cliente, f.vtex ? { ...opciones, rapido } : opciones);
+      if (f.vtex && !rapido && anotarCompleta(lecturas, nombre, fecha, resultado.informe)) lecturasModificadas = true;
+      if (rapido) console.log(`${nombre}: lectura rápida (la completa de hoy ya se hizo)`);
+      return resultado;
+    } finally { tiempos[nombre] = minutosDesde(t); }
   },
 }]));
 
@@ -137,6 +149,9 @@ const { resultados, fallaron, mensajesUsados, limiteEnvio } = await correrFuente
 // El tope diario cuenta solo lo que salió por WhatsApp (con Telegram, las copias).
 const porWhatsapp = telegramActivo() ? whatsappEnviados() : mensajesUsados;
 if (!dryRun && porWhatsapp > 0) await sumarEnviados(rutaEnvios, fecha, porWhatsapp);
+
+// Día de la última lectura completa de cada tienda VTEX (ver nucleo/lecturas.mjs).
+if (!dryRun && lecturasModificadas) await guardarLecturas(rutaLecturas, lecturas);
 
 if (ebay) {
   if (!dryRun || args['guardar-mercado']) await ebay.guardar();

@@ -124,7 +124,8 @@ export async function correrFuente({
     for (const [clave, marca] of Object.entries(estado)) if (marca.fecha < reiniciarAlertasAntesDe) delete estado[clave];
   }
   limpiar(estado, {
-    vistos: new Set(ofertas.map(clave)),
+    // Lectura rápida: no se leyó todo el catálogo, así que lo no leído no cuenta como "ya no está" (no se borran sus marcas).
+    vistos: new Set([...ofertas.map(clave), ...(informe.parcial ? Object.keys(historial.productos).map((id) => `${nombre}:${id}`) : [])]),
     sinStock: new Set(ofertas.filter((o) => !(o.stock > 0)).map(clave)),
     gangasAhora: new Set(gangas.map((g) => clave(g.oferta))),
   });

@@ -4628,7 +4628,7 @@
  "cod:388981-99": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-17"
  },
  "cod:VN000CWK4PICASA": {
   "sin": 1,
@@ -4668,12 +4668,12 @@
   "visto": "2026-11-04"
  },
  "cod:BV1021-010": {
-  "cota": 97.0125,
-  "visto": "2026-11-04"
+  "cota": 89,
+  "visto": "2026-11-17"
  },
  "cod:DV3808-110": {
-  "cota": 96.15320512820513,
-  "visto": "2026-11-04"
+  "cota": 87.87,
+  "visto": "2026-11-17"
  },
  "cod:402366-22": {
   "sin": 1,
@@ -4686,8 +4686,8 @@
   "visto": "2026-11-04"
  },
  "cod:IB5824-100": {
-  "cota": 83.33269230769231,
-  "visto": "2026-11-04"
+  "cota": 81.50407523510972,
+  "visto": "2026-11-17"
  },
  "cod:JS1406": {
   "cota": 64,
@@ -4710,12 +4710,12 @@
  "cod:A12596C": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-17"
  },
  "cod:393504-02": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-17"
  },
  "cod:396018-01": {
   "sin": 1,
@@ -4725,7 +4725,7 @@
  "cod:393504-01": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-17"
  },
  "cod:W57472M": {
   "sin": 1,
@@ -4778,8 +4778,8 @@
   "visto": "2026-11-04"
  },
  "cod:FZ5630-001": {
-  "cota": 60.896794871794874,
-  "visto": "2026-11-04"
+  "cota": 49.5,
+  "visto": "2026-11-17"
  },
  "cod:FV1920-004": {
   "cota": 99,
@@ -4802,7 +4802,7 @@
  "cod:402244-01": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-17"
  },
  "cod:41469200090": {
   "sin": 1,
@@ -4837,8 +4837,8 @@
   "visto": "2026-11-04"
  },
  "cod:IB3952-001": {
-  "cota": 76.9224358974359,
-  "visto": "2026-11-04"
+  "cota": 75.23448275862069,
+  "visto": "2026-11-17"
  },
  "cod:41483980154": {
   "sin": 1,
@@ -4859,16 +4859,16 @@
   "visto": "2026-11-04"
  },
  "cod:IH4480-100": {
-  "cota": 115.38397435897436,
-  "visto": "2026-11-04"
+  "cota": 112.85203761755486,
+  "visto": "2026-11-17"
  },
  "cod:400384-02": {
   "cota": 38.83430420711974,
   "visto": "2026-11-06"
  },
  "cod:DV3808-113": {
-  "cota": 94.2,
-  "visto": "2026-11-04"
+  "cota": 94.04326018808777,
+  "visto": "2026-11-17"
  },
  "cod:JR7347": {
   "cota": 70.51217948717948,
@@ -4913,7 +4913,7 @@
  "cod:A12595C": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-17"
  },
  "cod:398446-02": {
   "sin": 1,
@@ -4984,7 +4984,7 @@
  "cod:400967-01": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-17"
  },
  "cod:JS0279": {
   "sin": 1,
@@ -5013,8 +5013,10 @@
   "visto": "2026-11-04"
  },
  "cod:FJ7409-100": {
-  "cota": 87.74,
-  "visto": "2026-11-04"
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
+  "visto": "2026-11-17"
  },
  "cod:IG4279": {
   "cota": 72.97,
@@ -5270,7 +5272,7 @@
  "cod:400752-01": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-04"
+  "visto": "2026-11-17"
  },
  "cod:CJ1651-002": {
   "sin": 1,
@@ -5288,12 +5290,12 @@
   "visto": "2026-11-16"
  },
  "cod:HF2016-600": {
-  "cota": 110.03171521035598,
-  "visto": "2026-11-06"
+  "cota": 106.58244514106583,
+  "visto": "2026-11-17"
  },
  "cod:AR3565-010": {
-  "cota": 104.14,
-  "visto": "2026-11-04"
+  "cota": 80,
+  "visto": "2026-11-17"
  },
  "cod:IF3667": {
   "cota": 47.021316614420066,
@@ -6215,7 +6217,8 @@
   "usd": 138.11,
   "n": 8,
   "url": "https://www.ebay.com/itm/204589075833?hash=item2fa2758d79:g:sv4AAeSw9ctq7gjQ&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7lNn842UbPGdtXFlPCcTYNwBVLkHVk3CYy47YF6qmJ%2BPOFTHmG5XUu7dbEps8oJMWmb2UPlbDZEIhy1sZo%2Fd80NMpX3p183qtB8BE3dUQ8%2Bo9O46rHqZ33JX3YFuBQ55EVJ483GulPEGJBMf5xaJnMf3wIIaf6%2FpssLKMqnoyErERjHXDQc3Ewh8r60M0Sr2IFchJzFZqN6tqRwCYmTFYgDxfVuxaHgZFNmVOG4W1Y1RYnfsdjzADRLbWPwqAagJFlR81tFquHqWloMRWkkOAK%2F",
-  "visto": "2026-11-17"
+  "visto": "2026-11-17",
+  "vend": 61
  },
  "ean:779842200987": {
   "sin": 1,
@@ -10709,7 +10712,7 @@
  "cod:FV7056-104": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:MLBSH626101-RD1": {
   "sin": 1,
@@ -10742,7 +10745,7 @@
  "cod:NBASH626103-NV1": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:KH1706": {
   "sin": 1,
@@ -10879,7 +10882,7 @@
  "cod:IB0170-100": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:FZ7477-504": {
   "sin": 1,
@@ -11502,13 +11505,9 @@
   "visto": "2026-11-17"
  },
  "cod:SMJYGS18159-": {
-  "usd": 115.49,
-  "n": 1,
-  "ventas": 2,
-  "url": "https://www.ebay.com/itm/293183021362?_skw=mitchell+ness+SMJYGS18159-&hash=item444311e132:g:bG4AAOSwJtNmF82v",
-  "usdVendido": 115.49,
-  "usdPublicado": 115.49,
-  "cota": 115.49,
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
   "visto": "2026-11-17"
  },
  "cod:LGJY1192-": {
@@ -12072,7 +12071,7 @@
  "cod:HV5002-011": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:HJ0093-010": {
   "cota": 20.38770226537217,
@@ -12081,12 +12080,12 @@
  "cod:FD4149-675": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:FD4149-222": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:KS7613": {
   "sin": 1,
@@ -12158,8 +12157,8 @@
   "visto": "2026-11-05"
  },
  "cod:IB4417-105": {
-  "cota": 116.5042071197411,
-  "visto": "2026-11-05"
+  "cota": 112.85203761755486,
+  "visto": "2026-11-17"
  },
  "cod:IM1652-200": {
   "cota": 58.25177993527508,
@@ -12174,8 +12173,10 @@
   "visto": "2026-11-17"
  },
  "cod:DH8010-110": {
-  "cota": 129.44919093851132,
-  "visto": "2026-11-05"
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 2,
+  "visto": "2026-11-17"
  },
  "cod:FZ4110-009": {
   "cota": 126.98,
@@ -12394,12 +12395,13 @@
   "url": "https://www.ebay.com/itm/287520698517?_skw=nike+FJ1674-300&hash=item42f191b095:g:mCYAAeSw6fRqfH8F",
   "usdVendido": 109.99,
   "usdPublicado": 131.1,
+  "nValidas": 17,
   "cota": 131.1,
   "visto": "2026-11-17"
  },
  "cod:HV4406-600": {
-  "cota": 129.99,
-  "visto": "2026-11-05"
+  "cota": 125.39122257053292,
+  "visto": "2026-11-17"
  },
  "cod:HV6747-323": {
   "sin": 1,
@@ -12411,8 +12413,8 @@
   "visto": "2026-11-17"
  },
  "cod:IB7311-001": {
-  "cota": 79.95,
-  "visto": "2026-11-05"
+  "cota": 76.49,
+  "visto": "2026-11-17"
  },
  "cod:HQ1932-700": {
   "cota": 105,
@@ -12459,7 +12461,7 @@
  "cod:IF1077-040": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:JQ9497": {
   "cota": 68.38,
@@ -12492,8 +12494,8 @@
   "visto": "2026-11-17"
  },
  "cod:HQ2186-001": {
-  "cota": 79.95,
-  "visto": "2026-11-05"
+  "cota": 75,
+  "visto": "2026-11-17"
  },
  "cod:KA3796": {
   "cota": 41.50880503144654,
@@ -12650,7 +12652,7 @@
  "cod:MLBSH626106-NV1": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:MLBPT326103-NV1": {
   "sin": 1,
@@ -12660,7 +12662,7 @@
  "cod:MLBSH626106-BK1": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:F11L019623538": {
   "sin": 1,
@@ -12726,7 +12728,7 @@
  "cod:1202A314": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:DH0623-403": {
   "sin": 1,
@@ -12947,7 +12949,7 @@
  "cod:F12HT00252": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:66391U": {
   "sin": 1,
@@ -12986,7 +12988,7 @@
  "cod:F12TR008563675": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:JV7157": {
   "sin": 1,
@@ -13029,15 +13031,15 @@
  },
  "cod:II1259-001": {
   "cota": 93.74,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:II1259-600": {
-  "cota": 64.97,
-  "visto": "2026-11-05"
+  "cota": 94.04326018808777,
+  "visto": "2026-11-17"
  },
  "cod:II1248-400": {
-  "cota": 97.08673139158576,
-  "visto": "2026-11-05"
+  "cota": 94.04326018808777,
+  "visto": "2026-11-17"
  },
  "cod:NKDK-00A-NME-TXY": {
   "sin": 1,
@@ -13057,12 +13059,12 @@
  "cod:01D7-155N-NME-": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:01D7-022N-NK-9HV": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:HZ262B60040-222": {
   "sin": 1,
@@ -13137,7 +13139,7 @@
  "cod:F12TR008566617": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:F11L019653664": {
   "sin": 1,
@@ -13192,7 +13194,7 @@
  "cod:F12L01757343": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-17"
  },
  "cod:FV8618-010": {
   "cota": 18.808150470219434,
@@ -14044,12 +14046,12 @@
   "visto": "2026-11-15"
  },
  "cod:DD1873-113": {
-  "cota": 93.5,
-  "visto": "2026-11-06"
+  "cota": 94.04326018808777,
+  "visto": "2026-11-17"
  },
  "cod:HF3227-601": {
-  "cota": 55.77,
-  "visto": "2026-11-06"
+  "cota": 55.55,
+  "visto": "2026-11-17"
  },
  "cod:HQ6019-001": {
   "cota": 75.49,
@@ -15201,8 +15203,10 @@
   "visto": "2026-11-17"
  },
  "cod:DH3158-606": {
-  "cota": 58.25177993527508,
-  "visto": "2026-11-06"
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
+  "visto": "2026-11-17"
  },
  "cod:DV0746-004": {
   "sin": 1,
@@ -15213,7 +15217,7 @@
  "cod:CZ7836-100": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-17"
  },
  "cod:FD2723-605": {
   "cota": 89.95,
@@ -15222,7 +15226,7 @@
  "cod:CZ7836-001": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-17"
  },
  "cod:HJ1101-600": {
   "sin": 1,
@@ -15599,7 +15603,7 @@
  "cod:406137-56": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-17"
  },
  "cod:3WE30051-025": {
   "sin": 1,
@@ -16859,12 +16863,12 @@
  "cod:F12L018396618": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-17"
  },
  "cod:F12HT005801994": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-17"
  },
  "cod:JN5443": {
   "sin": 1,
@@ -17035,7 +17039,7 @@
  "cod:IM9281-010": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-17"
  },
  "cod:IB5411-435": {
   "sin": 1,
@@ -17268,7 +17272,7 @@
  "cod:1012B801": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-17"
  },
  "cod:JZ7718": {
   "sin": 1,
@@ -17484,11 +17488,12 @@
   "usd": 29.99,
   "n": 2,
   "ventas": 2,
-  "url": "https://www.ebay.com/itm/285714074313?_skw=under+armour+1361518-001&hash=item4285e2cac9:g:wQ4AAOSwfO1mF8xG",
+  "url": "https://www.ebay.com/itm/285714074313?_skw=under+armour+1361518-001&hash=item4285e2cac9:g:wQ4AAOSwfO1mF8xG&amdata=enc%3AAQALAAABAOf5zIIojhOf%2BkQK%2Bxzjn7lpJRvAj2Uc5%2BfPx%2BQ%2Be59OdZ5AmdSNV6JKSC%2BZ6DAYKio%2BWhqyj%2BVLakyTWMBOqXN%2BgrqmSY%2Fm%2BlgTzw1yCNvIr27CLs9%2FgUm73e4lF639r850pX1dwubM1E%2FACESXikCYnUqIxvAN%2F6MrahJwS7NSQsbuts7%2B8Bw1npKICAEpGEtfP115LEfl50FosRuRtXllbzvC9mtb7ujFtJ36PRBLvgelZPXms5fIIQnQG15yARuthz60NGZ5ejy5IkHC7eKkY8tc9FZljzI4Qdy2n7hz54RVh8lBpKJxuYHM9OlVaXyFJKtPmeYw8pvSzIWNV8g%3D",
   "usdVendido": 29.99,
-  "usdPublicado": 30.17,
-  "cota": 30.17,
-  "visto": "2026-11-15"
+  "usdPublicado": 29.99,
+  "nValidas": 3,
+  "cota": 29.99,
+  "visto": "2026-11-17"
  },
  "cod:IS7052": {
   "sin": 1,
@@ -17759,7 +17764,7 @@
  "cod:IF0240-010": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-17"
  },
  "cod:JI1505": {
   "cota": 43.88652037617555,
@@ -18662,7 +18667,7 @@
  "cod:402640-01": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-17"
  },
  "cod:407149-04": {
   "sin": 1,
@@ -19621,7 +19626,7 @@
  "cod:691899-88": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-17"
  },
  "cod:692191-81": {
   "sin": 1,
@@ -19763,7 +19768,7 @@
  "cod:JY9611": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-17"
  },
  "cod:KA7790": {
   "sin": 1,
@@ -20375,8 +20380,10 @@
   "visto": "2026-11-06"
  },
  "cod:312044-07": {
-  "cota": 55.015533980582525,
-  "visto": "2026-11-06"
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
+  "visto": "2026-11-17"
  },
  "cod:F01L00258-497": {
   "sin": 1,
@@ -20958,14 +20965,10 @@
   "visto": "2026-11-17"
  },
  "cod:SMSHAC18022-": {
-  "usd": 71.99,
-  "n": 1,
-  "ventas": 42,
-  "url": "https://www.ebay.com/itm/293933527965?_skw=mitchell+ness+SMSHAC18022-&hash=item446fcdb39d:g:a0EAAOSwJtNmF80a",
-  "usdVendido": 71.99,
-  "usdPublicado": 71.99,
-  "cota": 71.99,
-  "visto": "2026-11-15"
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
+  "visto": "2026-11-17"
  },
  "cod:SMSHGS18226-": {
   "sin": 1,
@@ -20973,14 +20976,10 @@
   "visto": "2026-11-15"
  },
  "cod:SMSHGS18239-": {
-  "usd": 63.99,
-  "n": 1,
-  "ventas": 7,
-  "url": "https://www.ebay.com/itm/295344421665?_skw=mitchell+ness+SMSHGS18239-&hash=item44c3e63b21:g:U1kAAOSw2z9mF8v9",
-  "usdVendido": 63.99,
-  "usdPublicado": 63.99,
-  "cota": 63.99,
-  "visto": "2026-11-15"
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
+  "visto": "2026-11-17"
  },
  "cod:KD8822": {
   "sin": 1,
@@ -21295,7 +21294,7 @@
  "cod:406084-10": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-17"
  },
  "cod:BKS-03102M-095": {
   "sin": 1,
@@ -22442,7 +22441,7 @@
  "cod:406096-12": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-06"
+  "visto": "2026-11-17"
  },
  "cod:NC0324110WC18": {
   "sin": 1,
@@ -24347,14 +24346,10 @@
   "visto": "2026-11-15"
  },
  "cod:HHSS5367-": {
-  "usd": 24.99,
-  "n": 1,
-  "ventas": 8,
-  "url": "https://www.ebay.com/itm/286874245675?_skw=mitchell+ness+HHSS5367-&hash=item42cb099a2b:g:rcAAAeSwln9o7A-G",
-  "usdVendido": 24.99,
-  "usdPublicado": 24.99,
-  "cota": 24.99,
-  "visto": "2026-11-15"
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
+  "visto": "2026-11-17"
  },
  "cod:TP11588-LALDKGY": {
   "sin": 1,
@@ -24611,14 +24606,10 @@
   "visto": "2026-11-12"
  },
  "cod:SMJYGS18219-": {
-  "usd": 115.49,
-  "n": 1,
-  "ventas": 4,
-  "url": "https://www.ebay.com/itm/284369000119?_skw=mitchell+ness+SMJYGS18219-&hash=item4235b696b7:g:KFkAAOSw0phmF8ux",
-  "usdVendido": 115.49,
-  "usdPublicado": 115.49,
-  "cota": 115.49,
-  "visto": "2026-11-15"
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
+  "visto": "2026-11-17"
  },
  "cod:SMJY4161-": {
   "sin": 1,
@@ -24636,14 +24627,10 @@
   "visto": "2026-11-12"
  },
  "cod:SMJYAC18013-": {
-  "usd": 115.49,
-  "n": 1,
-  "ventas": 8,
-  "url": "https://www.ebay.com/itm/294270913418?_skw=mitchell+ness+SMJYAC18013-&hash=item4483e9cb8a:g:zk0AAOSwQGNmF8u0",
-  "usdVendido": 115.49,
-  "usdPublicado": 115.49,
-  "cota": 115.49,
-  "visto": "2026-11-15"
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
+  "visto": "2026-11-17"
  },
  "cod:SMJY4442-": {
   "sin": 1,
@@ -24656,14 +24643,10 @@
   "visto": "2026-11-12"
  },
  "cod:SMJYGS18164-": {
-  "usd": 115.49,
-  "n": 1,
-  "ventas": 29,
-  "url": "https://www.ebay.com/itm/274865017046?_skw=mitchell+ness+SMJYGS18164-&hash=item3fff3b50d6:g:8cgAAOSwzP1mF8us",
-  "usdVendido": 115.49,
-  "usdPublicado": 115.49,
-  "cota": 115.49,
-  "visto": "2026-11-15"
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
+  "visto": "2026-11-17"
  },
  "cod:SMJYGS18142-": {
   "cota": 81.40961538461538,
@@ -29847,14 +29830,10 @@
   "visto": "2026-11-17"
  },
  "cod:HHSS3256-": {
-  "usd": 22.49,
-  "n": 1,
-  "ventas": 3,
-  "url": "https://www.ebay.com/itm/336609289588?_skw=mitchell+ness+HHSS3256-&hash=item4e5f7a2574:g:yQAAAeSw-wlqGfX5",
-  "usdVendido": 22.49,
-  "usdPublicado": 23.74,
-  "cota": 23.74,
-  "visto": "2026-11-16"
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 2,
+  "visto": "2026-11-17"
  },
  "cod:FQ8903-003": {
   "cota": 37.735220125786164,
@@ -33048,6 +33027,249 @@
   "visto": "2026-11-17"
  },
  "cod:691860-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:402695-02": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:403554-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:402673-02": {
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:402673-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 2,
+  "visto": "2026-11-17"
+ },
+ "cod:406074-14": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:402638-06": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:406084-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:406084-05": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:402510-05": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:IM7328-100": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:406315-24": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:313340-19": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:400721-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:DQ5800-272": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:KQ6810": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:HV6779-323": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:FZ5922-010": {
+  "cota": 79.49,
+  "visto": "2026-11-17"
+ },
+ "cod:DX7902-499": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:IH5088-001": {
+  "cota": 89.99,
+  "visto": "2026-11-17"
+ },
+ "cod:FD4328-109": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:F12HT005803211": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:MLBCT626105-WH1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:KC6396": {
+  "cota": 97.17805642633229,
+  "visto": "2026-11-17"
+ },
+ "cod:HZ262P60039-443": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:NBACA626103-GN1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:NBACA626103-PK2": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:F12L01952160": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:FT2025281223": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:HZ261B60008-T222": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:HQ0086": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:IM7474-390": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:IF0319-323": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:IM8025-410": {
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 2,
+  "visto": "2026-11-17"
+ },
+ "cod:F12TR000046611": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:IF2628-005": {
+  "cota": 79.99,
+  "visto": "2026-11-17"
+ },
+ "cod:DQ5471-010": {
+  "cota": 53.99,
+  "visto": "2026-11-17"
+ },
+ "cod:IM9281-390": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:CD5432-003": {
+  "cota": 76.05,
+  "visto": "2026-11-17"
+ },
+ "cod:F12HT00580160": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:IP4220": {
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:KE5984": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:JX5493": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:691860-40": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:526585-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:026155-02": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:682387-47": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:IF1473-641": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:906807-20": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-17"
+ },
+ "cod:906807-12": {
   "sin": 1,
   "porVentas": 1,
   "visto": "2026-11-17"

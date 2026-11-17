@@ -130,6 +130,8 @@ test('pasaPerfil: perfumes de diseñador o nacionales; calzado de las marcas ele
   assert.ok(z('Jordan', 'ZAPATILLAS AIR JORDAN 1 LOW') && z('Adidas Originals', 'Zapatillas adidas Samba OG') && z('Puma', 'Zapatillas Puma Suede Classic'));
   assert.ok(z('New Balance', 'Zapatillas New Balance 550') && z('Converse', 'Zapatillas Converse Star Player 76') && z('Vans', 'Zapatillas Vans Classic Slip-On'));
   assert.ok(z('Asics', 'Zapatillas ASICS Japan S'), 'Asics, a pedido del usuario');
+  assert.ok(z('Salomon', 'Zapatillas Trekking Salomon Speedcross 6 de Hombre'), 'Salomon entra aunque figure como trekking');
+  assert.ok(!z('Nike', 'Zapatillas Trekking Nike ACG Mountain Fly'), 'otras marcas técnicas siguen afuera');
   assert.ok(!z('Topper', 'Zapatillas Topper Leroi King of the Kongo') && !z('Fila', 'Zapatillas Fila Arcade Low') && !z('Reebok', 'Zapatillas Reebok Premier Road'), 'otras marcas de calzado, no');
   assert.ok(!z('Nike', 'Zapatillas Running Nike Air Zoom Pegasus 40') && !z('Adidas Performance', 'Zapatillas adidas Galaxy 7 de Hombre'), 'running');
   assert.ok(!z('Adidas', 'Botines Futbol Adidas Predator Elite Fg'), 'botines');

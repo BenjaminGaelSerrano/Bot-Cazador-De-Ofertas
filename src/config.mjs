@@ -72,10 +72,13 @@ export const config = {
           'mimo', 'wanama', 'sweet', 'vitamina', 'ona saez', 'cuesta blanca', 'prune', 'maria cher', 'lorena',
         ],
       },
-      // Calzado: solo estas marcas (Nike, Jordan, Adidas, Puma, New Balance, Converse, Vans y Asics).
-      calzadoMarcas: ['nike', 'jordan', 'adidas', 'puma', 'new balance', 'converse', 'vans', 'asics'],
+      // Calzado: solo estas marcas (Nike, Jordan, Adidas, Puma, New Balance, Converse, Vans, Asics y Salomon).
+      calzadoMarcas: ['nike', 'jordan', 'adidas', 'puma', 'new balance', 'converse', 'vans', 'asics', 'salomon'],
       // Calzado y ropa: afuera lo claramente de rendimiento deportivo.
       excluirRendimiento: true,
+      // Marcas que se usan como estilo aunque sean técnicas: no se les aplica el descarte de rendimiento (Salomon:
+      // Speedcross, XT-6, etc. figuran como trekking, 2026-11-18).
+      sinFiltroRendimiento: ['salomon'],
     },
   },
   tabla: { monoespaciado: true },     // false: filas separadas por barras y sin alinear (si WhatsApp no respeta el ancho fijo)

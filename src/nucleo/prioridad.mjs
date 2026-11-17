@@ -130,6 +130,7 @@ export function pasaPerfil(oferta, { esPerfumeria = false, perfil } = {}) {
   }
   const esCalzado = CALZADO.test(normal(oferta.nombre));
   if (esCalzado && perfil.calzadoMarcas?.length && !perfil.calzadoMarcas.some(contiene)) return false;
-  if (perfil.excluirRendimiento && RENDIMIENTO.test(normal(oferta.nombre))) return false;
+  const exenta = (perfil.sinFiltroRendimiento ?? []).some(contiene);
+  if (perfil.excluirRendimiento && !exenta && RENDIMIENTO.test(normal(oferta.nombre))) return false;
   return true;
 }

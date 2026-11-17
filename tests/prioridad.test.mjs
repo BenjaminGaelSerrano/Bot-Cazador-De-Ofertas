@@ -135,6 +135,8 @@ test('pasaPerfil: perfumes de diseñador o nacionales; calzado de las marcas ele
   assert.ok(!z('Topper', 'Zapatillas Topper Leroi King of the Kongo') && !z('Fila', 'Zapatillas Fila Arcade Low') && !z('Reebok', 'Zapatillas Reebok Premier Road'), 'otras marcas de calzado, no');
   assert.ok(!z('Nike', 'Zapatillas Running Nike Air Zoom Pegasus 40') && !z('Adidas Performance', 'Zapatillas adidas Galaxy 7 de Hombre'), 'running');
   assert.ok(!z('Adidas', 'Botines Futbol Adidas Predator Elite Fg'), 'botines');
+  assert.ok(!z('Adidas Originals', 'ZAPATILLAS ADIDAS ORIGINALS HARDEN VOLUMEN 8 DE HOMBRE') && !z('Adidas', 'Zapatillas Básquet Adidas Harden Volume 9'), 'básquet de rendimiento');
+  assert.ok(z('Jordan', 'ZAPATILLAS AIR JORDAN 1 LOW HOMBRE'), 'Jordan sigue (es estilo)');
   assert.ok(z('Mitchell & Ness', 'CAMISETA MITCHELL & NESS CHICAGO BULLS 1996') && !z('Nike', 'CALZA JORDAN DRI-FIT SPORT HOMBRE'), 'ropa de estilo sí, técnica no');
   assert.equal(pasaPerfil({ marca: 'X', nombre: 'Zapatillas Topper' }, {}), true, 'sin perfil, todo pasa');
 });

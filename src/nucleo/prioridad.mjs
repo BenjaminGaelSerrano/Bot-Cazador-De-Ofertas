@@ -114,7 +114,7 @@ export function esDeMujer(oferta) {
 
 const CALZADO = /\b(zapatillas?|botines?|botitas?|ojotas?|botas?|sandalias?|zuecos?|calzado|mocasines?)\b/;
 // Rendimiento deportivo: disciplinas, líneas de running y telas técnicas (calzado y ropa).
-const RENDIMIENTO = /\b(running|runner|run|trail|training|entrenamiento|botines?|futbol|futsal|rugby|hockey|padel|tenis|golf|natacion|ciclismo|trekking|crossfit|metcon|dri fit|aeroready|climacool|climalite|compresion|pegasus|vomero|structure|winflo|revolution|downshifter|quest|adizero|ultraboost|supernova|duramo|galaxy|runfalcon|response|solarglide|velocity nitro|deviate|zoom fly|invincible|calzas?)\b/;
+const RENDIMIENTO = /\b(running|runner|run|trail|training|entrenamiento|botines?|futbol|futsal|rugby|hockey|padel|tenis|golf|natacion|ciclismo|trekking|crossfit|metcon|dri fit|aeroready|climacool|climalite|compresion|basquet|basketball|harden|lillard|trae young|ja morant|pegasus|vomero|structure|winflo|revolution|downshifter|quest|adizero|ultraboost|supernova|duramo|galaxy|runfalcon|response|solarglide|velocity nitro|deviate|zoom fly|invincible|calzas?)\b/;
 
 /**
  * Perfil del usuario (2026-11-18): perfumes de diseñador o nacionales; calzado solo de las marcas elegidas; y nada de

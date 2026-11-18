@@ -11541,8 +11541,10 @@
   "visto": "2026-11-17"
  },
  "cod:HHSS1102-": {
-  "cota": 18.808150470219434,
-  "visto": "2026-11-17"
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
+  "visto": "2026-11-18"
  },
  "cod:SMJY5943-": {
   "sin": 1,
@@ -29444,8 +29446,10 @@
   "visto": "2026-11-17"
  },
  "cod:JR4672": {
-  "cota": 87.77366771159875,
-  "visto": "2026-11-17"
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 2,
+  "visto": "2026-11-18"
  },
  "cod:KH0334": {
   "sin": 1,
@@ -33652,6 +33656,23 @@
  "cod:402281-01": {
   "sin": 1,
   "porVentas": 1,
+  "visto": "2026-11-18"
+ },
+ "cod:DC0774-122": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-18"
+ },
+ "cod:HQ2139-101": {
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 2,
+  "visto": "2026-11-18"
+ },
+ "cod:FQ7327-001": {
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
   "visto": "2026-11-18"
  }
 }

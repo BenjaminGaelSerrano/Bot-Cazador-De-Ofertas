@@ -40,3 +40,12 @@ test('agruparTarjetas: respeta el largo, siempre entra una y cuenta las incluida
   assert.ok(mensajes[0].startsWith('*Ofertas Moov* · 9 que valen la pena\nPrecio acá → eBay'));
   assert.ok(mensajes.length > 1 && mensajes[1].startsWith('*Ofertas Moov* (cont.)'));
 });
+
+test('tarjeta: nota de referencia débil o de precio oficial (2026-11-17)', () => {
+  const base = { nombre: 'Camiseta Mitchell & Ness', url: 'https://x/p', precioActual: 74999, vendidas: 8 };
+  const p = { precioMercado: 184000, margen: 1.46, via: 'codigo' };
+  assert.match(tarjeta(1, itemTarjeta({ ...base, refDebil: true, refPublicaciones: 1 }, p)), /\n⚠ referencia débil: 1 publicación en eBay$/);
+  assert.match(tarjeta(1, itemTarjeta({ ...base, refDebil: true, refPublicaciones: 2 }, p)), /2 publicaciones en eBay$/);
+  assert.match(tarjeta(1, itemTarjeta({ ...base, refRetail: true }, p)), /\nref\.: precio oficial EE\. UU\.$/);
+  assert.ok(!tarjeta(1, itemTarjeta(base, p)).includes('referencia'));
+});

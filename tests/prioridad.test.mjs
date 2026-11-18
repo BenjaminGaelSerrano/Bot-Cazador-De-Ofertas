@@ -141,6 +141,17 @@ test('pasaPerfil: perfumes de diseñador o nacionales; calzado de las marcas ele
   assert.ok(!z('Adidas', 'Botines Futbol Adidas Predator Elite Fg'), 'botines');
   assert.ok(!z('Adidas Originals', 'ZAPATILLAS ADIDAS ORIGINALS HARDEN VOLUMEN 8 DE HOMBRE') && !z('Adidas', 'Zapatillas Básquet Adidas Harden Volume 9'), 'básquet de rendimiento');
   assert.ok(z('Jordan', 'ZAPATILLAS AIR JORDAN 1 LOW HOMBRE'), 'Jordan sigue (es estilo)');
-  assert.ok(z('Mitchell & Ness', 'CAMISETA MITCHELL & NESS CHICAGO BULLS 1996') && !z('Nike', 'CALZA JORDAN DRI-FIT SPORT HOMBRE'), 'ropa de estilo sí, técnica no');
+  assert.ok(z('Mitchell & Ness', 'CAMISETA MITCHELL & NESS CHICAGO BULLS 1996') && z('Nike', 'CALZA JORDAN DRI-FIT SPORT HOMBRE'), 'ropa de estilo sí; Dri-FIT y calzas también (no perderse prendas buenas)');
   assert.equal(pasaPerfil({ marca: 'X', nombre: 'Zapatillas Topper' }, {}), true, 'sin perfil, todo pasa');
+});
+
+test('ropa: solo se descarta lo claramente técnico; Dri-FIT y calzas ya no (2026-11-17)', async () => {
+  const { pasaPerfil } = await import('../src/nucleo/prioridad.mjs');
+  const { config } = await import('../src/config.mjs');
+  const perfil = config.avisar.perfil;
+  const r = (marca, nombre) => pasaPerfil({ marca, nombre }, { perfil });
+  assert.ok(r('Nike', 'REMERA NIKE SPORTSWEAR DRI-FIT ICON HOMBRE') && r('Nike', 'CALZAS NIKE SPORTSWEAR HOMBRE') && r('Nike', 'Pantalón Nike DRI-FIT HOMBRE'), 'Dri-FIT y calzas entran');
+  assert.ok(r('Mitchell & Ness', 'CAMISETA MITCHELL & NESS CHICAGO BULLS 1996') && r('Adidas', 'CAMPERA ADIDAS ORIGINALS FIREBIRD HOMBRE') && r('Hurley', 'REMERA HURLEY PIRANHAS HOMBRE'));
+  assert.ok(!r('Nike', 'Remera Nike RUN ENERGY HOMBRE') && !r('Adidas Performance', 'REMERA ADIDAS ADIZERO HOMBRE') && !r('Topper', 'CAMPERA TOPPER TRAINING HOMBRE'), 'running, adizero y training, no');
+  assert.ok(!r('Adidas', 'adidas Duramo Speed 2'), 'un nombre sin "zapatillas" ni prenda sigue el criterio completo');
 });

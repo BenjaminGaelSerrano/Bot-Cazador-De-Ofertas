@@ -339,10 +339,22 @@ export function crearEbay({
 
   const porVentas = (via) => via !== 'ean' && (cfg.ventas?.activo ?? false);
 
-  const resultado = (r, via) => {
+  const resultado = (r, via, clave) => {
     if (r.sin) return { estado: 'sin', ...(r.ventas !== undefined ? { ventas: r.ventas } : {}) };
     if (r.ventas !== undefined && r.ventas < cfg.ventas.minVentas) return { estado: 'sin', ventas: r.ventas };
-    return { estado: 'ok', precio: Math.round(r.usd * dolar), usd: r.usd, n: r.n, via, url: r.url, ...(r.ventas !== undefined ? { ventas: r.ventas } : {}) };
+    // Precio oficial de venta en EE. UU. conocido (cfg.retailOficial, por clave de búsqueda): si es menor que la reventa de
+    // eBay, manda el oficial. Camiseta de México 2026 (JL8546): eBay pedía US$200 por el Mundial; adidas.com la vende a US$150.
+    const retail = cfg.retailOficial?.[clave];
+    const usd = retail && retail < r.usd ? retail : r.usd;
+    // Referencia débil: pocas publicaciones del mismo código (no se descarta, se marca; ver ventas.publicacionesFirmes).
+    const debil = r.nValidas !== undefined && r.nValidas < (cfg.ventas?.publicacionesFirmes ?? 3);
+    return {
+      estado: 'ok', precio: Math.round(usd * dolar), usd, n: r.n, via, url: r.url,
+      ...(r.ventas !== undefined ? { ventas: r.ventas } : {}),
+      ...(r.nValidas !== undefined ? { nPublicaciones: r.nValidas } : {}),
+      ...(debil ? { debil: true } : {}),
+      ...(retail && retail < r.usd ? { retail: true } : {}),
+    };
   };
 
   /**
@@ -351,13 +363,13 @@ export function crearEbay({
    */
   function desdeCache(guardado, consulta, oferta) {
     if (!guardado || diasEntre(guardado.visto, hoy) >= cfg.vigenciaDias) return null;
-    if (!porVentas(consulta.via)) return resultado(guardado, consulta.via);
+    if (!porVentas(consulta.via)) return resultado(guardado, consulta.via, consulta.clave);
     if (guardado.ventas !== undefined) {
       // Con precio y guardado antes del tope por lo publicado (2026-11-05): se vuelve a calcular (las fichas están en caché).
       if (guardado.usd && guardado.usdPublicado === undefined) return null;
       // Con precio y guardado antes de exigir varias publicaciones (2026-11-17): se vuelve a calcular.
       if (guardado.usd && guardado.nValidas === undefined) return null;
-      return resultado(guardado, consulta.via);
+      return resultado(guardado, consulta.via, consulta.clave);
     }
     if (guardado.cota !== undefined) return oferta.precioActual / dolar >= guardado.cota ? { estado: 'sin' } : null;
     if (guardado.sin && guardado.porVentas) return { estado: 'sin' };
@@ -479,7 +491,7 @@ export function crearEbay({
       cache[consulta.clave] = { ...r, visto: hoy };
       modificado = true;
       if (r.cota !== undefined && r.ventas === undefined) return { estado: 'sin' };
-      return resultado(cache[consulta.clave], consulta.via);
+      return resultado(cache[consulta.clave], consulta.via, consulta.clave);
     } catch (error) {
       if (!(error instanceof SinCupo) && error !== corte) log(`eBay: "${oferta.nombre}" quedó pendiente (${error.message})`);
       if (error.message.startsWith('eBay rechazó las credenciales')) corte = error;

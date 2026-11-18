@@ -194,7 +194,7 @@ export async function correrFuente({
     }
   }
   // 3e. Orden del aviso: margen y cantidad de ventas en eBay (ver `puntajeAviso`), las mejores primero.
-  if (ebay) pendientes.sort((a, b) => puntajeAviso({ margen: b.puntaje.margen, ventas: b.ebay?.ventas }) - puntajeAviso({ margen: a.puntaje.margen, ventas: a.ebay?.ventas }));
+  if (ebay) pendientes.sort((a, b) => puntajeAviso({ margen: b.puntaje.margen, ventas: b.ebay?.ventas, debil: b.ebay?.debil }) - puntajeAviso({ margen: a.puntaje.margen, ventas: a.ebay?.ventas, debil: a.ebay?.debil }));
   // 3f. Filtro del usuario: margen y ventas mínimas, y solo las marcas o modelos de su lista (config.avisar). Lo que no
   // pasa no se marca como avisado: se reevalúa en cada corrida (si baja de precio, puede pasar).
   if (ebay) pendientes = pendientes.filter((g) => pasaFiltroAviso({ oferta: g.oferta, margen: g.puntaje.margen, ventas: g.ebay?.ventas, via: g.ebay?.via }, filtroAviso));
@@ -207,7 +207,7 @@ export async function correrFuente({
   // Tarjetas (2026-11-06): nombre con link, acá → eBay, ahorro, ventas y color · talles. Solo con precio de eBay.
   const { mensajes, porMensaje } = formato === 'tarjetas' && ebay
     ? agruparTarjetas(
-      pendientes.map((g) => itemTarjeta({ ...g.oferta, vendidas: g.ebay?.ventas }, g.puntaje)),
+      pendientes.map((g) => itemTarjeta({ ...g.oferta, vendidas: g.ebay?.ventas, refDebil: g.ebay?.debil, refPublicaciones: g.ebay?.nPublicaciones, refRetail: g.ebay?.retail }, g.puntaje)),
       { titulo: tituloEnvio, tituloContinuacion: `*${titulo}* (cont.)`, maxMensajes, ...limitesMensaje },
     )
     : formato === 'tabla' || formato === 'tarjetas'

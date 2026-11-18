@@ -39,6 +39,10 @@ export function itemTarjeta(oferta, puntaje) {
     ventas: Number.isFinite(oferta.vendidas) ? oferta.vendidas : null,
     detalle: [oferta.color ? String(oferta.color) : null, talles?.texto ?? null].filter(Boolean).join(' · '),
     alerta: Boolean(talles?.alerta),
+    // Nota sobre la referencia de eBay: débil (pocas publicaciones) o limitada por el precio oficial de EE. UU.
+    nota: oferta.refDebil
+      ? `⚠ referencia débil: ${oferta.refPublicaciones ?? 1} ${(oferta.refPublicaciones ?? 1) === 1 ? 'publicación' : 'publicaciones'} en eBay`
+      : oferta.refRetail ? 'ref.: precio oficial EE. UU.' : null,
   };
 }
 
@@ -48,6 +52,7 @@ export function tarjeta(numero, item) {
     `${item.costo} → ${item.mercado} · *${item.gana}*${item.ventas !== null ? ` · ${item.ventas} vendidas` : ''}`,
   ];
   if (item.detalle || item.alerta) lineas.push(`${item.alerta ? '⚠ ' : ''}${item.detalle}`.trim());
+  if (item.nota) lineas.push(item.nota);
   return lineas.join('\n');
 }
 

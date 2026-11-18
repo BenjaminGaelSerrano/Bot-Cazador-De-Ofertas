@@ -339,6 +339,12 @@ export const config = {
     // no vendidos, y la mediana quedaba por encima de lo que se paga; las 5 más baratas quedaban en el piso.
     percentil: 0.25,
     conEnvio: false,
+    // Precio oficial de venta en EE. UU. (USD) de productos con reventa inflada (lanzamientos, Mundial). Si es menor que lo
+    // que piden en eBay, la referencia es este. Clave = clave de búsqueda ("cod:" + código de modelo). A pedido del usuario
+    // (2026-11-17: "el precio de referencia de la camiseta de México está mal"). Se agregan a mano.
+    retailOficial: {
+      'cod:JL8546': 150, // adidas México 2026, tercera camiseta Authentic (adidas.com EE. UU.: US$150)
+    },
     // Zapatillas y ropa (búsqueda por código de modelo o por nombre): se exigen VENTAS, no publicaciones (pedido del
     // usuario, 2026-11-03). Se leen las fichas de las primeras `fichas` publicaciones (orden de eBay, que favorece las
     // que venden), se suman las unidades vendidas y el precio es la mediana de lo vendido, ponderada por unidades.
@@ -346,7 +352,7 @@ export const config = {
     // publicado (`topePublicado`): una publicación cara con ventas viejas inflaba el precio (Blazer '77: US$193 vs. 40-83).
     // Si la oferta ya cuesta ese tope o más, no se gastan fichas (no puede ser más barata).
     // `vigenciaFichasDias`: las unidades vendidas de cada publicación se reutilizan una semana (cuestan 1 consulta cada una).
-    ventas: { activo: true, minVentas: 3, fichas: 8, topePublicado: 0.5, vigenciaFichasDias: 7, minPublicaciones: 3 },
+    ventas: { activo: true, minVentas: 3, fichas: 8, topePublicado: 0.5, vigenciaFichasDias: 7, minPublicaciones: 1, publicacionesFirmes: 3 },
     // Cupo diario compartido (2026-11-03: unas corridas manuales gastaron las 5.000 del día y la de la noche quedó sin
     // nada). Al arrancar se lee lo que queda y se reparte en partes iguales entre esta corrida y las programadas que
     // faltan antes de que se renueve (08:00 UTC). TIENE QUE COINCIDIR con los cron de .github/workflows/cazador.yml.

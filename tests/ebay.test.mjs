@@ -468,3 +468,27 @@ test('referencia de una sola publicación: no es precio de mercado y no se avisa
   const tres = ebayDeZapas([{ precio: 115, vendidas: 20 }, { precio: 120, vendidas: 5 }, { precio: 130, vendidas: 0 }], { cfgExtra: { ventas: { activo: true, minVentas: 3, fichas: 8, vigenciaFichasDias: 7, minPublicaciones: 3 } } });
   assert.equal((await tres.ebay.precio(zapaA(49), 'moov')).estado, 'ok');
 });
+
+test('referencia débil: con pocas publicaciones se avisa igual, marcada; con 3 o más es firme (2026-11-17)', async () => {
+  const v = { activo: true, minVentas: 3, fichas: 8, vigenciaFichasDias: 7, minPublicaciones: 1, publicacionesFirmes: 3 };
+  const una = ebayDeZapas([{ precio: 115, vendidas: 29 }], { cfgExtra: { ventas: v } });
+  const r1 = await una.ebay.precio(zapaA(49), 'moov');
+  assert.equal(r1.estado, 'ok');
+  assert.equal(r1.debil, true);
+  assert.equal(r1.nPublicaciones, 1);
+  const tres = ebayDeZapas([{ precio: 115, vendidas: 20 }, { precio: 120, vendidas: 5 }, { precio: 130, vendidas: 0 }], { cfgExtra: { ventas: v } });
+  const r3 = await tres.ebay.precio(zapaA(49), 'moov');
+  assert.equal(r3.estado, 'ok');
+  assert.equal(r3.debil, undefined);
+});
+
+test('precio oficial de EE. UU. conocido: limita la reventa de eBay (camiseta de México, 2026-11-17)', async () => {
+  const v = { activo: true, minVentas: 3, fichas: 8, vigenciaFichasDias: 7, minPublicaciones: 1, publicacionesFirmes: 3 };
+  const s = ebayDeZapas([{ precio: 200, vendidas: 19 }, { precio: 250, vendidas: 0 }, { precio: 350, vendidas: 0 }], { cfgExtra: { ventas: v, retailOficial: { 'cod:CT2302-002': 150 } } });
+  const r = await s.ebay.precio(zapaA(100), 'moov');
+  assert.equal(r.estado, 'ok');
+  assert.equal(r.usd, 150, 'manda el precio oficial, no los US$200 de reventa');
+  assert.equal(r.retail, true);
+  const sin = ebayDeZapas([{ precio: 200, vendidas: 19 }, { precio: 250, vendidas: 0 }, { precio: 350, vendidas: 0 }], { cfgExtra: { ventas: v } });
+  assert.equal((await sin.ebay.precio(zapaA(100), 'moov')).usd, 200, 'sin precio oficial cargado, eBay como siempre');
+});

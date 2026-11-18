@@ -78,9 +78,10 @@ export async function ordenarParaConsultar(gangas, { historial, fecha, enCache }
  * pocas ventas no pasa adelante de uno bueno que se vende mucho. Sin dato de ventas, confianza 0,5.
  */
 export const VENTAS_MEDIA_CONFIANZA = 5;
-export function puntajeAviso({ margen, ventas }) {
+export function puntajeAviso({ margen, ventas, debil = false }) {
   const confianza = Number.isFinite(ventas) ? ventas / (ventas + VENTAS_MEDIA_CONFIANZA) : 0.5;
-  return (Number.isFinite(margen) ? margen : 0) * confianza;
+  // Referencia débil (pocas publicaciones en eBay): pesa menos, pero se avisa igual.
+  return (Number.isFinite(margen) ? margen : 0) * confianza * (debil ? 0.6 : 1);
 }
 
 const normal = (s) => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
@@ -114,6 +115,10 @@ export function esDeMujer(oferta) {
 
 const CALZADO = /\b(zapatillas?|botines?|botitas?|ojotas?|botas?|sandalias?|zuecos?|calzado|mocasines?)\b/;
 // Rendimiento deportivo: disciplinas, líneas de running y telas técnicas (calzado y ropa).
+// En ropa, solo lo claramente técnico: Dri-FIT y calzas se usan también como estilo (2026-11-17, el usuario no quiere
+// perderse prendas buenas por pensar que son de otra categoría).
+const ES_PRENDA = /\b(camisetas?|remeras?|shorts?|camperas?|buzos?|pantal[oó]n(es)?|musculosas?|chombas?|calzas?|conjuntos?|canguros?|joggers?|chalecos?|tops?|bermudas?|rompevientos|poleras?|sweaters?|polleras?|vestidos?)\b/i;
+const RENDIMIENTO_ROPA = /\b(running|runner|run|trail|training|entrenamiento|futbol|futsal|rugby|hockey|padel|tenis|golf|natacion|ciclismo|trekking|crossfit|aeroready|climacool|climalite|compresion|adizero|basquet|basketball)\b/;
 const RENDIMIENTO = /\b(running|runner|run|trail|training|entrenamiento|botines?|futbol|futsal|rugby|hockey|padel|tenis|golf|natacion|ciclismo|trekking|crossfit|metcon|dri fit|aeroready|climacool|climalite|compresion|basquet|basketball|harden|lillard|trae young|ja morant|pegasus|vomero|structure|winflo|revolution|downshifter|quest|adizero|ultraboost|supernova|duramo|galaxy|runfalcon|response|solarglide|velocity nitro|deviate|zoom fly|invincible|calzas?)\b/;
 
 /**
@@ -131,6 +136,6 @@ export function pasaPerfil(oferta, { esPerfumeria = false, perfil } = {}) {
   const esCalzado = CALZADO.test(normal(oferta.nombre));
   if (esCalzado && perfil.calzadoMarcas?.length && !perfil.calzadoMarcas.some(contiene)) return false;
   const exenta = (perfil.sinFiltroRendimiento ?? []).some(contiene);
-  if (perfil.excluirRendimiento && !exenta && RENDIMIENTO.test(normal(oferta.nombre))) return false;
+  if (perfil.excluirRendimiento && !exenta && ((esCalzado || !ES_PRENDA.test(oferta.nombre)) ? RENDIMIENTO : RENDIMIENTO_ROPA).test(normal(oferta.nombre))) return false;
   return true;
 }

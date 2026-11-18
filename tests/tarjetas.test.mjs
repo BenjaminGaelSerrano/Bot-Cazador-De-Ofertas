@@ -49,3 +49,11 @@ test('tarjeta: nota de referencia débil o de precio oficial (2026-11-17)', () =
   assert.match(tarjeta(1, itemTarjeta({ ...base, refRetail: true }, p)), /\nref\.: precio oficial EE\. UU\.$/);
   assert.ok(!tarjeta(1, itemTarjeta(base, p)).includes('referencia'));
 });
+
+test('tarjeta: solo las ofertas que no se pudieron verificar llevan nota (2026-11-18)', () => {
+  const base = { nombre: 'Nike Cortez', url: 'https://x/p', precioActual: 99999, vendidas: 13 };
+  const p = { precioMercado: 120000, margen: 0.2, via: 'codigo' };
+  assert.match(tarjeta(1, itemTarjeta({ ...base, sinVerificar: true }, p)), /\n⚠ no se pudo verificar en la tienda$/);
+  assert.ok(!tarjeta(1, itemTarjeta(base, p)).includes('verificar'));
+  assert.match(tarjeta(1, itemTarjeta({ ...base, sinVerificar: true, refDebil: true, refPublicaciones: 2 }, p)), /2 publicaciones en eBay · ⚠ no se pudo verificar en la tienda$/);
+});

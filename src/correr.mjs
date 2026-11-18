@@ -13,7 +13,10 @@ import { agrupar } from './notificar/callmebot.mjs';
 import { enviar } from './notificar/canal.mjs';
 import { formatearOferta } from './notificar/formato.mjs';
 import { LEYENDA_EBAY, LEYENDA_INTERNACIONAL, agruparTabla, itemTabla } from './notificar/tabla.mjs';
-import { agruparTarjetas, itemTarjeta } from './notificar/tarjetas.mjs';
+import { LEYENDA_TARJETAS, agruparTarjetas, itemTarjeta } from './notificar/tarjetas.mjs';
+
+/** Hora actual en Argentina, "19:43". */
+const horaArgentina = (ahora = new Date()) => new Intl.DateTimeFormat('es-AR', { timeZone: 'America/Argentina/Buenos_Aires', hour: '2-digit', minute: '2-digit', hour12: false }).format(ahora);
 
 const dormirReal = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -203,6 +206,7 @@ export async function correrFuente({
   // 3f2. Verificación previa (2026-11-18): antes de avisar se vuelve a mirar cada oferta en su tienda. Agotada = no sale; si
   // el precio cambió se recalcula el margen con el mismo precio de mercado y vuelve a pasar por el filtro. Si la tienda no
   // responde, sale igual.
+  let verificadasHoraAr = null; // hora (Argentina) de la verificación, si al menos una oferta se pudo verificar
   if (verificar) {
     const vigentes = [];
     let agotadas = 0;
@@ -210,6 +214,8 @@ export async function correrFuente({
     for (const g of pendientes) {
       const v = await verificar(g.oferta, nombre);
       if (v?.estado === 'agotada') { agotadas++; continue; }
+      if (v?.estado === 'ok') verificadasHoraAr = verificadasHoraAr ?? horaArgentina(); // se mira la tienda y respondió
+      else g.oferta.sinVerificar = true; // la tienda no respondió: sale igual, marcada
       if (v?.estado === 'ok' && v.precioActual > 0 && v.precioActual !== g.oferta.precioActual && g.puntaje.precioMercado) {
         cambiaron++;
         g.oferta.precioActual = v.precioActual;
@@ -232,7 +238,8 @@ export async function correrFuente({
   const { mensajes, porMensaje } = formato === 'tarjetas' && ebay
     ? agruparTarjetas(
       pendientes.map((g) => itemTarjeta({ ...g.oferta, vendidas: g.ebay?.ventas, refDebil: g.ebay?.debil, refPublicaciones: g.ebay?.nPublicaciones, refRetail: g.ebay?.retail }, g.puntaje)),
-      { titulo: tituloEnvio, tituloContinuacion: `*${titulo}* (cont.)`, maxMensajes, ...limitesMensaje },
+      // Una sola línea por mensaje con la hora de la verificación en la tienda; solo las que no se pudieron verificar llevan nota.
+      { titulo: tituloEnvio, tituloContinuacion: `*${titulo}* (cont.)`, maxMensajes, ...(verificadasHoraAr ? { leyenda: `${LEYENDA_TARJETAS} · ✔ verificado en la tienda ${verificadasHoraAr}` } : {}), ...limitesMensaje },
     )
     : formato === 'tabla' || formato === 'tarjetas'
     ? agruparTabla(

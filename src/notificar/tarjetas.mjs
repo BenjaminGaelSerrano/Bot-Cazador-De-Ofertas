@@ -40,9 +40,12 @@ export function itemTarjeta(oferta, puntaje) {
     detalle: [oferta.color ? String(oferta.color) : null, talles?.texto ?? null].filter(Boolean).join(' · '),
     alerta: Boolean(talles?.alerta),
     // Nota sobre la referencia de eBay: débil (pocas publicaciones) o limitada por el precio oficial de EE. UU.
-    nota: oferta.refDebil
-      ? `⚠ referencia débil: ${oferta.refPublicaciones ?? 1} ${(oferta.refPublicaciones ?? 1) === 1 ? 'publicación' : 'publicaciones'} en eBay`
-      : oferta.refRetail ? 'ref.: precio oficial EE. UU.' : null,
+    nota: [
+      oferta.refDebil
+        ? `⚠ referencia débil: ${oferta.refPublicaciones ?? 1} ${(oferta.refPublicaciones ?? 1) === 1 ? 'publicación' : 'publicaciones'} en eBay`
+        : oferta.refRetail ? 'ref.: precio oficial EE. UU.' : null,
+      oferta.sinVerificar ? '⚠ no se pudo verificar en la tienda' : null, // la tienda no respondió al verificar
+    ].filter(Boolean).join(' · ') || null,
   };
 }
 

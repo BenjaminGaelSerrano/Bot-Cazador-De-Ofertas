@@ -22,6 +22,7 @@ import { avisarFalla, marcarRecuperada } from './nucleo/fallas.mjs';
 import { crearReferencias, obtenerDolar } from './nucleo/internacional.mjs';
 import { ErrorFuente, crearCliente } from './nucleo/http.mjs';
 import { correrFuentes } from './principal.mjs';
+import { verificarEnTienda } from './nucleo/verificar.mjs';
 import { anotarCompleta, cargarLecturas, guardarLecturas, leerRapido } from './nucleo/lecturas.mjs';
 
 // El orden importa: el cupo de consultas de precio de EE. UU. se va gastando tienda por tienda. Moov va segunda para
@@ -48,6 +49,7 @@ const { values: args } = parseArgs({
     // Con --dry-run: guarda igual los precios de eBay consultados (caché), para que las corridas siguientes los reutilicen.
     'guardar-mercado': { type: 'boolean', default: false },
     forzar: { type: 'boolean', default: false }, // avisa todo lo que vale la pena aunque ya se haya avisado
+    'sin-verificar': { type: 'boolean', default: false }, // salta la verificación previa en la tienda (pruebas)
     completa: { type: 'boolean', default: false }, // lee el catálogo entero de las tiendas VTEX (por defecto, solo la primera vez del día)
     datos: { type: 'string', default: 'datos' },
     pausa: { type: 'string' },
@@ -143,7 +145,7 @@ const { resultados, fallaron, mensajesUsados, limiteEnvio } = await correrFuente
   dryRun,
   directorioDatos: args.datos,
   crearCliente: () => crearCliente({ pausaMs: args.pausa ? Number(args.pausa) : config.pausaMs }),
-  extra: { referencias, ebay, avisosPausados: config.avisar.pausados ?? false, ignorarAvisadas: args.forzar || (config.avisar.repetirVigentes ?? false), fuentesSoloPerfumes: config.soloPerfumes ?? [] },
+  extra: { referencias, ebay, avisosPausados: config.avisar.pausados ?? false, ignorarAvisadas: args.forzar || (config.avisar.repetirVigentes ?? false), verificar: args['sin-verificar'] ? null : verificarEnTienda, fuentesSoloPerfumes: config.soloPerfumes ?? [] },
 });
 
 // El tope diario cuenta solo lo que salió por WhatsApp (con Telegram, las copias).

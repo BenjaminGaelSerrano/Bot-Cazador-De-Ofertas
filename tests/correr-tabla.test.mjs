@@ -353,3 +353,17 @@ test('repetir vigentes: cada corrida manda todo lo vigente, y solo lo no avisado
   assert.equal(e.enviados.length, 3);
   assert.ok(!e.enviados[2].includes('🆕') && e.enviados[2].includes('Nike Modelo 3'), e.enviados[2]);
 });
+
+test('verificación previa: lo agotado no sale y un precio que sube hasta perder el margen tampoco; uno que baja, sí (2026-11-18)', async () => {
+  const e = await entorno();
+  const ebay = { precio: async (o) => ({ estado: 'ok', precio: 200000, usd: 130, n: 8, via: 'codigo', ventas: 20, url: `https://www.ebay.com/itm/${o.id}` }) };
+  const barata = (id) => oferta(id, { precioActual: 100000, precioLista: 200000 });
+  e.poner([1, 2, 3, 4].map(barata));
+  const verificar = async (o) => ({ 1: { estado: 'agotada' }, 2: { estado: 'ok', precioActual: 195000 }, 3: { estado: 'ok', precioActual: 80000 }, 4: { estado: 'sin-datos' } })[o.id];
+  await e.correr('2026-11-18', { ebay, filtroAviso: { margenMinimo: 0.05 }, verificar });
+  const m = e.enviados.join('\n');
+  assert.ok(!m.includes('Modelo 1') && !m.includes('MODELO 1'), 'agotada: no sale');
+  assert.ok(!m.includes('Modelo 2') && !m.includes('MODELO 2'), 'subió a $195k: ya no gana 5 % contra $200k');
+  assert.ok((m.includes('Modelo 3') || m.includes('MODELO 3')) && m.includes('80k'), 'bajó a $80k: sale con el precio nuevo');
+  assert.ok(m.includes('Modelo 4') || m.includes('MODELO 4'), 'la tienda no respondió: sale igual');
+});

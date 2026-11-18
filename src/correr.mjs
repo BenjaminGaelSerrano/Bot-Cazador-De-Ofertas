@@ -31,6 +31,8 @@ export async function correrFuente({
   leer,
   // Talles disponibles (Moov: página del producto). Grid ya los trae en el catálogo. null = la tienda no los da.
   leerTalles = null,
+  // Verificación previa al aviso: (oferta, tienda) => { estado, precioActual? } (nucleo/verificar.mjs). null = sin verificar.
+  verificar = null,
   cliente,
   fecha,
   dryRun = false,
@@ -198,6 +200,28 @@ export async function correrFuente({
   // 3f. Filtro del usuario: margen y ventas mínimas, y solo las marcas o modelos de su lista (config.avisar). Lo que no
   // pasa no se marca como avisado: se reevalúa en cada corrida (si baja de precio, puede pasar).
   if (ebay) pendientes = pendientes.filter((g) => pasaFiltroAviso({ oferta: g.oferta, margen: g.puntaje.margen, ventas: g.ebay?.ventas, via: g.ebay?.via }, filtroAviso));
+  // 3f2. Verificación previa (2026-11-18): antes de avisar se vuelve a mirar cada oferta en su tienda. Agotada = no sale; si
+  // el precio cambió se recalcula el margen con el mismo precio de mercado y vuelve a pasar por el filtro. Si la tienda no
+  // responde, sale igual.
+  if (verificar) {
+    const vigentes = [];
+    let agotadas = 0;
+    let cambiaron = 0;
+    for (const g of pendientes) {
+      const v = await verificar(g.oferta, nombre);
+      if (v?.estado === 'agotada') { agotadas++; continue; }
+      if (v?.estado === 'ok' && v.precioActual > 0 && v.precioActual !== g.oferta.precioActual && g.puntaje.precioMercado) {
+        cambiaron++;
+        g.oferta.precioActual = v.precioActual;
+        g.puntaje = puntuar({ costo: v.precioActual, mercado: { precio: g.puntaje.precioMercado, fuente: g.puntaje.fuente, via: g.puntaje.via }, demanda: g.puntaje.demanda }, cfgReventa);
+        if (!veredictosAvisables.includes(g.puntaje.veredicto)) continue;
+        if (ebay && !pasaFiltroAviso({ oferta: g.oferta, margen: g.puntaje.margen, ventas: g.ebay?.ventas, via: g.ebay?.via }, filtroAviso)) continue;
+      }
+      vigentes.push(g);
+    }
+    if (agotadas || cambiaron) log(`  Verificación en la tienda: ${agotadas} agotadas o ya no publicadas, ${cambiaron} con otro precio.`);
+    pendientes = vigentes;
+  }
   // 3g. Al repetir lo vigente, lo que no se había avisado antes lleva 🆕 (se calcula antes de marcar como avisadas).
   if (ignorarAvisadas) for (const g of pendientes) g.oferta.nueva = debeAvisar(estado, clave(g.oferta), g.oferta.precioActual);
 

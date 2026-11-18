@@ -366,6 +366,6 @@ test('verificación previa: lo agotado no sale y un precio que sube hasta perder
   assert.ok(!m.includes('Modelo 2') && !m.includes('MODELO 2'), 'subió a $195k: ya no gana 5 % contra $200k');
   assert.ok((m.includes('Modelo 3') || m.includes('MODELO 3')) && m.includes('80k'), 'bajó a $80k: sale con el precio nuevo');
   assert.ok(m.includes('Modelo 4') || m.includes('MODELO 4'), 'la tienda no respondió: sale igual');
-  assert.match(m, /✔ verificado en la tienda d{2}:d{2}/, 'una línea por mensaje con la hora de la verificación');
+  assert.match(m, /✔ verificado en la tienda \d{2}:\d{2}/, 'una línea por mensaje con la hora de la verificación');
   assert.equal((m.match(/no se pudo verificar/g) ?? []).length, 1, 'solo la que no respondió lleva nota');
 });

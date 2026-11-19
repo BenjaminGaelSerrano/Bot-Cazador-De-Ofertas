@@ -9821,8 +9821,10 @@
   "visto": "2026-11-04"
  },
  "cod:FD2196-401": {
-  "cota": 41.8,
-  "visto": "2026-11-04"
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 2,
+  "visto": "2026-11-19"
  },
  "nom:nike killshot 2 mens": {
   "usd": 71.99,
@@ -18239,7 +18241,7 @@
  "cod:KA0152": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-09"
+  "visto": "2026-11-19"
  },
  "cod:HV4125-010": {
   "sin": 1,
@@ -19138,7 +19140,7 @@
  "cod:JP1927": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-12"
+  "visto": "2026-11-19"
  },
  "cod:JP1925": {
   "sin": 1,
@@ -33694,5 +33696,43 @@
   "sin": 1,
   "porVentas": 1,
   "visto": "2026-11-18"
+ },
+ "cod:IH1622": {
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 2,
+  "visto": "2026-11-19"
+ },
+ "cod:KD9444": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-19"
+ },
+ "cod:JQ6015": {
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 2,
+  "visto": "2026-11-19"
+ },
+ "cod:JH1392": {
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
+  "visto": "2026-11-19"
+ },
+ "cod:683284-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-19"
+ },
+ "cod:692630-11": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-19"
+ },
+ "cod:526574-02": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-19"
  }
 }

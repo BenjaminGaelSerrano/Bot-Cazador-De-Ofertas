@@ -1285,10 +1285,10 @@
   "visto": "2026-11-06"
  },
  "ean:8411061083666": {
-  "usd": 96.37,
-  "n": 6,
+  "usd": 95.87,
+  "n": 8,
   "url": "https://www.ebay.com/itm/227384317926?hash=item34f12957e6:m:mZEZBiQxX8qwSMIaWY1W6VQ",
-  "visto": "2026-11-03"
+  "visto": "2026-11-20"
  },
  "ean:3616305499844": {
   "sin": 1,
@@ -10251,9 +10251,9 @@
  },
  "ean:8411061972656": {
   "usd": 72.99,
-  "n": 5,
-  "url": "https://www.ebay.com/itm/327039933988?hash=item4c25195e24:g:o0MAAeSwsJJq660x&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7nuYOY5GR8NXIRLTRl6b9HPNJKF3agQLMjnm14786JRWHe4aWtU4gacfzs%2FX3dirEGKP0yGzyqaJOFFpnSzd%2BH9lZCCYn%2FSEJmJHIhmVyBCyXPLmVbzoExKN75089s%2FL9WoOrZDMIZJ6tksyC4tsN2oxqINfLtTk0%2BTAh0kFGoWoFBuLNF7wZrb3B3Ecgt645m%2FbVgc7IA%2BggPOTKWCvheNpoRd72wEN4DDplKe7FI3ogwV1WTHYkzsTt70yV6OiEDC4vxT2dQ6JpiRyPjtAvY0",
-  "visto": "2026-11-04"
+  "n": 6,
+  "url": "https://www.ebay.com/itm/327039933988?hash=item4c25195e24:g:htsAAeSw13Jq7j2a&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7nuYOY5GR8NXIRLTRl6b9HPNJKF3agQLMjnm14786JRWHe4aWtU4gacfzs%2FX3dirEGKP0yGzyqaJOFFpnSzd%2BH9lZCCYn%2FSEJmJHIhmVyBCyXPLmVbzoExKN75089s%2FL9WmdfoMfMofVVpzRFajU7C%2BuKCFyCrKuk68o3M13wCxSiQ9jV4ZLTvhT0AnitJwH0oEkiX7XZgY8CzxSBdCH%2BxXPAXB7U0xK%2BxT%2BNTgOgnkYOxG1ruxTixlhrLqeK%2BWMTwrpeu3FU21%2F0HQUnyTsXp5",
+  "visto": "2026-11-20"
  },
  "ean:8411061982075": {
   "sin": 1,
@@ -12034,7 +12034,7 @@
  },
  "ean:3349668595945": {
   "sin": 1,
-  "visto": "2026-11-05"
+  "visto": "2026-11-20"
  },
  "ean:3349668614479": {
   "usd": 54.37,
@@ -33803,5 +33803,24 @@
   "sin": 1,
   "porVentas": 1,
   "visto": "2026-11-19"
+ },
+ "ean:3349668627486": {
+  "sin": 1,
+  "visto": "2026-11-20"
+ },
+ "ean:3349668644063": {
+  "sin": 1,
+  "visto": "2026-11-20"
+ },
+ "ean:8435415011556": {
+  "sin": 1,
+  "visto": "2026-11-20"
+ },
+ "ean:3349668579822": {
+  "usd": 76.16,
+  "n": 6,
+  "url": "https://www.ebay.com/itm/206504406138?hash=item30149f2c7a:g:USQAAeSwSBJphM05&amdata=enc%3AAQALAAAA4Of5zIIojhOf%2BkQK%2Bxzjn7kuzCTXCrDkBA2wycKb7XGMaGohLpWrvLB%2FGEgdxGnW%2FXd3rtNRfoi87kOCoVaI1y3Kk3mAz6nxvawXQJ7uo7nU6DHlAGzXT6rzhr%2BOnVDgUoHqyi38f3S%2F6nOj4Y0FdXEm988vqQdX9NfEGxWc2jOvj%2FkYkNI8AzIU1%2BshS5AzAgppF%2BYRqLzxGHxzfWNP2Br6GAkCnRwyET97IDL3SmqJyVzalnnw0Bq5eTevfahLYdD3rfXvZgfVS0fO5laMO8jH4qHtrKm%2Bu2RWK20Xbw66",
+  "visto": "2026-11-20",
+  "vend": 16
  }
 }

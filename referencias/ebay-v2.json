@@ -19440,8 +19440,10 @@
   "visto": "2026-11-19"
  },
  "cod:JC8239": {
-  "cota": 25,
-  "visto": "2026-11-06"
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
+  "visto": "2026-11-22"
  },
  "cod:KV2847": {
   "sin": 1,

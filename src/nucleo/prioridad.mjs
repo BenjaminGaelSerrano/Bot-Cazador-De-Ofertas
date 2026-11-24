@@ -139,3 +139,12 @@ export function pasaPerfil(oferta, { esPerfumeria = false, perfil } = {}) {
   if (perfil.excluirRendimiento && !exenta && ((esCalzado || !ES_PRENDA.test(oferta.nombre)) ? RENDIMIENTO : RENDIMIENTO_ROPA).test(normal(oferta.nombre))) return false;
   return true;
 }
+
+/**
+ * ¿Cuesta lo mismo (o más, con 3 % de margen) que en la tienda oficial de Argentina? Entonces no es una oferta, es el precio
+ * normal de la marca. `precioOficialLocal` viene de config.avisar: { 'cod:JL8546': 154999 } (se completa a mano).
+ */
+export function esPrecioOficial(precioActual, clave, { precioOficialLocal = {} } = {}) {
+  const oficial = clave ? precioOficialLocal[clave] : undefined;
+  return Boolean(oficial) && precioActual >= oficial * 0.97;
+}

@@ -6,7 +6,8 @@ import { anexarAvisos } from './nucleo/avisos.mjs';
 import { ErrorFuente } from './nucleo/http.mjs';
 import { cargar as cargarHistorial, guardar as guardarHistorial, registrar } from './nucleo/historial.mjs';
 import { cargarOtros, construirIndice, precioMercado } from './nucleo/mercado.mjs';
-import { esDeMujer, ordenarParaConsultar, pasaPerfil, pasaFiltroAviso, puntajeAviso } from './nucleo/prioridad.mjs';
+import { consultaPara } from './nucleo/ebay.mjs';
+import { esDeMujer, esPrecioOficial, ordenarParaConsultar, pasaPerfil, pasaFiltroAviso, puntajeAviso } from './nucleo/prioridad.mjs';
 import { esSoloPerfume } from './nucleo/internacional.mjs';
 import { compararPorReventa, nivelDemanda, puntuar, velocidadVenta } from './nucleo/reventa.mjs';
 import { agrupar } from './notificar/callmebot.mjs';
@@ -203,6 +204,8 @@ export async function correrFuente({
   // 3f. Filtro del usuario: margen y ventas mínimas, y solo las marcas o modelos de su lista (config.avisar). Lo que no
   // pasa no se marca como avisado: se reevalúa en cada corrida (si baja de precio, puede pasar).
   if (ebay) pendientes = pendientes.filter((g) => pasaFiltroAviso({ oferta: g.oferta, margen: g.puntaje.margen, ventas: g.ebay?.ventas, via: g.ebay?.via }, filtroAviso));
+  // 3f1. Lo que cuesta lo mismo que en la tienda oficial de Argentina no es una oferta (camiseta de México, 2026-11-24).
+  pendientes = pendientes.filter((g) => !esPrecioOficial(g.oferta.precioActual, consultaPara(g.oferta, nombre)?.clave, filtroAviso));
   // 3f2. Verificación previa (2026-11-18): antes de avisar se vuelve a mirar cada oferta en su tienda. Agotada = no sale; si
   // el precio cambió se recalcula el margen con el mismo precio de mercado y vuelve a pasar por el filtro. Si la tienda no
   // responde, sale igual.

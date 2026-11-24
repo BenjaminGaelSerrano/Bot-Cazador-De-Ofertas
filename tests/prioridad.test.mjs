@@ -155,3 +155,14 @@ test('ropa: solo se descarta lo claramente técnico; Dri-FIT y calzas ya no (202
   assert.ok(!r('Nike', 'Remera Nike RUN ENERGY HOMBRE') && !r('Adidas Performance', 'REMERA ADIDAS ADIZERO HOMBRE') && !r('Topper', 'CAMPERA TOPPER TRAINING HOMBRE'), 'running, adizero y training, no');
   assert.ok(!r('Adidas', 'adidas Duramo Speed 2'), 'un nombre sin "zapatillas" ni prenda sigue el criterio completo');
 });
+
+test('esPrecioOficial: lo que cuesta lo mismo que en la tienda oficial de Argentina no es una oferta (camiseta de México, 2026-11-24)', async () => {
+  const { esPrecioOficial } = await import('../src/nucleo/prioridad.mjs');
+  const cfg = { precioOficialLocal: { 'cod:JL8546': 154999 } };
+  assert.equal(esPrecioOficial(154999, 'cod:JL8546', cfg), true, 'Sporting a $154.999 = adidas.com.ar');
+  assert.equal(esPrecioOficial(160000, 'cod:JL8546', cfg), true, 'más caro todavía');
+  assert.equal(esPrecioOficial(120000, 'cod:JL8546', cfg), false, 'si de verdad baja, sí es oferta');
+  assert.equal(esPrecioOficial(154999, 'cod:OTRO', cfg), false, 'otro producto');
+  assert.equal(esPrecioOficial(154999, undefined, cfg), false);
+  assert.equal(esPrecioOficial(154999, 'cod:JL8546', {}), false, 'sin lista cargada, nada cambia');
+});

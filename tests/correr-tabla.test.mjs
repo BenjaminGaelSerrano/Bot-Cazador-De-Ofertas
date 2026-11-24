@@ -369,3 +369,14 @@ test('verificación previa: lo agotado no sale y un precio que sube hasta perder
   assert.match(m, /✔ verificado en la tienda \d{2}:\d{2}/, 'una línea por mensaje con la hora de la verificación');
   assert.equal((m.match(/no se pudo verificar/g) ?? []).length, 1, 'solo la que no respondió lleva nota');
 });
+
+test('precio oficial local: lo que cuesta lo mismo que en la tienda oficial no se avisa (2026-11-24)', async () => {
+  const e = await entorno();
+  const ebay = { precio: async (o) => ({ estado: 'ok', precio: 300000, usd: 190, n: 8, via: 'codigo', ventas: 30, url: `https://www.ebay.com/itm/${o.id}` }) };
+  // Moov: el código de modelo sale del id (NICT2302-002 -> CT2302-002).
+  e.poner([oferta('NICT2302-002', { id: 'NICT2302-002', precioActual: 154999, precioLista: 219999 }), oferta('NICT2302-003', { id: 'NICT2302-003', precioActual: 154999, precioLista: 219999 })]);
+  await e.correr('2026-11-24', { nombre: 'moov', ebay, filtroAviso: { precioOficialLocal: { 'cod:CT2302-002': 154999 } } });
+  const m = e.enviados.join('\n');
+  assert.ok(!m.includes('002'), 'la del precio oficial no sale');
+  assert.ok(m.includes('003') || m.includes('Modelo NICT2302-003'), 'la otra, sí');
+});

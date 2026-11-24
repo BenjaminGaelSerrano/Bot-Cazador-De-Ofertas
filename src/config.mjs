@@ -50,6 +50,13 @@ export const config = {
     // Cada corrida manda TODO lo que sigue vigente (pasa el filtro, hay stock), aunque ya se haya avisado y no haya nada
     // nuevo (pedido del usuario, 2026-11-12). Lo que no se había avisado antes lleva 🆕. false = solo lo nuevo.
     repetirVigentes: true,
+    // Precio oficial en Argentina (ARS) de productos que la propia marca vende al mismo precio que el revendedor: eso no es
+    // una oferta, es el precio normal. Si la oferta cuesta lo mismo o más (con 3 % de margen), no se avisa. Clave = clave de
+    // búsqueda ("cod:" + código de modelo). Se completa a mano con una fuente de respaldo (la tienda oficial). Caso: camiseta
+    // de México JL8546, $154.999 en Sporting y también en adidas.com.ar (verificado el 2026-11-24).
+    precioOficialLocal: {
+      'cod:JL8546': 154999,
+    },
     // Perfil del usuario (2026-11-18): "en perfumerías, nacionales y de diseñador; en calzado, las marcas que más se llevan;
     // y en ropa y calzado, prendas visualmente atractivas y no tanto de rendimiento deportivo". Se aplica ANTES de consultar
     // eBay (no gasta cupo). Las listas son palabras enteras de la marca o del nombre; sin lista = sin filtro.

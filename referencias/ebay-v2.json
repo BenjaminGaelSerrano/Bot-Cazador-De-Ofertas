@@ -3808,14 +3808,7 @@
   "visto": "2026-11-15"
  },
  "cod:IF9531": {
-  "usd": 68,
-  "n": 1,
-  "ventas": 3,
-  "url": "https://www.ebay.com/itm/336112819040?_skw=adidas+IF9531&hash=item4e41e29b60:g:-o4AAeSwK1pokogS",
-  "usdVendido": 68,
-  "usdPublicado": 73,
-  "nValidas": 15,
-  "cota": 73,
+  "cota": 50.99,
   "visto": "2026-11-24"
  },
  "cod:389003-02": {
@@ -4641,14 +4634,15 @@
   "visto": "2026-11-17"
  },
  "cod:DM0113-600": {
-  "usd": 59.95,
+  "usd": 55,
   "n": 1,
   "ventas": 2,
   "url": "https://www.ebay.com/itm/225955443329?_skw=nike+DM0113-600&hash=item349bfe7281:g:VoQAAOSwwM1loE7t",
   "usdVendido": 60.36,
-  "usdPublicado": 59.95,
+  "usdPublicado": 55,
+  "topePub": 0.25,
   "nValidas": 21,
-  "cota": 59.95,
+  "cota": 55,
   "visto": "2026-11-24"
  },
  "cod:GY0042": {
@@ -13186,12 +13180,13 @@
   "usd": 79.97,
   "n": 2,
   "ventas": 2,
-  "url": "https://www.ebay.com/itm/198772628052?_skw=adidas+JZ2254&hash=item2e47c59a54:g:wrgAAeSwuwFq653V&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7n5GYi%2BR31cWr%2BEIvn0s2JLbAwC1VfjbCjfwFopar1vhrsaSQ5mlwnpfPUNnAyyRD%2FKbrqjknbb7u%2B0q1q0Tj6kZvlw4zj0iWhNaJ3B5B0%2B3zoKEUBjvwYpIiG1hC7LMJbCFtiM0CqwxFpuWPsfzweIuY2DUYbvX2wZHmBG1mOOsjuQbmND1m9MZnMa%2FvO6lJkPCkO%2BxBSWeo1wK5lAcmwgiRo%2F1%2BFFZNEQbBTUD1HMyGcrD96%2F7PaXEeeydaM0D1LXvs%2Fd9xWhBBBMWJwMrRTRDo9c4qeSDCVWwPzn5xO0wg%3D%3D",
+  "url": "https://www.ebay.com/itm/198772628052?_skw=adidas+JZ2254&hash=item2e47c59a54:g:wrgAAeSwuwFq653V",
   "usdVendido": 79.97,
-  "usdPublicado": 95,
-  "nValidas": 4,
-  "cota": 95,
-  "visto": "2026-11-19"
+  "usdPublicado": 92.49,
+  "topePub": 0.25,
+  "nValidas": 6,
+  "cota": 92.49,
+  "visto": "2026-11-24"
  },
  "cod:DV1307-104": {
   "cota": 99.99,
@@ -13644,9 +13639,10 @@
   "ventas": 3,
   "url": "https://www.ebay.com/itm/117504447852?_skw=adidas+JI2315&hash=item1b5bcf956c:g:lCIAAeSwyJlq614y",
   "usdVendido": 40.49,
-  "usdPublicado": 58.16,
+  "usdPublicado": 49.99,
+  "topePub": 0.25,
   "nValidas": 25,
-  "cota": 58.16,
+  "cota": 49.99,
   "visto": "2026-11-24"
  },
  "cod:CK9283-201": {
@@ -14654,14 +14650,15 @@
   "visto": "2026-11-15"
  },
  "cod:FD2722-401": {
-  "usd": 89.95,
+  "usd": 89,
   "n": 2,
   "ventas": 3,
-  "url": "https://www.ebay.com/itm/335709894739?_skw=nike+FD2722-401&hash=item4e29de7853:g:188AAOSwQLVnTm7p",
+  "url": "https://www.ebay.com/itm/335709894739?_skw=nike+FD2722-401&hash=item4e29de7853:g:188AAOSwQLVnTm7p&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mNng%2FPY8laEE3Y%2FwQQmsiZK6xQDcLjUeH0nHeU5%2FYOY2uPKG5vVm%2FQw%2F91hfI%2FsEN1KU0hXj5tldMgIS2UMiP3wQs1n1jnZqqrG3nATBnX0ktxXW2Ybut9f6KO5uy2gXdZxsZ1N61%2FhzqvfKUc2xjI5UieUJvUlXI0iPTeQfpZyGTC4hDuZjL0GfktLz7AdbMmOGRpiBA7oXnblkchexJHu6C4rkoqYK6nm4P%2FXByN4VE6DD7vHZsMZ3EDowJz0EOIb%2FoB0VuufdSQ6xlNsgQ1Ycn%2FeTt%2BjjgqpGgN7RXUcg%3D%3D",
   "usdVendido": 89.95,
-  "usdPublicado": 89.95,
+  "usdPublicado": 89,
+  "topePub": 0.25,
   "nValidas": 5,
-  "cota": 89.95,
+  "cota": 89,
   "visto": "2026-11-24"
  },
  "cod:DX9016-002": {
@@ -14763,14 +14760,15 @@
   "visto": "2026-11-17"
  },
  "cod:JH6206": {
-  "usd": 119.99,
+  "usd": 110,
   "n": 3,
-  "ventas": 18,
-  "url": "https://www.ebay.com/itm/177189619591?_skw=adidas+JH6206&hash=item2941530787:g:K-0AAOSw481oTD9j&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nH9UcZxp5QROj2Q8yqjFmdkyKFxgJ2ase8P5bgbLFaGWu%2BGXSa2dV%2FTB%2FLLaFZL5O8tlDXszpIIF0QrHC2DB8tpeJafb9nUuf5%2Fwx6DJHaoYKttbMoJA%2F2WrZv1b7jYS%2B1iYkKYbixE9HjlGiz950iTxvSC%2FAd56fq1fPDstMw7Iz7v9ACBNvZ0J7oNErWEwiruD4RDr0yb2DcFdvqVnVpeqWf%2FSQNTLjbYvDArTOa6exzK53bHx%2FOZMRPtdLTo2%2F9vhmNeLSlfWMXZFej2SiuEMgvHixeQoWe%2BVwwLr3IaA%3D%3D",
+  "ventas": 19,
+  "url": "https://www.ebay.com/itm/177189619591?_skw=adidas+JH6206&hash=item2941530787:g:K-0AAOSw481oTD9j&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nH9UcZxp5QROj2Q8yqjFmdkyKFxgJ2ase8P5bgbLFaGWu%2BGXSa2dV%2FTB%2FLLaFZL5O8tlDXszpIIF0QrHC2DB8tpeJafb9nUuf5%2Fwx6DJHaoYKttbMoJA%2F2WrZv1b7jYS8quMrFXzNetBsx%2BRIkRcElWWnuCBK3TBaW9I2tmGOm3GYQKUiBF5WRIE80A9beKECeBISjaluvETGKr0f0oz08l2e4OQ77q84K3jzqIicUL8u8eG%2F43%2B68s7zo5qPHpd9hka4RY5%2FengxVNJOzrgtjzeIbBKAau7abo2KnpDY%2B5g%3D%3D",
   "usdVendido": 119.99,
-  "usdPublicado": 123.75,
+  "usdPublicado": 110,
+  "topePub": 0.25,
   "nValidas": 37,
-  "cota": 123.75,
+  "cota": 110,
   "visto": "2026-11-24"
  },
  "cod:JP9224": {
@@ -15293,15 +15291,8 @@
   "visto": "2026-11-15"
  },
  "cod:DH2987-001": {
-  "usd": 54.99,
-  "n": 2,
-  "ventas": 6,
-  "url": "https://www.ebay.com/itm/326947195724?_skw=nike+DH2987-001&hash=item4c1f924b4c:g:1HgAAeSwQUZpYAR4",
-  "usdVendido": 54.99,
-  "usdPublicado": 62.95,
-  "nValidas": 32,
-  "cota": 62.95,
-  "visto": "2026-11-20"
+  "cota": 53.253846153846155,
+  "visto": "2026-11-24"
  },
  "cod:FD6034-108": {
   "sin": 1,
@@ -15401,13 +15392,14 @@
  },
  "cod:F35416": {
   "usd": 32,
-  "n": 2,
-  "ventas": 2,
-  "url": "https://www.ebay.com/itm/168700933644?_skw=adidas+F35416&hash=item27475bf60c:g:sqkAAeSwSkFqrud5",
-  "usdVendido": 32,
-  "usdPublicado": 32.99,
+  "n": 3,
+  "ventas": 3,
+  "url": "https://www.ebay.com/itm/227614086052?_skw=adidas+F35416&hash=item34fedb53a4:g:zf8AAeSwXfFqpbqc",
+  "usdVendido": 33.99,
+  "usdPublicado": 32,
+  "topePub": 0.25,
   "nValidas": 7,
-  "cota": 32.99,
+  "cota": 32,
   "visto": "2026-11-24"
  },
  "cod:HP7170": {
@@ -16288,9 +16280,10 @@
   "ventas": 2,
   "url": "https://www.ebay.com/itm/336112815588?_skw=adidas+IF4458&hash=item4e41e28de4:g:JEUAAeSw6M1okond",
   "usdVendido": 42,
-  "usdPublicado": 59.99,
-  "nValidas": 39,
-  "cota": 59.99,
+  "usdPublicado": 47.95,
+  "topePub": 0.25,
+  "nValidas": 37,
+  "cota": 47.95,
   "visto": "2026-11-24"
  },
  "cod:DD9284-402": {
@@ -16726,15 +16719,8 @@
   "visto": "2026-11-23"
  },
  "cod:FQ8146-002": {
-  "usd": 55,
-  "n": 3,
-  "ventas": 4,
-  "url": "https://www.ebay.com/itm/366147908565?_skw=nike+FQ8146-002&hash=item55401db3d5:g:qIAAAeSwQXhpdRXs",
-  "usdVendido": 56.95,
-  "usdPublicado": 55,
-  "nValidas": 39,
-  "cota": 55,
-  "visto": "2026-11-20"
+  "cota": 46.37,
+  "visto": "2026-11-24"
  },
  "cod:IB6032-480": {
   "sin": 1,
@@ -17406,6 +17392,7 @@
   "url": "https://www.ebay.com/itm/365010119830?_skw=nike+DH3161-101&hash=item54fc4c6c96:g:oeMAAOSwG6lmk8p0",
   "usdVendido": 74.95,
   "usdPublicado": 74.95,
+  "topePub": 0.25,
   "nValidas": 6,
   "cota": 74.95,
   "visto": "2026-11-24"
@@ -17671,14 +17658,15 @@
   "visto": "2026-11-15"
  },
  "cod:1361518-001": {
-  "usd": 29.99,
+  "usd": 27.49,
   "n": 2,
   "ventas": 2,
   "url": "https://www.ebay.com/itm/285714074313?_skw=under+armour+1361518-001&hash=item4285e2cac9:g:wQ4AAOSwfO1mF8xG",
   "usdVendido": 29.99,
-  "usdPublicado": 29.99,
+  "usdPublicado": 27.49,
+  "topePub": 0.25,
   "nValidas": 3,
-  "cota": 29.99,
+  "cota": 27.49,
   "visto": "2026-11-24"
  },
  "cod:IS7052": {
@@ -18383,14 +18371,7 @@
   "visto": "2026-11-22"
  },
  "cod:JY8623": {
-  "usd": 29.95,
-  "n": 2,
-  "ventas": 4,
-  "url": "https://www.ebay.com/itm/147622338981?_skw=adidas+JY8623&hash=item225efa21a5:g:ycEAAeSwCAxqxVQv",
-  "usdVendido": 32.95,
-  "usdPublicado": 29.95,
-  "nValidas": 22,
-  "cota": 29.95,
+  "cota": 27.99,
   "visto": "2026-11-24"
  },
  "cod:JY8621": {
@@ -20054,14 +20035,15 @@
   "visto": "2026-11-16"
  },
  "cod:JZ6306": {
-  "usd": 71,
+  "usd": 66.5,
   "n": 1,
   "ventas": 2,
   "url": "https://www.ebay.com/itm/298415319725?_skw=adidas+JZ6306&hash=item457af06aad:g:LMUAAeSwIxJqLqQV",
   "usdVendido": 71.99,
-  "usdPublicado": 71,
-  "nValidas": 4,
-  "cota": 71,
+  "usdPublicado": 66.5,
+  "topePub": 0.25,
+  "nValidas": 3,
+  "cota": 66.5,
   "visto": "2026-11-24"
  },
  "cod:IB5334-809": {
@@ -20080,11 +20062,12 @@
   "usd": 89.95,
   "n": 1,
   "ventas": 2,
-  "url": "https://www.ebay.com/itm/198633505486?_skw=nike+IB5290-100&hash=item2e3f7ac2ce:g:rf4AAeSwK8xqVU4J&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lHN%2FpGPFt0MB46rsFD99D3W1uTrND5PHN9bGENV6o9e6ryb%2FCXE2AMNunturwiGMrVKryNFwRxDwZEc0b%2Fk%2FS3%2FYVaYLRocfTLiTp9zr9VxGyjwgKMX3OsaGWAJGhNV74hSIFBLUzVAhl476%2BJ%2Fxb16hj5zjH76dGVPmngD5LRL7QZL48qR2MnRYMGqCEAWPtXW%2FUSe7MwO%2BmLww6cgBJ08QGAV%2Fup%2BZC72Zb4I2V%2Fza%2BYd1dNLdh0oDVrPkD5Wc184qC4BSRQkhDB3bTfFoGOzEWOkbpNB1XshHwDfVpAUQ%3D%3D",
+  "url": "https://www.ebay.com/itm/198633505486?_skw=nike+IB5290-100&hash=item2e3f7ac2ce:g:rf4AAeSwK8xqVU4J",
   "usdVendido": 89.95,
-  "usdPublicado": 194.97,
+  "usdPublicado": 89.95,
+  "topePub": 0.25,
   "nValidas": 4,
-  "cota": 194.97,
+  "cota": 89.95,
   "visto": "2026-11-24"
  },
  "cod:JN4397": {
@@ -25656,11 +25639,12 @@
   "usd": 200,
   "n": 2,
   "ventas": 36,
-  "url": "https://www.ebay.com/itm/287467408891?_skw=adidas+JL8546&hash=item42ee648dfb:g:-ZoAAeSwROhqWb-y&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lX5Vk0Uirwg9OxG47EX0nR4nYP%2BAAE0d71%2BcMSwHTCsjBC072p%2BNQbkoCQiw7za8cdc9ZYuMZ0Pw12LFIB9fVfdZ%2F3NUjufPbVpVhPyAa4NiaRsF888O40zoG0Vl9M6VYg3vuEUexFmYIEkqYQd59Pn5vvIvGGzqJYuRHXZnlgn7NOUFuxSxlRqGGWEs%2BPxjxnfzQFru%2BSC70dpH2i1CAsr3PDbLMwXGOSAyhMrCZAefFhmYXd3d5MAISV9473FyDo5jaw%2FfCyOcayB8%2BLmzaxowawf1ApXs6CMP06uZ21FA%3D%3D",
+  "url": "https://www.ebay.com/itm/287467408891?_skw=adidas+JL8546&hash=item42ee648dfb:g:-ZoAAeSwROhqWb-y",
   "usdVendido": 200,
-  "usdPublicado": 250,
+  "usdPublicado": 200,
+  "topePub": 0.25,
   "nValidas": 19,
-  "cota": 250,
+  "cota": 200,
   "visto": "2026-11-24"
  },
  "cod:JJ4334": {
@@ -28692,9 +28676,10 @@
   "ventas": 3,
   "url": "https://www.ebay.com/itm/407108673056?_skw=nike+HV6402-425&hash=item5ec9915e20:g:vmQAAeSwEFNqa3Jc",
   "usdVendido": 39.95,
-  "usdPublicado": 52.49,
+  "usdPublicado": 42.46,
+  "topePub": 0.25,
   "nValidas": 6,
-  "cota": 52.49,
+  "cota": 42.46,
   "visto": "2026-11-24"
  },
  "cod:A37182-412": {
@@ -31177,14 +31162,15 @@
   "visto": "2026-11-24"
  },
  "cod:FQ7262-002": {
-  "usd": 124.48,
-  "n": 2,
-  "ventas": 6,
+  "usd": 121.45,
+  "n": 3,
+  "ventas": 7,
   "url": "https://www.ebay.com/itm/187314163679?_skw=nike+FQ7262-002&hash=item2b9ccb4fdf:g:vc8AAeSwAbRoR1OS",
   "usdVendido": 124.48,
-  "usdPublicado": 134.97,
+  "usdPublicado": 121.45,
+  "topePub": 0.25,
   "nValidas": 8,
-  "cota": 134.97,
+  "cota": 121.45,
   "visto": "2026-11-24"
  },
  "cod:FD6454-012": {
@@ -31293,14 +31279,15 @@
   "visto": "2026-11-17"
  },
  "cod:JH8642": {
-  "usd": 59.97,
+  "usd": 58,
   "n": 2,
   "ventas": 4,
-  "url": "https://www.ebay.com/itm/298445808376?_skw=adidas+JH8642&hash=item457cc1a2f8:g:FsYAAeSw2bRqOq-d&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mBfgqmNzlAcVBelg6F0Mdsij4u4J%2FY2vEXWqxpK8wTzeL2B7%2FqnZsnXZ811GlLL9QB3QqvuW4k0WruXrW%2BieGODdVUx0DxImslpgcglf24eVzwqZROi7xWZpAdHpAimmu8UUZTY4BtaiyvF9M79RAm%2BcqtqwXnlSuh4bMeRJF3nGYFxlu4iOF15SceO8saTq4pNuulx9EekZ6E9rTADXeRUoQrK5342rtrvSDns54xc0Lk7llMmdDFWsKjumHntngJbkpd2HoUUOZfcMtQ8q9a5n9CbNoSyMXjNubxoMynrg%3D%3D",
+  "url": "https://www.ebay.com/itm/298445808376?_skw=adidas+JH8642&hash=item457cc1a2f8:g:FsYAAeSw2bRqOq-d&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mBfgqmNzlAcVBelg6F0Mdsij4u4J%2FY2vEXWqxpK8wTzeL2B7%2FqnZsnXZ811GlLL9QB3QqvuW4k0WruXrW%2BieGODdVUx0DxImslpgcglf24eVzwqZROi7xWZpAdHpAimmtjEcEuySgogMnqnIrtx1gWspXzW92nA4UvpFIP0reUN7O%2FYqEBTk5l7rZD05oAl%2FnvGDLHzQHMxW6Auy8c4Kaj2FVj2CGEFht4Uj5OsWFqrSKke9n3O5tv5KeB3U5MSy5exYdm9OAbcUUlRQS9POO1rqZmypYouNslCB6WN8QJ7g%3D%3D",
   "usdVendido": 59.97,
-  "usdPublicado": 69.46,
+  "usdPublicado": 58,
+  "topePub": 0.25,
   "nValidas": 21,
-  "cota": 69.46,
+  "cota": 58,
   "visto": "2026-11-24"
  },
  "cod:JR2462": {
@@ -33125,14 +33112,7 @@
   "visto": "2026-11-17"
  },
  "cod:KI6954": {
-  "usd": 98.97,
-  "n": 1,
-  "ventas": 2,
-  "url": "https://www.ebay.com/itm/287146532470?_skw=adidas+KI6954&hash=item42db445e76:g:R44AAeSwZThpk5dr",
-  "usdVendido": 98.97,
-  "usdPublicado": 99.49,
-  "nValidas": 12,
-  "cota": 99.49,
+  "cota": 87.24,
   "visto": "2026-11-24"
  },
  "cod:KD6299": {
@@ -34758,14 +34738,15 @@
   "visto": "2026-11-24"
  },
  "cod:FD4328-100": {
-  "usd": 124.28,
+  "usd": 102.14,
   "n": 1,
   "ventas": 3,
   "url": "https://www.ebay.com/itm/226285615277?_skw=nike+FD4328-100&hash=item34afac78ad:g:oWAAAOSwtXFmtTk-",
   "usdVendido": 124.28,
-  "usdPublicado": 124.28,
+  "usdPublicado": 102.14,
+  "topePub": 0.25,
   "nValidas": 3,
-  "cota": 124.28,
+  "cota": 102.14,
   "visto": "2026-11-24"
  },
  "cod:HM9432-001": {

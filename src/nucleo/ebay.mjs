@@ -44,6 +44,30 @@ export function textoNombre(oferta) {
   return `${nombre}${sufijo}`.trim();
 }
 
+// Ropa sin código de estilo (2026-11-24, pedido del usuario: "que entre más ropa"): se busca por marca + modelo + tipo de
+// prenda en inglés. Los títulos de eBay dicen "shirt", no "remera", así que el tipo se traduce. Es una referencia
+// aproximada (mezcla colores y talles del mismo modelo): se exigen al menos 2 palabras propias del modelo (no solo
+// "Nike Sportswear remera") y se marca en el aviso; el resto de los controles (3 publicaciones, 5 ventas, tope por lo
+// publicado) siguen igual.
+const PRENDAS = { remera: 'shirt', camiseta: 'jersey', campera: 'jacket', buzo: 'hoodie', canguro: 'hoodie', pantalon: 'pants', jogging: 'pants', short: 'shorts', bermuda: 'shorts', chomba: 'polo', musculosa: 'tank', calza: 'leggings', rompevientos: 'windbreaker', chaleco: 'vest', sweater: 'sweater', camisa: 'shirt' };
+const RE_PRENDA = new RegExp(`\\b(${Object.keys(PRENDAS).join('|')})s?\\b`);
+const COLORES = /\b(negro|blanco|gris|azul|rojo|verde|rosa|celeste|beige|marron|naranja|amarillo|violeta|bordo|crema|multicolor|navy|black|white)\b/g;
+
+/** Búsqueda por nombre para una prenda (ropa): `marca modelo tipo-en-inglés [mens|womens]`, o null si el modelo no se distingue. */
+export function textoRopa(oferta) {
+  const nombre = limpiar(oferta.nombre);
+  const m = RE_PRENDA.exec(nombre);
+  if (!m) return null;
+  if (/\b(zapatillas?|botines?|ojotas?|ni[nñ]os?|ni[nñ]as?|kids?)\b/.test(nombre) || oferta.genero === 'n' || oferta.gen === 'n') return null;
+  const marca = limpiar(oferta.marca).replace(/\b(originals|sportswear|performance)\b/g, '').replace(/\s+/g, ' ').trim();
+  const marcaPalabras = new Set(marca.split(' '));
+  const propias = nombre.replace(RE_PRENDA, ' ').replace(RELLENO, ' ').replace(COLORES, ' ').split(' ')
+    .filter((p) => p.length > 1 && !marcaPalabras.has(p) && !/^\d+$/.test(p));
+  if (propias.length < 2) return null;
+  const genero = oferta.genero ?? oferta.gen;
+  return [marca, ...propias.slice(0, 2), PRENDAS[m[1]], genero === 'h' ? 'mens' : genero === 'm' ? 'womens' : ''].filter(Boolean).join(' ');
+}
+
 /** Cómo buscar una oferta: `{ via, clave, params }` o null si no hay forma segura. */
 export function consultaPara(oferta, fuente) {
   if (eanValido(oferta.ean)) return { via: 'ean', clave: `ean:${oferta.ean}`, params: { gtin: oferta.ean }, ml: oferta.ml ?? null };
@@ -56,6 +80,10 @@ export function consultaPara(oferta, fuente) {
   }
   // Sin código no hay forma de asegurar el color: por nombre se mezclaban todos los colores del modelo. Solo se busca
   // por nombre si se habilita a propósito (el usuario eligió "solo color exacto" el 2026-11-05).
+  if (config.ebay.buscarPorNombreRopa) {
+    const q = textoRopa(oferta);
+    if (q) return { via: 'nombre', clave: `nom:${q}`, params: { q } };
+  }
   if (!config.ebay.buscarPorNombre) return null;
   // Por nombre solo ropa y calzado (tienen clave de modelo). Un perfume sin código no se busca por nombre: en eBay hay
   // demasiados decants, tamaños y ediciones con el mismo nombre.

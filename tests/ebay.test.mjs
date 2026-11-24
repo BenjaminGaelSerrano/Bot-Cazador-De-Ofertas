@@ -494,3 +494,17 @@ test('precio oficial de EE. UU. conocido: limita la reventa de eBay (camiseta de
   const sin = ebayDeZapas([{ precio: 200, vendidas: 19 }, { precio: 250, vendidas: 0 }, { precio: 350, vendidas: 0 }], { cfgExtra: { ventas: v } });
   assert.equal((await sin.ebay.precio(zapaA(100), 'moov')).usd, 200, 'sin precio oficial cargado, eBay como siempre');
 });
+
+test('textoRopa: ropa sin código se busca por marca + modelo + tipo en inglés, y solo si el modelo se distingue (2026-11-24)', async () => {
+  const { textoRopa, consultaPara } = await import('../src/nucleo/ebay.mjs');
+  assert.equal(textoRopa({ marca: 'Nike', nombre: 'REMERA NIKE RUN ENERGY HOMBRE', genero: 'h' }), 'nike run energy shirt mens');
+  assert.equal(textoRopa({ marca: 'Adidas', nombre: 'Campera ADIDAS ORIGINALS Firebird Track Negro HOMBRE', genero: 'h' }), 'adidas firebird track jacket mens');
+  assert.equal(textoRopa({ marca: 'Adidas', nombre: 'Campera ADIDAS ORIGINALS Firebird HOMBRE', genero: 'h' }), null, 'una sola palabra propia: no alcanza');
+  assert.equal(textoRopa({ marca: 'Nike', nombre: 'REMERA NIKE SPORTSWEAR HOMBRE', genero: 'h' }), null, 'sin palabras propias del modelo: no se busca');
+  assert.equal(textoRopa({ marca: 'Nike', nombre: 'REMERA NIKE RUN ENERGY NIÑOS' }), null, 'niños: no');
+  assert.equal(textoRopa({ marca: 'Nike', nombre: 'ZAPATILLAS NIKE AIR MAX 90' }), null, 'calzado: no');
+  const o = { marca: 'Nike', nombre: 'REMERA NIKE RUN ENERGY HOMBRE', genero: 'h' };
+  assert.deepEqual(consultaPara(o, 'dash')?.via, 'nombre');
+  assert.equal(consultaPara({ ...o, codigo: 'FB1234-010' }, 'dash').via, 'codigo', 'con código sigue por código');
+  assert.equal(consultaPara({ marca: 'Nike', nombre: 'ZAPATILLAS NIKE AIR MAX 90 HOMBRE', genero: 'h', km: 'x' }, 'dash'), null, 'calzado sin código: no se busca por nombre');
+});

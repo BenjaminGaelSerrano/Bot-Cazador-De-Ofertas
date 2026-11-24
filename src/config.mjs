@@ -337,6 +337,9 @@ export const config = {
     // Ropa y calzado sin código de estilo: no se buscan por nombre (mezclaba colores). El usuario eligió "solo color
     // exacto" el 2026-11-05: se compara solo con el mismo código (modelo + color).
     buscarPorNombre: false,
+    // Solo ROPA sin código (2026-11-24, pedido del usuario): se busca por marca + modelo + tipo de prenda. Calzado no: el
+    // color importa. La referencia se marca como aproximada en el aviso.
+    buscarPorNombreRopa: true,
     vigenciaDias: 7,            // un precio de eBay se reutiliza 7 días (3 hasta el 2026-11-18: con más ofertas el cupo no alcanzaba)
     maxConsultasPorCorrida: 4950, // tope de seguridad; el reparto real lo hace `ajustarCupo` con el cupo que queda
     concurrencia: 4,             // consultas en paralelo

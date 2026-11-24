@@ -249,7 +249,7 @@ export async function correrFuente({
   // Tarjetas (2026-11-06): nombre con link, acá → eBay, ahorro, ventas y color · talles. Solo con precio de eBay.
   const { mensajes, porMensaje } = formato === 'tarjetas' && ebay
     ? agruparTarjetas(
-      pendientes.map((g) => itemTarjeta({ ...g.oferta, vendidas: g.ebay?.ventas, refDebil: g.ebay?.debil, refPublicaciones: g.ebay?.nPublicaciones, refRetail: g.ebay?.retail }, g.puntaje)),
+      pendientes.map((g) => itemTarjeta({ ...g.oferta, vendidas: g.ebay?.ventas, refDebil: g.ebay?.debil, refPublicaciones: g.ebay?.nPublicaciones, refRetail: g.ebay?.retail, refNombre: g.ebay?.via === 'nombre' }, g.puntaje)),
       // Una sola línea por mensaje con la hora de la verificación en la tienda; solo las que no se pudieron verificar llevan nota.
       { titulo: tituloEnvio, tituloContinuacion: `*${titulo}* (cont.)`, maxMensajes, ...(verificadasHoraAr ? { leyenda: `${LEYENDA_TARJETAS} · ✔ verificado en la tienda ${verificadasHoraAr}` } : {}), ...limitesMensaje },
     )

@@ -43,7 +43,7 @@ export function itemTarjeta(oferta, puntaje) {
     nota: [
       oferta.refDebil
         ? `⚠ referencia débil: ${oferta.refPublicaciones ?? 1} ${(oferta.refPublicaciones ?? 1) === 1 ? 'publicación' : 'publicaciones'} en eBay`
-        : oferta.refRetail ? 'ref.: precio oficial EE. UU.' : null,
+        : oferta.refRetail ? 'ref.: precio oficial EE. UU.' : oferta.refNombre ? 'ref. aproximada: mismo modelo por nombre (sin código)' : null,
       oferta.sinVerificar ? '⚠ no se pudo verificar en la tienda' : null, // la tienda no respondió al verificar
     ].filter(Boolean).join(' · ') || null,
   };

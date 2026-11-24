@@ -397,6 +397,8 @@ export function crearEbay({
       if (guardado.usd && guardado.usdPublicado === undefined) return null;
       // Con precio y guardado antes de exigir varias publicaciones (2026-11-17): se vuelve a calcular.
       if (guardado.usd && guardado.nValidas === undefined) return null;
+      // Con precio y guardado con otro tope por lo publicado (2026-11-24: mediana -> cuartil inferior): se vuelve a calcular.
+      if (guardado.usd && guardado.topePub !== (cfg.ventas.topePublicado ?? 0.5)) return null;
       return resultado(guardado, consulta.via, consulta.clave);
     }
     if (guardado.cota !== undefined) return oferta.precioActual / dolar >= guardado.cota ? { estado: 'sin' } : null;
@@ -449,7 +451,7 @@ export function crearEbay({
     }
     const r = precioPorVentas(fichas, { minVentas: 0 });
     if (r.sin) return { ...r, cota, usdPublicado, nValidas: validas.length };
-    return { ...r, usd: Math.min(r.usd, usdPublicado), usdVendido: r.usd, usdPublicado, nValidas: validas.length, cota };
+    return { ...r, usd: Math.min(r.usd, usdPublicado), usdVendido: r.usd, usdPublicado, topePub: cfg.ventas.topePublicado ?? 0.5, nValidas: validas.length, cota };
   }
 
   async function vendidasGuardadasODe(itemId) {

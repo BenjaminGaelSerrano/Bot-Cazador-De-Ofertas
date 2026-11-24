@@ -339,7 +339,7 @@ export const config = {
     buscarPorNombre: false,
     // Solo ROPA sin código (2026-11-24, pedido del usuario): se busca por marca + modelo + tipo de prenda. Calzado no: el
     // color importa. La referencia se marca como aproximada en el aviso.
-    buscarPorNombreRopa: true,
+    buscarPorNombreRopa: false, // APAGADO el 2026-11-24: por nombre mezcla diseños, jugadores y colores (Mitchell & Ness +273 %); el usuario vio referencias mal
     vigenciaDias: 7,            // un precio de eBay se reutiliza 7 días (3 hasta el 2026-11-18: con más ofertas el cupo no alcanzaba)
     maxConsultasPorCorrida: 4950, // tope de seguridad; el reparto real lo hace `ajustarCupo` con el cupo que queda
     concurrencia: 4,             // consultas en paralelo
@@ -362,7 +362,9 @@ export const config = {
     // publicado (`topePublicado`): una publicación cara con ventas viejas inflaba el precio (Blazer '77: US$193 vs. 40-83).
     // Si la oferta ya cuesta ese tope o más, no se gastan fichas (no puede ser más barata).
     // `vigenciaFichasDias`: las unidades vendidas de cada publicación se reutilizan una semana (cuestan 1 consulta cada una).
-    ventas: { activo: true, minVentas: 3, fichas: 8, topePublicado: 0.5, vigenciaFichasDias: 7, minPublicaciones: 3, publicacionesFirmes: 3 }, // el usuario prefiere referencia firme (2026-11-18): con menos de 3 publicaciones no se avisa
+    // 2026-11-24: el tope pasó de la mediana (0.5) al cuartil inferior (0.25) de lo publicado, como los perfumes: el usuario
+    // vio muchas referencias de eBay infladas (Blazer Mid '77: US$110 con publicaciones desde US$65; el oficial es US$105).
+    ventas: { activo: true, minVentas: 3, fichas: 8, topePublicado: 0.25, vigenciaFichasDias: 7, minPublicaciones: 3, publicacionesFirmes: 3 }, // el usuario prefiere referencia firme (2026-11-18): con menos de 3 publicaciones no se avisa
     // Cupo diario compartido (2026-11-03: unas corridas manuales gastaron las 5.000 del día y la de la noche quedó sin
     // nada). Al arrancar se lee lo que queda y se reparte en partes iguales entre esta corrida y las programadas que
     // faltan antes de que se renueve (08:00 UTC). TIENE QUE COINCIDIR con los cron de .github/workflows/cazador.yml.

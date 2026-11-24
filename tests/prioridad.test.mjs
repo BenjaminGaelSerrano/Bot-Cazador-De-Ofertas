@@ -152,8 +152,11 @@ test('ropa: solo se descarta lo claramente técnico; Dri-FIT y calzas ya no (202
   const r = (marca, nombre) => pasaPerfil({ marca, nombre }, { perfil });
   assert.ok(r('Nike', 'REMERA NIKE SPORTSWEAR DRI-FIT ICON HOMBRE') && r('Nike', 'CALZAS NIKE SPORTSWEAR HOMBRE') && r('Nike', 'Pantalón Nike DRI-FIT HOMBRE'), 'Dri-FIT y calzas entran');
   assert.ok(r('Mitchell & Ness', 'CAMISETA MITCHELL & NESS CHICAGO BULLS 1996') && r('Adidas', 'CAMPERA ADIDAS ORIGINALS FIREBIRD HOMBRE') && r('Hurley', 'REMERA HURLEY PIRANHAS HOMBRE'));
-  assert.ok(!r('Nike', 'Remera Nike RUN ENERGY HOMBRE') && !r('Adidas Performance', 'REMERA ADIDAS ADIZERO HOMBRE') && !r('Topper', 'CAMPERA TOPPER TRAINING HOMBRE'), 'running, adizero y training, no');
-  assert.ok(!r('Adidas', 'adidas Duramo Speed 2'), 'un nombre sin "zapatillas" ni prenda sigue el criterio completo');
+  // 2026-11-24: la ropa ya no tiene filtro de rendimiento (pedido del usuario); se vuelve a activar con `rendimientoRopa: true`.
+  assert.ok(r('Nike', 'Remera Nike RUN ENERGY HOMBRE') && r('Adidas Performance', 'REMERA ADIDAS ADIZERO HOMBRE') && r('Topper', 'CAMPERA TOPPER TRAINING HOMBRE'), 'running, adizero y training: ahora entran');
+  const conFiltro = { ...perfil, rendimientoRopa: true };
+  assert.ok(!pasaPerfil({ marca: 'Nike', nombre: 'Remera Nike RUN ENERGY HOMBRE' }, { perfil: conFiltro }), 'con rendimientoRopa: true, vuelve el filtro');
+  assert.ok(!r('Adidas', 'adidas Duramo Speed 2'), 'el calzado sigue con su criterio completo');
 });
 
 test('esPrecioOficial: lo que cuesta lo mismo que en la tienda oficial de Argentina no es una oferta (camiseta de México, 2026-11-24)', async () => {

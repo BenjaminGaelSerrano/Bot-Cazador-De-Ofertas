@@ -136,7 +136,11 @@ export function pasaPerfil(oferta, { esPerfumeria = false, perfil } = {}) {
   const esCalzado = CALZADO.test(normal(oferta.nombre));
   if (esCalzado && perfil.calzadoMarcas?.length && !perfil.calzadoMarcas.some(contiene)) return false;
   const exenta = (perfil.sinFiltroRendimiento ?? []).some(contiene);
-  if (perfil.excluirRendimiento && !exenta && ((esCalzado || !ES_PRENDA.test(oferta.nombre)) ? RENDIMIENTO : RENDIMIENTO_ROPA).test(normal(oferta.nombre))) return false;
+  // Ropa sin filtro de rendimiento (2026-11-24, pedido del usuario: "eliminemos filtros de ropa, así entra más ropa"):
+  // `rendimientoRopa: true` en el perfil lo vuelve a activar.
+  const esRopa = !esCalzado && ES_PRENDA.test(oferta.nombre);
+  if (esRopa && !perfil.rendimientoRopa) return true;
+  if (perfil.excluirRendimiento && !exenta && (esRopa ? RENDIMIENTO_ROPA : RENDIMIENTO).test(normal(oferta.nombre))) return false;
   return true;
 }
 

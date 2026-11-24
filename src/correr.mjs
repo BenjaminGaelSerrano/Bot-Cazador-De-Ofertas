@@ -198,6 +198,15 @@ export async function correrFuente({
       const ventas = await ebay.ventasDe(g.oferta, nombre);
       if (Number.isFinite(ventas)) g.ebay = { ...g.ebay, ventas };
     }
+    // Verificación de respaldo (2026-11-24): si en eBay hay una publicación MÁS BARATA que la oferta y que sí vendió, no es
+    // una ganga aunque gane contra el cuartil inferior (One Million a US$75 con una de US$69,99 y 16 ventas).
+    if (ebay.mejorVendidoDe) {
+      pendientes = pendientes.filter((g) => {
+        if (g.ebay?.via !== 'ean' || !(g.ebay.usd > 0)) return true;
+        const mejor = ebay.mejorVendidoDe(g.oferta, nombre);
+        return mejor === null || g.oferta.precioActual / (g.ebay.precio / g.ebay.usd) < mejor;
+      });
+    }
   }
   // 3e. Orden del aviso: margen y cantidad de ventas en eBay (ver `puntajeAviso`), las mejores primero.
   if (ebay) pendientes.sort((a, b) => puntajeAviso({ margen: b.puntaje.margen, ventas: b.ebay?.ventas, debil: b.ebay?.debil }) - puntajeAviso({ margen: a.puntaje.margen, ventas: a.ebay?.ventas, debil: a.ebay?.debil }));

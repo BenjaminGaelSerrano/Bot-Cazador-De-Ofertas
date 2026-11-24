@@ -380,3 +380,18 @@ test('precio oficial local: lo que cuesta lo mismo que en la tienda oficial no s
   assert.ok(!m.includes('002'), 'la del precio oficial no sale');
   assert.ok(m.includes('003') || m.includes('Modelo NICT2302-003'), 'la otra, sí');
 });
+
+test('perfumes: no se avisa si en eBay hay una publicación más barata que la oferta y con ventas (2026-11-24)', async () => {
+  const e = await entorno();
+  // Dólar implícito: 150000 / 100 = 1500. La oferta A cuesta US$80 y B US$60; la publicación con ventas más barata es US$70.
+  const ebay = {
+    precio: async (o) => ({ estado: 'ok', precio: 150000, usd: 100, n: 8, via: 'ean', url: `https://www.ebay.com/itm/${o.id}` }),
+    ventasDe: async () => 16,
+    mejorVendidoDe: () => 70,
+  };
+  e.poner([oferta('PA', { id: 'PA', nombre: 'Perfume A', precioActual: 120000, precioLista: 170000 }), oferta('PB', { id: 'PB', nombre: 'Perfume B', precioActual: 90000, precioLista: 170000 })]);
+  await e.correr('2026-11-24', { nombre: 'pigmento', ebay, filtroAviso: { margenMinimo: 0.05 } });
+  const m = e.enviados.join('\n');
+  assert.ok(!/Perfume A/i.test(m), 'US$80 contra una publicación con ventas a US$70: no sale');
+  assert.ok(/Perfume B/i.test(m), 'US$60: más barata que todas, sale');
+});

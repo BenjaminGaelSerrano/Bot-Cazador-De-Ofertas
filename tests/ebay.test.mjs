@@ -444,6 +444,8 @@ test('ventasDe (perfumes): suma lo vendido de las publicaciones válidas, sin to
   assert.equal(await ebay.ventasDe(perfume, 'juleriaque'), 11);
   assert.equal(await ebay.ventasDe(perfume, 'juleriaque'), 11, 'la segunda vez sale del caché');
   assert.equal(busquedas, 1);
+  assert.equal(ebay.mejorVendidoDe(perfume, 'juleriaque'), 72, 'la publicación más barata que sí vendió (el tester no cuenta)');
+  assert.equal(ebay.mejorVendidoDe({ ...perfume, ean: '0000000000000' }, 'juleriaque'), null, 'sin datos: null');
   const r = await ebay.precio(perfume, 'juleriaque');
   assert.equal(r.estado, 'ok', 'el precio del perfume no depende de las ventas');
   assert.equal(r.usd, 70);

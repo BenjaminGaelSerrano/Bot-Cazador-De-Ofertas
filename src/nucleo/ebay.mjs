@@ -445,12 +445,17 @@ export function crearEbay({
     if (!consulta || consulta.via !== 'ean') return undefined;
     await cargar();
     const guardado = cache[consulta.clave];
-    if (guardado?.vend !== undefined) return guardado.vend;
+    if (guardado?.vend !== undefined && guardado.mejorVend !== undefined) return guardado.vend;
     try {
       const validas = publicacionesValidas(filtrarPorConsulta(await buscar(consulta.params), consulta)).slice(0, cfg.ventas.fichas);
       let total = 0;
-      for (const v of validas) total += await vendidasGuardadasODe(v.itemId);
-      if (guardado) { guardado.vend = total; modificado = true; }
+      let mejor = null; // la publicación más barata que sí vendió (verificación de respaldo, 2026-11-24)
+      for (const v of validas) {
+        const vendidas = await vendidasGuardadasODe(v.itemId);
+        total += vendidas;
+        if (vendidas >= (cfg.ventas.minVentasMejor ?? 1) && (mejor === null || v.precio < mejor)) mejor = v.precio;
+      }
+      if (guardado) { guardado.vend = total; guardado.mejorVend = mejor; modificado = true; }
       return total;
     } catch {
       return undefined; // sin cupo o error: el aviso sale igual, sin la cantidad
@@ -532,6 +537,12 @@ export function crearEbay({
     guardar,
     ajustarCupo,
     ventasDe,
+    /** Precio en USD de la publicación más barata de ese perfume que sí vendió (tras `ventasDe`), o null. */
+    mejorVendidoDe(oferta, fuente) {
+      const consulta = consultaPara(oferta, fuente);
+      const v = consulta ? cache[consulta.clave]?.mejorVend : undefined;
+      return Number.isFinite(v) ? v : null;
+    },
     /**
      * Antes de cada tienda: le toca una parte igual de lo que queda de la corrida (`fuentesRestantes` = esta y las que
      * siguen). Lo que no usa pasa a las siguientes. Así la última (Grid) no queda siempre sin cupo.

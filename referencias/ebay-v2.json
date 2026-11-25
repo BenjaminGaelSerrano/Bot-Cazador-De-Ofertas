@@ -12552,15 +12552,8 @@
   "visto": "2026-11-17"
  },
  "cod:HP3562": {
-  "usd": 109.97,
-  "n": 1,
-  "ventas": 2,
-  "url": "https://www.ebay.com/itm/287252115719?_skw=adidas+HP3562&hash=item42e18f7107:g:vzAAAeSwqaJp0HOP&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7kRrKNECIzjEpGwPC1K5%2FjZ2EqpUoBzzXVk2XhsZsRAdpU3ZueuTG0n7puAivkyKZt8RIMV3GqcYtfYZe3tscAaa%2BxVwlYbf36C2vRaebSTUHyNct67tl%2BX9uszhsp13bPyROq8XxYafmeBQ3WgSHClWEUjIqmiLqw22FZfbjOsT7t8GSzoV%2FEbrvULGwSkGrF16lFZogiJKn%2BzX1LsXEXU2PmjuZY4JxP1qic79TrPaWzTifl5LLSIgbEFesjKPoojZmNr8PxqkS%2FLrteNaT4553HaSe1SOmsGEdBZ8nLLxQ%3D%3D",
-  "usdVendido": 109.97,
-  "usdPublicado": 122.49,
-  "nValidas": 6,
-  "cota": 122.49,
-  "visto": "2026-11-19"
+  "cota": 86.98165680473373,
+  "visto": "2026-11-25"
  },
  "cod:3MG10054-859": {
   "sin": 1,
@@ -25895,7 +25888,7 @@
  "cod:IF0672-101": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-09"
+  "visto": "2026-11-25"
  },
  "cod:CD6404-203": {
   "cota": 113.94,
@@ -32171,7 +32164,7 @@
  },
  "ean:8411061982617": {
   "sin": 1,
-  "visto": "2026-11-17"
+  "visto": "2026-11-25"
  },
  "ean:7798322500744": {
   "sin": 1,
@@ -36745,6 +36738,26 @@
  },
  "ean:8431754008912": {
   "sin": 1,
+  "visto": "2026-11-25"
+ },
+ "cod:402586-06": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-25"
+ },
+ "cod:402638-02": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-25"
+ },
+ "cod:402586-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-25"
+ },
+ "cod:402586-05": {
+  "sin": 1,
+  "porVentas": 1,
   "visto": "2026-11-25"
  }
 }

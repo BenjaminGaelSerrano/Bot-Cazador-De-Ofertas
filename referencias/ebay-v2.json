@@ -10775,7 +10775,7 @@
  "cod:MLBSH626101-RD1": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-18"
+  "visto": "2026-11-25"
  },
  "cod:HZ261T51002-001": {
   "sin": 1,
@@ -22851,7 +22851,7 @@
  "cod:MLBTS525205-BL1": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-07"
+  "visto": "2026-11-25"
  },
  "cod:NBATS525114-BK1": {
   "sin": 1,
@@ -30218,7 +30218,7 @@
  "cod:KV2842": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-13"
+  "visto": "2026-11-25"
  },
  "cod:KC3328": {
   "sin": 1,
@@ -36826,6 +36826,26 @@
   "visto": "2026-11-25"
  },
  "cod:MLBTS525211-BK1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-25"
+ },
+ "cod:MLBTS526106-NV1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-25"
+ },
+ "cod:MLBPT626102-NV1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-25"
+ },
+ "cod:MLBTS626101-WH1": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-25"
+ },
+ "cod:MLBTS525205-BK1": {
   "sin": 1,
   "porVentas": 1,
   "visto": "2026-11-25"

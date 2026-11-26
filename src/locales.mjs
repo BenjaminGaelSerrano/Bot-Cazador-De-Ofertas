@@ -6,6 +6,8 @@ import { pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import { config } from './config.mjs';
 import { crearLector } from './fuentes/vtex.mjs';
+import { leerTiendanube } from './fuentes/tiendanube.mjs';
+import { leerWoo, tallesWoo } from './fuentes/woo.mjs';
 import { composicionDe } from './nucleo/calidad.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
 import { cargar as cargarHistorial, guardar as guardarHistorial, registrar } from './nucleo/historial.mjs';
@@ -78,6 +80,8 @@ async function leerVtex(cliente, tienda) {
   }));
 }
 
+const LECTORES = { shopify: leerShopify, tiendanube: leerTiendanube, woo: leerWoo, vtex: leerVtex };
+
 const leerJson = async (ruta, vacio) => {
   try { return JSON.parse(await readFile(ruta, 'utf8')); } catch (error) { if (error.code === 'ENOENT') return vacio; throw error; }
 };
@@ -90,7 +94,8 @@ const escribirJson = async (ruta, datos) => {
 
 export async function correrLocales({
   datos = 'datos', dryRun = false, nombres, cfg = config.locales, fecha = hoyArgentina(),
-  leer = (cliente, t) => (t.tipo === 'shopify' ? leerShopify(cliente, t) : leerVtex(cliente, t)),
+  leer = (cliente, t) => (LECTORES[t.tipo] ?? leerVtex)(cliente, { ...t, marca: t.nombre }),
+  tallesDe = (cliente, oferta, t) => (t.tipo === 'woo' ? tallesWoo(cliente, oferta, t) : null),
   crear = () => crearCliente({ pausaMs: config.pausaMs }), enviarFn = enviar, log = console.log,
 } = {}) {
   const rutaAvisadas = `${datos}/locales/avisadas.json`;
@@ -111,7 +116,15 @@ export async function correrLocales({
         if (evaluacion) candidatas.push({ tienda: tienda.nombre, oferta, evaluacion });
         registrar(historial, oferta, fecha);
       }
-      const nuevas = elegirParaAvisar(candidatas, avisadas, cfg.maximoPorTienda);
+      // Las tiendas cuya lista no dice qué talle queda (WooCommerce) se miran recién acá, solo lo que se iba a avisar.
+      const nuevas = [];
+      for (const c of elegirParaAvisar(candidatas, avisadas, cfg.maximoPorTienda * 4)) {
+        if (nuevas.length >= cfg.maximoPorTienda) break;
+        const conStock = await tallesDe(crear(), c.oferta, tienda);
+        if (conStock === null) { nuevas.push(c); continue; }
+        const evaluacion = evaluarLocal({ ...c.oferta, talles: conStock }, { registro: historial.productos[c.oferta.id], fecha, piso, cfg });
+        if (evaluacion) nuevas.push({ ...c, evaluacion });
+      }
       elegidas.push(...nuevas);
       if (!dryRun) await guardarHistorial(ruta, historial);
       log(`${nombre}: ${ofertas.length} productos · piso de descuento ${Math.round(Math.max(cfg.descuentoMinimo, piso) * 100)}% · cumplen ${candidatas.length} · nuevas a avisar ${nuevas.length}`);

@@ -28,7 +28,8 @@ Se envían en un mensaje aparte, rotulado "sin referencia internacional", solo p
 
 ## Pendiente
 
-- Tiendanube (Tussy, King of the Kongo, BullBenny, Benkyo, Old Bridge, Garçon García), WooCommerce (Cristóbal Colón).
+- Hechas el 2026-11-26: King of the Kongo, BullBenny, Benkyo, Old Bridge, Garçon García (Tiendanube) y Cristóbal Colón (WooCommerce).
+- Tussy (Tiendanube con otro diseño, sin datos de talle en la lista): pendiente.
 - A investigar: Open Sports, Harlem, Jazmín Chebar, Lacoste, Complot, Revolver, Boardriders, Zara, Ginebra.
 - María Cher bloquea los pedidos automáticos: no se fuerza.
 - Delaostia quedó afuera: es una marca de mujer.

@@ -331,6 +331,12 @@ export const config = {
       tommy: { nombre: 'Tommy Hilfiger', tipo: 'vtex', base: 'https://ar.tommy.com' },
       decathlon: { nombre: 'Decathlon', tipo: 'shopify', base: 'https://www.decathlon.com.ar' },
       freres: { nombre: 'Frères', tipo: 'shopify', base: 'https://www.freres.ar' },
+      kingofthekongo: { nombre: 'King of the Kongo', tipo: 'tiendanube', base: 'https://www.kingofthekongo.com.ar' },
+      bullbenny: { nombre: 'BullBenny', tipo: 'tiendanube', base: 'https://www.bullbenny.com.ar' },
+      benkyo: { nombre: 'Benkyo', tipo: 'tiendanube', base: 'https://www.benkyo.com.ar' },
+      oldbridge: { nombre: 'Old Bridge', tipo: 'tiendanube', base: 'https://www.oldbridge.com.ar' },
+      garcongarcia: { nombre: 'Garçon García', tipo: 'tiendanube', base: 'https://www.garcongarcia.com.ar' },
+      cristobalcolon: { nombre: 'Cristóbal Colón', tipo: 'woo', base: 'https://www.cristobalcolon.com' },
     },
   },
 

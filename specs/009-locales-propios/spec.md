@@ -26,10 +26,13 @@ Se envían en un mensaje aparte, rotulado "sin referencia internacional", solo p
 - Al principio se depende del precio de lista que declara la tienda, que puede estar inflado.
 - El historial arranca en la semana de Black Friday.
 
-## Pendiente
+## Estado al 2026-11-26
 
-- Hechas el 2026-11-26: King of the Kongo, BullBenny, Benkyo, Old Bridge, Garçon García (Tiendanube) y Cristóbal Colón (WooCommerce).
-- Tussy (Tiendanube con otro diseño, sin datos de talle en la lista): pendiente.
-- A investigar: Open Sports, Harlem, Jazmín Chebar, Lacoste, Complot, Revolver, Boardriders, Zara, Ginebra.
-- María Cher bloquea los pedidos automáticos: no se fuerza.
-- Delaostia quedó afuera: es una marca de mujer.
+- Se leen: La Martina, Key Biscayne, Tommy, Decathlon, Frères, King of the Kongo, BullBenny, Benkyo, Old Bridge, Garçon
+  García, Cristóbal Colón, Tussy, Ay Not Dead (sección hombre), Etiqueta Negra, Open Sports, Quiksilver, DC y RVCA (las
+  tres últimas son las tiendas de Boardriders).
+- No se leen y no se fuerza: Lacoste y Zara rechazan los pedidos automáticos; María Cher también (403).
+- Sin catálogo para leer: Harlem (no se encontraron datos en su sitio), Revolver (sitio vacío), Bolivia (marca nacional,
+  su sitio propio no responde), Scuff (sin sitio encontrado).
+- De mujer, afuera: Delaostia, Complot, Jazmín Chebar, Ginebra, María Cher, Max Mara.
+- Sin tienda online argentina y no nacionales: Polo Ralph Lauren, Salvatore Ferragamo.

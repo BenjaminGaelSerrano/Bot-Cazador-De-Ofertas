@@ -324,7 +324,7 @@ export const config = {
     percentilTienda: 0.75,  // y entre el 25 % de descuentos más fuertes de esa tienda
     diasHistorial: 14,      // con este historial, además:
     bajaMinima: 0.20,       // bajar 20 % o más contra el precio habitual
-    maximoPorTienda: 3,
+    maximoPorTienda: 40,    // 3 hasta el 2026-11-26: el usuario quiere que estén todas
     tiendas: {
       lamartina: { nombre: 'La Martina', tipo: 'vtex', base: 'https://www.lamartina.com.ar' },
       keybiscayne: { nombre: 'Key Biscayne', tipo: 'vtex', base: 'https://www.keybiscayne.com.ar' },
@@ -337,6 +337,13 @@ export const config = {
       oldbridge: { nombre: 'Old Bridge', tipo: 'tiendanube', base: 'https://www.oldbridge.com.ar' },
       garcongarcia: { nombre: 'Garçon García', tipo: 'tiendanube', base: 'https://www.garcongarcia.com.ar' },
       cristobalcolon: { nombre: 'Cristóbal Colón', tipo: 'woo', base: 'https://www.cristobalcolon.com' },
+      tussy: { nombre: 'Tussy', tipo: 'tiendanube', base: 'https://tussy.com.ar' },
+      aynotdead: { nombre: 'Ay Not Dead', tipo: 'tiendanube', base: 'https://aynotdead.com', ruta: '/hombre/' },
+      etiquetanegra: { nombre: 'Etiqueta Negra', tipo: 'tiendanube', base: 'https://www.etiquetanegra.us', ruta: '/hombres/tienda/' },
+      opensports: { nombre: 'Open Sports', tipo: 'magento', base: 'https://www.opensports.com.ar', rutas: ['/sale.html'] },
+      quiksilver: { nombre: 'Quiksilver', tipo: 'magento', base: 'https://www.quiksilver.com.ar', rutas: ['/hombre'] },
+      dcshoes: { nombre: 'DC', tipo: 'magento', base: 'https://www.dcshoes.com.ar', rutas: ['/hombres/calzado', '/hombres/indumentaria'] },
+      rvca: { nombre: 'RVCA', tipo: 'magento', base: 'https://www.rvca.com.ar', rutas: ['/hombre'] },
     },
   },
 

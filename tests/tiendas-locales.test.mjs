@@ -44,3 +44,27 @@ test('deWoo y tallesWoo: precios en centavos, género y stock real por talle', a
   const cliente = { obtenerJson: async (url) => ({ datos: { is_in_stock: url.endsWith('/12') } }) };
   assert.deepEqual(await tallesWoo(cliente, o, { base: 'https://c' }), ['XL']);
 });
+
+test('Magento: lista con precio anterior y talles a la venta de la ficha', async () => {
+  const { deListaMagento, tallesDeFichaMagento } = await import('../src/fuentes/magento-html.mjs');
+  const item = (n, final, antes) => `<div class="product-item-info" id="x"><a class="product-item-link" href="https://t/${n}.html"> Campera ${n} </a>
+<span data-price-amount="${final}" data-price-type="finalPrice"></span>${antes ? `<span data-price-amount="${antes}" data-price-type="oldPrice"></span>` : ''}</div>`;
+  assert.deepEqual(deListaMagento(item('a', 100, 200) + item('b', 100)).map((o) => [o.nombre, o.precioActual, o.precioLista]), [['Campera a', 100, 200]]);
+  const ficha = '"jsonConfig": {"attributes":{"148":{"id":"148","code":"talle_indumentaria","label":"Talle","options":[{"id":"1","label":"M","products":[]},{"id":"2","label":"L","products":["9"]},{"id":"3","label":"XL","products":["10"]}],"position":"0"}}}';
+  assert.deepEqual(tallesDeFichaMagento(ficha), ['L', 'XL']);
+  assert.deepEqual(tallesDeFichaMagento('<p>sin talles</p>'), ['único']);
+});
+
+test('Tiendanube sin data-variants: precio de la lista y talles de la ficha', async () => {
+  const { tallesDeFichaTiendanube } = await import('../src/fuentes/tiendanube.mjs');
+  const [o] = deListaTiendanube('<div class="js-item-product" data-product-id="5"><a href="https://t/productos/buzo/"><div class="js-item-name">Buzo</div></a><span class="js-price-display" data-product-price="7350000">$73.500</span><span class="js-compare-price-display">$105.000,00</span></div>');
+  assert.deepEqual([o.precioActual, o.precioLista, o.faltanTalles], [73500, 105000, true]);
+  assert.deepEqual(tallesDeFichaTiendanube('LS.variants = [{"available":true,"option0":"L"},{"available":false,"option0":"XL"}];'), ['L']);
+});
+
+test('calzado en numeración de EE. UU. y botines de chicos', async () => {
+  const { tallesUtiles, esParaHombre } = await import('../src/nucleo/locales.mjs');
+  assert.deepEqual(tallesUtiles(['9', '10', '11', '12'], 'calzado'), ['11', '12']);
+  assert.equal(tallesUtiles(['8', '10'], 'calzado'), null);
+  assert.ok(!esParaHombre({ nombre: 'Botines Adidas F50 League FG/MF Jr' }));
+});

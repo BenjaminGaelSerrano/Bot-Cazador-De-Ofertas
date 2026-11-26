@@ -31,14 +31,15 @@ export function tipoDePrenda(nombre) {
   return TIPOS.find(([, re]) => re.test(n))?.[0] ?? null;
 }
 
-const NO_ES_PARA_EL = /\b(mujer(es)?|damas?|women|womens|femenin[oa]s?|ninos?|ninas?|kids?|junior|boys?|girls?|bebes?|blusas?|vestidos?|polleras?|faldas?|corpino|bikini|tops?)\b/;
+const NO_ES_PARA_EL = /\b(mujer(es)?|damas?|women|womens|femenin[oa]s?|ninos?|ninas?|kids?|junior|jr|boys?|girls?|bebes?|blusas?|vestidos?|polleras?|faldas?|corpino|bikini|tops?)\b/;
 
 /** Solo hombre o sin género declarado: nada de mujer ni de niños (nombre, categorías, etiquetas y género). */
 export function esParaHombre({ nombre, categorias = [], genero = null, url = '' }) {
   if (genero === 'm' || genero === 'n') return false;
   // Tommy codifica el género en la dirección del producto: DW y WW son de mujer; KN, KB y KG, de chicos.
   if (/tommy\.com\/.*-(dw|ww|kn|kb|kg)0[a-z0-9]+\/p/i.test(url)) return false;
-  return !NO_ES_PARA_EL.test(normal([nombre, ...categorias].join(' ')));
+  const rutaUrl = url.replace(/^https?:\/\/[^/]+/, '').replace(/[?#].*/, '').replace(/[^a-z0-9]+/gi, ' ');
+  return !NO_ES_PARA_EL.test(normal([nombre, ...categorias].join(' '))) && !/\b(mujer|women|dama|ninos|ninas|kids)\b/.test(normal(rutaUrl));
 }
 
 const LETRAS = /^(xxs|xs|s|m|l|xl|xxl|xxxl|2xl|3xl)$/;
@@ -54,6 +55,12 @@ export function tallesUtiles(talles, tipo, { ropa = ['l', 'xl'], calzado = [44.5
   // Talles de bebé o de chicos ("0-3 meses", "8 años"): no es para él.
   if (hay.some((t) => /mes(es)?\b|a[ñn]os?\b/i.test(t))) return null;
   if (tipo === 'calzado') {
+    // Numeración de EE. UU. (Quiksilver, DC): su talle europeo 44,5 a 46 equivale a 10,5 a 12.
+    const us = hay.map((t) => [t, Number(t.replace(',', '.'))]).filter(([, n]) => n >= 4 && n <= 15);
+    if (us.length === hay.length) {
+      const mios = us.filter(([, n]) => n >= 10.5 && n <= 12).map(([t]) => t);
+      return mios.length ? mios : null;
+    }
     const numeros = hay.map((t) => [t, Number(t.replace(',', '.'))]).filter(([, n]) => n >= 30 && n <= 50);
     if (numeros.length === 0) return hay;
     const suyos = numeros.filter(([, n]) => n >= calzado[0] && n <= calzado[1]).map(([t]) => t);
@@ -142,7 +149,7 @@ export function tarjetaLocal(numero, { tienda, oferta, evaluacion }) {
     `*${numero}. [${limpio(oferta.nombre).slice(0, 60)}](${oferta.url})*`,
     `${pesos(oferta.precioActual)} (lista ${pesos(oferta.precioLista)}) · *-${Math.round(evaluacion.descuento * 100)}%*${baja}`,
     `${tienda} · talle ${evaluacion.talles.slice(0, 6).join(', ')}`,
-    lineaCalidad({ marca: oferta.marca, composicion: oferta.composicion }),
+    lineaCalidad({ marca: `${oferta.marca} ${oferta.nombre}`, composicion: oferta.composicion }),
   ].join('\n');
 }
 

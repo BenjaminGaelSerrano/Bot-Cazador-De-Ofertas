@@ -6,7 +6,8 @@ import { pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import { config } from './config.mjs';
 import { crearLector } from './fuentes/vtex.mjs';
-import { leerTiendanube } from './fuentes/tiendanube.mjs';
+import { leerTiendanube, tallesTiendanube } from './fuentes/tiendanube.mjs';
+import { leerMagentoHtml, tallesMagento } from './fuentes/magento-html.mjs';
 import { leerWoo, tallesWoo } from './fuentes/woo.mjs';
 import { composicionDe } from './nucleo/calidad.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
@@ -80,7 +81,15 @@ async function leerVtex(cliente, tienda) {
   }));
 }
 
-const LECTORES = { shopify: leerShopify, tiendanube: leerTiendanube, woo: leerWoo, vtex: leerVtex };
+const LECTORES = { shopify: leerShopify, tiendanube: leerTiendanube, woo: leerWoo, vtex: leerVtex, magento: leerMagentoHtml };
+
+/** Talles con stock cuando la lista no los dice; null si ya venían en la lista. */
+function talleEnFicha(cliente, oferta, tienda) {
+  if (tienda.tipo === 'woo') return tallesWoo(cliente, oferta, tienda);
+  if (tienda.tipo === 'magento') return tallesMagento(cliente, oferta);
+  if (oferta.faltanTalles) return tallesTiendanube(cliente, oferta);
+  return null;
+}
 
 const leerJson = async (ruta, vacio) => {
   try { return JSON.parse(await readFile(ruta, 'utf8')); } catch (error) { if (error.code === 'ENOENT') return vacio; throw error; }
@@ -95,7 +104,7 @@ const escribirJson = async (ruta, datos) => {
 export async function correrLocales({
   datos = 'datos', dryRun = false, nombres, cfg = config.locales, fecha = hoyArgentina(),
   leer = (cliente, t) => (LECTORES[t.tipo] ?? leerVtex)(cliente, { ...t, marca: t.nombre }),
-  tallesDe = (cliente, oferta, t) => (t.tipo === 'woo' ? tallesWoo(cliente, oferta, t) : null),
+  tallesDe = (cliente, oferta, t) => talleEnFicha(cliente, oferta, t),
   crear = () => crearCliente({ pausaMs: config.pausaMs }), enviarFn = enviar, log = console.log,
 } = {}) {
   const rutaAvisadas = `${datos}/locales/avisadas.json`;
@@ -120,7 +129,8 @@ export async function correrLocales({
       const nuevas = [];
       for (const c of elegirParaAvisar(candidatas, avisadas, cfg.maximoPorTienda * 4)) {
         if (nuevas.length >= cfg.maximoPorTienda) break;
-        const conStock = await tallesDe(crear(), c.oferta, tienda);
+        let conStock;
+        try { conStock = await tallesDe(crear(), c.oferta, tienda); } catch (error) { log(`${nombre}: sin talles de ${c.oferta.url} (${error.message})`); continue; }
         if (conStock === null) { nuevas.push(c); continue; }
         const evaluacion = evaluarLocal({ ...c.oferta, talles: conStock }, { registro: historial.productos[c.oferta.id], fecha, piso, cfg });
         if (evaluacion) nuevas.push({ ...c, evaluacion });

@@ -300,6 +300,16 @@ export const config = {
   // respondiendo 200). Lo que no entra queda sin marcar y sale al día siguiente.
   maxMensajesPorDia: 25,
 
+  // Nivel de la marca que acompaña cada aviso de ropa y calzado (2026-11-26). Es una apreciación de su reputación general,
+  // no una medición: no hay pruebas independientes que comparen estas marcas. Las que no figuran no llevan nivel.
+  calidad: {
+    marcas: {
+      alta: ['tommy hilfiger', 'tommy jeans', 'la martina'],
+      media: ['nike', 'jordan', 'adidas', 'puma', 'under armour', 'new balance', 'asics', 'salomon', 'hoka', 'mitchell & ness'],
+      'básica, buen precio': ['decathlon', 'quechua', 'forclaz', 'kalenji', 'domyos', 'tarmak', 'olaian', 'topper', 'fila'],
+    },
+  },
+
   // Locales propios (spec 009, 2026-11-26): marcas sin referencia en eBay. Ver specs/009-locales-propios/spec.md.
   locales: {
     // Precio máximo en pesos por tipo de prenda ("algo que consideres normal pagar", aprobado por el usuario): ajustarlos

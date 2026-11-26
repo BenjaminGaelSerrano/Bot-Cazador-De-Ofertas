@@ -1,3 +1,4 @@
+import { lineaCalidad } from './calidad.mjs';
 import { diasEntre } from './fechas.mjs';
 
 // Locales propios (spec 009): sin referencia internacional, cada marca se compara contra sí misma y contra un precio
@@ -33,8 +34,10 @@ export function tipoDePrenda(nombre) {
 const NO_ES_PARA_EL = /\b(mujer(es)?|damas?|women|womens|femenin[oa]s?|ninos?|ninas?|kids?|junior|boys?|girls?|bebes?|blusas?|vestidos?|polleras?|faldas?|corpino|bikini|tops?)\b/;
 
 /** Solo hombre o sin género declarado: nada de mujer ni de niños (nombre, categorías, etiquetas y género). */
-export function esParaHombre({ nombre, categorias = [], genero = null }) {
+export function esParaHombre({ nombre, categorias = [], genero = null, url = '' }) {
   if (genero === 'm' || genero === 'n') return false;
+  // Tommy codifica el género en la dirección del producto: DW y WW son de mujer; KN, KB y KG, de chicos.
+  if (/tommy\.com\/.*-(dw|ww|kn|kb|kg)0[a-z0-9]+\/p/i.test(url)) return false;
   return !NO_ES_PARA_EL.test(normal([nombre, ...categorias].join(' ')));
 }
 
@@ -139,6 +142,7 @@ export function tarjetaLocal(numero, { tienda, oferta, evaluacion }) {
     `*${numero}. [${limpio(oferta.nombre).slice(0, 60)}](${oferta.url})*`,
     `${pesos(oferta.precioActual)} (lista ${pesos(oferta.precioLista)}) · *-${Math.round(evaluacion.descuento * 100)}%*${baja}`,
     `${tienda} · talle ${evaluacion.talles.slice(0, 6).join(', ')}`,
+    lineaCalidad({ marca: oferta.marca, composicion: oferta.composicion }),
   ].join('\n');
 }
 

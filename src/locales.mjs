@@ -6,6 +6,7 @@ import { pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import { config } from './config.mjs';
 import { crearLector } from './fuentes/vtex.mjs';
+import { composicionDe } from './nucleo/calidad.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
 import { cargar as cargarHistorial, guardar as guardarHistorial, registrar } from './nucleo/historial.mjs';
 import { crearCliente } from './nucleo/http.mjs';
@@ -31,6 +32,7 @@ export function deShopify(p, base) {
     categoria: p.product_type || null,
     // Género: del tipo de producto y de las etiquetas que lo declaran (Decathlon: "GENDER_VALUE: Mujer").
     categorias: [p.product_type, ...etiquetas.filter((t) => /gender|genero|mujer|women|hombre|kids|ni[nñ]/i.test(t))].filter(Boolean),
+    composicion: composicionDe(p.body_html),
     precioActual: Number(elegida.price),
     precioLista: lista,
     stock: disponibles.length,
@@ -56,10 +58,14 @@ async function leerVtex(cliente, tienda) {
   const lector = crearLector({ base: tienda.base, maxPorPedido: 50, maxOffset: 2500, agrupar: 'producto', categoriasExcluidas: [], categorias: [{ name: 'Todo', ruta: null }] });
   // Las categorías del producto dicen el género; el lector común no las deja pasar, así que se anotan acá.
   const categoriasDe = new Map();
+  const composicionPorId = new Map();
   const espia = {
     obtenerJson: async (url) => {
       const r = await cliente.obtenerJson(url);
-      for (const p of Array.isArray(r.datos) ? r.datos : []) categoriasDe.set(String(p.productId), p.categories ?? []);
+      for (const p of Array.isArray(r.datos) ? r.datos : []) {
+        categoriasDe.set(String(p.productId), p.categories ?? []);
+        composicionPorId.set(String(p.productId), composicionDe(JSON.stringify({ ...p, items: undefined })));
+      }
       return r;
     },
   };
@@ -67,6 +73,7 @@ async function leerVtex(cliente, tienda) {
   return ofertas.map((o) => ({
     ...o,
     categorias: categoriasDe.get(String(o.productoId)) ?? [],
+    composicion: composicionPorId.get(String(o.productoId)) ?? null,
     talles: (o.talles ?? []).map((t) => t.t),
   }));
 }

@@ -39,6 +39,7 @@ export function itemTarjeta(oferta, puntaje) {
     ventas: Number.isFinite(oferta.vendidas) ? oferta.vendidas : null,
     detalle: [oferta.color ? String(oferta.color) : null, talles?.texto ?? null].filter(Boolean).join(' · '),
     alerta: Boolean(talles?.alerta),
+    calidad: oferta.calidad ?? null, // nivel de la marca y composición (ropa y calzado)
     // Nota sobre la referencia de eBay: débil (pocas publicaciones) o limitada por el precio oficial de EE. UU.
     nota: [
       oferta.refDebil
@@ -55,6 +56,7 @@ export function tarjeta(numero, item) {
     `${item.costo} → ${item.mercado} · *${item.gana}*${item.ventas !== null ? ` · ${item.ventas} vendidas` : ''}`,
   ];
   if (item.detalle || item.alerta) lineas.push(`${item.alerta ? '⚠ ' : ''}${item.detalle}`.trim());
+  if (item.calidad) lineas.push(item.calidad);
   if (item.nota) lineas.push(item.nota);
   return lineas.join('\n');
 }

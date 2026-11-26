@@ -1,4 +1,5 @@
 import { config } from '../config.mjs';
+import { composicionDe } from './calidad.mjs';
 import { tallesDePagina } from '../fuentes/sfcc.mjs';
 import { crearLector } from '../fuentes/vtex.mjs';
 
@@ -26,7 +27,8 @@ export async function verificarEnTienda(oferta, tienda, { fetchFn = fetch, timeo
       const talles = tallesDePagina(html);
       if (Array.isArray(talles) && talles.length === 0) return { estado: 'agotada' };
       const precio = /"price":"(\d+)(?:\.\d+)?"/.exec(html)?.[1];
-      return { estado: 'ok', ...(precio ? { precioActual: Number(precio) } : {}) };
+      const composicion = composicionDe(html);
+      return { estado: 'ok', ...(precio ? { precioActual: Number(precio) } : {}), ...(composicion ? { composicion } : {}) };
     }
     const fq = cfg.agrupar === 'producto' ? `productId:${oferta.id}` : `skuId:${oferta.id}`;
     const res = await fetchFn(`${cfg.base}/api/catalog_system/pub/products/search?fq=${fq}`, { headers: UA, signal: AbortSignal.timeout(timeoutMs) });
@@ -37,7 +39,8 @@ export async function verificarEnTienda(oferta, tienda, { fetchFn = fetch, timeo
     const { normalizarProducto } = crearLector(cfg);
     const nuevo = lista.flatMap((p) => normalizarProducto(p)).find((o) => String(o.id) === String(oferta.id));
     if (!nuevo || !(nuevo.stock > 0)) return { estado: 'agotada' };
-    return { estado: 'ok', precioActual: nuevo.precioActual };
+    const composicion = composicionDe(JSON.stringify({ ...lista[0], items: undefined }));
+    return { estado: 'ok', precioActual: nuevo.precioActual, ...(composicion ? { composicion } : {}) };
   } catch {
     return { estado: 'sin-datos' };
   }

@@ -7,6 +7,7 @@ import { ErrorFuente } from './nucleo/http.mjs';
 import { cargar as cargarHistorial, guardar as guardarHistorial, registrar } from './nucleo/historial.mjs';
 import { cargarOtros, construirIndice, precioMercado } from './nucleo/mercado.mjs';
 import { consultaPara } from './nucleo/ebay.mjs';
+import { lineaCalidad } from './nucleo/calidad.mjs';
 import { esDeMujer, esPrecioOficial, ordenarParaConsultar, pasaPerfil, pasaFiltroAviso, puntajeAviso } from './nucleo/prioridad.mjs';
 import { esSoloPerfume } from './nucleo/internacional.mjs';
 import { compararPorReventa, nivelDemanda, puntuar, velocidadVenta } from './nucleo/reventa.mjs';
@@ -235,6 +236,7 @@ export async function correrFuente({
         if (!veredictosAvisables.includes(g.puntaje.veredicto)) continue;
         if (ebay && !pasaFiltroAviso({ oferta: g.oferta, margen: g.puntaje.margen, ventas: g.ebay?.ventas, via: g.ebay?.via }, filtroAviso)) continue;
       }
+      if (v?.composicion) g.oferta.composicion = v.composicion;
       vigentes.push(g);
     }
     if (agotadas || cambiaron) log(`  Verificación en la tienda: ${agotadas} agotadas o ya no publicadas, ${cambiaron} con otro precio.`);
@@ -249,7 +251,7 @@ export async function correrFuente({
   // Tarjetas (2026-11-06): nombre con link, acá → eBay, ahorro, ventas y color · talles. Solo con precio de eBay.
   const { mensajes, porMensaje } = formato === 'tarjetas' && ebay
     ? agruparTarjetas(
-      pendientes.map((g) => itemTarjeta({ ...g.oferta, vendidas: g.ebay?.ventas, refDebil: g.ebay?.debil, refPublicaciones: g.ebay?.nPublicaciones, refRetail: g.ebay?.retail, refNombre: g.ebay?.via === 'nombre' }, g.puntaje)),
+      pendientes.map((g) => itemTarjeta({ ...g.oferta, vendidas: g.ebay?.ventas, refDebil: g.ebay?.debil, refPublicaciones: g.ebay?.nPublicaciones, refRetail: g.ebay?.retail, refNombre: g.ebay?.via === 'nombre', calidad: g.ebay?.via !== 'ean' ? lineaCalidad(g.oferta) : null }, g.puntaje)),
       // Una sola línea por mensaje con la hora de la verificación en la tienda; solo las que no se pudieron verificar llevan nota.
       { titulo: tituloEnvio, tituloContinuacion: `*${titulo}* (cont.)`, maxMensajes, ...(verificadasHoraAr ? { leyenda: `${LEYENDA_TARJETAS} · ✔ verificado en la tienda ${verificadasHoraAr}` } : {}), ...limitesMensaje },
     )

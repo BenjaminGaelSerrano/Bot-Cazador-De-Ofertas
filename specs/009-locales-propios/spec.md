@@ -35,11 +35,7 @@ Se envían en un mensaje aparte, rotulado "sin referencia internacional", solo p
 
 ## Estado al 2026-11-26
 
-- Se leen: La Martina, Key Biscayne, Tommy, Decathlon, Frères, King of the Kongo, BullBenny, Benkyo, Old Bridge, Garçon
-  García, Cristóbal Colón, Tussy, Ay Not Dead (sección hombre), Etiqueta Negra, Open Sports, Quiksilver, DC y RVCA (las
-  tres últimas son las tiendas de Boardriders).
-- No se leen y no se fuerza: Lacoste y Zara rechazan los pedidos automáticos; María Cher también (403).
-- Sin catálogo para leer: Harlem (no se encontraron datos en su sitio), Revolver (sitio vacío), Bolivia (marca nacional,
-  su sitio propio no responde), Scuff (sin sitio encontrado).
-- De mujer, afuera: Delaostia, Complot, Jazmín Chebar, Ginebra, María Cher, Max Mara.
-- Sin tienda online argentina y no nacionales: Polo Ralph Lauren, Salvatore Ferragamo.
+El usuario pidió dejar **solo las tiendas que venden muchas marcas**. En locales propios quedan Decathlon, Cristóbal
+Colón y Open Sports. Se sacaron las de una sola marca: La Martina, Key Biscayne, Tommy Hilfiger, Frères, King of the
+Kongo, BullBenny, Benkyo, Old Bridge, Garçon García, Tussy, Ay Not Dead, Etiqueta Negra, Quiksilver, DC y RVCA. Los
+lectores quedan en el código: volver a sumar una es agregar su línea en `config.locales.tiendas`.

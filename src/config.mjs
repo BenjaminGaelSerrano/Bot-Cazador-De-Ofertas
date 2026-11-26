@@ -326,25 +326,11 @@ export const config = {
     bajaMinima: 0.20,       // bajar 20 % o más contra el precio habitual
     maximoPorTienda: 1000,  // sin tope (2026-11-26: "dame todas las ofertas")
     repetirVigentes: true,  // cada corrida manda todo lo vigente; lo nuevo o rebajado lleva 🆕
+    // Solo tiendas que venden muchas marcas (2026-11-26: "las marcas individuales eliminalas todas").
     tiendas: {
-      lamartina: { nombre: 'La Martina', tipo: 'vtex', base: 'https://www.lamartina.com.ar' },
-      keybiscayne: { nombre: 'Key Biscayne', tipo: 'vtex', base: 'https://www.keybiscayne.com.ar' },
-      tommy: { nombre: 'Tommy Hilfiger', tipo: 'vtex', base: 'https://ar.tommy.com' },
       decathlon: { nombre: 'Decathlon', tipo: 'shopify', base: 'https://www.decathlon.com.ar' },
-      freres: { nombre: 'Frères', tipo: 'shopify', base: 'https://www.freres.ar' },
-      kingofthekongo: { nombre: 'King of the Kongo', tipo: 'tiendanube', base: 'https://www.kingofthekongo.com.ar' },
-      bullbenny: { nombre: 'BullBenny', tipo: 'tiendanube', base: 'https://www.bullbenny.com.ar' },
-      benkyo: { nombre: 'Benkyo', tipo: 'tiendanube', base: 'https://www.benkyo.com.ar' },
-      oldbridge: { nombre: 'Old Bridge', tipo: 'tiendanube', base: 'https://www.oldbridge.com.ar' },
-      garcongarcia: { nombre: 'Garçon García', tipo: 'tiendanube', base: 'https://www.garcongarcia.com.ar' },
       cristobalcolon: { nombre: 'Cristóbal Colón', tipo: 'woo', base: 'https://www.cristobalcolon.com' },
-      tussy: { nombre: 'Tussy', tipo: 'tiendanube', base: 'https://tussy.com.ar' },
-      aynotdead: { nombre: 'Ay Not Dead', tipo: 'tiendanube', base: 'https://aynotdead.com', ruta: '/hombre/' },
-      etiquetanegra: { nombre: 'Etiqueta Negra', tipo: 'tiendanube', base: 'https://www.etiquetanegra.us', ruta: '/hombres/tienda/' },
       opensports: { nombre: 'Open Sports', tipo: 'magento', base: 'https://www.opensports.com.ar', rutas: ['/sale.html'] },
-      quiksilver: { nombre: 'Quiksilver', tipo: 'magento', base: 'https://www.quiksilver.com.ar', rutas: ['/hombre'] },
-      dcshoes: { nombre: 'DC', tipo: 'magento', base: 'https://www.dcshoes.com.ar', rutas: ['/hombres/calzado', '/hombres/indumentaria'] },
-      rvca: { nombre: 'RVCA', tipo: 'magento', base: 'https://www.rvca.com.ar', rutas: ['/hombre'] },
     },
   },
 

@@ -354,6 +354,8 @@ export const config = {
       kevingston: { nombre: 'Kevingston', tipo: 'kevingston', base: 'https://www.kevingston.com' },
       brooksfield: { nombre: 'Brooksfield', tipo: 'prestashop', base: 'https://www.brooksfieldstore.com', ruta: '/3-hombre-brooksfield' },
       rottenfuture: { nombre: 'Rotten Future', tipo: 'rotten', base: 'https://rotten-future.com' },
+      samples: { nombre: 'Samples', tipo: 'tiendanube', base: 'https://samples.com.ar' },
+      shaka: { nombre: 'Shaka', tipo: 'tiendanube', base: 'https://sh-aka.com.ar' },
       onasaez: { nombre: 'Ona Saez', tipo: 'woo', base: 'https://www.onasaez.com', porPagina: 20, soloCategoria: '/hombre/' },
       decathlon: { nombre: 'Decathlon', tipo: 'shopify', base: 'https://www.decathlon.com.ar' },
       cristobalcolon: { nombre: 'Cristóbal Colón', tipo: 'woo', base: 'https://www.cristobalcolon.com' },

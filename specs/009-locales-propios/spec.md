@@ -56,3 +56,4 @@ Después pidió Tommy Hilfiger, Etiqueta Negra, Equus y Giesso: se leen. Sin sum
 Lectores propios (src/fuentes/propias.mjs): Kevingston, Brooksfield y Rotten Future. No se suman: Mauro Sergio (su
 catálogo muestra precios mayoristas "+ IVA"), Odin Hood, Nasty Mondays y Undefined (protegidas contra lectura
 automática o sin datos en la página), Samples Studios (no se encontró la tienda argentina).
+El usuario pasó los links de Samples (samples.com.ar) y Shaka (sh-aka.com.ar): se leen.

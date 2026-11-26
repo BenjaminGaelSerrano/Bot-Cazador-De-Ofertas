@@ -32,7 +32,7 @@ export function tipoDePrenda(nombre) {
   return TIPOS.find(([, re]) => re.test(n))?.[0] ?? null;
 }
 
-const NO_ES_PARA_EL = /\b(mujer(es)?|damas?|women|womens|femenin[oa]s?|ninos?|ninas?|kids?|junior|jr|boys?|girls?|bebes?|blusas?|vestidos?|polleras?|faldas?|corpino|bikini|tops?|capri|tanga|bralette|body|skirt|mini ?shorts?)\b/;
+const NO_ES_PARA_EL = /\b(mujer(es)?|damas?|women|womens|femenin[oa]s?|ninos?|ninas?|kids?|junior|jr|boys?|girls?|bebes?|blusas?|vestidos?|polleras?|faldas?|corpino|bikini|tops?|capri|tanga|bralette|body|skirt|mini ?shorts?|baby ?tees?)\b/;
 
 /** Solo hombre o sin género declarado: nada de mujer ni de niños (nombre, categorías, etiquetas y género). */
 export function esParaHombre({ nombre, categorias = [], genero = null, url = '' }) {

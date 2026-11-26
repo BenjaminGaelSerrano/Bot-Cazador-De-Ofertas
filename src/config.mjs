@@ -364,7 +364,9 @@ export const config = {
   },
 
   // Telegram (canal preferido si hay TELEGRAM_BOT_TOKEN): el chat del usuario no es secreto (sin el token no sirve).
-  telegram: { chatId: 7228408134 },
+  // `fotos`: cada oferta sale como un mensaje con su foto debajo del texto (2026-11-26). `pausaFotosMs`: Telegram admite
+  // alrededor de un mensaje por segundo en un chat.
+  telegram: { chatId: 7228408134, fotos: true, pausaFotosMs: 1100 },
   // Con Telegram activo, cada aviso sale también por WhatsApp (pedido del usuario, 2026-11-02), hasta el tope diario.
   notificar: { copiaWhatsapp: true }, // cuenta del usuario (confirmado el 2026-11-02)
 

@@ -17,6 +17,7 @@ import { crearCliente } from './nucleo/http.mjs';
 import { descuentoPorTransferencia, elegirParaAvisar, evaluarLocal, mensajesLocales, pisoDeTienda, promosDeWeb } from './nucleo/locales.mjs';
 import { enviar, limitarWhatsapp } from './notificar/canal.mjs';
 import { telegramActivo } from './notificar/telegram.mjs';
+import { guardarCacheDeImagenes, usarCacheDeImagenes } from './notificar/imagen.mjs';
 
 /** Producto de Shopify -> oferta con talles disponibles. La variante más barata con stock marca el precio. */
 export function deShopify(p, base) {
@@ -169,7 +170,9 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
     console.log('Locales propios: sin Telegram configurado, no se envía nada.');
   } else {
     limitarWhatsapp(0); // solo Telegram: no gasta el cupo diario de WhatsApp
+    await usarCacheDeImagenes(`${args.datos}/imagenes.json`);
     const { elegidas, mensajes } = await correrLocales({ datos: args.datos, dryRun, nombres: args.fuente?.split(',') });
+    if (!dryRun) await guardarCacheDeImagenes();
     console.log(`Locales propios: ${elegidas.length} ofertas en ${mensajes.length} mensajes.`);
   }
 }

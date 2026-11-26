@@ -54,6 +54,37 @@ export async function enviarTelegram(texto, {
   return { enviado: true };
 }
 
+/**
+ * Manda una foto (por su dirección) con el texto ARRIBA y la imagen debajo, sin sonido. Si Telegram pide esperar (429),
+ * espera lo que indica y reintenta.
+ */
+export async function enviarFotoTelegram(foto, texto, {
+  token = process.env.TELEGRAM_BOT_TOKEN,
+  chatId = process.env.TELEGRAM_CHAT_ID || config.telegram?.chatId,
+  fetchFn = fetch,
+  dormir = (ms) => new Promise((r) => setTimeout(r, ms)),
+  intentos = 4,
+} = {}) {
+  if (!token || !chatId) throw new ErrorTelegram('Falta TELEGRAM_BOT_TOKEN o el chat de Telegram');
+  for (let i = 1; i <= intentos; i++) {
+    let res;
+    try {
+      res = await fetchFn(`${API}/bot${token}/sendPhoto`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: chatId, photo: foto, caption: aHtml(texto), parse_mode: 'HTML', show_caption_above_media: true, disable_notification: true }),
+        signal: AbortSignal.timeout(config.timeoutPedidoMs),
+      });
+    } catch {
+      throw new ErrorTelegram('Telegram no respondió');
+    }
+    const datos = await res.json().catch(() => ({}));
+    if (res.status === 200 && datos.ok) return { enviado: true };
+    if (res.status === 429 && i < intentos) { await dormir(((datos.parameters?.retry_after ?? 5) + 1) * 1000); continue; }
+    throw new ErrorTelegram(`Telegram rechazó la foto (${res.status}${datos.description ? `: ${datos.description}` : ''})`);
+  }
+}
+
 /** Chats privados que le escribieron al bot (para averiguar el del usuario una sola vez). */
 export async function chatsQueEscribieron(token, fetchFn = fetch) {
   const res = await fetchFn(`${API}/bot${token}/getUpdates`, { signal: AbortSignal.timeout(config.timeoutPedidoMs) });

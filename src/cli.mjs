@@ -15,6 +15,7 @@ import { leerCatalogo as leerStockCenter, leerTalles as tallesStockCenter } from
 import { cupoDeCorrida, enviadosHoy, sumarEnviados } from './nucleo/envios.mjs';
 import { limitarWhatsapp, nombreCanal, whatsappEnviados } from './notificar/canal.mjs';
 import { telegramActivo } from './notificar/telegram.mjs';
+import { guardarCacheDeImagenes, usarCacheDeImagenes } from './notificar/imagen.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
 import { crearEbay } from './nucleo/ebay.mjs';
 import { crearUpcitemdb } from './nucleo/upcitemdb.mjs';
@@ -76,6 +77,7 @@ if (config.avisar.pausados) console.log('AVISOS PAUSADOS (config.avisar.pausados
 
 // El tiempo de cada fuente se mide acá, envolviendo la lectura.
 const rutaLecturas = `${args.datos}/lecturas.json`;
+await usarCacheDeImagenes(`${args.datos}/imagenes.json`);
 const lecturas = await cargarLecturas(rutaLecturas);
 let lecturasModificadas = false;
 const tiempos = {};
@@ -151,6 +153,7 @@ const { resultados, fallaron, mensajesUsados, limiteEnvio } = await correrFuente
 // El tope diario cuenta solo lo que salió por WhatsApp (con Telegram, las copias).
 const porWhatsapp = telegramActivo() ? whatsappEnviados() : mensajesUsados;
 if (!dryRun && porWhatsapp > 0) await sumarEnviados(rutaEnvios, fecha, porWhatsapp);
+if (!dryRun) await guardarCacheDeImagenes();
 
 // Día de la última lectura completa de cada tienda VTEX (ver nucleo/lecturas.mjs).
 if (!dryRun && lecturasModificadas) await guardarLecturas(rutaLecturas, lecturas);

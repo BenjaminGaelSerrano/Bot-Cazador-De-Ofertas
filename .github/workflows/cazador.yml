@@ -73,6 +73,15 @@ jobs:
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
+      # Locales propios (spec 009): sin referencia internacional. Corre aunque el paso anterior falle, y su falla no
+      # frena el guardado de datos.
+      - name: Locales propios
+        if: success() || failure()
+        continue-on-error: true
+        run: node src/locales.mjs --datos datos ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+
       # always(): si el bot falló, igual hay que guardar fallas.json para no repetir el aviso en cada corrida.
       - name: Guardar datos
         if: always()

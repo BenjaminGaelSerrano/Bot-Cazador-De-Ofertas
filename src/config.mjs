@@ -300,6 +300,29 @@ export const config = {
   // respondiendo 200). Lo que no entra queda sin marcar y sale al día siguiente.
   maxMensajesPorDia: 25,
 
+  // Locales propios (spec 009, 2026-11-26): marcas sin referencia en eBay. Ver specs/009-locales-propios/spec.md.
+  locales: {
+    // Precio máximo en pesos por tipo de prenda ("algo que consideres normal pagar", aprobado por el usuario): ajustarlos
+    // acá si la inflación los deja viejos o si llega demasiado o muy poco.
+    topes: {
+      remera: 30000, musculosa: 22000, chomba: 45000, camisa: 55000, buzo: 65000, sweater: 70000, jean: 70000,
+      pantalon: 65000, jogging: 55000, short: 35000, campera: 120000, saco: 120000, chaleco: 70000, calzado: 100000, gorra: 20000,
+    },
+    talles: { ropa: ['l', 'xl'], calzado: [44.5, 46] },
+    descuentoMinimo: 0.40,  // declarado por la tienda
+    percentilTienda: 0.75,  // y entre el 25 % de descuentos más fuertes de esa tienda
+    diasHistorial: 14,      // con este historial, además:
+    bajaMinima: 0.20,       // bajar 20 % o más contra el precio habitual
+    maximoPorTienda: 3,
+    tiendas: {
+      lamartina: { nombre: 'La Martina', tipo: 'vtex', base: 'https://www.lamartina.com.ar' },
+      keybiscayne: { nombre: 'Key Biscayne', tipo: 'vtex', base: 'https://www.keybiscayne.com.ar' },
+      tommy: { nombre: 'Tommy Hilfiger', tipo: 'vtex', base: 'https://ar.tommy.com' },
+      decathlon: { nombre: 'Decathlon', tipo: 'shopify', base: 'https://www.decathlon.com.ar' },
+      freres: { nombre: 'Frères', tipo: 'shopify', base: 'https://www.freres.ar' },
+    },
+  },
+
   // Telegram (canal preferido si hay TELEGRAM_BOT_TOKEN): el chat del usuario no es secreto (sin el token no sirve).
   telegram: { chatId: 7228408134 },
   // Con Telegram activo, cada aviso sale también por WhatsApp (pedido del usuario, 2026-11-02), hasta el tope diario.

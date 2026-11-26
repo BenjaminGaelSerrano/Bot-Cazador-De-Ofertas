@@ -146,7 +146,8 @@ export function elegirParaAvisar(candidatas, avisadas, maximo, { repetir = false
     .slice(0, maximo);
 }
 
-const pesos = (n) => `$${miles(Math.round(n))}`; // mismo formato que las tarjetas con referencia
+// Mismo formato que las tarjetas con referencia ($55k), con un decimal si hace falta: $9,5k no es $10k.
+const pesos = (n) => (n < 100_000 && Math.round(n / 100) % 10 !== 0 ? `$${(n / 1000).toFixed(1).replace('.', ',')}k` : `$${miles(Math.round(n))}`);
 const limpio = (s) => String(s ?? '').replace(/[[\]*]/g, '').replace(/\s+/g, ' ').trim();
 
 /** Tarjeta de una oferta de local propio. */

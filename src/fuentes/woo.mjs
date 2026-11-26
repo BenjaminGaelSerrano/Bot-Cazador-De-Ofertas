@@ -30,15 +30,18 @@ export function deWoo(p) {
   };
 }
 
-export async function leerWoo(cliente, { base, maxPaginas = 30 }) {
+// `porPagina`: algunas tiendas no aguantan pedidos de 100. `soloCategoria`: solo lo que está en una categoría cuya
+// dirección la contiene ("hombre" en Ona Saez, que vende mayormente ropa de mujer).
+export async function leerWoo(cliente, { base, maxPaginas = 60, porPagina = 100, soloCategoria = null }) {
   const ofertas = new Map();
   for (let pagina = 1; pagina <= maxPaginas; pagina++) {
-    const { datos } = await cliente.obtenerJson(`${base}/wp-json/wc/store/v1/products?on_sale=true&stock_status=instock&per_page=100&page=${pagina}`);
+    const { datos } = await cliente.obtenerJson(`${base}/wp-json/wc/store/v1/products?on_sale=true&stock_status=instock&per_page=${porPagina}&page=${pagina}`);
     for (const p of datos) {
+      if (soloCategoria && !(p.categories ?? []).some((c) => String(c.link ?? c.slug ?? '').includes(soloCategoria))) continue;
       const o = deWoo(p);
       if (o) ofertas.set(o.id, o);
     }
-    if (datos.length < 100) break;
+    if (datos.length < porPagina) break;
   }
   return [...ofertas.values()];
 }

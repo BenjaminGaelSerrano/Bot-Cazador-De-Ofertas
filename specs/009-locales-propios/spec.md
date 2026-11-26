@@ -44,3 +44,7 @@ Más tarde el mismo día pidió sumar: Frères, King of the Kongo, Twohip, Hazze
 Substract, CasaClan y Raco de Loix (todas se leen). No se pudieron leer: Zara y Animal (ANM Store) rechazan al bot (403);
 Odin Hood, Nasty Mondays y Undefined arman la tienda de un modo que el lector no entiende; Shaka y Sample, sin sitio
 confirmado.
+
+Después pidió: Harvey Willys, My Saint, Bowen, Moss, Baib Project, Davila (Davila Clouds), Ona Saez (solo hombre),
+Tussy y Benkyo: se leen. Sin sumar: Rotten Future (su web no usa el formato de Tiendanube), Samples Studios
+(Squarespace) y Aura 7 (sin sitio confirmado).

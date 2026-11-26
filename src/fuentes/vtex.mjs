@@ -48,7 +48,7 @@ export function tallesDe(items) {
   for (const item of items ?? []) {
     const u = item.sellers?.[0]?.commertialOffer?.AvailableQuantity ?? 0;
     if (!(u > 0)) continue;
-    let t = String(item.Talle?.[0] ?? item.name ?? '').trim();
+    let t = String(item.Talle?.[0] ?? item.TALLE?.[0] ?? item.name ?? '').trim(); // Equus usa "TALLE"; sin eso se leía el color
     if (!t) continue;
     if (/^(talle\s*)?[uú]nico$|^u$/i.test(t)) t = 'único'; // gorras: "Talle Unico"
     const ref = item.referenceId?.find?.((r) => r.Key === 'RefId')?.Value ?? '';

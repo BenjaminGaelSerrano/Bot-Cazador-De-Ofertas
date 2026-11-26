@@ -48,3 +48,7 @@ confirmado.
 Después pidió: Harvey Willys, My Saint, Bowen, Moss, Baib Project, Davila (Davila Clouds), Ona Saez (solo hombre),
 Tussy y Benkyo: se leen. Sin sumar: Rotten Future (su web no usa el formato de Tiendanube), Samples Studios
 (Squarespace) y Aura 7 (sin sitio confirmado).
+
+Después pidió Tommy Hilfiger, Etiqueta Negra, Equus y Giesso: se leen. Sin sumar: Lacoste (bloquea al bot), Ralph Lauren
+(el sitio argentino no responde), Kevingston, Mauro Sergio y Brooksfield (harían falta lectores propios), Tucci y Yagmour
+(ropa de mujer).

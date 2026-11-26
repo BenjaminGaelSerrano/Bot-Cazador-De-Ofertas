@@ -68,3 +68,9 @@ test('calzado en numeración de EE. UU. y botines de chicos', async () => {
   assert.equal(tallesUtiles(['8', '10'], 'calzado'), null);
   assert.ok(!esParaHombre({ nombre: 'Botines Adidas F50 League FG/MF Jr' }));
 });
+
+test('VTEX: el talle puede venir como "TALLE" (Equus); sin eso se leía el color', async () => {
+  const { tallesDe } = await import('../src/fuentes/vtex.mjs');
+  const item = (talle, stock) => ({ name: 'AZUL', TALLE: [talle], sellers: [{ commertialOffer: { AvailableQuantity: stock } }] });
+  assert.deepEqual(tallesDe([item('L', 3), item('XL', 0)]).map((t) => t.t), ['L']);
+});

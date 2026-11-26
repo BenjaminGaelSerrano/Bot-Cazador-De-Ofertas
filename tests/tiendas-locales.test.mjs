@@ -74,3 +74,17 @@ test('VTEX: el talle puede venir como "TALLE" (Equus); sin eso se leía el color
   const item = (talle, stock) => ({ name: 'AZUL', TALLE: [talle], sellers: [{ commertialOffer: { AvailableQuantity: stock } }] });
   assert.deepEqual(tallesDe([item('L', 3), item('XL', 0)]).map((t) => t.t), ['L']);
 });
+
+test('lectores propios: Kevingston, PrestaShop y Rotten Future', async () => {
+  const { deKevingston, dePrestashop, deRotten, tallesKevingston } = await import('../src/fuentes/propias.mjs');
+  const k = deKevingston({ sku: 'A1', nombre: 'Campera X', url: '/producto/A1_x', precio: '164900.00', precio_real: '196000.00', stock: '48' }, 'https://k');
+  assert.deepEqual([k.precioActual, k.precioLista, k.url], [164900, 196000, 'https://k/producto/A1_x']);
+  assert.equal(deKevingston({ sku: 'A2', precio: '1', stock: '0' }, 'https://k'), null);
+  const cliente = { obtenerJson: async () => ({ datos: { data: [{ size_nombre: 'L', stock: '2' }, { size_nombre: 'XL', stock: '0' }] } }) };
+  assert.deepEqual(await tallesKevingston(cliente, k, { base: 'https://k' }), ['L']);
+  const p = dePrestashop({ id_product: '5', name: 'Polo', url: 'https://b/polos/5-polo.html#/26-talle-xl', price_amount: 100, regular_price_amount: 200 });
+  assert.deepEqual([p.url, p.precioActual, p.precioLista], ['https://b/polos/5-polo.html', 100, 200]);
+  const pagina = String.raw`{\"id\":9,\"handle\":\"buzo-x\",\"name\":\"BUZO X\",\"variants\":[{\"id\":1,\"price\":100,\"compareAtPrice\":200,\"available\":true,\"options\":[\"L\"]},{\"id\":2,\"price\":100,\"compareAtPrice\":null,\"available\":false,\"options\":[\"XL\"]}]}`;
+  const [r] = deRotten(pagina, 'https://r');
+  assert.deepEqual([r.nombre, r.url, r.precioActual, r.precioLista, r.talles], ['BUZO X', 'https://r/producto/buzo-x', 100, 200, ['L']]);
+});

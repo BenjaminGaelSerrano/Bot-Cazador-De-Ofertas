@@ -45,10 +45,12 @@ export function crearCliente({
 
     // Con `cuerpo` es un POST con JSON (lo que usan los GraphQL de las tiendas); sin `cuerpo`, un GET.
     const conCuerpo = opciones.cuerpo !== undefined;
+    const conFormulario = opciones.formulario !== undefined; // POST como lo manda un formulario web
     const init = {
       headers: { 'User-Agent': userAgent, Accept: 'application/json', ...(conCuerpo ? { 'Content-Type': 'application/json' } : {}) },
       signal: AbortSignal.timeout(timeoutMs),
       ...(conCuerpo ? { method: 'POST', body: JSON.stringify(opciones.cuerpo) } : {}),
+      ...(conFormulario ? { method: 'POST', body: new URLSearchParams(opciones.formulario) } : {}),
     };
 
     let res;

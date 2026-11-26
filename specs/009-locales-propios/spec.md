@@ -52,3 +52,7 @@ Tussy y Benkyo: se leen. Sin sumar: Rotten Future (su web no usa el formato de T
 Después pidió Tommy Hilfiger, Etiqueta Negra, Equus y Giesso: se leen. Sin sumar: Lacoste (bloquea al bot), Ralph Lauren
 (el sitio argentino no responde), Kevingston, Mauro Sergio y Brooksfield (harían falta lectores propios), Tucci y Yagmour
 (ropa de mujer).
+
+Lectores propios (src/fuentes/propias.mjs): Kevingston, Brooksfield y Rotten Future. No se suman: Mauro Sergio (su
+catálogo muestra precios mayoristas "+ IVA"), Odin Hood, Nasty Mondays y Undefined (protegidas contra lectura
+automática o sin datos en la página), Samples Studios (no se encontró la tienda argentina).

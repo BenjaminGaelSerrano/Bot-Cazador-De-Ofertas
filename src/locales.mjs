@@ -8,6 +8,7 @@ import { config } from './config.mjs';
 import { crearLector } from './fuentes/vtex.mjs';
 import { leerTiendanube, tallesTiendanube } from './fuentes/tiendanube.mjs';
 import { leerMagentoHtml, tallesMagento } from './fuentes/magento-html.mjs';
+import { leerKevingston, leerPrestashop, leerRotten, tallesKevingston } from './fuentes/propias.mjs';
 import { leerWoo, tallesWoo } from './fuentes/woo.mjs';
 import { composicionDe } from './nucleo/calidad.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
@@ -81,11 +82,12 @@ async function leerVtex(cliente, tienda) {
   }));
 }
 
-const LECTORES = { shopify: leerShopify, tiendanube: leerTiendanube, woo: leerWoo, vtex: leerVtex, magento: leerMagentoHtml };
+const LECTORES = { shopify: leerShopify, tiendanube: leerTiendanube, woo: leerWoo, vtex: leerVtex, magento: leerMagentoHtml, kevingston: leerKevingston, prestashop: leerPrestashop, rotten: leerRotten };
 
 /** Talles con stock cuando la lista no los dice; null si ya venían en la lista. */
 function talleEnFicha(cliente, oferta, tienda) {
   if (tienda.tipo === 'woo') return tallesWoo(cliente, oferta, tienda);
+  if (tienda.tipo === 'kevingston') return tallesKevingston(cliente, oferta, tienda);
   if (tienda.tipo === 'magento') return tallesMagento(cliente, oferta);
   if (oferta.faltanTalles) return tallesTiendanube(cliente, oferta);
   return null;

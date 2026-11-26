@@ -17,7 +17,7 @@ consideres normal pagar").
    - Con menos de 14 días de historial: descuento declarado de 40 % o más, y no menor al percentil 75 de los descuentos
      de esa tienda.
    - Con 14 días o más: además, el precio tiene que estar 20 % o más por debajo del habitual (mediana de lo observado).
-5. Máximo 3 por tienda y por corrida. Solo se avisa lo nuevo o lo que volvió a bajar.
+5. Sin tope por tienda. Cada corrida manda todo lo vigente; lo nuevo o lo que volvió a bajar lleva 🆕.
 
 Se envían en un mensaje aparte, rotulado "sin referencia internacional", solo por Telegram.
 

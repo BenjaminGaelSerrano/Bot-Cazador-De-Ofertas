@@ -91,7 +91,11 @@ test('correrLocales: avisa una vez, no repite al mismo precio, y una tienda caí
   assert.equal(uno.elegidas.length, 1);
   assert.deepEqual(uno.fallaron, ['rota']);
   assert.match(enviados[0], /sin referencia internacional/);
-  assert.equal((await correrLocales(opciones)).elegidas.length, 0, 'ya avisada');
+  assert.equal((await correrLocales({ ...opciones, cfg: { ...opciones.cfg, repetirVigentes: false } })).elegidas.length, 0, 'ya avisada');
+  const repetida = await correrLocales({ ...opciones, cfg: { ...opciones.cfg, repetirVigentes: true } });
+  assert.deepEqual(repetida.elegidas.map((e) => e.nueva), [false], 'vigente: se repite, sin 🆕');
+  assert.match(enviados[0], /🆕 REMERA/);
+  assert.doesNotMatch(enviados.at(-1), /🆕/);
   assert.ok(JSON.parse(await readFile(join(datos, 'locales', 'avisadas.json'), 'utf8'))['https://x/p/1']);
 });
 
@@ -107,8 +111,8 @@ test('promos de la web: portada, transferencia y precio que cuenta', async () =>
   const ev = evaluarLocal(oferta, { fecha: '2026-11-26', cfg });
   assert.equal(ev.precio, 25500);
   const [m] = mensajesLocales([{ tienda: 'X', oferta, evaluacion: ev }], 8, { X: p, Y: ['2x1'] });
-  assert.match(m, /\$25\.500/);
-  assert.match(m, /con otro medio \$30\.000/);
+  assert.match(m, /\$26k|\$25/);
+  assert.match(m, /con otro medio \$30k/);
   assert.match(m, /X: 15% OFF por transferencia · 2x1 Ojotas/);
   assert.doesNotMatch(m, /Y: /);
 });

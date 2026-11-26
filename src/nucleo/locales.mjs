@@ -1,5 +1,6 @@
 import { lineaCalidad } from './calidad.mjs';
 import { diasEntre } from './fechas.mjs';
+import { miles } from '../notificar/tabla.mjs';
 
 // Locales propios (spec 009): sin referencia internacional, cada marca se compara contra sí misma y contra un precio
 // máximo por tipo de prenda. Solo funciones puras; la lectura y el envío están en src/locales.mjs.
@@ -126,11 +127,15 @@ export function evaluarLocal(oferta, { registro, fecha, piso = 0, cfg }) {
   return { tipo, talles, descuento, baja, precio };
 }
 
-/** Lo nuevo o lo que volvió a bajar desde que se avisó, de mayor a menor descuento, hasta `maximo`. */
-export function elegirParaAvisar(candidatas, avisadas, maximo) {
+/**
+ * De mayor a menor descuento, hasta `maximo`, marcando `nueva` lo que no se había avisado o volvió a bajar. Con
+ * `repetir` (pedido del usuario: cada corrida manda todo lo que sigue vigente) también salen las ya avisadas.
+ */
+export function elegirParaAvisar(candidatas, avisadas, maximo, { repetir = false } = {}) {
   const vistos = new Set(); // un color por modelo: el mismo nombre repetido no ocupa los lugares
   return candidatas
-    .filter(({ oferta }) => avisadas[oferta.url] === undefined || oferta.precioActual < avisadas[oferta.url])
+    .map((c) => ({ ...c, nueva: avisadas[c.oferta.url] === undefined || c.oferta.precioActual < avisadas[c.oferta.url] }))
+    .filter((c) => repetir || c.nueva)
     .sort((a, b) => (b.evaluacion.baja ?? b.evaluacion.descuento) - (a.evaluacion.baja ?? a.evaluacion.descuento))
     .filter(({ oferta }) => {
       const nombre = normal(oferta.nombre);
@@ -141,14 +146,14 @@ export function elegirParaAvisar(candidatas, avisadas, maximo) {
     .slice(0, maximo);
 }
 
-const pesos = (n) => `$${Math.round(n).toLocaleString('es-AR')}`;
+const pesos = (n) => `$${miles(Math.round(n))}`; // mismo formato que las tarjetas con referencia
 const limpio = (s) => String(s ?? '').replace(/[[\]*]/g, '').replace(/\s+/g, ' ').trim();
 
 /** Tarjeta de una oferta de local propio. */
-export function tarjetaLocal(numero, { tienda, oferta, evaluacion }) {
+export function tarjetaLocal(numero, { tienda, oferta, evaluacion, nueva }) {
   const baja = evaluacion.baja !== null ? ` · bajó ${Math.round(evaluacion.baja * 100)}% de lo habitual` : '';
   return [
-    `*${numero}. [${limpio(oferta.nombre).slice(0, 60)}](${oferta.url})*`,
+    `*${numero}. [${nueva ? '🆕 ' : ''}${limpio(oferta.nombre).slice(0, 60)}](${oferta.url})*`,
     `${pesos(evaluacion.precio ?? oferta.precioActual)} (lista ${pesos(oferta.precioLista)}) · *-${Math.round(evaluacion.descuento * 100)}%*${baja}`,
     ...(oferta.precioConPago ? [`Pagando por transferencia; con otro medio ${pesos(oferta.precioActual)}`] : []),
     `${tienda} · talle ${evaluacion.talles.slice(0, 6).join(', ')}`,

@@ -324,7 +324,8 @@ export const config = {
     percentilTienda: 0.75,  // y entre el 25 % de descuentos más fuertes de esa tienda
     diasHistorial: 14,      // con este historial, además:
     bajaMinima: 0.20,       // bajar 20 % o más contra el precio habitual
-    maximoPorTienda: 40,    // 3 hasta el 2026-11-26: el usuario quiere que estén todas
+    maximoPorTienda: 1000,  // sin tope (2026-11-26: "dame todas las ofertas")
+    repetirVigentes: true,  // cada corrida manda todo lo vigente; lo nuevo o rebajado lleva 🆕
     tiendas: {
       lamartina: { nombre: 'La Martina', tipo: 'vtex', base: 'https://www.lamartina.com.ar' },
       keybiscayne: { nombre: 'Key Biscayne', tipo: 'vtex', base: 'https://www.keybiscayne.com.ar' },

@@ -133,7 +133,7 @@ export async function correrLocales({
       }
       // Las tiendas cuya lista no dice qué talle queda (WooCommerce) se miran recién acá, solo lo que se iba a avisar.
       const nuevas = [];
-      for (const c of elegirParaAvisar(candidatas, avisadas, cfg.maximoPorTienda * 4)) {
+      for (const c of elegirParaAvisar(candidatas, avisadas, cfg.maximoPorTienda, { repetir: cfg.repetirVigentes })) {
         if (nuevas.length >= cfg.maximoPorTienda) break;
         let conStock;
         try { conStock = await tallesDe(crear(), c.oferta, tienda); } catch (error) { log(`${nombre}: sin talles de ${c.oferta.url} (${error.message})`); continue; }
@@ -143,7 +143,7 @@ export async function correrLocales({
       }
       elegidas.push(...nuevas);
       if (!dryRun) await guardarHistorial(ruta, historial);
-      log(`${nombre}: ${ofertas.length} productos · piso de descuento ${Math.round(Math.max(cfg.descuentoMinimo, piso) * 100)}% · cumplen ${candidatas.length} · nuevas a avisar ${nuevas.length}`);
+      log(`${nombre}: ${ofertas.length} productos · piso de descuento ${Math.round(Math.max(cfg.descuentoMinimo, piso) * 100)}% · cumplen ${candidatas.length} · a avisar ${nuevas.length} (${nuevas.filter((e) => e.nueva).length} nuevas)`);
     } catch (error) {
       fallaron.push(nombre);
       log(`${nombre}: no se pudo leer (${error.message})`);

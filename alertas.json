@@ -299,10 +299,6 @@
   "precio": 84999,
   "fecha": "2026-11-03"
  },
- "juleriaque:18323": {
-  "precio": 14495,
-  "fecha": "2026-11-03"
- },
  "juleriaque:5929": {
   "precio": 18495,
   "fecha": "2026-11-03"
@@ -438,5 +434,9 @@
  "moov:ADEG4958": {
   "precio": 54999,
   "fecha": "2026-11-25"
+ },
+ "pigmento:2727": {
+  "precio": 116270,
+  "fecha": "2026-11-26"
  }
 }

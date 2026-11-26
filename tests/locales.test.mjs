@@ -34,8 +34,8 @@ test('tallesUtiles: L y XL, pantalones por número, ni bebés ni talles ajenos',
   assert.equal(tallesUtiles(['0-3 meses', '3-6 meses'], 'remera'), null);
   assert.equal(tallesUtiles(['TALLA:4', 'TALLA:6', 'TALLA:10'], 'jean'), null, 'numeración de mujer o de chicos');
   assert.equal(tallesUtiles(['52', '54'], 'pantalon'), null);
-  assert.deepEqual(tallesUtiles(['40', '44', '46', '52'], 'pantalon'), ['44', '46']);
-  assert.deepEqual(tallesUtiles(['30', '34', '36'], 'jean'), ['34', '36']);
+  assert.deepEqual(tallesUtiles(['40', '44', '46', '52'], 'pantalon'), ['44']);
+  assert.deepEqual(tallesUtiles(['30', '34', '36'], 'jean'), ['34']);
   assert.deepEqual(tallesUtiles(['40', '45', '47'], 'calzado'), ['45']);
   assert.deepEqual(tallesUtiles(['1', '2'], 'chaleco'), ['1', '2'], 'otra numeración: se muestran');
   assert.equal(tallesUtiles(['4', '10'], 'buzo'), null, 'chicos o mujer');

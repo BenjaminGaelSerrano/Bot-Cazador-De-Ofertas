@@ -11,7 +11,7 @@ consideres normal pagar").
 ## Criterio de una oferta
 
 1. Solo hombre (o sin género declarado). Nada de mujer ni de niños.
-2. Con stock en L o XL (calzado: 44,5 a 46). Si la marca usa otra numeración, se muestran los talles tal cual.
+2. Con stock en L o XL (calzado: 44,5 a 46; pantalón 42 a 44, o 32 a 34 en pulgadas). Si la marca usa otra numeración, se muestran los talles tal cual.
 3. Precio de hoy menor o igual al máximo de ese tipo de prenda (`config.locales.topes`).
 4. Descuento:
    - Con menos de 14 días de historial: descuento declarado de 40 % o más, y no menor al percentil 75 de los descuentos

@@ -305,10 +305,11 @@ export const config = {
     // Precio máximo en pesos por tipo de prenda ("algo que consideres normal pagar", aprobado por el usuario): ajustarlos
     // acá si la inflación los deja viejos o si llega demasiado o muy poco.
     topes: {
-      remera: 30000, musculosa: 22000, chomba: 45000, camisa: 55000, buzo: 65000, sweater: 70000, jean: 70000,
-      pantalon: 65000, jogging: 55000, short: 35000, campera: 120000, saco: 120000, chaleco: 70000, calzado: 100000, gorra: 20000,
+      // Bajados ~10 % el 2026-11-26 ("si es un poquito más bajo mejor").
+      remera: 27000, musculosa: 20000, chomba: 40000, camisa: 50000, buzo: 58000, sweater: 63000, jean: 63000,
+      pantalon: 58000, jogging: 50000, short: 32000, campera: 108000, saco: 108000, chaleco: 63000, calzado: 90000, gorra: 18000,
     },
-    talles: { ropa: ['l', 'xl'], calzado: [44.5, 46] },
+    talles: { ropa: ['l', 'xl'], calzado: [44.5, 46], cintura: [42, 44], pulgadas: [32, 34] }, // pantalón 42-44
     descuentoMinimo: 0.40,  // declarado por la tienda
     percentilTienda: 0.75,  // y entre el 25 % de descuentos más fuertes de esa tienda
     diasHistorial: 14,      // con este historial, además:

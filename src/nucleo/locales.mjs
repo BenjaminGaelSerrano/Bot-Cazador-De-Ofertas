@@ -45,7 +45,7 @@ const LETRAS = /^(xxs|xs|s|m|l|xl|xxl|xxxl|2xl|3xl)$/;
  * Con otra numeración (jeans 40-48, Delaostia 1-2-3, talle único) no se puede saber: se devuelven todos.
  * Devuelve null si hay talles comparables y ninguno es el suyo, o si no hay stock.
  */
-export function tallesUtiles(talles, tipo, { ropa = ['l', 'xl'], calzado = [44.5, 46], cintura = [42, 48], pulgadas = [34, 36] } = {}) {
+export function tallesUtiles(talles, tipo, { ropa = ['l', 'xl'], calzado = [44.5, 46], cintura = [42, 44], pulgadas = [32, 34] } = {}) {
   const hay = [...new Set((talles ?? []).map((t) => String(t).replace(/^.*(talle|talla):\s*/i, '').trim()).filter(Boolean))];
   if (hay.length === 0) return null;
   // Talles de bebé o de chicos ("0-3 meses", "8 años"): no es para él.

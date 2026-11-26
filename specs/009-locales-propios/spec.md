@@ -21,6 +21,13 @@ consideres normal pagar").
 
 Se envían en un mensaje aparte, rotulado "sin referencia internacional", solo por Telegram.
 
+## Promos de la web (2026-11-26)
+
+- El precio que cuenta es el que se paga por transferencia, si la tienda lo publica en el producto o en la portada. La
+  tarjeta muestra también el precio con otro medio de pago.
+- Las demás promos de la portada (2x1, extras, cupones, primera compra) se listan al pie del mensaje; no se aplican solas.
+- Los descuentos de locales presenciales quedan afuera (pedido del usuario).
+
 ## Límites conocidos
 
 - Al principio se depende del precio de lista que declara la tienda, que puede estar inflado.

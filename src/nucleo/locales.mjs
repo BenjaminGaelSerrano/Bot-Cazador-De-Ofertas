@@ -112,16 +112,18 @@ export function evaluarLocal(oferta, { registro, fecha, piso = 0, cfg }) {
   if (!(oferta.precioActual > 0) || !(oferta.stock > 0)) return null;
   const tipo = tipoDePrenda(oferta.nombre);
   const tope = tipo ? cfg.topes[tipo] : undefined;
-  if (!tope || oferta.precioActual > tope) return null;
+  // Promos de la web (2026-11-26): si pagando por transferencia sale menos, ese es el precio que cuenta.
+  const precio = oferta.precioConPago ?? oferta.precioActual;
+  if (!tope || precio > tope) return null;
   if (!esParaHombre(oferta)) return null;
   const talles = tallesUtiles(oferta.talles, tipo, cfg.talles);
   if (!talles) return null;
-  const descuento = descuentoDe(oferta);
+  const descuento = descuentoDe({ precioActual: precio, precioLista: oferta.precioLista });
   if (descuento < Math.max(cfg.descuentoMinimo, piso)) return null;
   const habitual = precioHabitual(registro, fecha, cfg.diasHistorial);
   const baja = habitual === null ? null : 1 - oferta.precioActual / habitual;
   if (baja !== null && baja < cfg.bajaMinima) return null;
-  return { tipo, talles, descuento, baja };
+  return { tipo, talles, descuento, baja, precio };
 }
 
 /** Lo nuevo o lo que volvió a bajar desde que se avisó, de mayor a menor descuento, hasta `maximo`. */
@@ -147,18 +149,43 @@ export function tarjetaLocal(numero, { tienda, oferta, evaluacion }) {
   const baja = evaluacion.baja !== null ? ` · bajó ${Math.round(evaluacion.baja * 100)}% de lo habitual` : '';
   return [
     `*${numero}. [${limpio(oferta.nombre).slice(0, 60)}](${oferta.url})*`,
-    `${pesos(oferta.precioActual)} (lista ${pesos(oferta.precioLista)}) · *-${Math.round(evaluacion.descuento * 100)}%*${baja}`,
+    `${pesos(evaluacion.precio ?? oferta.precioActual)} (lista ${pesos(oferta.precioLista)}) · *-${Math.round(evaluacion.descuento * 100)}%*${baja}`,
+    ...(oferta.precioConPago ? [`Pagando por transferencia; con otro medio ${pesos(oferta.precioActual)}`] : []),
     `${tienda} · talle ${evaluacion.talles.slice(0, 6).join(', ')}`,
     lineaCalidad({ marca: `${oferta.marca} ${oferta.nombre}`, composicion: oferta.composicion }),
   ].join('\n');
 }
 
 /** Mensajes de Telegram (de a `porMensaje` tarjetas). */
-export function mensajesLocales(elegidas, porMensaje = 8) {
+export function mensajesLocales(elegidas, porMensaje = 8, promos = {}) {
   const mensajes = [];
   for (let i = 0; i < elegidas.length; i += porMensaje) {
     const cabecera = i === 0 ? '*Locales propios* · sin referencia internacional (descuento de la propia tienda)' : '*Locales propios* (cont.)';
     mensajes.push([cabecera, '', elegidas.slice(i, i + porMensaje).map((e, j) => tarjetaLocal(i + j + 1, e)).join('\n\n')].join('\n'));
   }
+  const lineas = Object.entries(promos).filter(([tienda, p]) => p.length && elegidas.some((e) => e.tienda === tienda)).map(([tienda, p]) => `${tienda}: ${p.join(' · ')}`);
+  if (mensajes.length && lineas.length) mensajes[mensajes.length - 1] += `\n\n*Promos de la web* (según su portada, revisá las condiciones)\n${lineas.join('\n')}`;
   return mensajes;
+}
+
+// Anuncios de la portada que cambian lo que se paga. Quedan afuera el envío gratis, las cuotas y los "hasta X% off".
+const CAMBIA_PRECIO = /(transferencia|\bextra\b|adicional|\b[234]x[123]\b|segunda unidad|2da unidad|llevando \d|cup[oó]n|con el c[oó]digo|primera compra)/i;
+const CON_DATO = /\d{1,2}\s?%|\b[234]x[123]\b|\$\s?\d/;
+
+/** Hasta 3 promociones visibles en la portada de una tienda. */
+export function promosDeWeb(html) {
+  const textos = String(html).replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<!--[\s\S]*?-->/g, '').split(/<[^>]+>/)
+    .map((x) => x.replace(/&nbsp;|\s+/g, ' ').replace(/[*\[\]]/g, '').trim())
+    .filter((x) => x.length > 6 && x.length <= 110 && CAMBIA_PRECIO.test(x) && CON_DATO.test(x) && !/env[ií]o/i.test(x));
+  return [...new Map(textos.map((t) => [t.toLowerCase(), t])).values()].slice(0, 3);
+}
+
+/** Descuento por transferencia que anuncia la portada (0.05 para "5% off pagando por transferencia"), o 0. */
+export function descuentoPorTransferencia(promos) {
+  for (const p of promos) {
+    const m = /(\d{1,2})\s?%[^.|]{0,30}transferencia|transferencia[^.|]{0,20}?(\d{1,2})\s?%/i.exec(p);
+    const n = Number(m?.[1] ?? m?.[2]);
+    if (n > 0 && n <= 30) return n / 100;
+  }
+  return 0;
 }

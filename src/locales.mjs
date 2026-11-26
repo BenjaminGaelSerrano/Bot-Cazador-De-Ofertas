@@ -13,7 +13,7 @@ import { composicionDe } from './nucleo/calidad.mjs';
 import { hoyArgentina } from './nucleo/fechas.mjs';
 import { cargar as cargarHistorial, guardar as guardarHistorial, registrar } from './nucleo/historial.mjs';
 import { crearCliente } from './nucleo/http.mjs';
-import { elegirParaAvisar, evaluarLocal, mensajesLocales, pisoDeTienda } from './nucleo/locales.mjs';
+import { descuentoPorTransferencia, elegirParaAvisar, evaluarLocal, mensajesLocales, pisoDeTienda, promosDeWeb } from './nucleo/locales.mjs';
 import { enviar, limitarWhatsapp } from './notificar/canal.mjs';
 import { telegramActivo } from './notificar/telegram.mjs';
 
@@ -106,15 +106,21 @@ export async function correrLocales({
   leer = (cliente, t) => (LECTORES[t.tipo] ?? leerVtex)(cliente, { ...t, marca: t.nombre }),
   tallesDe = (cliente, oferta, t) => talleEnFicha(cliente, oferta, t),
   crear = () => crearCliente({ pausaMs: config.pausaMs }), enviarFn = enviar, log = console.log,
+  portada = async (cliente, t) => (t.base ? (await cliente.obtenerTexto(`${t.base}/`)).datos : ''),
 } = {}) {
   const rutaAvisadas = `${datos}/locales/avisadas.json`;
   const avisadas = await leerJson(rutaAvisadas, {});
   const elegidas = [];
   const fallaron = [];
+  const promos = {};
   for (const nombre of nombres ?? Object.keys(cfg.tiendas)) {
     const tienda = cfg.tiendas[nombre];
     try {
-      const ofertas = await leer(crear(), tienda);
+      let ofertas = await leer(crear(), tienda);
+      // Promos de la portada. Si falla, la tienda se lee igual.
+      try { promos[tienda.nombre] = promosDeWeb(await portada(crear(), tienda)); } catch (error) { log(`${nombre}: sin promos de portada (${error.message})`); }
+      const transferencia = descuentoPorTransferencia(promos[tienda.nombre] ?? []);
+      if (transferencia) ofertas = ofertas.map((o) => (o.precioConPago ? o : { ...o, precioConPago: Math.round(o.precioActual * (1 - transferencia)) }));
       const ruta = `${datos}/locales/${nombre}.json`;
       const historial = await cargarHistorial(ruta);
       const piso = pisoDeTienda(ofertas, cfg.percentilTienda);
@@ -143,7 +149,7 @@ export async function correrLocales({
       log(`${nombre}: no se pudo leer (${error.message})`);
     }
   }
-  const mensajes = mensajesLocales(elegidas);
+  const mensajes = mensajesLocales(elegidas, 8, promos);
   for (const [i, mensaje] of mensajes.entries()) {
     await enviarFn(mensaje, { dryRun });
     // Se marca como avisado recién cuando el mensaje salió.

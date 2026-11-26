@@ -94,3 +94,21 @@ test('correrLocales: avisa una vez, no repite al mismo precio, y una tienda caí
   assert.equal((await correrLocales(opciones)).elegidas.length, 0, 'ya avisada');
   assert.ok(JSON.parse(await readFile(join(datos, 'locales', 'avisadas.json'), 'utf8'))['https://x/p/1']);
 });
+
+test('promos de la web: portada, transferencia y precio que cuenta', async () => {
+  const { promosDeWeb, descuentoPorTransferencia, mensajesLocales } = await import('../src/nucleo/locales.mjs');
+  const p = promosDeWeb('<div>ENVÍO GRATIS desde $90.000</div><p>15% OFF por transferencia</p><p>Hasta 50% OFF</p><p>2x1 Ojotas</p><script>var a="10% extra";</script>');
+  assert.deepEqual(p, ['15% OFF por transferencia', '2x1 Ojotas']);
+  assert.equal(descuentoPorTransferencia(p), 0.15);
+  assert.equal(descuentoPorTransferencia(['5% off pagando por transferencia']), 0.05);
+  assert.equal(descuentoPorTransferencia(['2x1 Ojotas']), 0);
+  // 30.000 está sobre el máximo de remera (27.000), pero con transferencia (25.500) entra.
+  const oferta = o({ precioActual: 30000, precioLista: 60000, precioConPago: 25500 });
+  const ev = evaluarLocal(oferta, { fecha: '2026-11-26', cfg });
+  assert.equal(ev.precio, 25500);
+  const [m] = mensajesLocales([{ tienda: 'X', oferta, evaluacion: ev }], 8, { X: p, Y: ['2x1'] });
+  assert.match(m, /\$25\.500/);
+  assert.match(m, /con otro medio \$30\.000/);
+  assert.match(m, /X: 15% OFF por transferencia · 2x1 Ojotas/);
+  assert.doesNotMatch(m, /Y: /);
+});

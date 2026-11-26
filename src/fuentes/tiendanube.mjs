@@ -41,6 +41,9 @@ export function deListaTiendanube(html) {
       id: String(elegida.product_id), nombre: sinEntidades(nombre).trim(), url, ean: null, ml: null, categoria: null, categorias: [],
       precioActual: elegida.price_number, precioLista: lista, stock: hay.length,
       talles: talles.length ? [...new Set(talles)] : ['único'],
+      // Precio con el descuento del medio de pago (transferencia), si la tienda lo publica.
+      ...(pesos(elegida.price_with_payment_discount_short) > 0 && pesos(elegida.price_with_payment_discount_short) < elegida.price_number
+        ? { precioConPago: pesos(elegida.price_with_payment_discount_short) } : {}),
     });
   }
   return ofertas;

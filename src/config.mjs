@@ -326,8 +326,19 @@ export const config = {
     bajaMinima: 0.20,       // bajar 20 % o más contra el precio habitual
     maximoPorTienda: 1000,  // sin tope (2026-11-26: "dame todas las ofertas")
     repetirVigentes: true,  // cada corrida manda todo lo vigente; lo nuevo o rebajado lleva 🆕
-    // Solo tiendas que venden muchas marcas (2026-11-26: "las marcas individuales eliminalas todas").
+    // Solo tiendas que venden muchas marcas (2026-11-26: "las marcas individuales eliminalas todas"), más las que el usuario
+    // pidió sumar después por nombre (desde Frères hasta Raco de Loix).
     tiendas: {
+      freres: { nombre: 'Frères', tipo: 'shopify', base: 'https://www.freres.ar' },
+      kingofthekongo: { nombre: 'King of the Kongo', tipo: 'tiendanube', base: 'https://www.kingofthekongo.com.ar' },
+      twohip: { nombre: 'Twohip', tipo: 'tiendanube', base: 'https://www.twohip.store' },
+      hazze: { nombre: 'Hazze', tipo: 'tiendanube', base: 'https://www.hazze.com.ar' },
+      lefrance: { nombre: 'Le France', tipo: 'tiendanube', base: 'https://www.lefrance.com.ar' },
+      bombaproject: { nombre: 'Bomba Project', tipo: 'tiendanube', base: 'https://www.bombaproject.com.ar' },
+      arturofuego: { nombre: 'Arturo Fuego', tipo: 'tiendanube', base: 'https://www.arturofuego.com.ar' },
+      substract: { nombre: 'Substract', tipo: 'tiendanube', base: 'https://substractwear.com' },
+      casaclan: { nombre: 'CasaClan', tipo: 'tiendanube', base: 'https://www.casaclanba.com' },
+      raco: { nombre: 'Raco de Loix', tipo: 'tiendanube', base: 'https://raco-deloix.com' },
       decathlon: { nombre: 'Decathlon', tipo: 'shopify', base: 'https://www.decathlon.com.ar' },
       cristobalcolon: { nombre: 'Cristóbal Colón', tipo: 'woo', base: 'https://www.cristobalcolon.com' },
       opensports: { nombre: 'Open Sports', tipo: 'magento', base: 'https://www.opensports.com.ar', rutas: ['/sale.html'] },

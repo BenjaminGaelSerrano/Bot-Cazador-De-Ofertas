@@ -39,3 +39,8 @@ El usuario pidió dejar **solo las tiendas que venden muchas marcas**. En locale
 Colón y Open Sports. Se sacaron las de una sola marca: La Martina, Key Biscayne, Tommy Hilfiger, Frères, King of the
 Kongo, BullBenny, Benkyo, Old Bridge, Garçon García, Tussy, Ay Not Dead, Etiqueta Negra, Quiksilver, DC y RVCA. Los
 lectores quedan en el código: volver a sumar una es agregar su línea en `config.locales.tiendas`.
+
+Más tarde el mismo día pidió sumar: Frères, King of the Kongo, Twohip, Hazze, Le France, Bomba Project, Arturo Fuego,
+Substract, CasaClan y Raco de Loix (todas se leen). No se pudieron leer: Zara y Animal (ANM Store) rechazan al bot (403);
+Odin Hood, Nasty Mondays y Undefined arman la tienda de un modo que el lector no entiende; Shaka y Sample, sin sitio
+confirmado.

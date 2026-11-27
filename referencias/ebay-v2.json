@@ -29281,7 +29281,7 @@
  "cod:KC3154": {
   "sin": 1,
   "porVentas": 1,
-  "visto": "2026-11-11"
+  "visto": "2026-11-27"
  },
  "cod:KB9459": {
   "sin": 1,
@@ -37031,6 +37031,42 @@
   "visto": "2026-11-27"
  },
  "cod:685401-87": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-27"
+ },
+ "cod:JP1924": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-27"
+ },
+ "cod:IT2277": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-27"
+ },
+ "cod:JN6464": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-27"
+ },
+ "cod:JL6995": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-27"
+ },
+ "cod:684685-01": {
+  "sin": 1,
+  "porVentas": 1,
+  "visto": "2026-11-27"
+ },
+ "cod:JZ6308": {
+  "sin": 1,
+  "porVentas": 1,
+  "nValidas": 1,
+  "visto": "2026-11-27"
+ },
+ "cod:JZ5511": {
   "sin": 1,
   "porVentas": 1,
   "visto": "2026-11-27"
